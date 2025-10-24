@@ -1,3 +1,5 @@
 res://Scenes/Player/player.tscn
 res://Scripts/Player/player.gd
 res://Scenes/Floors/test_world.tscn
+res://Scripts/Enemies/test_enemy.gd
+res://Scenes/Enemies/test_enemy.tscn
