@@ -1,20 +1,29 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1761362762
+::res://::1761365121
 icon.svg::CompressedTexture2D::6118854524503985570::1761215391::1761275854::1::::<><><>0<>0<>50c1afa977369d7d742b6d9020104661<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-::res://Assets/::1761276245
+::res://Assets/::1761364917
 ::res://Assets/Enemies/::1761276236
 ::res://Assets/Player/::1761276231
 ::res://Assets/Tilemaps/::1761276904
 Dungeon Tileset + Spikes.png::CompressedTexture2D::3437902921609025723::1761267769::1761276904::1::::<><><>0<>0<>afac6da1b8032511655c9cede1edf6b3<>res://.godot/imported/Dungeon Tileset + Spikes.png-4f23e46db310d31364e2e3c5b6c1c634.ctex::
-::res://Scenes/::1761277038
-::res://Scenes/Enemies/::1761278478
-test_enemy.tscn::PackedScene::5272099863804701819::1761278478::0::1::::<><><>0<>0<><>::uid://ctgav05ifthty::::res://icon.svg<>uid://or6n54dm6u2s::::res://Scripts/Enemies/test_enemy.gd
-::res://Scenes/Floors/::1761279534
-test_world.tscn::PackedScene::2474939786666499171::1761279534::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://chd3yj7pkdiu2::::res://Scenes/Enemies/test_enemy.tscn
+::res://Assets/Weapon/::1761365270
+FB500-5.png::CompressedTexture2D::2314209812244053789::1552663442::1761365270::1::::<><><>0<>0<>3ed94874c3bc29d0711d7b0c3c72f34d<>res://.godot/imported/FB500-5.png-bf7de9642ee32c226261c09408f98168.ctex::
+ice staff.png::CompressedTexture2D::8927668198103028594::1614795157::1761364954::1::::<><><>0<>0<>0fdc46ab35de51cf2448640b77330813<>res://.godot/imported/ice staff.png-23f87a996ee07d10155fffb686851b8b.ctex::
+::res://Scenes/::1761364762
+::res://Scenes/Enemies/::1761364732
+test_enemy.tscn::PackedScene::5272099863804701819::1761364732::0::1::::<><><>0<>0<><>::uid://ctgav05ifthty::::res://icon.svg<>uid://or6n54dm6u2s::::res://Scripts/Enemies/test_enemy.gd
+::res://Scenes/Floors/::1761363631
+test_world.tscn::PackedScene::2474939786666499171::1761363631::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://chd3yj7pkdiu2::::res://Scenes/Enemies/test_enemy.tscn
 ::res://Scenes/Player/::1761278639
 player.tscn::PackedScene::6716059162180735360::1761278639::0::1::::<><><>0<>0<><>::uid://bln4x7n1bjd8p::::res://Scripts/Player/player.gd<>uid://ctgav05ifthty::::res://icon.svg
-::res://Scripts/::1761276219
-::res://Scripts/Enemies/::1761278575
-test_enemy.gd::GDScript::1019645295501410768::1761278575::0::1::::<>CharacterBody2D<><>0<>0<><>::
+::res://Scenes/Weapon/::1761365681
+fireball.tscn::PackedScene::6332230446404343337::1761365802::0::1::::<><><>0<>0<><>::uid://78axyko37l06::::res://Assets/Weapon/FB500-5.png<>uid://ctg5an4ukt77v::::res://Scenes/Weapon/fireball.gd
+fireball.gd::GDScript::6120637901341906637::1761365655::0::1::::<>Area2D<><>0<>0<><>::
+test_staff.tscn::PackedScene::5604140517522876571::1761365681::0::1::::<><><>0<>0<><>::uid://d0gvnj36e5agw::::res://Assets/Weapon/ice staff.png<>uid://cr5lsg2sodioj::::res://Scripts/Weapon/test_staff.gd
+::res://Scripts/::1761364769
+::res://Scripts/Enemies/::1761364695
+test_enemy.gd::GDScript::1019645295501410768::1761364695::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Scripts/Player/::1761294138
 player.gd::GDScript::3187138442576952149::1761294138::0::1::::<>CharacterBody2D<><>0<>0<><>::
+::res://Scripts/Weapon/::1761365287
+test_staff.gd::GDScript::6028683430751759229::1761365802::0::1::::<>Sprite2D<><>0<>0<><>::

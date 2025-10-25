@@ -1,11 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2xkrph0al5nw"]
+[gd_scene load_steps=5 format=3 uid="uid://c2xkrph0al5nw"]
 
 [ext_resource type="Script" uid="uid://bln4x7n1bjd8p" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_uvnfx"]
+[ext_resource type="PackedScene" uid="uid://cl3xm1es46wnb" path="res://Scenes/Weapon/test_staff.tscn" id="3_xpcdj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_a3d8c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -18,3 +19,6 @@ shape = SubResource("RectangleShape2D_a3d8c")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="test_staff" parent="." instance=ExtResource("3_xpcdj")]
+position = Vector2(11, 1)
