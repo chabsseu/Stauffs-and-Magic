@@ -10,15 +10,16 @@
 script = ExtResource("1_a3d8c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-4.7683716e-07, 0)
+position = Vector2(-2.842171e-14, -0.99999994)
 scale = Vector2(0.15625, 0.15625)
 texture = ExtResource("1_uvnfx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_a3d8c")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
 [node name="test_staff" parent="." instance=ExtResource("3_xpcdj")]
-position = Vector2(11, 1)
+position = Vector2(10, 0)

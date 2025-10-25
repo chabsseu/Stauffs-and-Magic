@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 @onready var projectile_scene = preload("res://Scenes/Weapon/fireball.tscn")
 @onready var marker = $Marker2D
