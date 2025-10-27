@@ -20,6 +20,12 @@ func _process(delta: float) -> void:
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false
+	
+	# Flip vertically
+	if direction.x < 0:
+		sprite.flip_v = true
+	else:
+		sprite.flip_v = false
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemy"):
