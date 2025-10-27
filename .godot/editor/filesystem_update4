@@ -1,10 +1,3 @@
-res://Scenes/Floors/test_world.tscn
-res://Scenes/Enemies/test_enemy.tscn
-res://Scripts/Enemies/test_enemy.gd
-res://Scenes/Weapon/test_staff.tscn
-res://Scripts/Weapon/test_staff.gd
-res://Scenes/Weapon/fireball.tscn
-res://Scenes/Weapon/fireball.gd
-res://Scenes/Player/player.tscn
 res://Scripts/Player/player.gd
 res://Scripts/Weapon/fireball.gd
+res://Scenes/Weapon/fireball.tscn
