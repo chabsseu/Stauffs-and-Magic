@@ -9,7 +9,7 @@ var current_health = max_health
 @export var max_armor = 5
 var current_armor = max_armor
 
-@export var armor_regen_interval: float = 5.0
+@export var armor_regen_interval: float = 3.0
 
 func _ready() -> void:
 	# Start the repeating timer
