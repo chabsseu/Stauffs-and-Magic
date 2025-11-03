@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kksxm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1mop"]
-radius = 301.71677
+radius = 58.034473
 
 [node name="test_enemy" type="CharacterBody2D"]
 script = ExtResource("1_kksxm")

@@ -1,3 +1,7 @@
+TextureProgressBar
+CanvasLayer
+CanvasGroup
+Control
 Node2D
 Node
 Marker2D
@@ -8,4 +12,3 @@ VisibleOnScreenNotifier2D
 VisibleOnScreenEnabler2D
 CharacterBody2D
 Camera2D
-TileMap

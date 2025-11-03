@@ -1,3 +1,9 @@
+res://Scenes/Player/player.tscn
+res://Scripts/Player/PlayerState.gd
+res://Scenes/UI/health_armor.tscn
 res://Scripts/Player/player.gd
-res://Scripts/Weapon/fireball.gd
-res://Scenes/Weapon/fireball.tscn
+res://Scripts/UI/health.gd
+res://Scripts/Enemies/test_enemy.gd
+res://Scenes/Floors/test_world.tscn
+res://Scenes/Enemies/test_enemy.tscn
+res://Scripts/UI/armor.gd

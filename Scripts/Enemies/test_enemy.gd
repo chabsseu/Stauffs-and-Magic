@@ -26,3 +26,6 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player = body
 		chase = true
+	
+	if body.has_method("take_armor_damage"):
+		body.take_armor_damage(2)
