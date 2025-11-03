@@ -7,3 +7,12 @@ res://Scripts/Enemies/test_enemy.gd
 res://Scenes/Floors/test_world.tscn
 res://Scenes/Enemies/test_enemy.tscn
 res://Scripts/UI/armor.gd
+res://Tools/staff_maker.gd
+res://Scenes/Weapon/staff_maker.tscn
+res://Staffs/Normal_staff.tscn
+res://Staffs/Normal_Staff.tscn
+res://Scripts/Weapon/test_staff.gd
+res://Staffs/Ice_Staff.tscn
+res://Scripts/Player/staff_pickup.gd
+res://Scenes/Player/staff_pickup.tscn
+res://Scenes/Weapon/test_staff.tscn

@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://cl3xm1es46wnb"]
 
-[ext_resource type="Texture2D" uid="uid://d0gvnj36e5agw" path="res://Assets/Weapon/ice staff.png" id="1_7usvd"]
 [ext_resource type="Script" uid="uid://cr5lsg2sodioj" path="res://Scripts/Weapon/test_staff.gd" id="2_e4o7g"]
+[ext_resource type="Texture2D" uid="uid://b7bm7x0epeu6v" path="res://Assets/Weapon/normal_staff.png" id="2_rnpqn"]
 
 [node name="test_staff" type="Node2D"]
-scale = Vector2(0.7, 0.7)
+scale = Vector2(2, 2)
 script = ExtResource("2_e4o7g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_7usvd")
+texture = ExtResource("2_rnpqn")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(4, -4)
+position = Vector2(8, 0)

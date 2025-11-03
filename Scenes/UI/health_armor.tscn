@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://behc1jc3y06km" path="res://Scripts/UI/health.gd" id="5_eexy7"]
 
 [node name="Health&Armor" type="CanvasLayer"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
 
 [node name="Armor" type="TextureProgressBar" parent="."]
 offset_left = 1.0

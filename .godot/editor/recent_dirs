@@ -1,11 +1,11 @@
-res://Scripts/UI
+res://Assets/Weapon
+res://Scenes/Player
 res://Scripts/Player
+res://Scripts/Weapon
+res://Scenes/Weapon
+res://Scripts/UI
 res://Scenes/UI
 res://Assets/UI/Health&Armor
-res://Assets/Weapon
-res://Scenes/Weapon
-res://Scripts/Weapon
 res://Scripts/Enemies
 res://Scenes/Enemies
 res://Scenes/Floors
-res://Scenes/Player
