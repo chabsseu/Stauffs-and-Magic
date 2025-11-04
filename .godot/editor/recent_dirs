@@ -1,3 +1,4 @@
+res://Scenes/Floors
 res://Assets/Weapon
 res://Scenes/Player
 res://Scripts/Player
@@ -8,4 +9,3 @@ res://Scenes/UI
 res://Assets/UI/Health&Armor
 res://Scripts/Enemies
 res://Scenes/Enemies
-res://Scenes/Floors
