@@ -1,11 +1,12 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1762230926
+::res://::1762313628
 icon.svg::CompressedTexture2D::6118854524503985570::1761215391::1761275854::1::::<><><>0<>0<>50c1afa977369d7d742b6d9020104661<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1762141555
 ::res://Assets/Enemies/::1761276236
 ::res://Assets/Player/::1761276231
-::res://Assets/Tilemaps/::1762231255
+::res://Assets/Tilemaps/::1762264098
 Dungeon Tileset + Spikes.png::CompressedTexture2D::3437902921609025723::1761267769::1761276904::1::::<><><>0<>0<>afac6da1b8032511655c9cede1edf6b3<>res://.godot/imported/Dungeon Tileset + Spikes.png-4f23e46db310d31364e2e3c5b6c1c634.ctex::
+Magic Crystal Barricade.png::CompressedTexture2D::3426621396088208692::1762263819::1762264098::1::::<><><>0<>0<>9b78c2acd932ccf71264d9026d8911de<>res://.godot/imported/Magic Crystal Barricade.png-f5e90e3518df4e856d0354a1accd7233.ctex::
 Tilemap.png::CompressedTexture2D::3205897060153511329::1762231221::1762231257::1::::<><><>0<>0<>39c891ff660283d166123d0c39209d3c<>res://.godot/imported/Tilemap.png-ee04f52470bc1aaf22e9d9bb82a8c1fc.ctex::
 ::res://Assets/UI/::1762141566
 ::res://Assets/UI/Health&Armor/::1762142150
@@ -20,8 +21,8 @@ normal_staff.png::CompressedTexture2D::4635315054041483219::1762156112::17621560
 ::res://Scenes/::1762142203
 ::res://Scenes/Enemies/::1762143710
 test_enemy.tscn::PackedScene::5272099863804701819::1762143710::0::1::::<><><>0<>0<><>::uid://ctgav05ifthty::::res://icon.svg<>uid://or6n54dm6u2s::::res://Scripts/Enemies/test_enemy.gd
-::res://Scenes/Floors/::1762229271
-medieval_dungeon.tscn::PackedScene::5192436696187514580::1762229271::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png
+::res://Scenes/Floors/::1762264281
+medieval_dungeon.tscn::PackedScene::5192436696187514580::1762264281::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://blw7wkta0c20d::::res://Assets/Tilemaps/Tilemap.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn
 test_world.tscn::PackedScene::2474939786666499171::1762155880::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://chd3yj7pkdiu2::::res://Scenes/Enemies/test_enemy.tscn
 ::res://Scenes/Player/::1762155975
 player.tscn::PackedScene::6716059162180735360::1762155880::0::1::::<><><>0<>0<><>::uid://bln4x7n1bjd8p::::res://Scripts/Player/player.gd<>uid://ctgav05ifthty::::res://icon.svg<>uid://cl3xm1es46wnb::::res://Scenes/Weapon/test_staff.tscn<>uid://ciwy7dfadp2tp::::res://Scenes/UI/health_armor.tscn

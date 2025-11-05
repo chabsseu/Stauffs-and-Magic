@@ -2,11 +2,15 @@ extends CharacterBody2D
 
 
 @export var speed = 150.0
-@export var  max_health = 5
-var current_health = max_health
+@export var  max_health : int
+@export var damage_node : PackedScene
+var current_health : int
 
 var chase = false
 var player: Node2D = null
+
+func _ready():
+	current_health = max_health
 
 func _physics_process(delta: float) -> void:
 	if chase:
@@ -15,7 +19,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func take_damage(amount: int):
+	var damage = damage_node.instantiate()
+	damage.find_child("Label").text = str(amount)
+	damage.position = position
+	get_parent().add_child(damage)
 	current_health -= amount
+	print("Enemy Health: %d" % current_health)
 	if current_health <= 0:
 		die()
 
