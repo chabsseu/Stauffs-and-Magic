@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1x60xga56cti"]
+
+[ext_resource type="Script" uid="uid://ugfx3pyfue03" path="res://Scripts/UI/portal.gd" id="1_abnjr"]
+[ext_resource type="Texture2D" uid="uid://bdupridg5whiu" path="res://Assets/Tilemaps/Portal.png" id="2_6fl6p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ojh6h"]
+radius = 6.0
+
+[node name="Portal" type="Area2D"]
+script = ExtResource("1_abnjr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_6fl6p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ojh6h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

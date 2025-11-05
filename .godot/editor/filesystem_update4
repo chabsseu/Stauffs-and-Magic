@@ -4,3 +4,6 @@ res://Scenes/UI/pop_up_daamge.tscn
 res://Scenes/Weapon/fireball.tscn
 res://Scenes/Floors/test_world.tscn
 res://Scripts/Weapon/fireball.gd
+res://Scenes/Floors/medieval_dungeon.tscn
+res://Scripts/UI/portal.gd
+res://Scenes/UI/portal.tscn
