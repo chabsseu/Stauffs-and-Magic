@@ -12,11 +12,11 @@ var player: Node2D = null
 func _ready():
 	current_health = max_health
 
-func _physics_process(delta: float) -> void:
-	if chase:
-		position += (player.position - position).normalized() * speed * delta
+# func _physics_process(delta: float) -> void:
+# 	if chase:
+# 		position += (player.position - position).normalized() * speed * delta
 	
-	move_and_slide()
+# 	move_and_slide()
 
 func take_damage(amount: int):
 	var damage = damage_node.instantiate()
@@ -31,10 +31,10 @@ func take_damage(amount: int):
 func die():
 	queue_free()
 	
-func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		player = body
-		chase = true
+# func _on_detection_area_body_entered(body: Node2D) -> void:
+# 	if body.is_in_group("Player"):
+# 		player = body
+# 		chase = true
 	
-	if body.has_method("take_armor_damage"):
-		body.take_armor_damage(2)
+# 	if body.has_method("take_armor_damage"):
+# 		body.take_armor_damage(2)
