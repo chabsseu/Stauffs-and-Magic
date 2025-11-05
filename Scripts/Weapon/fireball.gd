@@ -2,18 +2,15 @@ extends Area2D
 
 @export var speed = 300
 @export var damage = 1
-@onready var sprite = $Sprite2D
+@onready var sprite = $AnimatedSprite2D
 var direction = Vector2.ZERO
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if direction != Vector2.ZERO:
 		position += direction * speed * delta
+		$AnimatedSprite2D.play("fire")
 		
 	# ✅ Flip horizontally when going left
 	if direction.x < 0:
