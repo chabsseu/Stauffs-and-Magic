@@ -1,6 +1,9 @@
+Timer
 CollisionShape2D
 Sprite2D
 Area2D
+VisibleOnScreenNotifier2D
+CharacterBody2D
 Marker2D
 Node
 AnimatedSprite2D
@@ -10,5 +13,3 @@ Control
 TextureProgressBar
 CanvasLayer
 CanvasGroup
-Node2D
-VisibleOnScreenNotifier2D

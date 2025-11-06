@@ -1,10 +1,12 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1762313628
+::res://::1762409457
 icon.svg::CompressedTexture2D::6118854524503985570::1761215391::1761275854::1::::<><><>0<>0<>50c1afa977369d7d742b6d9020104661<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1762141555
-::res://Assets/Enemies/::1761276236
+::res://Assets/Enemies/::1762409447
+e_bullet.png::CompressedTexture2D::467567032074107141::1762409364::1762409458::1::::<><><>0<>0<>1298963575c3f2a0175fc9f16ab05f99<>res://.godot/imported/e_bullet.png-161b48c92377bbec5a9e782633c23ec7.ctex::
+e_pud.png::CompressedTexture2D::3594583572898209833::1762409447::1762409458::1::::<><><>0<>0<>fc5560dee954164cbf1419eea286ee37<>res://.godot/imported/e_pud.png-0d5c11f67a38570dd77c9d829dca91a2.ctex::
 ::res://Assets/Player/::1761276231
-::res://Assets/Tilemaps/::1762331566
+::res://Assets/Tilemaps/::1762409221
 Dungeon Tileset + Spikes.png::CompressedTexture2D::3437902921609025723::1761267769::1761276904::1::::<><><>0<>0<>afac6da1b8032511655c9cede1edf6b3<>res://.godot/imported/Dungeon Tileset + Spikes.png-4f23e46db310d31364e2e3c5b6c1c634.ctex::
 Magic Crystal Barricade.png::CompressedTexture2D::3426621396088208692::1762263819::1762264098::1::::<><><>0<>0<>9b78c2acd932ccf71264d9026d8911de<>res://.godot/imported/Magic Crystal Barricade.png-f5e90e3518df4e856d0354a1accd7233.ctex::
 Portal.png::CompressedTexture2D::2639216308211064016::1762331566::1762331568::1::::<><><>0<>0<>bb8f5447f05aca4b8664b3b21ac565f3<>res://.godot/imported/Portal.png-accda5ade18aaa8aa4fc8692bb46161f.ctex::
@@ -23,14 +25,15 @@ normal_staff.png::CompressedTexture2D::4635315054041483219::1762156112::17621560
 ::res://Scenes/::1762142203
 ::res://Scenes/Enemies/::1762315035
 test_enemy.tscn::PackedScene::5272099863804701819::1762315035::0::1::::<><><>0<>0<><>::uid://ctgav05ifthty::::res://icon.svg<>uid://or6n54dm6u2s::::res://Scripts/Enemies/test_enemy.gd<>uid://djc871ia27m0::::res://Scenes/UI/pop_up_daamge.tscn
-::res://Scenes/Floors/::1762330315
-medieval_dungeon.tscn::PackedScene::5192436696187514580::1762330315::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://blw7wkta0c20d::::res://Assets/Tilemaps/Tilemap.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn
+::res://Scenes/Floors/::1762332574
+medieval_dungeon.tscn::PackedScene::5192436696187514580::1762332574::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://blw7wkta0c20d::::res://Assets/Tilemaps/Tilemap.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://d1x60xga56cti::::res://Scenes/UI/portal.tscn
 test_world.tscn::PackedScene::2474939786666499171::1762315045::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://chd3yj7pkdiu2::::res://Scenes/Enemies/test_enemy.tscn
 ::res://Scenes/Player/::1762155975
 player.tscn::PackedScene::6716059162180735360::1762155880::0::1::::<><><>0<>0<><>::uid://bln4x7n1bjd8p::::res://Scripts/Player/player.gd<>uid://ctgav05ifthty::::res://icon.svg<>uid://cl3xm1es46wnb::::res://Scenes/Weapon/test_staff.tscn<>uid://ciwy7dfadp2tp::::res://Scenes/UI/health_armor.tscn
-::res://Scenes/UI/::1762314772
+::res://Scenes/UI/::1762332552
 health_armor.tscn::PackedScene::5381282945609831017::1762155999::0::1::::<><><>0<>0<><>::uid://xarcugs0uokh::::res://Assets/UI/Health&Armor/Armor.png<>uid://d1pjrb666e6i7::::res://Assets/UI/Health&Armor/Armor_bar.png<>uid://dwbstw1a0crp::::res://Assets/UI/Health&Armor/Health.png<>uid://pg3c35uol3dn::::res://Scripts/UI/armor.gd<>uid://dbi4mtl2tknb0::::res://Assets/UI/Health&Armor/Health_bar.png<>uid://behc1jc3y06km::::res://Scripts/UI/health.gd
 pop_up_daamge.tscn::PackedScene::229328017161731081::1762314772::0::1::::<><><>0<>0<><>::
+portal.tscn::PackedScene::9033580762982094062::1762332552::0::1::::<><><>0<>0<><>::uid://ugfx3pyfue03::::res://Scripts/UI/portal.gd<>uid://bdupridg5whiu::::res://Assets/Tilemaps/Portal.png
 ::res://Scenes/Weapon/::1762316996
 fireball.tscn::PackedScene::6332230446404343337::1762316996::0::1::::<><><>0<>0<><>::uid://ctg5an4ukt77v::::res://Scripts/Weapon/fireball.gd<>uid://dd6mfgqr2awsl::::res://Assets/Weapon/normal_bullet.png
 test_staff.tscn::PackedScene::5604140517522876571::1762156086::0::1::::<><><>0<>0<><>::uid://cr5lsg2sodioj::::res://Scripts/Weapon/test_staff.gd<>uid://b7bm7x0epeu6v::::res://Assets/Weapon/normal_staff.png
@@ -40,9 +43,10 @@ test_enemy.gd::GDScript::1019645295501410768::1762326043::0::1::::<>CharacterBod
 ::res://Scripts/Player/::1762155890
 player.gd::GDScript::3187138442576952149::1762155884::0::1::::<>CharacterBody2D<><>0<>0<><>::
 PlayerState.gd::GDScript::4687677036473268506::1762147014::0::1::::<>Node<><>0<>0<><>::
-::res://Scripts/UI/::1762144022
+::res://Scripts/UI/::1762331632
 armor.gd::GDScript::1066924086405933723::1762145363::0::1::::<>TextureProgressBar<><>0<>0<><>::
 health.gd::GDScript::2681795044255752100::1762145931::0::1::::<>TextureProgressBar<><>0<>0<><>::
+portal.gd::GDScript::1416509292432444974::1762333445::0::1::::<>Area2D<><>0<>0<><>::
 ::res://Scripts/Weapon/::1761463891
 fireball.gd::GDScript::6120637901341906637::1762316971::0::1::::<>Area2D<><>0<>0<><>::
 test_staff.gd::GDScript::6028683430751759229::1762153425::0::1::::<>Node2D<><>0<>0<><>::

@@ -30,7 +30,6 @@ animations = [{
 
 [node name="fireball" type="Area2D"]
 script = ExtResource("1_yaaur")
-damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)

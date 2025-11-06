@@ -1,4 +1,7 @@
 res://Scenes/UI
+res://Scenes/Enemies
+res://Scripts/Enemies
+res://Assets/Enemies
 res://Scripts/UI
 res://Assets/Tilemaps
 res://Assets/Weapon
@@ -8,5 +11,3 @@ res://Scripts/Player
 res://Scripts/Weapon
 res://Scenes/Weapon
 res://Assets/UI/Health&Armor
-res://Scripts/Enemies
-res://Scenes/Enemies

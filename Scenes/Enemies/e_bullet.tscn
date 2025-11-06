@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cewdwtydlg58v"]
+
+[ext_resource type="Script" uid="uid://bd4hi0q1w188l" path="res://Scripts/Enemies/e_bullet.gd" id="1_3iv2v"]
+[ext_resource type="Texture2D" uid="uid://gwq04m1vnior" path="res://Assets/Enemies/e_bullet.png" id="1_frh4d"]
+[ext_resource type="PackedScene" uid="uid://b1vje6h8am6wd" path="res://Scenes/Enemies/e_puddle.tscn" id="2_163le"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3iv2v"]
+radius = 8.0
+
+[node name="E_bullet" type="Area2D"]
+script = ExtResource("1_3iv2v")
+puddle_scene = ExtResource("2_163le")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_frh4d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3iv2v")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-10, -43, 20, 117)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

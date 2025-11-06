@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cb0kyqifl5o74"]
+
+[ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_c2nj3"]
+[ext_resource type="Script" uid="uid://bxhse0qjf3wow" path="res://Scripts/Enemies/slime.gd" id="1_pm37t"]
+[ext_resource type="PackedScene" uid="uid://cewdwtydlg58v" path="res://Scenes/Enemies/e_bullet.tscn" id="2_4lx4x"]
+[ext_resource type="PackedScene" uid="uid://djc871ia27m0" path="res://Scenes/UI/pop_up_daamge.tscn" id="3_6kvin"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pm37t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4lx4x"]
+radius = 691.86127
+
+[node name="slime" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_pm37t")
+projectile_scene = ExtResource("2_4lx4x")
+damage_node = ExtResource("3_6kvin")
+max_health = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 1, 0.32156864, 1)
+position = Vector2(4.7683716e-07, 4.7683716e-07)
+scale = Vector2(0.15624999, 0.15625)
+texture = ExtResource("1_c2nj3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pm37t")
+
+[node name="ShootingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea"]
+shape = SubResource("CircleShape2D_4lx4x")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
+[connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

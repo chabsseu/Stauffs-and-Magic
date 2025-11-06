@@ -1,9 +1,8 @@
-res://Scripts/Enemies/test_enemy.gd
-res://Scenes/Enemies/test_enemy.tscn
-res://Scenes/UI/pop_up_daamge.tscn
-res://Scenes/Weapon/fireball.tscn
+res://Scenes/Enemies/slime.tscn
+res://Scripts/Enemies/e_bullet.gd
+res://Scenes/Enemies/e_bullet.tscn
+res://Scripts/Enemies/slime.gd
 res://Scenes/Floors/test_world.tscn
-res://Scripts/Weapon/fireball.gd
-res://Scenes/Floors/medieval_dungeon.tscn
-res://Scripts/UI/portal.gd
-res://Scenes/UI/portal.tscn
+res://Scenes/Enemies/e_puddle.tscn
+res://Scripts/Enemies/e_puddle.gd
+res://Scenes/Weapon/fireball.tscn
