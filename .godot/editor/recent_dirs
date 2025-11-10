@@ -1,6 +1,8 @@
 res://Scenes/UI
-res://Scenes/Enemies
 res://Scripts/Enemies
+res://Scenes/Enemies
+res://
+res://Assets/Enemies/Weapons
 res://Assets/Enemies
 res://Scripts/UI
 res://Assets/Tilemaps
