@@ -1,6 +1,4 @@
-res://Scenes/Enemies/spear.gd
-res://Scenes/Enemies/spear.tscn
-res://Scenes/Enemies/spear_guy.tscn
-res://Scripts/Enemies/spear_guy.gd
+res://Scenes/Enemies/sloth.tscn
+res://Scripts/Enemies/sloth.gd
 res://Scenes/Floors/test_world.tscn
-res://Scripts/Enemies/spear.gd
+res://Scenes/Floors/medieval_dungeon.tscn

@@ -27,7 +27,7 @@ texture = ExtResource("1_w27d7")
 shape = SubResource("RectangleShape2D_1ky8i")
 
 [node name="Spear" parent="." instance=ExtResource("2_o0ygb")]
-position = Vector2(6, 7.0000005)
+position = Vector2(3, 6)
 
 [node name="AttackArea" type="Area2D" parent="."]
 

@@ -55,7 +55,7 @@ func attack() -> void:
 	await animation_player.animation_finished
 
 	attacking = false
-	attack_cooldown.start(2.5)  # cooldown after attack
+	attack_cooldown.start(2.0)  # cooldown after attack
 
 func take_damage(amount: int) -> void:
 	if damage_node != null:

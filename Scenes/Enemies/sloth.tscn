@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://hokg0gi8ti1u"]
+
+[ext_resource type="Script" uid="uid://dm7kv2pdnr7q5" path="res://Scripts/Enemies/sloth.gd" id="1_sm7oq"]
+[ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_y4kof"]
+[ext_resource type="PackedScene" uid="uid://djc871ia27m0" path="res://Scenes/UI/pop_up_daamge.tscn" id="2_ophrn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sm7oq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sm7oq"]
+radius = 274.5906
+
+[node name="sloth" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_sm7oq")
+max_health = 10
+damage_node = ExtResource("2_ophrn")
+charge_range = 500.0
+retreat_distance = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.2500019, -0.25)
+scale = Vector2(0.16015628, 0.16015625)
+texture = ExtResource("1_y4kof")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sm7oq")
+
+[node name="ChargeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_sm7oq")
+
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf8iw54sbdmlg"]
+[gd_scene load_steps=9 format=3 uid="uid://cf8iw54sbdmlg"]
 
 [ext_resource type="Texture2D" uid="uid://bo8l02hir4q3l" path="res://Assets/Tilemaps/Dungeon Tileset + Spikes.png" id="1_w7fks"]
 [ext_resource type="Texture2D" uid="uid://blw7wkta0c20d" path="res://Assets/Tilemaps/Tilemap.png" id="2_k0idu"]
 [ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="3_nn73a"]
 [ext_resource type="PackedScene" uid="uid://d1x60xga56cti" path="res://Scenes/UI/portal.tscn" id="4_nn73a"]
+[ext_resource type="PackedScene" uid="uid://hokg0gi8ti1u" path="res://Scenes/Enemies/sloth.tscn" id="5_77e4o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bu4jl"]
 texture = ExtResource("1_w7fks")
@@ -238,3 +239,8 @@ player_spawn = NodePath("../PlayerSpawn")
 [node name="Portal3" parent="." node_paths=PackedStringArray("player_spawn") instance=ExtResource("4_nn73a")]
 position = Vector2(8853, -11539)
 player_spawn = NodePath("../PlayerSpawn")
+
+[node name="sloth" parent="." instance=ExtResource("5_77e4o")]
+position = Vector2(340, 504)
+charge_speed = 600.0
+charge_range = 300.0
