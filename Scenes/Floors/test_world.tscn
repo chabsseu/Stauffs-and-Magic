@@ -176,7 +176,7 @@ position = Vector2(492, 96)
 position = Vector2(81, 331)
 
 [node name="sloth" parent="." instance=ExtResource("6_ruqt4")]
-position = Vector2(552, 274)
+position = Vector2(499, 271)
 charge_speed = 500.0
 windup_time = 1.0
 min_attack_distance = 25.0

@@ -1,4 +1,2 @@
-res://Scenes/Enemies/sloth.tscn
 res://Scripts/Enemies/sloth.gd
-res://Scenes/Floors/test_world.tscn
-res://Scenes/Floors/medieval_dungeon.tscn
+res://Scenes/Enemies/sloth.tscn

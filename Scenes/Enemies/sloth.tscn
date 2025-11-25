@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://hokg0gi8ti1u"]
+[gd_scene load_steps=7 format=3 uid="uid://hokg0gi8ti1u"]
 
 [ext_resource type="Script" uid="uid://dm7kv2pdnr7q5" path="res://Scripts/Enemies/sloth.gd" id="1_sm7oq"]
 [ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_y4kof"]
@@ -9,12 +9,17 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_sm7oq"]
 radius = 274.5906
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ophrn"]
+size = Vector2(23, 22)
+
 [node name="sloth" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_sm7oq")
 max_health = 10
 damage_node = ExtResource("2_ophrn")
 charge_range = 500.0
+trajectory_color = Color(1, 0, 0, 1)
 retreat_distance = 200.0
+damage = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.2500019, -0.25)
@@ -32,5 +37,11 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_sm7oq")
 
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("RectangleShape2D_ophrn")
+
 [connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

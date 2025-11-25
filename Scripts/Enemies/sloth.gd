@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var trajectory_color: Color = Color(1, 0, 0, 0.5)  # Red with transparency
 @export var min_attack_distance: float = 50.0  # Stop charging this close to player
 @export var retreat_distance: float = 250.0  # Retreat to this distance after charge
+@export var damage: int
 
 enum State { IDLE, WINDUP, CHARGING, RETREATING, COOLDOWN }
 
@@ -135,3 +136,10 @@ func take_damage(amount: int) -> void:
 
 func die() -> void:
 	queue_free()
+
+
+func _on_damage_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		body.take_armor_damage(damage)
+		take_damage(1)
+
