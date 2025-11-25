@@ -35,12 +35,19 @@ func take_damage(amount: int) -> void:
 
 func take_armor_damage(amount: int) -> void:
 	if current_armor > 0:
-		current_armor = max(current_armor - amount, 0)
+		var damage_to_armor = min(amount, current_armor)
+		current_armor -= damage_to_armor
+		
+		# leftover damage continues to the health
+		var leftover = amount - damage_to_armor
+		if leftover > 0:
+			take_damage(leftover)
+
 		armorChanged.emit()
 		print("Armor:", current_armor)
 	else:
-		# Armor already 0 — deal damage to health instead
 		take_damage(amount)
+
 
 func armor_regen(amount: int) -> void:
 	current_armor = min(current_armor + amount, max_armor)
