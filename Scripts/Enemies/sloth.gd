@@ -13,6 +13,12 @@ extends CharacterBody2D
 @export var retreat_distance: float = 250.0  # Retreat to this distance after charge
 @export var damage: int
 
+# Status effect
+@export var has_status_effect: bool = true
+@export var effect_type: StatusEffectManager.EffectType = StatusEffectManager.EffectType.STUN
+@export var effect_duration: float = 0.5
+@export var effect_value: float = 0.0
+
 enum State { IDLE, WINDUP, CHARGING, RETREATING, COOLDOWN }
 
 var current_health = max_health 
@@ -142,4 +148,11 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		body.take_armor_damage(damage)
 		take_damage(1)
+	
+	if has_status_effect:
+			print("Applying effect:", effect_type, "for", effect_duration, "seconds")
+			# Access PlayerState directly if it's a global autoload
+			PlayerState.status_effects.add_effect(effect_type, effect_duration, effect_value)
+			print("Effect applied to PlayerState global!")
+
 
