@@ -1,3 +1,7 @@
 res://Scripts/Enemies/sloth.gd
 res://Scenes/Enemies/sloth.tscn
 res://Scripts/Global/PlayerState.gd
+res://Scripts/Global/status_effects.gd
+res://Scripts/Player/player.gd
+res://Scenes/Floors/test_world.tscn
+res://Scripts/Enemies/e_puddle.gd
