@@ -7,3 +7,5 @@ res://Scripts/Weapon/test_staff.gd
 res://Scenes/Enemies/spear_guy.tscn
 res://Scripts/Global/PlayerState.gd
 res://Scenes/Enemies/enemy_state.tscn
+res://Scripts/Enemies/slime.gd
+res://Scripts/Enemies/sloth.gd

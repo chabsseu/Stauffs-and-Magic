@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var max_health: int
 @export var damage_node: PackedScene
-@export var normal_speed: float = 100.0
+@onready var enemy_state = EnemyState
 @export var charge_speed: float = 400.0
 @export var charge_range: float = 200.0
 @export var charge_duration: float = 1.0  # Max time to charge before stopping
@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 
 func move_toward_player():
 	var dir := (player.global_position - global_position).normalized()
-	velocity = dir * normal_speed
+	velocity = dir * enemy_state.speed
 	move_and_slide()
 
 func charge_at_player():
@@ -98,7 +98,7 @@ func charge_at_player():
 
 func retreat_from_player():
 	var dir := (global_position - player.global_position).normalized()
-	velocity = dir * normal_speed * 1.2  # Slightly faster retreat
+	velocity = dir * enemy_state.speed * 1.2  # Slightly faster retreat
 	move_and_slide()
 
 func start_charge():

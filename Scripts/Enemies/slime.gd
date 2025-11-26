@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 100.0
+@onready var enemy_state = EnemyState
 @export var projectile_scene: PackedScene
 @export var safe_distance: float = 200.0   # how far it tries to stay away
 @export var shoot_interval: float = 3.0    # seconds between shots
@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	# If player is too close, move away
 	if distance < safe_distance:
 		var move_dir = (global_position - player.global_position).normalized()
-		velocity = move_dir * speed
+		velocity = move_dir * enemy_state.speed
 	else:
 		velocity = Vector2.ZERO
 
