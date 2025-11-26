@@ -1,4 +1,7 @@
+Node
+VisibleOnScreenEnabler2D
 CollisionShape2D
+AnimatedSprite2D
 Area2D
 Timer
 Sprite2D
@@ -7,8 +10,5 @@ AnimationPlayer
 Node2D
 VisibleOnScreenNotifier2D
 Marker2D
-Node
-AnimatedSprite2D
 Label
 Control
-TextureProgressBar

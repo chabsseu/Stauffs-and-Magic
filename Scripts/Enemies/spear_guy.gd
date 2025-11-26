@@ -1,9 +1,8 @@
 extends CharacterBody2D
 
-@export var speed: float = 300
-@export var max_health: int = 5
+@onready var enemy_state = EnemyState
 @export var damage_node: PackedScene
-
+@export var max_health: int
 var current_health: int
 var player_in_range: bool = false
 var attacking: bool = false
@@ -34,7 +33,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	elif chase and player != null:
 		var direction = (player.global_position - global_position).normalized()
-		velocity = direction * speed
+		velocity = direction * enemy_state.speed
 	else:
 		velocity = Vector2.ZERO
 

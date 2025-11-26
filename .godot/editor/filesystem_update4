@@ -1,7 +1,9 @@
-res://Scripts/Enemies/sloth.gd
-res://Scenes/Enemies/sloth.tscn
-res://Scripts/Global/PlayerState.gd
-res://Scripts/Global/status_effects.gd
-res://Scripts/Player/player.gd
+res://Scripts/Weapon/fireball_skill.gd
+res://Scripts/Global/EnemyState.gd
+res://Scripts/Enemies/spear_guy.gd
 res://Scenes/Floors/test_world.tscn
-res://Scripts/Enemies/e_puddle.gd
+res://Scenes/Weapon/fireball_skill.tscn
+res://Scripts/Weapon/test_staff.gd
+res://Scenes/Enemies/spear_guy.tscn
+res://Scripts/Global/PlayerState.gd
+res://Scenes/Enemies/enemy_state.tscn

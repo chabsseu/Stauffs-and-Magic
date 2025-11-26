@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpkheq5oo4eb5"]
+
+[ext_resource type="Script" uid="uid://dkqw21gh3qgh8" path="res://Scripts/Global/EnemyState.gd" id="1_kvtks"]
+
+[node name="EnemyState" type="Node"]
+script = ExtResource("1_kvtks")
+base_speed = 300.0

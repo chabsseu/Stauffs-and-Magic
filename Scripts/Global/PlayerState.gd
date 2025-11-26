@@ -1,4 +1,4 @@
-# PlayerState.gd
+
 extends Node
 
 signal healthChanged
