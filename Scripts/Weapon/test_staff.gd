@@ -24,10 +24,17 @@ func attack():
 	projectile.direction = (get_global_mouse_position() - projectile.global_position).normalized()
 
 func fireball_skill():
-	var skill = skill_scene.instantiate()
+	var mana_cost = 5
+	if PlayerState.use_mana(mana_cost):
+		# Mana was enough → cast skill
+		var skill = skill_scene.instantiate()
 
-	get_tree().current_scene.add_child(skill)
+		get_tree().current_scene.add_child(skill)
 
-	skill.global_position = marker.global_position
+		skill.global_position = marker.global_position
 
-	skill.direction = (get_global_mouse_position() - skill.global_position).normalized() 
+		skill.direction = (get_global_mouse_position() - skill.global_position).normalized() 
+	else:
+		print("Not enough mana!")
+
+	

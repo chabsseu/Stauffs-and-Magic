@@ -16,8 +16,10 @@ size = Vector2(23, 22)
 script = ExtResource("1_sm7oq")
 max_health = 10
 damage_node = ExtResource("2_ophrn")
+charge_speed = 600.0
 charge_range = 500.0
 trajectory_color = Color(1, 0, 0, 1)
+min_attack_distance = 25.0
 retreat_distance = 200.0
 damage = 5
 

@@ -3,6 +3,7 @@ extends Node
 
 signal healthChanged
 signal armorChanged
+signal manaChanged
 
 @export var max_health = 5
 var current_health = max_health
@@ -11,6 +12,8 @@ var current_armor = max_armor
 @export var armor_regen_interval: float = 3.0
 @export var base_speed = 300.0
 var speed = base_speed
+var current_mana: int = 100
+var max_mana: int = 100
 
 var status_effects: StatusEffectManager  # Own instance
 
@@ -61,6 +64,14 @@ func armor_regen(amount: int) -> void:
 	current_armor = min(current_armor + amount, max_armor)
 	armorChanged.emit()
 	print("Armor Healed:", current_armor)
+
+func use_mana(amount: int) -> bool:
+	if current_mana >= amount:
+		current_mana -= amount
+		manaChanged.emit()
+		return true   # Skill can be used
+	else:
+		return false  # Not enough mana
 
 func _on_burn_tick(damage):
 	take_damage(damage)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ciwy7dfadp2tp"]
+[gd_scene load_steps=8 format=3 uid="uid://ciwy7dfadp2tp"]
 
 [ext_resource type="Texture2D" uid="uid://xarcugs0uokh" path="res://Assets/UI/Health&Armor/Armor.png" id="1_kmwej"]
 [ext_resource type="Texture2D" uid="uid://d1pjrb666e6i7" path="res://Assets/UI/Health&Armor/Armor_bar.png" id="2_eexy7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://pg3c35uol3dn" path="res://Scripts/UI/armor.gd" id="3_fbe37"]
 [ext_resource type="Texture2D" uid="uid://dbi4mtl2tknb0" path="res://Assets/UI/Health&Armor/Health_bar.png" id="4_fbe37"]
 [ext_resource type="Script" uid="uid://behc1jc3y06km" path="res://Scripts/UI/health.gd" id="5_eexy7"]
+[ext_resource type="Script" uid="uid://bspfr0c8eui61" path="res://Scripts/UI/mana.gd" id="7_fbe37"]
 
 [node name="Health&Armor" type="CanvasLayer"]
 scale = Vector2(2, 2)
@@ -32,3 +33,14 @@ nine_patch_stretch = true
 texture_over = ExtResource("3_4aovg")
 texture_progress = ExtResource("4_fbe37")
 script = ExtResource("5_eexy7")
+
+[node name="Mana" type="TextureProgressBar" parent="."]
+offset_left = 0.5
+offset_top = 69.5
+offset_right = 145.5
+offset_bottom = 99.0
+value = 100.0
+nine_patch_stretch = true
+texture_over = ExtResource("1_kmwej")
+texture_progress = ExtResource("2_eexy7")
+script = ExtResource("7_fbe37")
