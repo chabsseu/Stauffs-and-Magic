@@ -39,27 +39,39 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_left = -172.0
+offset_top = -81.0
+offset_right = 107.0
+offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(2, 2)
 size_flags_vertical = 4
 
 [node name="Slot0" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
 layout_mode = 2
+expand_mode = 3
+stretch_mode = 3
 
 [node name="Slot1" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
 layout_mode = 2
+expand_mode = 3
+stretch_mode = 3
 
 [node name="Slot2" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
 layout_mode = 2
+expand_mode = 3
+stretch_mode = 3
 
 [node name="Slot3" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
 layout_mode = 2
+expand_mode = 3
+stretch_mode = 3
 
 [node name="Slot4" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
 layout_mode = 2
+expand_mode = 3
+stretch_mode = 3
 
 [node name="WeaponSocket" type="Node2D" parent="."]
 
