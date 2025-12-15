@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bo8l02hir4q3l" path="res://Assets/Tilemaps/Dungeon Tileset + Spikes.png" id="1_3sc00"]
 [ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="2_2yfla"]
 [ext_resource type="PackedScene" uid="uid://chd3yj7pkdiu2" path="res://Scenes/Enemies/test_enemy.tscn" id="3_xaljv"]
-[ext_resource type="PackedScene" uid="uid://cb0kyqifl5o74" path="res://Scenes/Enemies/slime.tscn" id="4_ek63m"]
-[ext_resource type="PackedScene" uid="uid://ixiakydo7vts" path="res://Scenes/Enemies/spear_guy.tscn" id="5_cexxt"]
-[ext_resource type="PackedScene" uid="uid://hokg0gi8ti1u" path="res://Scenes/Enemies/sloth.tscn" id="6_ruqt4"]
+[ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="4_cexxt"]
+[ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="5_cexxt"]
+[ext_resource type="PackedScene" uid="uid://banf8jkq6cu4e" path="res://Scenes/Weapon/ice_staff.tscn" id="5_ruqt4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2yfla"]
 texture = ExtResource("1_3sc00")
@@ -169,12 +169,26 @@ position = Vector2(226, 129)
 [node name="test_enemy" parent="." instance=ExtResource("3_xaljv")]
 position = Vector2(393, 163)
 
-[node name="spear_guy" parent="." instance=ExtResource("5_cexxt")]
-position = Vector2(81, 331)
-max_health = 3
+[node name="WeaponPickup" parent="." instance=ExtResource("4_cexxt")]
+position = Vector2(32, 217)
+weapon_scene = ExtResource("5_ruqt4")
 
-[node name="slime" parent="." instance=ExtResource("4_ek63m")]
-position = Vector2(496, 97)
+[node name="WeaponPickup2" parent="." instance=ExtResource("4_cexxt")]
+position = Vector2(279, 254)
+weapon_scene = ExtResource("5_cexxt")
 
-[node name="sloth" parent="." instance=ExtResource("6_ruqt4")]
-position = Vector2(472, 317)
+[node name="WeaponPickup3" parent="." instance=ExtResource("4_cexxt")]
+position = Vector2(139, 294)
+weapon_scene = ExtResource("5_ruqt4")
+
+[node name="WeaponPickup4" parent="." instance=ExtResource("4_cexxt")]
+position = Vector2(395, 319)
+weapon_scene = ExtResource("5_ruqt4")
+
+[node name="WeaponPickup5" parent="." instance=ExtResource("4_cexxt")]
+position = Vector2(42, 328)
+weapon_scene = ExtResource("5_ruqt4")
+
+[node name="WeaponPickup6" parent="." instance=ExtResource("4_cexxt")]
+position = Vector2(239, 347)
+weapon_scene = ExtResource("5_cexxt")

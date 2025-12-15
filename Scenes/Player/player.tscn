@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bln4x7n1bjd8p" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_uvnfx"]
-[ext_resource type="PackedScene" uid="uid://cl3xm1es46wnb" path="res://Scenes/Weapon/test_staff.tscn" id="3_xpcdj"]
 [ext_resource type="PackedScene" uid="uid://ciwy7dfadp2tp" path="res://Scenes/UI/health_armor.tscn" id="4_mtuoh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mtuoh"]
+radius = 15.033297
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_a3d8c")
@@ -22,7 +24,45 @@ shape = SubResource("RectangleShape2D_a3d8c")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
-[node name="test_staff" parent="." instance=ExtResource("3_xpcdj")]
-position = Vector2(10, 0)
-
 [node name="Health&Armor" parent="." instance=ExtResource("4_mtuoh")]
+
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_mtuoh")
+
+[node name="Hotbar_UI" type="CanvasLayer" parent="."]
+
+[node name="HotbarSlots" type="HBoxContainer" parent="Hotbar_UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+
+[node name="Slot0" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
+layout_mode = 2
+
+[node name="Slot1" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
+layout_mode = 2
+
+[node name="Slot2" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
+layout_mode = 2
+
+[node name="Slot3" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
+layout_mode = 2
+
+[node name="Slot4" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
+layout_mode = 2
+
+[node name="WeaponSocket" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
+[connection signal="area_exited" from="PickupArea" to="." method="_on_pickup_area_area_exited"]
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

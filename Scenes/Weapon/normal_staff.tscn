@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb8c2mi17642k"]
+
+[ext_resource type="Script" uid="uid://k2k7g1utc72w" path="res://Scripts/Weapon/normal_staff.gd" id="1_hcdcp"]
+[ext_resource type="Texture2D" uid="uid://b7bm7x0epeu6v" path="res://Assets/Weapon/normal_staff.png" id="2_g0t8l"]
+
+[node name="normal_staff" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_hcdcp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_g0t8l")
+
+[node name="Marker2D" type="Marker2D" parent="Sprite2D"]

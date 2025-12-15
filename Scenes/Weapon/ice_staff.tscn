@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://banf8jkq6cu4e"]
+
+[ext_resource type="Script" uid="uid://b3e7scsln23pn" path="res://Scripts/Weapon/ice_staff.gd" id="1_krsl3"]
+[ext_resource type="Texture2D" uid="uid://d0gvnj36e5agw" path="res://Assets/Weapon/ice staff.png" id="1_y57au"]
+
+[node name="Ice_staff" type="Node2D"]
+script = ExtResource("1_krsl3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.7733804
+scale = Vector2(2, 2)
+texture = ExtResource("1_y57au")
+
+[node name="Marker2D" type="Marker2D" parent="Sprite2D"]
+position = Vector2(4.29332, -4.1913486)
