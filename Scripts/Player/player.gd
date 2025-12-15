@@ -60,7 +60,7 @@ func _input(event):
 		current_weapon.attack()
 
 	if event.is_action_pressed("skill"):
-		current_weapon.fireball_skill()
+		current_weapon.fireball_skill() #should just be a skill
 
 # -------------------------
 # Pickup
@@ -177,3 +177,13 @@ func _on_pickup_area_area_entered(area: Area2D) -> void:
 func _on_pickup_area_area_exited(area: Area2D) -> void:
 	if pickup_weapon == area:
 		pickup_weapon = null
+
+#take damage
+func take_armor_damage(amount: int) -> void:
+	PlayerState.take_armor_damage(amount)
+	if PlayerState.current_health <= 0:
+		die()
+
+func die():
+	print("Player has died")
+	queue_free()

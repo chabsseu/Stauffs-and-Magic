@@ -11,3 +11,5 @@ res://Scenes/Weapon/normal_staff.tscn
 res://Scenes/Weapon/normal_staff.gd
 res://Scripts/Weapon/iceball.gd
 res://Scenes/Weapon/iceball.tscn
+res://Scenes/Floors/medieval_dungeon.tscn
+res://Scenes/Enemies/sloth.tscn
