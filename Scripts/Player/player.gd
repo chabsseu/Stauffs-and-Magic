@@ -60,7 +60,7 @@ func _input(event):
 		current_weapon.attack()
 
 	if event.is_action_pressed("skill"):
-		current_weapon.fireball_skill() #should just be a skill
+		current_weapon.skill() #should just be a skill
 
 # -------------------------
 # Pickup

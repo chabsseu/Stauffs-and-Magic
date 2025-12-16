@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7l7tkdusuysi"]
+
+[ext_resource type="Script" uid="uid://b1u0veh4nk260" path="res://Scripts/Weapon/iceball_skill.gd" id="1_0dd6v"]
+[ext_resource type="Texture2D" uid="uid://btmuilu4x2hc8" path="res://Assets/Weapon/iceball_skill.png" id="2_ppng7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd6je"]
+atlas = ExtResource("2_ppng7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27q2s"]
+atlas = ExtResource("2_ppng7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5aso"]
+atlas = ExtResource("2_ppng7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8limj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sd6je")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27q2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5aso")
+}],
+"loop": true,
+"name": &"skill",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fyrh3"]
+radius = 3.9999366
+height = 15.999747
+
+[node name="Iceball_skill" type="Area2D"]
+script = ExtResource("1_0dd6v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_8limj")
+animation = &"skill"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-10, -49, 20, 110)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.0000001, -1.0000001)
+rotation = 1.5764445
+shape = SubResource("CapsuleShape2D_fyrh3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

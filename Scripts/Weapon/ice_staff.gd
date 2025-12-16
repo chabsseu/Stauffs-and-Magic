@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var projectile_scene = preload("res://Scenes/Weapon/iceball.tscn")
-@onready var skill_scene = preload("res://Scenes/Weapon/fireball_skill.tscn")
+@onready var skill_scene = preload("res://Scenes/Weapon/iceball_skill.tscn")
 @onready var marker: Marker2D = $Marker2D
 
 func _process(delta):
@@ -14,8 +14,8 @@ func attack():
 	projectile.global_position = marker.global_position
 	projectile.direction = (get_global_mouse_position() - projectile.global_position).normalized()
 
-func fireball_skill():
-	var mana_cost = 5
+func skill():
+	var mana_cost = 3
 	if PlayerState.use_mana(mana_cost):
 		var skill = skill_scene.instantiate()
 		get_tree().current_scene.add_child(skill)

@@ -6,3 +6,7 @@ res://Scripts/Weapon/ice_staff.gd
 res://Scripts/Weapon/test_staff.gd
 res://Scenes/Weapon/normal_staff.tscn
 res://Scripts/Weapon/normal_staff.gd
+res://Scripts/Weapon/fireball.gd
+res://Scripts/Weapon/iceball_skill.gd
+res://Scenes/Weapon/iceball_skill.tscn
+res://Scripts/Player/player.gd
