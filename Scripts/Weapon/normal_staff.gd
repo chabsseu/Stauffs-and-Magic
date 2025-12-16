@@ -2,8 +2,11 @@ extends Node2D
 
 @onready var projectile_scene = preload("res://Scenes/Weapon/fireball.tscn")
 @onready var skill_scene = preload("res://Scenes/Weapon/fireball_skill.tscn")
-@onready var marker: Marker2D = $Sprite2D/Marker2D
+@onready var marker: Marker2D = $Marker2D
 
+func _process(delta):
+	look_at(get_global_mouse_position())
+	
 func attack():
 	if marker == null:
 		return

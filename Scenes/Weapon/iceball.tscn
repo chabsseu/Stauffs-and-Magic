@@ -1,30 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://cm0a65doipbwr"]
+[gd_scene load_steps=8 format=3 uid="uid://cm0a65doipbwr"]
 
 [ext_resource type="Script" uid="uid://tx07eijwhq8v" path="res://Scripts/Weapon/iceball.gd" id="1_70fof"]
-[ext_resource type="Texture2D" uid="uid://cnmif8p5m0yo3" path="res://Assets/Weapon/Ice VFX 1 192x192.png" id="1_y66h8"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_70fof"]
-atlas = ExtResource("1_y66h8")
-region = Rect2(0, 0, 192, 192)
+[ext_resource type="Texture2D" uid="uid://m8mt2ca2wfp0" path="res://Assets/Weapon/iceball.png" id="2_70fof"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dl3t0"]
-atlas = ExtResource("1_y66h8")
-region = Rect2(192, 0, 192, 192)
+atlas = ExtResource("2_70fof")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e80o3"]
-atlas = ExtResource("1_y66h8")
-region = Rect2(384, 0, 192, 192)
+atlas = ExtResource("2_70fof")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ne7xk"]
-atlas = ExtResource("1_y66h8")
-region = Rect2(576, 0, 192, 192)
+atlas = ExtResource("2_70fof")
+region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_a676a"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_e80o3"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_70fof")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dl3t0")
 }, {
@@ -39,25 +32,26 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jqegc"]
-radius = 3.9999385
-height = 22.01074
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ne7xk"]
+radius = 3.9986084
+height = 14.047891
 
 [node name="Iceball" type="Area2D"]
 script = ExtResource("1_70fof")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(19, -2)
-sprite_frames = SubResource("SpriteFrames_a676a")
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_e80o3")
 animation = &"fire"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6, -1)
-rotation = 1.5652574
-shape = SubResource("CapsuleShape2D_jqegc")
+frame_progress = 0.49879426
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-rect = Rect2(-10, -157, 20, 390)
+rect = Rect2(-10, -130, 20, 331)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2.8421716e-14)
+rotation = 1.5971794
+shape = SubResource("CapsuleShape2D_ne7xk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

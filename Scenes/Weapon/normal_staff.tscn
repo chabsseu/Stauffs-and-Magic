@@ -10,4 +10,5 @@ script = ExtResource("1_hcdcp")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_g0t8l")
 
-[node name="Marker2D" type="Marker2D" parent="Sprite2D"]
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(8, 0)
