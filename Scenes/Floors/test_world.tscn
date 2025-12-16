@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbi45qtvmlmyl"]
+[gd_scene load_steps=10 format=3 uid="uid://bbi45qtvmlmyl"]
 
 [ext_resource type="Texture2D" uid="uid://bo8l02hir4q3l" path="res://Assets/Tilemaps/Dungeon Tileset + Spikes.png" id="1_3sc00"]
 [ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="2_2yfla"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="4_cexxt"]
 [ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="5_cexxt"]
 [ext_resource type="PackedScene" uid="uid://banf8jkq6cu4e" path="res://Scenes/Weapon/ice_staff.tscn" id="5_ruqt4"]
+[ext_resource type="PackedScene" uid="uid://8n3kngoq2sld" path="res://Scenes/Weapon/mana_staff.tscn" id="7_6brkv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2yfla"]
 texture = ExtResource("1_3sc00")
@@ -176,3 +177,7 @@ weapon_scene = ExtResource("5_ruqt4")
 [node name="WeaponPickup2" parent="." instance=ExtResource("4_cexxt")]
 position = Vector2(339, 258)
 weapon_scene = ExtResource("5_cexxt")
+
+[node name="WeaponPickup3" parent="." instance=ExtResource("4_cexxt")]
+position = Vector2(153, 291)
+weapon_scene = ExtResource("7_6brkv")

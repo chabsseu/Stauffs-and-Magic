@@ -10,3 +10,5 @@ res://Scripts/Weapon/fireball.gd
 res://Scripts/Weapon/iceball_skill.gd
 res://Scenes/Weapon/iceball_skill.tscn
 res://Scripts/Player/player.gd
+res://Scripts/Weapon/mana_staff.gd
+res://Scenes/Weapon/mana_staff.tscn

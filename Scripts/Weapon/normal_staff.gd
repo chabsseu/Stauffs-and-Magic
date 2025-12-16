@@ -17,7 +17,7 @@ func attack():
 	projectile.global_position = marker.global_position
 	projectile.direction = (get_global_mouse_position() - projectile.global_position).normalized()
 
-func fireball_skill():
+func skill():
 	if marker == null:
 		return
 

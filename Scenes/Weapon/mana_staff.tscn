@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://8n3kngoq2sld"]
+
+[ext_resource type="Texture2D" uid="uid://ya4aigfq3gbc" path="res://Assets/Weapon/Mana_staff.png" id="1_6q46j"]
+[ext_resource type="Script" uid="uid://b5rwqh2wiksoh" path="res://Scripts/Weapon/mana_staff.gd" id="1_ljwl7"]
+
+[node name="Mana_staff" type="Node2D"]
+script = ExtResource("1_ljwl7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6q46j")
