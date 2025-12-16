@@ -1,10 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://8n3kngoq2sld"]
+[gd_scene load_steps=4 format=3 uid="uid://8n3kngoq2sld"]
 
 [ext_resource type="Texture2D" uid="uid://ya4aigfq3gbc" path="res://Assets/Weapon/Mana_staff.png" id="1_6q46j"]
 [ext_resource type="Script" uid="uid://b5rwqh2wiksoh" path="res://Scripts/Weapon/mana_staff.gd" id="1_ljwl7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ljwl7"]
+blend_mode = 1
 
 [node name="Mana_staff" type="Node2D"]
 script = ExtResource("1_ljwl7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6q46j")
+
+[node name="ManaParticle" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ljwl7")
+emitting = false
+amount = 30
+lifetime = 0.6
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector2(0, 0)
+spread = 64.02
+gravity = Vector2(0, -10)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+angular_velocity_min = 50.0
+angular_velocity_max = 50.0
+damping_min = 6.0
+damping_max = 6.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color = Color(0, 0.64705884, 0.7490196, 1)

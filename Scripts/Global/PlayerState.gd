@@ -73,10 +73,19 @@ func use_mana(amount: int) -> bool:
 	else:
 		return false  # Not enough mana
 
-func add_mana(amount: int) -> void:
+func add_mana(amount: int) -> bool:
+	if current_mana >= max_mana:
+		return false  # No mana added
+
+	var old_mana = current_mana
 	current_mana = min(current_mana + amount, max_mana)
-	manaChanged.emit()
-	print("Mana regenerated:", current_mana)
+
+	if current_mana != old_mana:
+		manaChanged.emit()
+		print("Mana regenerated:", current_mana)
+		return true
+
+	return false
 
 
 func _on_burn_tick(damage):
