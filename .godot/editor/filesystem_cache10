@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1765879553
+::res://::1766130561
 icon.svg::CompressedTexture2D::6118854524503985570::1764915159::1764915159::1::::<><><>0<>0<>50c1afa977369d7d742b6d9020104661<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1764915201
 ::res://Assets/Enemies/::1764915201
@@ -12,7 +12,8 @@ Dungeon Tileset + Spikes.png::CompressedTexture2D::3437902921609025723::17649151
 Magic Crystal Barricade.png::CompressedTexture2D::3426621396088208692::1764915201::1764915201::1::::<><><>0<>0<>9b78c2acd932ccf71264d9026d8911de<>res://.godot/imported/Magic Crystal Barricade.png-f5e90e3518df4e856d0354a1accd7233.ctex::
 Portal.png::CompressedTexture2D::2639216308211064016::1764915201::1764915201::1::::<><><>0<>0<>bb8f5447f05aca4b8664b3b21ac565f3<>res://.godot/imported/Portal.png-accda5ade18aaa8aa4fc8692bb46161f.ctex::
 Tilemap.png::CompressedTexture2D::3205897060153511329::1764915159::1764915201::1::::<><><>0<>0<>39c891ff660283d166123d0c39209d3c<>res://.godot/imported/Tilemap.png-ee04f52470bc1aaf22e9d9bb82a8c1fc.ctex::
-::res://Assets/UI/::1764915201
+::res://Assets/UI/::1766134462
+cooldown.png::CompressedTexture2D::3085948979868809791::1766134477::1766134480::1::::<><><>0<>0<>39c5094722887d05fb067bba38613d02<>res://.godot/imported/cooldown.png-72ba17dcec5a1218285785770d63f58a.ctex::
 ::res://Assets/UI/Health&Armor/::1764915201
 Armor.png::CompressedTexture2D::1615380224727462531::1764915201::1764915201::1::::<><><>0<>0<>34c667d94245d78308894e9ffa1d0457<>res://.godot/imported/Armor.png-6007b9d111aeef7ac99353a5086e0160.ctex::
 Armor_bar.png::CompressedTexture2D::9015714565272728156::1764915201::1764915201::1::::<><><>0<>0<>f59dfd53aa81faeb68efc592e136a354<>res://.godot/imported/Armor_bar.png-c301970d04924940c09c64ebca38d666.ctex::
@@ -41,19 +42,19 @@ test_enemy.tscn::PackedScene::5272099863804701819::1764915201::0::1::::<><><>0<>
 ::res://Scenes/Floors/::1765872798
 medieval_dungeon.tscn::PackedScene::5192436696187514580::1765786151::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://blw7wkta0c20d::::res://Assets/Tilemaps/Tilemap.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://d1x60xga56cti::::res://Scenes/UI/portal.tscn<>uid://hokg0gi8ti1u::::res://Scenes/Enemies/sloth.tscn<>uid://vwhok55g8tdn::::res://Scenes/Weapon/weapon_pickup.tscn<>uid://bb8c2mi17642k::::res://Scenes/Weapon/normal_staff.tscn
 test_world.tscn::PackedScene::2474939786666499171::1765872798::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://chd3yj7pkdiu2::::res://Scenes/Enemies/test_enemy.tscn<>uid://vwhok55g8tdn::::res://Scenes/Weapon/weapon_pickup.tscn<>uid://bb8c2mi17642k::::res://Scenes/Weapon/normal_staff.tscn<>uid://banf8jkq6cu4e::::res://Scenes/Weapon/ice_staff.tscn<>uid://8n3kngoq2sld::::res://Scenes/Weapon/mana_staff.tscn
-::res://Scenes/Player/::1765784767
-player.tscn::PackedScene::6716059162180735360::1765784767::0::1::::<><><>0<>0<><>::uid://bln4x7n1bjd8p::::res://Scripts/Player/player.gd<>uid://ctgav05ifthty::::res://icon.svg<>uid://ciwy7dfadp2tp::::res://Scenes/UI/health_armor.tscn
+::res://Scenes/Player/::1766134446
+player.tscn::PackedScene::6716059162180735360::1766134446::0::1::::<><><>0<>0<><>::uid://bln4x7n1bjd8p::::res://Scripts/Player/player.gd<>uid://ctgav05ifthty::::res://icon.svg<>uid://bj74em60yojnr::::res://Assets/UI/cooldown.png<>uid://ciwy7dfadp2tp::::res://Scenes/UI/health_armor.tscn
 ::res://Scenes/UI/::1765265473
 health_armor.tscn::PackedScene::5381282945609831017::1765265473::0::1::::<><><>0<>0<><>::uid://xarcugs0uokh::::res://Assets/UI/Health&Armor/Armor.png<>uid://d1pjrb666e6i7::::res://Assets/UI/Health&Armor/Armor_bar.png<>uid://dwbstw1a0crp::::res://Assets/UI/Health&Armor/Health.png<>uid://pg3c35uol3dn::::res://Scripts/UI/armor.gd<>uid://dbi4mtl2tknb0::::res://Assets/UI/Health&Armor/Health_bar.png<>uid://behc1jc3y06km::::res://Scripts/UI/health.gd<>uid://bspfr0c8eui61::::res://Scripts/UI/mana.gd
 pop_up_daamge.tscn::PackedScene::229328017161731081::1764915201::0::1::::<><><>0<>0<><>::
 portal.tscn::PackedScene::9033580762982094062::1764915201::0::1::::<><><>0<>0<><>::uid://ugfx3pyfue03::::res://Scripts/UI/portal.gd<>uid://bdupridg5whiu::::res://Assets/Tilemaps/Portal.png
-::res://Scenes/Weapon/::1765872930
+::res://Scenes/Weapon/::1765881101
 fireball.tscn::PackedScene::6332230446404343337::1764915201::0::1::::<><><>0<>0<><>::uid://ctg5an4ukt77v::::res://Scripts/Weapon/fireball.gd<>uid://dd6mfgqr2awsl::::res://Assets/Weapon/normal_bullet.png
 fireball_skill.tscn::PackedScene::7598279217876319807::1764915201::0::1::::<><><>0<>0<><>::uid://dd6mfgqr2awsl::::res://Assets/Weapon/normal_bullet.png<>uid://ctrgcril7ql8p::::res://Scripts/Weapon/fireball_skill.gd
 iceball.tscn::PackedScene::5666773875487432569::1765871052::0::1::::<><><>0<>0<><>::uid://tx07eijwhq8v::::res://Scripts/Weapon/iceball.gd<>uid://m8mt2ca2wfp0::::res://Assets/Weapon/iceball.png
 iceball_skill.tscn::PackedScene::7043569923752107468::1765871872::0::1::::<><><>0<>0<><>::uid://b1u0veh4nk260::::res://Scripts/Weapon/iceball_skill.gd<>uid://btmuilu4x2hc8::::res://Assets/Weapon/iceball_skill.png
 ice_staff.tscn::PackedScene::2413620599585263406::1765870197::0::1::::<><><>0<>0<><>::uid://b3e7scsln23pn::::res://Scripts/Weapon/ice_staff.gd<>uid://cxki6xwwtdk6j::::res://Assets/Weapon/ice_staff.png
-mana_staff.tscn::PackedScene::2344787377325293785::1765872930::0::1::::<><><>0<>0<><>::uid://ya4aigfq3gbc::::res://Assets/Weapon/Mana_staff.png<>uid://b5rwqh2wiksoh::::res://Scripts/Weapon/mana_staff.gd
+mana_staff.tscn::PackedScene::2344787377325293785::1765881101::0::1::::<><><>0<>0<><>::uid://ya4aigfq3gbc::::res://Assets/Weapon/Mana_staff.png<>uid://b5rwqh2wiksoh::::res://Scripts/Weapon/mana_staff.gd
 normal_staff.tscn::PackedScene::2524904287500044876::1765869743::0::1::::<><><>0<>0<><>::uid://k2k7g1utc72w::::res://Scripts/Weapon/normal_staff.gd<>uid://b7bm7x0epeu6v::::res://Assets/Weapon/normal_staff.png
 weapon_pickup.tscn::PackedScene::1519832620002062695::1765780656::0::1::::<><><>0<>0<><>::uid://c3j52boae8my8::::res://Scripts/Weapon/weapon_pickup.gd
 ::res://Scripts/::1764915201
@@ -67,10 +68,10 @@ spear_guy.gd::GDScript::4839555100769200764::1764915201::0::1::::<>CharacterBody
 test_enemy.gd::GDScript::1019645295501410768::1764915201::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Scripts/Global/::1764915201
 EnemyState.gd::GDScript::7895565897032909511::1764915201::0::1::::<>Node<><>0<>0<><>::
-PlayerState.gd::GDScript::4687677036473268506::1765873318::0::1::::<>Node<><>0<>0<><>::
+PlayerState.gd::GDScript::4687677036473268506::1765880930::0::1::::<>Node<><>0<>0<><>::
 status_effects.gd::GDScript::7864279066189499106::1764915201::0::1::::StatusEffectManager<>Node<><>0<>0<><>::
 ::res://Scripts/Player/::1765786346
-player.gd::GDScript::3187138442576952149::1765871714::0::1::::<>CharacterBody2D<><>0<>0<><>::
+player.gd::GDScript::3187138442576952149::1766133326::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Scripts/UI/::1765265236
 armor.gd::GDScript::1066924086405933723::1764915201::0::1::::<>TextureProgressBar<><>0<>0<><>::
 health.gd::GDScript::2681795044255752100::1764915201::0::1::::<>TextureProgressBar<><>0<>0<><>::
@@ -82,7 +83,7 @@ fireball_skill.gd::GDScript::6141892597670825085::1764915201::0::1::::<>Area2D<>
 iceball.gd::GDScript::1382644010580557295::1765871170::0::1::::<>Area2D<><>0<>0<><>::
 iceball_skill.gd::GDScript::4254173822096759459::1765871916::0::1::::<>Area2D<><>0<>0<><>::
 ice_staff.gd::GDScript::4361941038004497795::1765871720::0::1::::<>Node2D<><>0<>0<><>::
-mana_staff.gd::GDScript::4528545171580283899::1765873342::0::1::::<>Node2D<><>0<>0<><>::
-normal_staff.gd::GDScript::758291307311790188::1765872881::0::1::::<>Node2D<><>0<>0<><>::
+mana_staff.gd::GDScript::4528545171580283899::1765881054::0::1::::<>Node2D<><>0<>0<><>::
+normal_staff.gd::GDScript::758291307311790188::1766133266::0::1::::<>Node2D<><>0<>0<><>::
 test_staff.gd::GDScript::6028683430751759229::1765869771::0::1::::<>Node2D<><>0<>0<><>::
 weapon_pickup.gd::GDScript::6758578189413342025::1765780653::0::1::::<>Area2D<><>0<>0<><>::

@@ -1,3 +1,6 @@
-res://Scenes/Weapon/mana_staff.tscn
+res://Scripts/Player/player.gd
+res://Scripts/Weapon/normal_staff.gd
+res://Scenes/Player/player.tscn
 res://Scripts/Weapon/mana_staff.gd
-res://Scripts/Global/PlayerState.gd
+res://Scripts/Weapon/ice_staff.gd
+res://Scenes/Floors/test_world.tscn

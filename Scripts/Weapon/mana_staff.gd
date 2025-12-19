@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var mana_particle: CPUParticles2D = $ManaParticle
+@export var skill_cooldown: float = 60.0
 
 func _process(delta):
 	look_at(get_global_mouse_position())

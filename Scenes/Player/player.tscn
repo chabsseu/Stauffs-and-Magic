@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2xkrph0al5nw"]
+[gd_scene load_steps=7 format=3 uid="uid://c2xkrph0al5nw"]
 
 [ext_resource type="Script" uid="uid://bln4x7n1bjd8p" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_uvnfx"]
+[ext_resource type="Texture2D" uid="uid://bj74em60yojnr" path="res://Assets/UI/cooldown.png" id="4_htcer"]
 [ext_resource type="PackedScene" uid="uid://ciwy7dfadp2tp" path="res://Scenes/UI/health_armor.tscn" id="4_mtuoh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
@@ -53,25 +54,80 @@ layout_mode = 2
 expand_mode = 3
 stretch_mode = 3
 
+[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot0"]
+self_modulate = Color(0, 0, 0, 0.8509804)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+fill_mode = 5
+texture_progress = ExtResource("4_htcer")
+
 [node name="Slot1" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 3
+
+[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot1"]
+self_modulate = Color(0, 0, 0, 0.8509804)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+fill_mode = 5
+texture_progress = ExtResource("4_htcer")
 
 [node name="Slot2" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 3
 
+[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot2"]
+self_modulate = Color(0, 0, 0, 0.8509804)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+fill_mode = 5
+texture_progress = ExtResource("4_htcer")
+
 [node name="Slot3" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 3
 
+[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot3"]
+self_modulate = Color(0, 0, 0, 0.8509804)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+fill_mode = 5
+texture_progress = ExtResource("4_htcer")
+
 [node name="Slot4" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 3
+
+[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot4"]
+self_modulate = Color(0, 0, 0, 0.8509804)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+fill_mode = 5
+texture_progress = ExtResource("4_htcer")
 
 [node name="WeaponSocket" type="Node2D" parent="."]
 

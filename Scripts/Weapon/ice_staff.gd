@@ -4,6 +4,8 @@ extends Node2D
 @onready var skill_scene = preload("res://Scenes/Weapon/iceball_skill.tscn")
 @onready var marker: Marker2D = $Marker2D
 
+@export var skill_cooldown: float = 5.0
+
 func _process(delta):
 	look_at(get_global_mouse_position())
 
