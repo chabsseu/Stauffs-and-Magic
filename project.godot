@@ -30,6 +30,7 @@ window/size/viewport_height=720
 
 Player=""
 Enemy=""
+Projectile=""
 
 [input]
 

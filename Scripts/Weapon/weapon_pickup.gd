@@ -2,7 +2,6 @@ extends Area2D
 
 @export var weapon_scene: PackedScene
 @onready var icon: Sprite2D = $Icon  # make sure path is correct
-
 func _ready():
 	if weapon_scene:
 		var temp_weapon = weapon_scene.instantiate()

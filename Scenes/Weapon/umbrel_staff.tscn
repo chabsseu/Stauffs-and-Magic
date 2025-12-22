@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdqh2qddc6swr"]
+
+[ext_resource type="Script" uid="uid://obm3kcd2q454" path="res://Scripts/Weapon/umbrel_staff.gd" id="1_dh2dt"]
+[ext_resource type="Texture2D" uid="uid://dt7ag5nrj8s5m" path="res://Assets/Weapon/Umbrelstaff.png" id="1_pbq80"]
+[ext_resource type="Texture2D" uid="uid://bryiyinqxok7v" path="res://Assets/Weapon/Umbrellstaff1.png" id="2_ytqam"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytqam"]
+atlas = ExtResource("1_pbq80")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh2dt"]
+atlas = ExtResource("2_ytqam")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dh2dt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytqam")
+}],
+"loop": false,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh2dt")
+}],
+"loop": true,
+"name": &"skill",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_56t7c"]
+height = 38.0
+
+[node name="Umbrel_staff" type="Node2D"]
+script = ExtResource("1_dh2dt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pbq80")
+
+[node name="AnimationPlayer" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dh2dt")
+animation = &"normal"
+autoplay = "normal"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(17, 0)
+
+[node name="SkillArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SkillArea"]
+position = Vector2(6, -1)
+shape = SubResource("CapsuleShape2D_56t7c")
+disabled = true
+
+[connection signal="area_entered" from="SkillArea" to="." method="_on_skill_area_area_entered"]
+[connection signal="body_entered" from="SkillArea" to="." method="_on_skill_area_body_entered"]

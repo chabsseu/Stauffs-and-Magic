@@ -1,6 +1,10 @@
-res://Scripts/Player/player.gd
-res://Scripts/Weapon/normal_staff.gd
-res://Scenes/Player/player.tscn
-res://Scripts/Weapon/mana_staff.gd
-res://Scripts/Weapon/ice_staff.gd
+res://Scenes/Weapon/umbrel_staff.tscn
+res://Scripts/Weapon/umbrel_staff.gd
+res://Scripts/Weapon/umbrel_bullet.gd
+res://Scenes/Weapon/umbrel_bullet.tscn
 res://Scenes/Floors/test_world.tscn
+res://Scripts/Weapon/weapon_pickup.gd
+res://Scenes/Weapon/weapon_pickup.tscn
+res://Scenes/Enemies/e_bullet.tscn
+res://Scenes/Enemies/e_puddle.tscn
+res://Scenes/Enemies/slime.tscn
