@@ -1,3 +1,5 @@
+TileMapLayer
+TileMap
 Sprite2D
 AnimationPlayer
 AnimatedSprite2D
@@ -11,4 +13,3 @@ ColorRect
 CPUParticles2D
 VisibleOnScreenEnabler2D
 TextureRect
-HBoxContainer

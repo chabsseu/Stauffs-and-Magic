@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2xkrph0al5nw"]
+[gd_scene format=3 uid="uid://c2xkrph0al5nw"]
 
 [ext_resource type="Script" uid="uid://bln4x7n1bjd8p" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_uvnfx"]
@@ -10,31 +10,31 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mtuoh"]
 radius = 15.033297
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=500875389 groups=["Player"]]
 script = ExtResource("1_a3d8c")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=541921693]
 position = Vector2(-2.842171e-14, -0.99999994)
 scale = Vector2(0.15625, 0.15625)
 texture = ExtResource("1_uvnfx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1775276531]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_a3d8c")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=959096284]
 zoom = Vector2(2, 2)
 
-[node name="Health&Armor" parent="." instance=ExtResource("4_mtuoh")]
+[node name="Health&Armor" parent="." unique_id=1251041895 instance=ExtResource("4_mtuoh")]
 
-[node name="PickupArea" type="Area2D" parent="."]
+[node name="PickupArea" type="Area2D" parent="." unique_id=1785070074]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=597194114]
 shape = SubResource("CircleShape2D_mtuoh")
 
-[node name="Hotbar_UI" type="CanvasLayer" parent="."]
+[node name="Hotbar_UI" type="CanvasLayer" parent="." unique_id=73701991]
 
-[node name="HotbarSlots" type="HBoxContainer" parent="Hotbar_UI"]
+[node name="HotbarSlots" type="HBoxContainer" parent="Hotbar_UI" unique_id=1830842409]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -49,12 +49,12 @@ grow_vertical = 0
 scale = Vector2(2, 2)
 size_flags_vertical = 4
 
-[node name="Slot0" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
+[node name="Slot0" type="TextureRect" parent="Hotbar_UI/HotbarSlots" unique_id=1994094706]
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 3
 
-[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot0"]
+[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot0" unique_id=1477904842]
 self_modulate = Color(0, 0, 0, 0.8509804)
 layout_mode = 0
 offset_right = 40.0
@@ -65,12 +65,12 @@ step = 0.0
 fill_mode = 5
 texture_progress = ExtResource("4_htcer")
 
-[node name="Slot1" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
+[node name="Slot1" type="TextureRect" parent="Hotbar_UI/HotbarSlots" unique_id=1956264285]
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 3
 
-[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot1"]
+[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot1" unique_id=1782903728]
 self_modulate = Color(0, 0, 0, 0.8509804)
 layout_mode = 0
 offset_right = 40.0
@@ -81,12 +81,12 @@ step = 0.0
 fill_mode = 5
 texture_progress = ExtResource("4_htcer")
 
-[node name="Slot2" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
+[node name="Slot2" type="TextureRect" parent="Hotbar_UI/HotbarSlots" unique_id=2057827718]
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 3
 
-[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot2"]
+[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot2" unique_id=1836939340]
 self_modulate = Color(0, 0, 0, 0.8509804)
 layout_mode = 0
 offset_right = 40.0
@@ -97,12 +97,12 @@ step = 0.0
 fill_mode = 5
 texture_progress = ExtResource("4_htcer")
 
-[node name="Slot3" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
+[node name="Slot3" type="TextureRect" parent="Hotbar_UI/HotbarSlots" unique_id=1079007375]
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 3
 
-[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot3"]
+[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot3" unique_id=560123529]
 self_modulate = Color(0, 0, 0, 0.8509804)
 layout_mode = 0
 offset_right = 40.0
@@ -113,12 +113,12 @@ step = 0.0
 fill_mode = 5
 texture_progress = ExtResource("4_htcer")
 
-[node name="Slot4" type="TextureRect" parent="Hotbar_UI/HotbarSlots"]
+[node name="Slot4" type="TextureRect" parent="Hotbar_UI/HotbarSlots" unique_id=673053047]
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 3
 
-[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot4"]
+[node name="Cooldown" type="TextureProgressBar" parent="Hotbar_UI/HotbarSlots/Slot4" unique_id=1652557794]
 self_modulate = Color(0, 0, 0, 0.8509804)
 layout_mode = 0
 offset_right = 40.0
@@ -129,7 +129,7 @@ step = 0.0
 fill_mode = 5
 texture_progress = ExtResource("4_htcer")
 
-[node name="WeaponSocket" type="Node2D" parent="."]
+[node name="WeaponSocket" type="Node2D" parent="." unique_id=1654974788]
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="area_exited" from="PickupArea" to="." method="_on_pickup_area_area_exited"]

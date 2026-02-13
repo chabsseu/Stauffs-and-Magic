@@ -1,18 +1,20 @@
-C:/Users/User/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Visual Studio Code
-res://Assets/Weapon
-res://Scenes/Weapon
-res://Scripts/Weapon
-res://Assets/UI
-res://Scripts/UI
-res://Assets/UI/Health&Armor
-res://Scenes/UI
-res://Scripts/Global
-res://Scenes/Enemies
-res://Scripts/Enemies
+res://Scenes/Map/
+res://Scripts/Map/
+C:/Users/User/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Visual Studio Code/
+res://Assets/Weapon/
+res://Scenes/Weapon/
+res://Scripts/Weapon/
+res://Assets/UI/
+res://Scripts/UI/
+res://Assets/UI/Health&Armor/
+res://Scenes/UI/
+res://Scripts/Global/
+res://Scenes/Enemies/
+res://Scripts/Enemies/
 res://
-res://Assets/Enemies/Weapons
-res://Assets/Enemies
-res://Assets/Tilemaps
-res://Scenes/Floors
-res://Scenes/Player
-res://Scripts/Player
+res://Assets/Enemies/Weapons/
+res://Assets/Enemies/
+res://Assets/Tilemaps/
+res://Scenes/Floors/
+res://Scenes/Player/
+res://Scripts/Player/

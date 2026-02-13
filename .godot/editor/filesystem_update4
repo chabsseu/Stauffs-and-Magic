@@ -1,9 +1,2 @@
-res://Scripts/Enemies/slime.gd
-res://Scenes/Enemies/slime.tscn
-res://Scripts/Player/player.gd
-res://Scripts/Enemies/spear_guy.gd
-res://Scenes/Floors/test_world.tscn
-res://Scenes/Enemies/spear_guy.tscn
-res://Scripts/Weapon/iceball_skill.gd
-res://Scripts/Enemies/sloth.gd
-res://Scenes/Enemies/sloth.tscn
+res://Scripts/Map/dungeon_generation.gd
+res://Scenes/Player/player.tscn
