@@ -11,7 +11,7 @@
 radius = 23.086792
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ky8i"]
-radius = 273.24713
+radius = 126.3962
 
 [node name="spear_guy" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_o0ygb")
@@ -35,6 +35,7 @@ position = Vector2(3, 6)
 shape = SubResource("CircleShape2D_o0ygb")
 
 [node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="DetectionArea" type="Area2D" parent="."]

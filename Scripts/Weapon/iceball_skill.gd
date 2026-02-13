@@ -21,10 +21,7 @@ func _process(delta: float) -> void:
 			position += direction * speed * delta
 			sprite.play("skill")
 	
-	# Flip horizontally based on movement
-	sprite.flip_h = direction.x < 0
-	# Flip vertically based on vertical movement
-	sprite.flip_v = direction.y < 0
+	rotation = direction.angle()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemy"):

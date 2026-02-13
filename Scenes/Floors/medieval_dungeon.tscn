@@ -243,6 +243,7 @@ position = Vector2(8853, -11539)
 player_spawn = NodePath("../PlayerSpawn")
 
 [node name="sloth" parent="." instance=ExtResource("5_77e4o")]
+visible = false
 position = Vector2(340, 504)
 charge_range = 300.0
 
