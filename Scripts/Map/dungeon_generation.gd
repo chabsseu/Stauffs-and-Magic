@@ -3,8 +3,8 @@ extends Node2D
 @export var tilemap : TileMapLayer
 @export var player : CharacterBody2D
 
-const DUNGEON_WIDTH = 160
-const DUNGEON_HEIGHT = 160
+const DUNGEON_WIDTH = 800
+const DUNGEON_HEIGHT = 800
 const MIN_CORRIDOR_LENGTH = 18
 const MAX_CORRIDOR_LENGTH = 64
 
@@ -202,7 +202,7 @@ func carve_corridor(from: Vector2, to: Vector2, width: int = 6):
 # --------------------------------------------------
 func is_in_bounds(x: int, y: int) -> bool:
 	return x >= 0 and y >= 0 and x < DUNGEON_WIDTH and y < DUNGEON_HEIGHT
-	
+
 # --------------------------------------------------
 # WALLS
 # --------------------------------------------------
