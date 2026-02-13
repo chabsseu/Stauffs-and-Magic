@@ -231,11 +231,16 @@ func add_walls():
 # --------------------------------------------------
 func render_dungeon():
 	tilemap.clear()
+	# Define your floor variants here (atlas coordinates in TileSet)
+	var floor_tiles = [Vector2i(1,5), Vector2i(5,5)]
+	
 	for y in range(DUNGEON_HEIGHT):
 		for x in range(DUNGEON_WIDTH):
 			match dungeon_grid[y][x]:
 				TileType.FLOOR:
-					tilemap.set_cell(Vector2i(x, y), 0, Vector2i(1,5))
+					# Pick a random floor variant for each floor cell
+					var chosen_tile = floor_tiles[randi() % floor_tiles.size()]
+					tilemap.set_cell(Vector2i(x, y), 0, chosen_tile)
 				TileType.WALL:
 					tilemap.set_cell(Vector2i(x, y), 0, Vector2i(3,2))
 
