@@ -5,3 +5,6 @@ res://Scripts/Weapon/normal_staff.gd
 res://Scenes/Weapon/normal_bullet.tscn
 res://Scenes/Weapon/normal_bullet_skill.tscn
 res://Scripts/Enemies/sloth.gd
+res://Scenes/Enemies/spear_guy.tscn
+res://Scenes/Enemies/sloth.tscn
+res://Scenes/Enemies/slime.tscn

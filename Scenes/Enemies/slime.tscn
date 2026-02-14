@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cb0kyqifl5o74"]
+[gd_scene format=3 uid="uid://cb0kyqifl5o74"]
 
 [ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_c2nj3"]
 [ext_resource type="Script" uid="uid://bxhse0qjf3wow" path="res://Scripts/Enemies/slime.gd" id="1_pm37t"]
@@ -8,30 +8,30 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pm37t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lx4x"]
-radius = 190.09471
+radius = 301.3254
 
-[node name="slime" type="CharacterBody2D" groups=["Enemy"]]
+[node name="slime" type="CharacterBody2D" unique_id=1706528063 groups=["Enemy"]]
 script = ExtResource("1_pm37t")
 projectile_scene = ExtResource("2_4lx4x")
 shoot_interval = 2.5
 damage_node = ExtResource("3_6kvin")
 max_health = 5
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1028098174]
 self_modulate = Color(0, 1, 0.32156864, 1)
 position = Vector2(4.7683716e-07, 4.7683716e-07)
 scale = Vector2(0.15624999, 0.15625)
 texture = ExtResource("1_c2nj3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1038725802]
 shape = SubResource("RectangleShape2D_pm37t")
 
-[node name="ShootingArea" type="Area2D" parent="."]
+[node name="ShootingArea" type="Area2D" parent="." unique_id=713581484]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea" unique_id=302685817]
 shape = SubResource("CircleShape2D_4lx4x")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=139471895]
 
 [connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
 [connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]

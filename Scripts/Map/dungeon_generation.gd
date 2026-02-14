@@ -14,6 +14,8 @@ enum TileType { EMPTY, FLOOR, WALL }
 enum RoomSize { SMALL_START, MEDIUM_LARGE, LARGE_BOSS }
 
 var dungeon_grid = []
+var all_rooms : Array[Rect2] = []
+var room_wave_data = {}  # Track wave data per room index
 
 # --------------------------------------------------
 # READY / INPUT
@@ -21,10 +23,141 @@ var dungeon_grid = []
 func _ready():
 	create_dungeon()
 
-# func _input(event):
-# 	if event is InputEventKey and event.is_pressed():
-# 		if event.keycode == KEY_1:
-# 			create_dungeon()
+func _process(_delta):
+	# Check all active rooms for wave completion
+	for room_index in room_wave_data.keys():
+		check_wave_complete(room_index)
+
+# --------------------------------------------------
+# CREATE ROOM TRIGGER
+# --------------------------------------------------
+func create_room_trigger(room: Rect2, room_index: int):
+	var area = Area2D.new()
+	area.name = "RoomTrigger_" + str(room_index)
+	
+	# Create collision shape
+	var collision = CollisionShape2D.new()
+	var shape = RectangleShape2D.new()
+	
+	# Make trigger SMALLER - just at the entrance (30% of room size)
+	shape.size = Vector2(room.size.x * 16 * 0.3, room.size.y * 16 * 0.3)
+	collision.shape = shape
+	
+	# Position at room center
+	area.position = room.get_center() * 16
+	
+	# Set collision layers (adjust to match your player layer)
+	area.collision_layer = 0
+	area.collision_mask = 1  # Assumes player is on layer 1
+	
+	# Use one_shot behavior
+	var callable = func(body): 
+		if body == player:
+			spawn_enemies_in_room(room, room_index)
+			area.queue_free()
+	
+	area.body_entered.connect(callable, CONNECT_ONE_SHOT)
+	
+	collision.set_deferred("disabled", false)
+	area.add_child(collision)
+	add_child(area)
+
+# --------------------------------------------------
+# WAVE COMPLETION CHECK PER ROOM
+# --------------------------------------------------
+func check_wave_complete(room_index: int):
+	if not room_wave_data.has(room_index):
+		return
+	
+	var data = room_wave_data[room_index]
+	
+	# Don't check if wave is currently spawning
+	if data.is_spawning:
+		return
+	
+	# Remove dead enemies from tracking
+	data.active_enemies = data.active_enemies.filter(func(enemy): return is_instance_valid(enemy))
+	
+	# If all enemies dead and we have more waves
+	if data.active_enemies.is_empty() and data.current_wave < data.total_waves:
+		print("Room ", room_index, " - Wave ", data.current_wave, " complete! Spawning wave ", data.current_wave + 1, "...")
+		data.current_wave += 1
+		spawn_wave(data.room, data.enemies_per_wave, data.current_wave, room_index)
+	elif data.active_enemies.is_empty() and data.current_wave >= data.total_waves:
+		print("Room ", room_index, " - All waves complete!")
+		room_wave_data.erase(room_index)  # Room complete, remove tracking
+
+# --------------------------------------------------
+# SPAWN ENEMIES IN A SPECIFIC ROOM
+# --------------------------------------------------
+func spawn_enemies_in_room(room: Rect2, room_index: int):
+	print("Room ", room_index, " triggered!")
+	
+	# Random number of waves (2 to 4 waves)
+	var total_waves = randi_range(2, 4)
+	var enemies_per_wave = randi_range(3, 6)
+	
+	# Store wave data for THIS room
+	room_wave_data[room_index] = {
+		"room": room,
+		"total_waves": total_waves,
+		"current_wave": 1,
+		"enemies_per_wave": enemies_per_wave,
+		"active_enemies": [],  # Track enemies for this room
+		"is_spawning": false  # Flag to prevent premature wave checks
+	}
+	
+	# Spawn first wave immediately
+	print("Room ", room_index, " - Spawning wave 1 of ", total_waves)
+	spawn_wave(room, enemies_per_wave, 1, room_index)
+
+func spawn_wave(room: Rect2, count: int, wave_num: int, room_index: int):
+	if not room_wave_data.has(room_index):
+		return
+	
+	# Mark as spawning
+	room_wave_data[room_index].is_spawning = true
+	
+	var spawn_count = 0
+	for j in range(count):
+		if enemy_scenes.is_empty():
+			room_wave_data[room_index].is_spawning = false
+			return
+		
+		# Small stagger within the wave
+		var spawn_timer = Timer.new()
+		spawn_timer.one_shot = true
+		add_child(spawn_timer)
+		
+		# Track when last enemy spawns to mark spawning complete
+		var is_last = (j == count - 1)
+		spawn_timer.timeout.connect(func(): 
+			_spawn_single_enemy(room, spawn_timer, room_index)
+			if is_last and room_wave_data.has(room_index):
+				# Small delay before marking spawning complete
+				await get_tree().create_timer(0.5).timeout
+				if room_wave_data.has(room_index):
+					room_wave_data[room_index].is_spawning = false
+		)
+		spawn_timer.start(0.3 * j)
+
+func _spawn_single_enemy(room: Rect2, timer: Timer, room_index: int):
+	if enemy_scenes.is_empty():
+		timer.queue_free()
+		return
+	
+	var scene = enemy_scenes[randi() % enemy_scenes.size()]
+	var enemy = scene.instantiate()
+	var x = randi_range(room.position.x + 2, room.end.x - 2)
+	var y = randi_range(room.position.y + 2, room.end.y - 2)
+	enemy.position = Vector2(x, y) * 16
+	add_child(enemy)
+	
+	# Track this enemy in THIS room's data
+	if room_wave_data.has(room_index):
+		room_wave_data[room_index].active_enemies.append(enemy)
+	
+	timer.queue_free()
 
 # --------------------------------------------------
 # MAIN GENERATION
@@ -253,31 +386,6 @@ func add_walls():
 			dungeon_grid[pos.y][pos.x] = TileType.WALL
 
 # --------------------------------------------------
-# ENEMIES
-# --------------------------------------------------
-func spawn_enemies(rooms : Array[Rect2]):
-	# skip index 0 because that is the spawn room
-	for i in range(1, rooms.size()):
-		var room = rooms[i]
-
-		# difficulty scaling by room index
-		var enemy_count = randi_range(2, 4 + i)
-
-		for j in range(enemy_count):
-			if enemy_scenes.is_empty():
-				return
-
-			var enemy_scene = enemy_scenes[randi() % enemy_scenes.size()]
-			var enemy = enemy_scene.instantiate()
-
-			# random position inside room (avoid walls)
-			var x = randi_range(room.position.x + 2, room.end.x - 2)
-			var y = randi_range(room.position.y + 2, room.end.y - 2)
-
-			enemy.position = Vector2(x, y) * 16
-			add_child(enemy)
-
-# --------------------------------------------------
 # RENDER
 # --------------------------------------------------
 func render_dungeon():
@@ -300,27 +408,28 @@ func render_dungeon():
 # CREATE
 # --------------------------------------------------
 func create_dungeon():
-	var rooms = generate_dungeon()
-	place_player(rooms)
+	all_rooms = generate_dungeon()
+	place_player(all_rooms)
 	add_walls()
 	render_dungeon()
-	weapon_place(rooms)
-	spawn_enemies(rooms)
+	weapon_place(all_rooms)
+	
+	# Create triggers for all rooms except spawn room (index 0)
+	for i in range(1, all_rooms.size()):
+		create_room_trigger(all_rooms[i], i)
+
 # --------------------------------------------------
 # Weapon 
 # --------------------------------------------------
-
 func weapon_place(rooms : Array[Rect2]):
 	if rooms.is_empty():
 		return
 	
 	var spawn_room = rooms[0]
 	var base_pos = spawn_room.get_center() * 16
-	
-	# offset by 20 pixels right, 10 pixels down
 	var offset = Vector2(50, 25)
-	
 	weapon.position = base_pos + offset
+
 # --------------------------------------------------
 # PLAYER SPAWN
 # --------------------------------------------------
