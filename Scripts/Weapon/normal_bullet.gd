@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed := 300
+@export var speed := 400
 @export var damage := 1
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D

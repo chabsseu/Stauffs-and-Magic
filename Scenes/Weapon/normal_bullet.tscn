@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwhm57krd0ufx"]
+[gd_scene format=3 uid="uid://b73i2gtjsahu6"]
 
-[ext_resource type="Script" uid="uid://ctg5an4ukt77v" path="res://Scripts/Weapon/fireball.gd" id="1_yaaur"]
+[ext_resource type="Script" uid="uid://cmohr82nnlqm4" path="res://Scripts/Weapon/normal_bullet.gd" id="1_v2b01"]
 [ext_resource type="Texture2D" uid="uid://dd6mfgqr2awsl" path="res://Assets/Weapon/normal_bullet.png" id="2_yaaur"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yaaur"]
@@ -28,18 +28,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="fireball" type="Area2D"]
-script = ExtResource("1_yaaur")
+[node name="normal_bullet" type="Area2D" unique_id=1588335064]
+script = ExtResource("1_v2b01")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=104939407]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_yaaur")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1288859332]
 position = Vector2(-3, -15)
-rect = Rect2(-6, -41, 16, 111)
+rect = Rect2(-6, -810, 16, 1649)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=984065580]
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_r7n0h")
 animation = &"fire"

@@ -1,3 +1,6 @@
 res://Scripts/Map/dungeon_generation.gd
 res://Scenes/Map/dungeon_generation.tscn
 res://Scenes/Player/player.tscn
+res://Scripts/Weapon/normal_staff.gd
+res://Scenes/Weapon/normal_bullet.tscn
+res://Scenes/Weapon/normal_bullet_skill.tscn

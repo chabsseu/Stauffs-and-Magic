@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgiwswgaq7vv8"]
+[gd_scene format=3 uid="uid://lwe3lo5254o3"]
 
 [ext_resource type="Texture2D" uid="uid://dd6mfgqr2awsl" path="res://Assets/Weapon/normal_bullet.png" id="1_og70o"]
-[ext_resource type="Script" uid="uid://ctrgcril7ql8p" path="res://Scripts/Weapon/fireball_skill.gd" id="1_uf4oa"]
+[ext_resource type="Script" uid="uid://ykyp0fhxb2lj" path="res://Scripts/Weapon/normal_bullet_skill.gd" id="1_qp76t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uf4oa"]
 atlas = ExtResource("1_og70o")
@@ -28,25 +28,19 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_776a2"]
 radius = 7.5
 
-[node name="Skill" type="Area2D"]
+[node name="Skill" type="Area2D" unique_id=1588988306]
 scale = Vector2(2, 2)
-script = ExtResource("1_uf4oa")
-speed = null
-damage = null
-has_status_effect = null
-effect_type = null
-effect_duration = null
-effect_value = null
+script = ExtResource("1_qp76t")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=483286188]
 sprite_frames = SubResource("SpriteFrames_2uye3")
 animation = &"skill"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1275528258]
 shape = SubResource("CircleShape2D_776a2")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-rect = Rect2(-7.5, -31.5, 15, 78)
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=747105646]
+rect = Rect2(-7.5, -400, 15, 816.5)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

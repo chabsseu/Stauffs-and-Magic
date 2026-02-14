@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dsp08475xingl" path="res://Scripts/Map/dungeon_generation.gd" id="1_ngs3x"]
 [ext_resource type="Texture2D" uid="uid://blw7wkta0c20d" path="res://Assets/Tilemaps/Tilemap.png" id="2_eo2qp"]
 [ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="3_i8072"]
+[ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="4_eo2qp"]
+[ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="4_i8072"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpfl8"]
 texture = ExtResource("2_eo2qp")
@@ -20,12 +22,16 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_qpfl8")
 
-[node name="DungeonGeneration" type="Node2D" unique_id=944595626 node_paths=PackedStringArray("tilemap", "player")]
+[node name="DungeonGeneration" type="Node2D" unique_id=944595626 node_paths=PackedStringArray("tilemap", "player", "weapon")]
 script = ExtResource("1_ngs3x")
 tilemap = NodePath("TileMapLayer")
 player = NodePath("Player")
+weapon = NodePath("WeaponPickup")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=130257482]
 tile_set = SubResource("TileSet_43nnj")
 
 [node name="Player" parent="." unique_id=672141086 instance=ExtResource("3_i8072")]
+
+[node name="WeaponPickup" parent="." unique_id=1111887552 instance=ExtResource("4_i8072")]
+weapon_scene = ExtResource("4_eo2qp")

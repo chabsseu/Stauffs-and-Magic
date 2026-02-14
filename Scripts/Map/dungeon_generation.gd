@@ -2,7 +2,7 @@ extends Node2D
 
 @export var tilemap : TileMapLayer
 @export var player : CharacterBody2D
-
+@export var weapon : Node2D
 const DUNGEON_WIDTH = 800
 const DUNGEON_HEIGHT = 800
 const MIN_CORRIDOR_LENGTH = 18
@@ -19,10 +19,10 @@ var dungeon_grid = []
 func _ready():
 	create_dungeon()
 
-func _input(event):
-	if event is InputEventKey and event.is_pressed():
-		if event.keycode == KEY_1:
-			create_dungeon()
+# func _input(event):
+# 	if event is InputEventKey and event.is_pressed():
+# 		if event.keycode == KEY_1:
+# 			create_dungeon()
 
 # --------------------------------------------------
 # MAIN GENERATION
@@ -277,7 +277,22 @@ func create_dungeon():
 	place_player(rooms)
 	add_walls()
 	render_dungeon()
+	weapon_place(rooms)
+# --------------------------------------------------
+# Weapon 
+# --------------------------------------------------
 
+func weapon_place(rooms : Array[Rect2]):
+	if rooms.is_empty():
+		return
+	
+	var spawn_room = rooms[0]
+	var base_pos = spawn_room.get_center() * 16
+	
+	# offset by 20 pixels right, 10 pixels down
+	var offset = Vector2(50, 25)
+	
+	weapon.position = base_pos + offset
 # --------------------------------------------------
 # PLAYER SPAWN
 # --------------------------------------------------

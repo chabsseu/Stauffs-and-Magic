@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var projectile_scene = preload("res://Scenes/Weapon/fireball.tscn")
-@onready var skill_scene = preload("res://Scenes/Weapon/fireball_skill.tscn")
+@onready var projectile_scene = preload("res://Scenes/Weapon/normal_bullet.tscn")
+@onready var skill_scene = preload("res://Scenes/Weapon/normal_bullet_skill.tscn")
 @onready var marker: Marker2D = $Marker2D
 
 #@export var cooldown: float = 0.2
