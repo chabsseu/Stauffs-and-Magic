@@ -1,2 +1,3 @@
 res://Scripts/Map/dungeon_generation.gd
 res://Scenes/Map/dungeon_generation.tscn
+res://Scenes/Player/player.tscn

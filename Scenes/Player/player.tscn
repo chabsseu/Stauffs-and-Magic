@@ -23,7 +23,6 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_a3d8c")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=959096284]
-zoom = Vector2(2, 2)
 
 [node name="Health&Armor" parent="." unique_id=1251041895 instance=ExtResource("4_mtuoh")]
 

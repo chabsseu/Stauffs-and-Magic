@@ -9,7 +9,7 @@ const MIN_CORRIDOR_LENGTH = 18
 const MAX_CORRIDOR_LENGTH = 64
 
 enum TileType { EMPTY, FLOOR, WALL }
-enum RoomSize { MEDIUM_LARGE, LARGE_BOSS }
+enum RoomSize { SMALL_START, MEDIUM_LARGE, LARGE_BOSS }
 
 var dungeon_grid = []
 
@@ -40,16 +40,13 @@ func generate_dungeon():
 	var max_attempts = 500
 	var tries = 0
 
-	# ---------- FIRST ROOM ----------
-	var first_room = _create_random_room()
-	if first_room.has_area():
-		rooms.append(first_room)
-		_carve_room(first_room)
+	# ---------- FIRST ROOM (SPAWN CORNER SMALL) ----------
+	var first_room = _create_spawn_room_corner()
+	rooms.append(first_room)
+	_carve_room(first_room)
 
 	# ---------- OTHER ROOMS ----------
 	while rooms.size() < target_room_count and tries < max_attempts:
-		if rooms.is_empty():
-			break
 
 		var base_room = rooms.pick_random()
 
@@ -78,13 +75,33 @@ func generate_dungeon():
 # --------------------------------------------------
 # ROOM CREATION
 # --------------------------------------------------
-func _create_random_room() -> Rect2:
-	var dims = _get_room_dimensions(RoomSize.MEDIUM_LARGE)
+func _create_spawn_room_corner() -> Rect2:
+	var dims = _get_room_dimensions(RoomSize.SMALL_START)
 	var w = dims.x
 	var h = dims.y
-	var x = randi_range(5, DUNGEON_WIDTH - w - 5)
-	var y = randi_range(5, DUNGEON_HEIGHT - h - 5)
+
+	var margin = 6
+	var corner = randi() % 4
+
+	var x = 0
+	var y = 0
+
+	match corner:
+		0: # TOP LEFT
+			x = margin
+			y = margin
+		1: # TOP RIGHT
+			x = DUNGEON_WIDTH - w - margin
+			y = margin
+		2: # BOTTOM LEFT
+			x = margin
+			y = DUNGEON_HEIGHT - h - margin
+		3: # BOTTOM RIGHT
+			x = DUNGEON_WIDTH - w - margin
+			y = DUNGEON_HEIGHT - h - margin
+
 	return Rect2(x, y, w, h)
+
 
 func _create_room_with_corridor(base_room: Rect2, direction: int, corridor_length: int) -> Rect2:
 	var dims = _get_room_dimensions(RoomSize.MEDIUM_LARGE)
@@ -114,6 +131,7 @@ func _create_room_with_corridor(base_room: Rect2, direction: int, corridor_lengt
 
 	return Rect2(x, y, w, h)
 
+
 func _can_place_room(room: Rect2, existing_rooms: Array[Rect2]) -> bool:
 	if room.position.x < 1 or room.position.y < 1:
 		return false
@@ -121,10 +139,11 @@ func _can_place_room(room: Rect2, existing_rooms: Array[Rect2]) -> bool:
 		return false
 
 	for other in existing_rooms:
-		if room.grow(6).intersects(other): # BIG spacing for big rooms
+		if room.grow(6).intersects(other):
 			return false
 
 	return true
+
 
 func _carve_room(room: Rect2):
 	for y in range(room.position.y, room.position.y + room.size.y):
@@ -133,7 +152,7 @@ func _carve_room(room: Rect2):
 				dungeon_grid[y][x] = TileType.FLOOR
 
 # --------------------------------------------------
-# ROOM COUNT (5–8, avg ≈5)
+# ROOM COUNT (5–8)
 # --------------------------------------------------
 func _roll_room_count() -> int:
 	var roll = randf()
@@ -151,6 +170,12 @@ func _roll_room_count() -> int:
 # --------------------------------------------------
 func _get_room_dimensions(size_type: RoomSize) -> Vector2i:
 	match size_type:
+		RoomSize.SMALL_START:
+			return Vector2i(
+				randi_range(14, 18),
+				randi_range(12, 16)
+			)
+
 		RoomSize.MEDIUM_LARGE:
 			return Vector2i(
 				randi_range(22, 30),
@@ -196,9 +221,8 @@ func carve_corridor(from: Vector2, to: Vector2, width: int = 6):
 				if is_in_bounds(x, y):
 					dungeon_grid[y][x] = TileType.FLOOR
 
-
 # --------------------------------------------------
-# BOUNDS CHECK
+# BOUNDS
 # --------------------------------------------------
 func is_in_bounds(x: int, y: int) -> bool:
 	return x >= 0 and y >= 0 and x < DUNGEON_WIDTH and y < DUNGEON_HEIGHT
@@ -231,22 +255,19 @@ func add_walls():
 # --------------------------------------------------
 func render_dungeon():
 	tilemap.clear()
-	# Floor varian atlas
+
 	var floor_tiles = [Vector2i(1,5), Vector2i(5,5)]
-	# Wall variant atlas
-	var wall_tiles = [Vector2i(3,2), Vector2i(2,2),Vector2i(4,2)]
-	
+	var wall_tiles = [Vector2i(3,2), Vector2i(2,2), Vector2i(4,2)]
+
 	for y in range(DUNGEON_HEIGHT):
 		for x in range(DUNGEON_WIDTH):
 			match dungeon_grid[y][x]:
 				TileType.FLOOR:
-					# Pick random floor variant 
-					var chosen_tile = floor_tiles[randi() % floor_tiles.size()]
-					tilemap.set_cell(Vector2i(x, y), 0, chosen_tile)
+					var chosen = floor_tiles[randi() % floor_tiles.size()]
+					tilemap.set_cell(Vector2i(x, y), 0, chosen)
 				TileType.WALL:
-					# Pick random wall variant
-					var chosen_tile = wall_tiles[randi() % wall_tiles.size()]
-					tilemap.set_cell(Vector2i(x, y), 0, chosen_tile)
+					var chosen = wall_tiles[randi() % wall_tiles.size()]
+					tilemap.set_cell(Vector2i(x, y), 0, chosen)
 
 # --------------------------------------------------
 # CREATE
@@ -264,5 +285,5 @@ func place_player(rooms : Array[Rect2]):
 	if rooms.is_empty():
 		return
 
-	var spawn_room = rooms.pick_random()
+	var spawn_room = rooms[0]
 	player.position = spawn_room.get_center() * 16
