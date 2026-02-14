@@ -164,11 +164,17 @@ func die() -> void:
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		body.take_armor_damage(damage)
+		# Apply actual damage first
+		if body.has_method("take_armor_damage"):
+			body.take_armor_damage(damage)
+
+		# Only apply status effect if this enemy actually deals damage
+		if has_status_effect and damage > 0:
+			if body.has_method("add_status_effect"):
+				body.add_status_effect(effect_type, effect_duration, effect_value)
+		
+		# Optional: Enemy reacts to being hit
 		take_damage(1)
-	
-	if has_status_effect:
-		PlayerState.status_effects.add_effect(effect_type, effect_duration, effect_value)
 
 # ----------------------
 # Patrol helper
