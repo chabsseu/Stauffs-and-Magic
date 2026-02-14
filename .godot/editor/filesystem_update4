@@ -4,3 +4,4 @@ res://Scenes/Player/player.tscn
 res://Scripts/Weapon/normal_staff.gd
 res://Scenes/Weapon/normal_bullet.tscn
 res://Scenes/Weapon/normal_bullet_skill.tscn
+res://Scripts/Enemies/sloth.gd

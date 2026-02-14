@@ -3,6 +3,8 @@ extends Node2D
 @export var tilemap : TileMapLayer
 @export var player : CharacterBody2D
 @export var weapon : Node2D
+@export var enemy_scenes : Array[PackedScene]
+
 const DUNGEON_WIDTH = 800
 const DUNGEON_HEIGHT = 800
 const MIN_CORRIDOR_LENGTH = 18
@@ -251,6 +253,31 @@ func add_walls():
 			dungeon_grid[pos.y][pos.x] = TileType.WALL
 
 # --------------------------------------------------
+# ENEMIES
+# --------------------------------------------------
+func spawn_enemies(rooms : Array[Rect2]):
+	# skip index 0 because that is the spawn room
+	for i in range(1, rooms.size()):
+		var room = rooms[i]
+
+		# difficulty scaling by room index
+		var enemy_count = randi_range(2, 4 + i)
+
+		for j in range(enemy_count):
+			if enemy_scenes.is_empty():
+				return
+
+			var enemy_scene = enemy_scenes[randi() % enemy_scenes.size()]
+			var enemy = enemy_scene.instantiate()
+
+			# random position inside room (avoid walls)
+			var x = randi_range(room.position.x + 2, room.end.x - 2)
+			var y = randi_range(room.position.y + 2, room.end.y - 2)
+
+			enemy.position = Vector2(x, y) * 16
+			add_child(enemy)
+
+# --------------------------------------------------
 # RENDER
 # --------------------------------------------------
 func render_dungeon():
@@ -278,6 +305,7 @@ func create_dungeon():
 	add_walls()
 	render_dungeon()
 	weapon_place(rooms)
+	spawn_enemies(rooms)
 # --------------------------------------------------
 # Weapon 
 # --------------------------------------------------
