@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cewdwtydlg58v"]
+[gd_scene format=3 uid="uid://cewdwtydlg58v"]
 
 [ext_resource type="Script" uid="uid://bd4hi0q1w188l" path="res://Scripts/Enemies/e_bullet.gd" id="1_3iv2v"]
 [ext_resource type="Texture2D" uid="uid://gwq04m1vnior" path="res://Assets/Enemies/e_bullet.png" id="1_frh4d"]
@@ -7,17 +7,26 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_3iv2v"]
 radius = 8.0
 
-[node name="E_bullet" type="Area2D" groups=["Projectile"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_163le"]
+radius = 8.062258
+
+[node name="E_bullet" type="Area2D" unique_id=1203979764 groups=["Projectile"]]
 script = ExtResource("1_3iv2v")
 puddle_scene = ExtResource("2_163le")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=675958132]
 texture = ExtResource("1_frh4d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1340752610]
 shape = SubResource("CircleShape2D_3iv2v")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=3764320]
 rect = Rect2(-10, -43, 20, 117)
 
+[node name="Area2D" type="Area2D" parent="." unique_id=482731285]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=266742101]
+shape = SubResource("CircleShape2D_163le")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

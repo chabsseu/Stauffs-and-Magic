@@ -1,15 +1,14 @@
+CollisionShape2D
+Area2D
 TileMapLayer
 TileMap
 Sprite2D
 AnimationPlayer
 AnimatedSprite2D
 VisibleOnScreenNotifier2D
-CollisionShape2D
-Area2D
 Marker2D
 Node2D
 TextureProgressBar
 ColorRect
 CPUParticles2D
 VisibleOnScreenEnabler2D
-TextureRect

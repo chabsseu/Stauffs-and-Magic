@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var charge_speed: float = 600.0
 @export var charge_range: float = 200.0
 @export var charge_duration: float = 1.0  # Max time to charge before stopping
-@export var windup_time: float = 0.4
+@export var windup_time: float = 1.0
 @export var show_trajectory: bool = true  # Toggle trajectory visualization
 @export var trajectory_color: Color = Color(1, 0, 0, 0.5)  # Red with transparency
 @export var min_attack_distance: float = 25.0  # Stop charging this close to player
