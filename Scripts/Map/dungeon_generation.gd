@@ -93,8 +93,8 @@ func check_wave_complete(room_index: int):
 # --------------------------------------------------
 func spawn_enemies_in_room(room: Rect2, room_index: int):
     print("Room ", room_index, " triggered!")
-    var total_waves = randi_range(1, 1)
-    var enemies_per_wave = randi_range(1, 1)
+    var total_waves = randi_range(2, 4)
+    var enemies_per_wave = randi_range(3, 6)
     
     room_wave_data[room_index] = {
         "room": room,
