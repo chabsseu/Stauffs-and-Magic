@@ -4,3 +4,7 @@ res://Scripts/Enemies/sloth.gd
 res://Scripts/Enemies/e_bullet.gd
 res://Scenes/Enemies/e_bullet.tscn
 res://Scenes/Floors/test_world.tscn
+res://Scripts/Map/dungeon_generation.gd
+res://Scripts/UI/portal.gd
+res://Scenes/Map/dungeon_generation.tscn
+res://Scenes/UI/portal.tscn
