@@ -6,13 +6,13 @@ extends CharacterBody2D
 @export var safe_distance: float = 200.0
 @export var shoot_interval: float = 0.5
 @export var damage_node: PackedScene
-@export var max_health: int
+@export var max_health: int = 10
 
 @export var patrol_radius: float = 200.0
 @export var patrol_speed: float = 100.0
 @export var stop_duration: float = 1.0
 
-# NEW: reposition settings
+# reposition settings
 @export var reposition_radius: float = 100.0
 @export var reposition_speed: float = 200.0
 
@@ -42,7 +42,6 @@ enum State {
 
 var state = State.PATROL
 
-
 # =========================
 # READY
 # =========================
@@ -57,13 +56,11 @@ func _ready() -> void:
 	start_position = global_position
 	_pick_new_patrol_target()
 
-
 # =========================
 # MAIN LOOP
 # =========================
 func _physics_process(delta: float) -> void:
 	match state:
-
 		State.PATROL:
 			_handle_patrol(delta)
 
@@ -73,9 +70,7 @@ func _physics_process(delta: float) -> void:
 		State.REPOSITION:
 			_handle_reposition()
 
-
 	move_and_slide()
-
 
 # =========================
 # PATROL
@@ -100,12 +95,10 @@ func _handle_patrol(delta):
 			is_stopping = true
 			stop_timer = stop_duration
 
-
 func _pick_new_patrol_target() -> void:
 	var angle = randf() * TAU
 	var distance = randf() * patrol_radius
 	patrol_target = start_position + Vector2(cos(angle), sin(angle)) * distance
-
 
 # =========================
 # COMBAT
@@ -117,22 +110,20 @@ func _handle_combat():
 
 	var distance = global_position.distance_to(player.global_position)
 
-	# keep distance from player
 	if distance < safe_distance:
 		var move_dir = (global_position - player.global_position).normalized()
 		velocity = move_dir * enemy_state.speed
 	else:
 		velocity = Vector2.ZERO
 
-
 # =========================
-# 🔫 SHOOT THEN REPOSITION
+# SHOOT THEN REPOSITION
 # =========================
 func _on_timer_timeout() -> void:
 	if not can_shoot or not player or projectile_scene == null:
 		return
 
-	# ---- SHOOT ----
+	# Shoot
 	var bullet = projectile_scene.instantiate()
 	bullet.global_position = global_position
 
@@ -145,13 +136,12 @@ func _on_timer_timeout() -> void:
 
 	get_tree().current_scene.add_child(bullet)
 
-	# ---- AFTER SHOOT → REPOSITION ----
+	# Reposition after shooting
 	_pick_reposition_target()
 	state = State.REPOSITION
 
-
 # =========================
-# REPOSITION SYSTEM
+# REPOSITION
 # =========================
 func _pick_reposition_target():
 	if not player:
@@ -159,9 +149,7 @@ func _pick_reposition_target():
 
 	var angle = randf() * TAU
 	var offset = Vector2(cos(angle), sin(angle)) * reposition_radius
-
 	reposition_target = player.global_position + offset
-
 
 func _handle_reposition():
 	if not player:
@@ -171,13 +159,11 @@ func _handle_reposition():
 	var dir = (reposition_target - global_position)
 
 	if dir.length() < 10.0:
-		# reached new position → go back to combat and allow shooting again
 		state = State.COMBAT
 		timer.start()
 		return
 
 	velocity = dir.normalized() * reposition_speed
-
 
 # =========================
 # DETECTION
@@ -189,7 +175,6 @@ func _on_shooting_area_body_entered(body: Node2D) -> void:
 		timer.start()
 		state = State.COMBAT
 
-
 func _on_shooting_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player = null
@@ -197,22 +182,39 @@ func _on_shooting_area_body_exited(body: Node2D) -> void:
 		timer.stop()
 		state = State.PATROL
 
-
 # =========================
-# DAMAGE
+# DAMAGE SYSTEM + JUICE
 # =========================
 func take_damage(amount: int):
-	var damage = damage_node.instantiate()
-	damage.find_child("Label").text = str(amount)
-	damage.position = position
-	get_parent().add_child(damage)
+	# Spawn floating damage text
+	if damage_node:
+		var damage = damage_node.instantiate()
+		var label = damage.find_child("Label")
+		if label:
+			label.text = str(amount)
 
+		damage.global_position = global_position
+		get_parent().add_child(damage)
+
+	# Apply damage
 	current_health -= amount
 	print("Enemy Health: %d" % current_health)
 
+	# Camera shake (light hit)
+	var cam = get_viewport().get_camera_2d()
+	if cam and cam.has_method("shake"):
+		cam.shake(randf_range(2.5, 4.0))
+
+	# Death
 	if current_health <= 0:
+		# Stronger shake on kill
+		if cam and cam.has_method("shake"):
+			cam.shake(randf_range(5.0, 8.0))
+
 		die()
 
-
+# =========================
+# DEATH
+# =========================
 func die():
 	queue_free()

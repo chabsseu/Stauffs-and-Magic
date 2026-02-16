@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bln4x7n1bjd8p" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_uvnfx"]
+[ext_resource type="Script" uid="uid://l5hl2sus6yh8" path="res://Scripts/UI/camera_2d.gd" id="3_htcer"]
 [ext_resource type="Texture2D" uid="uid://bj74em60yojnr" path="res://Assets/UI/cooldown.png" id="4_htcer"]
 [ext_resource type="PackedScene" uid="uid://ciwy7dfadp2tp" path="res://Scenes/UI/health_armor.tscn" id="4_mtuoh"]
 
@@ -24,6 +25,7 @@ shape = SubResource("RectangleShape2D_a3d8c")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=959096284]
 zoom = Vector2(2, 2)
+script = ExtResource("3_htcer")
 
 [node name="Health&Armor" parent="." unique_id=1251041895 instance=ExtResource("4_mtuoh")]
 

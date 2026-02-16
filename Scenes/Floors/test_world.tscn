@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://banf8jkq6cu4e" path="res://Scenes/Weapon/ice_staff.tscn" id="5_ruqt4"]
 [ext_resource type="PackedScene" uid="uid://8n3kngoq2sld" path="res://Scenes/Weapon/mana_staff.tscn" id="7_6brkv"]
 [ext_resource type="PackedScene" uid="uid://cdqh2qddc6swr" path="res://Scenes/Weapon/umbrel_staff.tscn" id="8_krihg"]
-[ext_resource type="PackedScene" uid="uid://cb0kyqifl5o74" path="res://Scenes/Enemies/slime.tscn" id="9_k11si"]
+[ext_resource type="PackedScene" uid="uid://ixiakydo7vts" path="res://Scenes/Enemies/spear_guy.tscn" id="10_gbv6p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2yfla"]
 texture = ExtResource("1_3sc00")
@@ -192,5 +192,5 @@ weapon_scene = ExtResource("7_6brkv")
 position = Vector2(123, 234)
 weapon_scene = ExtResource("8_krihg")
 
-[node name="slime" parent="." unique_id=1631911288 instance=ExtResource("9_k11si")]
-position = Vector2(447, 283)
+[node name="spear_guy" parent="." unique_id=1663760771 instance=ExtResource("10_gbv6p")]
+position = Vector2(318, 201)

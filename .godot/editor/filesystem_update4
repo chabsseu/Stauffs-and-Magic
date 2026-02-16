@@ -8,3 +8,6 @@ res://Scripts/Map/dungeon_generation.gd
 res://Scripts/UI/portal.gd
 res://Scenes/Map/dungeon_generation.tscn
 res://Scenes/UI/portal.tscn
+res://Scripts/UI/camera_2d.gd
+res://Scripts/Player/player.gd
+res://Scenes/Player/player.tscn

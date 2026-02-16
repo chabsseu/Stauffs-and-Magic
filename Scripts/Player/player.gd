@@ -193,6 +193,9 @@ func _on_pickup_area_area_exited(area: Area2D) -> void:
 # -------------------------
 func take_armor_damage(amount: int) -> void:
 	PlayerState.take_armor_damage(amount)
+
+	$Camera2D.shake(randf_range(5.0, 8.0))
+
 	if PlayerState.current_health <= 0:
 		die()
 

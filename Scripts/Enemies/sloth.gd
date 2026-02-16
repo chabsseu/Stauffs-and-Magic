@@ -156,6 +156,17 @@ func take_damage(amount: int) -> void:
 	current_health -= amount
 	print("Enemy Health: %d" % current_health)
 
+	# Camera shake (light hit)
+	var cam = get_viewport().get_camera_2d()
+	if cam and cam.has_method("shake"):
+		cam.shake(randf_range(2.5, 4.0))
+
+	# Death
+	if current_health <= 0:
+		# Stronger shake on kill
+		if cam and cam.has_method("shake"):
+			cam.shake(randf_range(5.0, 8.0))
+
 	if current_health <= 0:
 		die()
 
