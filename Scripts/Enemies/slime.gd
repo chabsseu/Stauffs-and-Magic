@@ -4,25 +4,43 @@ extends CharacterBody2D
 
 @export var projectile_scene: PackedScene
 @export var safe_distance: float = 200.0
-@export var shoot_interval: float = 3.0
+@export var shoot_interval: float = 0.5
 @export var damage_node: PackedScene
 @export var max_health: int
 
 @export var patrol_radius: float = 200.0
 @export var patrol_speed: float = 100.0
-@export var stop_duration: float = 1.5
+@export var stop_duration: float = 1.0
+
+# NEW: reposition settings
+@export var reposition_radius: float = 100.0
+@export var reposition_speed: float = 200.0
 
 var current_health: int
 var player: CharacterBody2D
 var can_shoot: bool = false
 
 var patrol_target: Vector2
+var reposition_target: Vector2
+
 var is_stopping: bool = false
 var stop_timer: float = 0.0
 
+var start_position: Vector2
+
 @onready var shooting_area = $ShootingArea
 @onready var timer = $Timer
-var start_position: Vector2
+
+# =========================
+# STATES
+# =========================
+enum State {
+	PATROL,
+	COMBAT,
+	REPOSITION
+}
+
+var state = State.PATROL
 
 
 # =========================
@@ -41,34 +59,46 @@ func _ready() -> void:
 
 
 # =========================
-# MOVEMENT / PATROL
+# MAIN LOOP
 # =========================
 func _physics_process(delta: float) -> void:
-	if player:
-		var distance = global_position.distance_to(player.global_position)
+	match state:
 
-		if distance < safe_distance:
-			var move_dir = (global_position - player.global_position).normalized()
-			velocity = move_dir * enemy_state.speed
-		else:
-			velocity = Vector2.ZERO
-	else:
-		if is_stopping:
-			stop_timer -= delta
-			velocity = Vector2.ZERO
+		State.PATROL:
+			_handle_patrol(delta)
 
-			if stop_timer <= 0:
-				is_stopping = false
-				_pick_new_patrol_target()
-		else:
-			var direction = (patrol_target - global_position).normalized()
-			velocity = direction * patrol_speed
+		State.COMBAT:
+			_handle_combat()
 
-			if global_position.distance_to(patrol_target) < 5.0:
-				is_stopping = true
-				stop_timer = stop_duration
+		State.REPOSITION:
+			_handle_reposition()
+
 
 	move_and_slide()
+
+
+# =========================
+# PATROL
+# =========================
+func _handle_patrol(delta):
+	if player:
+		state = State.COMBAT
+		return
+
+	if is_stopping:
+		stop_timer -= delta
+		velocity = Vector2.ZERO
+
+		if stop_timer <= 0:
+			is_stopping = false
+			_pick_new_patrol_target()
+	else:
+		var direction = (patrol_target - global_position).normalized()
+		velocity = direction * patrol_speed
+
+		if global_position.distance_to(patrol_target) < 5.0:
+			is_stopping = true
+			stop_timer = stop_duration
 
 
 func _pick_new_patrol_target() -> void:
@@ -78,25 +108,75 @@ func _pick_new_patrol_target() -> void:
 
 
 # =========================
-# 🔫 STRAIGHT SHOOTING
+# COMBAT
+# =========================
+func _handle_combat():
+	if not player:
+		state = State.PATROL
+		return
+
+	var distance = global_position.distance_to(player.global_position)
+
+	# keep distance from player
+	if distance < safe_distance:
+		var move_dir = (global_position - player.global_position).normalized()
+		velocity = move_dir * enemy_state.speed
+	else:
+		velocity = Vector2.ZERO
+
+
+# =========================
+# 🔫 SHOOT THEN REPOSITION
 # =========================
 func _on_timer_timeout() -> void:
 	if not can_shoot or not player or projectile_scene == null:
 		return
 
+	# ---- SHOOT ----
 	var bullet = projectile_scene.instantiate()
 	bullet.global_position = global_position
 
-	# calculate straight direction
 	var direction = (player.global_position - global_position).normalized()
 
-	# send direction to bullet
 	if bullet.has_method("set_direction"):
 		bullet.set_direction(direction)
 	elif "velocity" in bullet:
 		bullet.velocity = direction * bullet.speed
 
 	get_tree().current_scene.add_child(bullet)
+
+	# ---- AFTER SHOOT → REPOSITION ----
+	_pick_reposition_target()
+	state = State.REPOSITION
+
+
+# =========================
+# REPOSITION SYSTEM
+# =========================
+func _pick_reposition_target():
+	if not player:
+		return
+
+	var angle = randf() * TAU
+	var offset = Vector2(cos(angle), sin(angle)) * reposition_radius
+
+	reposition_target = player.global_position + offset
+
+
+func _handle_reposition():
+	if not player:
+		state = State.PATROL
+		return
+
+	var dir = (reposition_target - global_position)
+
+	if dir.length() < 10.0:
+		# reached new position → go back to combat and allow shooting again
+		state = State.COMBAT
+		timer.start()
+		return
+
+	velocity = dir.normalized() * reposition_speed
 
 
 # =========================
@@ -107,6 +187,7 @@ func _on_shooting_area_body_entered(body: Node2D) -> void:
 		player = body
 		can_shoot = true
 		timer.start()
+		state = State.COMBAT
 
 
 func _on_shooting_area_body_exited(body: Node2D) -> void:
@@ -114,6 +195,7 @@ func _on_shooting_area_body_exited(body: Node2D) -> void:
 		player = null
 		can_shoot = false
 		timer.stop()
+		state = State.PATROL
 
 
 # =========================
