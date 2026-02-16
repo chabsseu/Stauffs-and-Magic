@@ -18,6 +18,7 @@ var dungeon_grid = []
 var all_rooms : Array[Rect2] = []
 var end_room : Rect2
 var room_wave_data = {}  # Track wave data per room index
+var room_barriers = {}  # Track barrier positions per room index
 
 # --------------------------------------------------
 # READY / INPUT
@@ -52,12 +53,68 @@ func create_room_trigger(room: Rect2, room_index: int):
     var callable = func(body):
         if body == player:
             spawn_enemies_in_room(room, room_index)
+            close_room_exits(room, room_index)
             area.queue_free()
     
     area.body_entered.connect(callable, CONNECT_ONE_SHOT)
     collision.set_deferred("disabled", false)
     area.add_child(collision)
     add_child(area)
+
+# --------------------------------------------------
+# ROOM EXIT BLOCKING
+# --------------------------------------------------
+func close_room_exits(room: Rect2, room_index: int):
+    var barrier_positions = []
+    var barrier_tile = Vector2i(3, 2)  # Use a wall tile
+    
+    # Find corridor entrances around the room perimeter
+    # Check all edges of the room
+    for x in range(room.position.x - 1, room.end.x + 1):
+        # Top edge
+        var top_y = int(room.position.y) - 1
+        if is_in_bounds(x, top_y) and dungeon_grid[top_y][x] == TileType.FLOOR:
+            var barrier_pos = Vector2i(x, top_y)
+            barrier_positions.append(barrier_pos)
+            tilemap.set_cell(barrier_pos, 0, barrier_tile)
+        
+        # Bottom edge
+        var bottom_y = int(room.end.y)
+        if is_in_bounds(x, bottom_y) and dungeon_grid[bottom_y][x] == TileType.FLOOR:
+            var barrier_pos = Vector2i(x, bottom_y)
+            barrier_positions.append(barrier_pos)
+            tilemap.set_cell(barrier_pos, 0, barrier_tile)
+    
+    for y in range(room.position.y - 1, room.end.y + 1):
+        # Left edge
+        var left_x = int(room.position.x) - 1
+        if is_in_bounds(left_x, y) and dungeon_grid[y][left_x] == TileType.FLOOR:
+            var barrier_pos = Vector2i(left_x, y)
+            barrier_positions.append(barrier_pos)
+            tilemap.set_cell(barrier_pos, 0, barrier_tile)
+        
+        # Right edge
+        var right_x = int(room.end.x)
+        if is_in_bounds(right_x, y) and dungeon_grid[y][right_x] == TileType.FLOOR:
+            var barrier_pos = Vector2i(right_x, y)
+            barrier_positions.append(barrier_pos)
+            tilemap.set_cell(barrier_pos, 0, barrier_tile)
+    
+    room_barriers[room_index] = barrier_positions
+    print("Room ", room_index, " exits closed! Barriers placed: ", barrier_positions.size())
+
+func open_room_exits(room_index: int):
+    if not room_barriers.has(room_index):
+        return
+    
+    var floor_tiles = [Vector2i(1, 5), Vector2i(5, 5)]
+    
+    for barrier_pos in room_barriers[room_index]:
+        # Replace barrier with floor tile
+        tilemap.set_cell(barrier_pos, 0, floor_tiles[randi() % floor_tiles.size()])
+    
+    print("Room ", room_index, " exits opened!")
+    room_barriers.erase(room_index)
 
 # --------------------------------------------------
 # WAVE COMPLETION CHECK PER ROOM
@@ -76,6 +133,9 @@ func check_wave_complete(room_index: int):
     # All waves complete
     if data.active_enemies.is_empty() and data.current_wave >= data.total_waves:
         print("Room ", room_index, " - All waves complete!")
+        
+        # Open room exits
+        open_room_exits(room_index)
         
         # If this is the end room, activate portal
         if all_rooms[room_index] == end_room:

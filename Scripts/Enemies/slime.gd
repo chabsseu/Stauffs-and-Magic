@@ -49,8 +49,6 @@ func _ready() -> void:
 	timer.wait_time = shoot_interval
 	timer.timeout.connect(_on_timer_timeout)
 
-	shooting_area.body_entered.connect(_on_shooting_area_body_entered)
-	shooting_area.body_exited.connect(_on_shooting_area_body_exited)
 
 	current_health = max_health
 	start_position = global_position

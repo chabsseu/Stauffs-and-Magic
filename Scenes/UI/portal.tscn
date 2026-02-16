@@ -2,14 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ugfx3pyfue03" path="res://Scripts/UI/portal.gd" id="1_abnjr"]
 [ext_resource type="Texture2D" uid="uid://bdupridg5whiu" path="res://Assets/Tilemaps/Portal.png" id="2_6fl6p"]
-[ext_resource type="PackedScene" uid="uid://beuarsljros8t" path="res://Scenes/Map/dungeon_generation.tscn" id="2_ojh6h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ojh6h"]
 radius = 6.0
 
 [node name="Portal" type="Area2D" unique_id=111973993]
 script = ExtResource("1_abnjr")
-target_scene = ExtResource("2_ojh6h")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1371408480]
 scale = Vector2(2, 2)
