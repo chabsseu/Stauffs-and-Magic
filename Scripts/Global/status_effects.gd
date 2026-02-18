@@ -11,11 +11,12 @@ var active_effects = {}
 
 func add_effect(type: EffectType, duration: float, value := 0.0):
 	if active_effects.has(type):
-		return # prevent stacking (optional)
+		return
 	
 	active_effects[type] = {
 		"time_left": duration,
-		"value": value
+		"value": value,
+		"tick_timer": 0.5
 	}
 	effect_started.emit(type)
 
@@ -28,16 +29,21 @@ func remove_effect(type: EffectType):
 		active_effects.erase(type)
 
 func update(delta: float):
+	var to_remove = []
+
 	for type in active_effects.keys():
 		var data = active_effects[type]
 		data.time_left -= delta
 		
-		# Burn effect deals damage every half second
-		if type == EffectType.BURN and data.time_left > 0:
-			if int(data.time_left * 10) % 5 == 0:
+		if type == EffectType.BURN:
+			data.tick_timer -= delta
+			if data.tick_timer <= 0:
+				data.tick_timer = 0.5
 				burn_tick.emit(data.value)
-		
-		# Effect ends
+
 		if data.time_left <= 0:
-			effect_ended.emit(type)
-			active_effects.erase(type)
+			to_remove.append(type)
+
+	for type in to_remove:
+		effect_ended.emit(type)
+		active_effects.erase(type)

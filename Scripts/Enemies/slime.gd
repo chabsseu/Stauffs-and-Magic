@@ -1,22 +1,32 @@
 extends CharacterBody2D
 
-@onready var enemy_state = EnemyState
-
+# =========================
+# EXPORTS
+# =========================
 @export var projectile_scene: PackedScene
-@export var safe_distance: float = 200.0
-@export var shoot_interval: float = 0.5
 @export var damage_node: PackedScene
+
 @export var max_health: int = 10
 
+# Patrol
 @export var patrol_radius: float = 200.0
 @export var patrol_speed: float = 100.0
 @export var stop_duration: float = 1.0
 
-# reposition settings
+# Reposition
 @export var reposition_radius: float = 100.0
 @export var reposition_speed: float = 200.0
 
+# Combat
+@export var safe_distance: float = 200.0
+@export var shoot_interval: float = 0.5
+@export var base_speed: float = 150.0  # used for movement affected by status
+
+# =========================
+# VARIABLES
+# =========================
 var current_health: int
+var current_speed: float
 var player: CharacterBody2D
 var can_shoot: bool = false
 
@@ -25,33 +35,40 @@ var reposition_target: Vector2
 
 var is_stopping: bool = false
 var stop_timer: float = 0.0
-
 var start_position: Vector2
 
+# States
+enum State { PATROL, COMBAT, REPOSITION }
+var state = State.PATROL
+
+# =========================
+# NODES
+# =========================
 @onready var shooting_area = $ShootingArea
 @onready var timer = $Timer
 
-# =========================
-# STATES
-# =========================
-enum State {
-	PATROL,
-	COMBAT,
-	REPOSITION
-}
-
-var state = State.PATROL
+# Status effect manager
+var status_effects: StatusEffectManager
 
 # =========================
 # READY
 # =========================
 func _ready() -> void:
+	current_health = max_health
+	start_position = global_position
+	current_speed = base_speed
+
+	# Initialize status effects per enemy
+	status_effects = StatusEffectManager.new()
+	add_child(status_effects)
+	status_effects.burn_tick.connect(_on_burn_tick)
+	status_effects.effect_started.connect(_on_effect_started)
+	status_effects.effect_ended.connect(_on_effect_ended)
+
+	# Timer for shooting
 	timer.wait_time = shoot_interval
 	timer.timeout.connect(_on_timer_timeout)
 
-
-	current_health = max_health
-	start_position = global_position
 	_pick_new_patrol_target()
 
 # =========================
@@ -61,14 +78,16 @@ func _physics_process(delta: float) -> void:
 	match state:
 		State.PATROL:
 			_handle_patrol(delta)
-
 		State.COMBAT:
 			_handle_combat()
-
 		State.REPOSITION:
 			_handle_reposition()
 
+	# Move the enemy
 	move_and_slide()
+
+	# Update status effects
+	status_effects.update(delta)
 
 # =========================
 # PATROL
@@ -81,19 +100,17 @@ func _handle_patrol(delta):
 	if is_stopping:
 		stop_timer -= delta
 		velocity = Vector2.ZERO
-
 		if stop_timer <= 0:
 			is_stopping = false
 			_pick_new_patrol_target()
 	else:
-		var direction = (patrol_target - global_position).normalized()
-		velocity = direction * patrol_speed
-
+		var dir = (patrol_target - global_position).normalized()
+		velocity = dir * patrol_speed
 		if global_position.distance_to(patrol_target) < 5.0:
 			is_stopping = true
 			stop_timer = stop_duration
 
-func _pick_new_patrol_target() -> void:
+func _pick_new_patrol_target():
 	var angle = randf() * TAU
 	var distance = randf() * patrol_radius
 	patrol_target = start_position + Vector2(cos(angle), sin(angle)) * distance
@@ -110,18 +127,17 @@ func _handle_combat():
 
 	if distance < safe_distance:
 		var move_dir = (global_position - player.global_position).normalized()
-		velocity = move_dir * enemy_state.speed
+		velocity = move_dir * current_speed
 	else:
 		velocity = Vector2.ZERO
 
 # =========================
-# SHOOT THEN REPOSITION
+# SHOOTING
 # =========================
-func _on_timer_timeout() -> void:
+func _on_timer_timeout():
 	if not can_shoot or not player or projectile_scene == null:
 		return
 
-	# Shoot
 	var bullet = projectile_scene.instantiate()
 	bullet.global_position = global_position
 
@@ -144,7 +160,6 @@ func _on_timer_timeout() -> void:
 func _pick_reposition_target():
 	if not player:
 		return
-
 	var angle = randf() * TAU
 	var offset = Vector2(cos(angle), sin(angle)) * reposition_radius
 	reposition_target = player.global_position + offset
@@ -155,7 +170,6 @@ func _handle_reposition():
 		return
 
 	var dir = (reposition_target - global_position)
-
 	if dir.length() < 10.0:
 		state = State.COMBAT
 		timer.start()
@@ -166,14 +180,14 @@ func _handle_reposition():
 # =========================
 # DETECTION
 # =========================
-func _on_shooting_area_body_entered(body: Node2D) -> void:
+func _on_shooting_area_body_entered(body: Node2D):
 	if body.is_in_group("Player"):
 		player = body
 		can_shoot = true
 		timer.start()
 		state = State.COMBAT
 
-func _on_shooting_area_body_exited(body: Node2D) -> void:
+func _on_shooting_area_body_exited(body: Node2D):
 	if body.is_in_group("Player"):
 		player = null
 		can_shoot = false
@@ -181,35 +195,48 @@ func _on_shooting_area_body_exited(body: Node2D) -> void:
 		state = State.PATROL
 
 # =========================
-# DAMAGE SYSTEM + JUICE
+# DAMAGE + STATUS EFFECT HANDLERS
 # =========================
 func take_damage(amount: int):
-	# Spawn floating damage text
+	# Spawn damage label
 	if damage_node:
-		var damage = damage_node.instantiate()
-		var label = damage.find_child("Label")
+		var dmg = damage_node.instantiate()
+		var label = dmg.find_child("Label")
 		if label:
 			label.text = str(amount)
-
-		damage.global_position = global_position
-		get_parent().add_child(damage)
+		dmg.global_position = global_position
+		get_parent().add_child(dmg)
 
 	# Apply damage
 	current_health -= amount
 	print("Enemy Health: %d" % current_health)
 
-	# Camera shake (light hit)
+	# Camera shake
 	var cam = get_viewport().get_camera_2d()
 	if cam and cam.has_method("shake"):
 		cam.shake(randf_range(2.5, 4.0))
 
-	# Death
 	if current_health <= 0:
-		# Stronger shake on kill
 		if cam and cam.has_method("shake"):
 			cam.shake(randf_range(5.0, 8.0))
-
 		die()
+
+# =========================
+# STATUS EFFECT SIGNALS
+# =========================
+func _on_burn_tick(damage: int):
+	take_damage(damage)
+
+func _on_effect_started(effect_type):
+	match effect_type:
+		StatusEffectManager.EffectType.STUN:
+			current_speed = 0
+		StatusEffectManager.EffectType.SLOW:
+			current_speed = base_speed * 0.5
+
+func _on_effect_ended(effect_type):
+	if effect_type in [StatusEffectManager.EffectType.STUN, StatusEffectManager.EffectType.SLOW]:
+		current_speed = base_speed
 
 # =========================
 # DEATH

@@ -1,3 +1,10 @@
+<<<<<<< HEAD
 res://Scripts/Map/dungeon_generation.gd
 res://Scripts/Weapon/normal_bullet_skill.gd
 res://Scenes/Map/dungeon_generation.tscn
+=======
+res://Scripts/Enemies/slime.gd
+res://Scripts/Global/status_effects.gd
+res://Scenes/Floors/test_world.tscn
+res://Scripts/Enemies/spear_guy.gd
+>>>>>>> 6c7d377 (fixed the application of status effects)

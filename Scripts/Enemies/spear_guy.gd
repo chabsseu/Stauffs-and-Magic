@@ -1,43 +1,74 @@
 extends CharacterBody2D
 
-@onready var enemy_state = EnemyState
+# =========================
+# EXPORTS
+# =========================
 @export var damage_node: PackedScene
-@export var max_health: int
-@export var patrol_radius: float = 200.0    # max distance to patrol from start
-@export var patrol_speed: float = 100.0
-@export var stop_duration: float = 1.5      # seconds to stop after reaching patrol target
-@export var backoff_distance: float = 100.0 # distance to move back after attacking
-@export var backoff_speed: float = 100.0    # speed during backoff
+@export var max_health: int = 10
 
+# Patrol
+@export var patrol_radius: float = 200.0
+@export var patrol_speed: float = 100.0
+@export var stop_duration: float = 1.5
+
+# Backoff
+@export var backoff_distance: float = 100.0
+@export var backoff_speed: float = 100.0
+
+# Attack
+@export var attack_cooldown_time: float = 2.0
+
+# =========================
+# VARIABLES
+# =========================
 var current_health: int
 var player_in_range: bool = false
 var attacking: bool = false
 var chase: bool = false
 var player: Node2D = null
 
-# Patrol variables
+# Patrol
 var patrol_target: Vector2
 var is_stopping: bool = false
 var stop_timer: float = 0.0
 var start_position: Vector2
 
-# Backoff variables
+# Backoff
 var is_backing_off: bool = false
 var backoff_target: Vector2
 
+# Movement speed affected by status effects
+var current_speed: float
+
+# Status effects
+var status_effects: StatusEffectManager
+
+# =========================
+# NODES
+# =========================
 @onready var spear = $Spear
 @onready var animation_player: AnimationPlayer = spear.get_node_or_null("AnimationPlayer")
 @onready var attack_area: Area2D = $AttackArea
 @onready var attack_cooldown: Timer = $AttackCooldown
-@onready var detection_area: Area2D = $DetectionArea  # Add this node in the scene
+@onready var detection_area: Area2D = $DetectionArea
 
-
+# =========================
+# READY
+# =========================
 func _ready() -> void:
 	current_health = max_health
 	start_position = global_position
+	current_speed = patrol_speed
 
 	if animation_player == null:
 		push_error("⚠️ AnimationPlayer not found inside Spear scene!")
+
+	# Initialize StatusEffectManager
+	status_effects = StatusEffectManager.new()
+	add_child(status_effects)
+	status_effects.burn_tick.connect(_on_burn_tick)
+	status_effects.effect_started.connect(_on_effect_started)
+	status_effects.effect_ended.connect(_on_effect_ended)
 
 	# Connect signals
 	attack_area.body_entered.connect(_on_attack_area_body_entered)
@@ -47,63 +78,65 @@ func _ready() -> void:
 
 	_pick_new_patrol_target()
 
-
+# =========================
+# MAIN LOOP
+# =========================
 func _physics_process(delta: float) -> void:
-	# Stop movement while attacking
+	# Update status effects
+	status_effects.update(delta)
+
+	# Movement
 	if attacking:
 		velocity = Vector2.ZERO
 	elif is_backing_off:
-		var direction = (backoff_target - global_position).normalized()
-		velocity = direction * backoff_speed
-
-		# Check if reached backoff target
+		var dir = (backoff_target - global_position)
+		if dir.length() > 0:
+			velocity = dir.normalized() * current_speed
+		else:
+			velocity = Vector2.ZERO
 		if global_position.distance_to(backoff_target) < 5.0:
 			is_backing_off = false
 			velocity = Vector2.ZERO
+	elif chase and player != null:
+		var dir = (player.global_position - global_position)
+		velocity = dir.normalized() * current_speed
 	else:
-		if chase and player != null:
-			# Chase player
-			var direction = (player.global_position - global_position).normalized()
-			velocity = direction * enemy_state.speed
+		# Patrol
+		if is_stopping:
+			stop_timer -= delta
+			velocity = Vector2.ZERO
+			if stop_timer <= 0:
+				is_stopping = false
+				_pick_new_patrol_target()
 		else:
-			# Patrol when not chasing or attacking
-			if is_stopping:
-				stop_timer -= delta
-				velocity = Vector2.ZERO
-				if stop_timer <= 0:
-					is_stopping = false
-					_pick_new_patrol_target()
+			var dir = (patrol_target - global_position)
+			if dir.length() > 0:
+				velocity = dir.normalized() * current_speed
 			else:
-				var direction = (patrol_target - global_position).normalized()
-				velocity = direction * patrol_speed
-
-				# Check if reached patrol target
-				if global_position.distance_to(patrol_target) < 5.0:
-					is_stopping = true
-					stop_timer = stop_duration
+				velocity = Vector2.ZERO
+			if global_position.distance_to(patrol_target) < 5.0:
+				is_stopping = true
+				stop_timer = stop_duration
 
 	move_and_slide()
 
-	# Attack if player is in range and not on cooldown or backing off
+	# Attack
 	if player_in_range and not attacking and not is_backing_off and attack_cooldown.time_left == 0:
 		attack()
 
-
+# =========================
+# ATTACK
+# =========================
 func attack() -> void:
 	if animation_player == null or player == null:
 		return
 
 	attacking = true
 	animation_player.play("attack")
-
-	# Wait for attack animation to finish
 	await animation_player.animation_finished
-
 	attacking = false
-	# Start backoff after attack
 	_start_backoff()
-	attack_cooldown.start(2.0)  # cooldown after attack
-
+	attack_cooldown.start(attack_cooldown_time)
 
 func _start_backoff() -> void:
 	if player == null:
@@ -112,64 +145,77 @@ func _start_backoff() -> void:
 	var move_dir = (global_position - player.global_position).normalized()
 	backoff_target = global_position + move_dir * backoff_distance
 
+# =========================
+# PATROL
+# =========================
+func _pick_new_patrol_target() -> void:
+	var angle = randf() * TAU
+	var distance = randf() * patrol_radius
+	patrol_target = start_position + Vector2(cos(angle), sin(angle)) * distance
 
+# =========================
+# DAMAGE SYSTEM
+# =========================
 func take_damage(amount: int) -> void:
 	if damage_node != null:
-		var damage = damage_node.instantiate()
-		var label = damage.get_node_or_null("Label")
+		var dmg = damage_node.instantiate()
+		var label = dmg.get_node_or_null("Label")
 		if label:
 			label.text = str(amount)
-		damage.global_position = global_position
-		get_parent().add_child(damage)
+		dmg.global_position = global_position
+		get_parent().add_child(dmg)
 
 	current_health -= amount
 	print("Enemy Health: %d" % current_health)
 
-	# Camera shake (light hit)
+	# Camera shake
 	var cam = get_viewport().get_camera_2d()
 	if cam and cam.has_method("shake"):
 		cam.shake(randf_range(2.5, 4.0))
 
-	# Death
 	if current_health <= 0:
-		# Stronger shake on kill
 		if cam and cam.has_method("shake"):
 			cam.shake(randf_range(5.0, 8.0))
-
-	if current_health <= 0:
 		die()
-
 
 func die() -> void:
 	queue_free()
 
+# =========================
+# STATUS EFFECT SIGNALS
+# =========================
+func _on_burn_tick(damage: int) -> void:
+	take_damage(damage)
 
+func _on_effect_started(effect_type) -> void:
+	match effect_type:
+		StatusEffectManager.EffectType.STUN:
+			current_speed = 0
+		StatusEffectManager.EffectType.SLOW:
+			current_speed = patrol_speed * 0.5
+
+func _on_effect_ended(effect_type) -> void:
+	if effect_type in [StatusEffectManager.EffectType.STUN, StatusEffectManager.EffectType.SLOW]:
+		current_speed = patrol_speed
+
+# =========================
+# DETECTION
+# =========================
 func _on_attack_area_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
 		player_in_range = true
 		player = body
 
-
 func _on_attack_area_body_exited(body: Node) -> void:
 	if body.is_in_group("Player"):
 		player_in_range = false
-
 
 func _on_detection_area_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
 		player = body
 		chase = true
 
-
 func _on_detection_area_body_exited(body: Node) -> void:
 	if body.is_in_group("Player"):
 		player = null
 		chase = false
-
-
-# ----------------------
-# Patrol helper
-func _pick_new_patrol_target() -> void:
-	var angle = randf() * TAU
-	var distance = randf() * patrol_radius
-	patrol_target = start_position + Vector2(cos(angle), sin(angle)) * distance
