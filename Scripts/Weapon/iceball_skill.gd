@@ -23,19 +23,19 @@ func _process(delta: float) -> void:
 	
 	rotation = direction.angle()
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: Node2D):
 	if body.is_in_group("Enemy"):
+		# Apply damage
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
-		queue_free()
 
-		if has_status_effect:
-			print("Applying effect:", effect_type, "for", effect_duration, "seconds")
-			if enemy_state != null and enemy_state.status_effects != null:
-				enemy_state.status_effects.add_effect(effect_type, effect_duration, effect_value)
-				print("Effect applied to Enemy global!")
-			else:
-				push_warning("EnemyState or its status_effects is null!")
+		# Apply status effect via getter
+		if has_status_effect and body.has_method("get_status_effects"):
+			var se = body.get_status_effects()
+			se.add_effect(effect_type, effect_duration, effect_value)
+			print("Applied", effect_type, "to", body.name)
+
+		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
