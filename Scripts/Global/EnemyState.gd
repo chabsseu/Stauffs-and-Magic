@@ -17,8 +17,8 @@ func _ready() -> void:
 	status_effects.effect_started.connect(_on_effect_started)
 	status_effects.effect_ended.connect(_on_effect_ended)
 
-func _process(delta: float) -> void:
-	status_effects.update(delta)
+# func _process(delta: float) -> void:
+# 	status_effects.update(delta)
 
 func take_damage(amount: int) -> void:
 	pass

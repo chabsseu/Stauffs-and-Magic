@@ -35,8 +35,8 @@ func _ready() -> void:
 	add_child(timer)
 	timer.timeout.connect(_on_armor_regen_timer_timeout)
 
-func _process(delta):
-	status_effects.update(delta)
+# func _process(delta):
+# 	status_effects.update(delta)
 
 func _on_armor_regen_timer_timeout() -> void:
 	if current_armor < max_armor:

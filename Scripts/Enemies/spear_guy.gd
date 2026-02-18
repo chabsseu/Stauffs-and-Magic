@@ -65,6 +65,7 @@ func _ready() -> void:
 
 	# Initialize StatusEffectManager
 	status_effects = StatusEffectManager.new()
+	status_effects.name = "status_effects"
 	add_child(status_effects)
 	status_effects.burn_tick.connect(_on_burn_tick)
 	status_effects.effect_started.connect(_on_effect_started)
@@ -83,7 +84,7 @@ func _ready() -> void:
 # =========================
 func _physics_process(delta: float) -> void:
 	# Update status effects
-	status_effects.update(delta)
+	#status_effects.update(delta)
 
 	# Movement
 	if attacking:
@@ -195,8 +196,14 @@ func _on_effect_started(effect_type) -> void:
 			current_speed = patrol_speed * 0.5
 
 func _on_effect_ended(effect_type) -> void:
-	if effect_type in [StatusEffectManager.EffectType.STUN, StatusEffectManager.EffectType.SLOW]:
-		current_speed = patrol_speed
+	current_speed = patrol_speed
+
+# =========================
+# STATUS EFFECT GETTER
+# =========================
+func get_status_effects() -> StatusEffectManager:
+	# This allows projectiles to access the enemy's status effects
+	return status_effects
 
 # =========================
 # DETECTION
