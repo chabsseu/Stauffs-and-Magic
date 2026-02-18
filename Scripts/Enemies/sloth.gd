@@ -207,6 +207,15 @@ func _on_effect_started(eff_type):
 
 func _on_effect_ended(eff_type):
 	current_speed = patrol_speed
+	match eff_type:
+		StatusEffectManager.EffectType.STUN:
+			if state == State.WINDUP:
+				charge_timer.start(windup_time)
+			elif state == State.COOLDOWN:
+				charge_timer.start(0.5)
+			elif state == State.CHARGING:
+				end_charge()
+
 
 # =========================
 # STATUS EFFECT GETTER

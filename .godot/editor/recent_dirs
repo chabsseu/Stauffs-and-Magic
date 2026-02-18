@@ -1,3 +1,4 @@
+res://Scenes/Enemies/
 res://Scenes/Map/
 res://Assets/Weapon/
 res://Scenes/Weapon/
@@ -9,7 +10,6 @@ res://Assets/UI/Health&Armor/
 /usr/share/code/
 res://Scenes/UI/
 res://Scripts/Global/
-res://Scenes/Enemies/
 res://Scripts/Enemies/
 res://
 res://Assets/Enemies/Weapons/

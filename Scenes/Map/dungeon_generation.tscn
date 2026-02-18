@@ -43,4 +43,3 @@ tile_set = SubResource("TileSet_43nnj")
 weapon_scene = ExtResource("4_eo2qp")
 
 [node name="Portal" parent="." unique_id=1231640810 instance=ExtResource("9_j7ugi")]
-target_scene = null
