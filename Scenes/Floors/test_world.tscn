@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cb0kyqifl5o74" path="res://Scenes/Enemies/slime.tscn" id="10_858e3"]
 [ext_resource type="PackedScene" uid="uid://ixiakydo7vts" path="res://Scenes/Enemies/spear_guy.tscn" id="10_gbv6p"]
 [ext_resource type="PackedScene" uid="uid://hokg0gi8ti1u" path="res://Scenes/Enemies/sloth.tscn" id="11_858e3"]
+[ext_resource type="PackedScene" uid="uid://dw4fq5k1ob2xj" path="res://Scenes/Weapon/force_staff.tscn" id="12_ncuxn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2yfla"]
 texture = ExtResource("1_3sc00")
@@ -202,3 +203,7 @@ position = Vector2(151, 316)
 
 [node name="sloth" parent="." unique_id=1533549000 instance=ExtResource("11_858e3")]
 position = Vector2(347, 84)
+
+[node name="WeaponPickup6" parent="." unique_id=304769937 instance=ExtResource("4_cexxt")]
+position = Vector2(180, 207)
+weapon_scene = ExtResource("12_ncuxn")

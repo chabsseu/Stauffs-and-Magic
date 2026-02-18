@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dw4fq5k1ob2xj"]
+
+[ext_resource type="Texture2D" uid="uid://d2lp315ch81ak" path="res://Assets/Weapon/Force_staff.png" id="1_1ifwd"]
+[ext_resource type="Script" uid="uid://bis2sfhlhrwxx" path="res://Scripts/Weapon/force_staff.gd" id="1_57rge"]
+
+[node name="force_staff" type="Node2D" unique_id=1381438409]
+script = ExtResource("1_57rge")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=999945984]
+texture = ExtResource("1_1ifwd")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=685563683]
+position = Vector2(15, 0)

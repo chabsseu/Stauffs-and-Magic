@@ -1,10 +1,4 @@
-res://Scenes/Enemies/sloth.tscn
-res://Scripts/Enemies/slime.gd
-res://Scripts/Enemies/sloth.gd
-res://Scripts/Enemies/spear_guy.gd
-res://Scripts/Global/EnemyState.gd
-res://Scripts/Global/PlayerState.gd
-res://Scripts/Global/status_effects.gd
-res://Scripts/Weapon/iceball_skill.gd
-res://Scripts/Weapon/normal_bullet_skill.gd
-res://Scenes/Map/dungeon_generation.tscn
+res://Scripts/Weapon/force_bullet.gd
+res://Scripts/Weapon/force_staff.gd
+res://Scenes/Weapon/force_bullet.tscn
+res://Scenes/Floors/test_world.tscn
