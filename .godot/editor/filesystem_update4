@@ -3,3 +3,4 @@ res://Scenes/Weapon/force_bullet.tscn
 res://Scenes/Weapon/force_staff.tscn
 res://Scripts/Weapon/force_staff.gd
 res://Scripts/Player/player.gd
+res://Scenes/Floors/test_world.tscn

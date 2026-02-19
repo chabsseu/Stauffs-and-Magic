@@ -13,7 +13,7 @@ extends CharacterBody2D
 #--------------------------
 # Dash
 #--------------------------
-@export var dash_distance: float = 300.0
+@export var dash_distance: float = 200.0
 @export var dash_speed: float = 1500.0
 @export var dash_cooldown: float = 1.0
 
