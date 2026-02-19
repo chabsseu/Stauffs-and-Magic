@@ -195,6 +195,10 @@ weapon_scene = ExtResource("7_6brkv")
 position = Vector2(123, 234)
 weapon_scene = ExtResource("8_krihg")
 
+[node name="WeaponPickup6" parent="." unique_id=304769937 instance=ExtResource("4_cexxt")]
+position = Vector2(180, 207)
+weapon_scene = ExtResource("12_ncuxn")
+
 [node name="spear_guy" parent="." unique_id=1663760771 instance=ExtResource("10_gbv6p")]
 position = Vector2(568, 184)
 
@@ -203,7 +207,3 @@ position = Vector2(151, 316)
 
 [node name="sloth" parent="." unique_id=1533549000 instance=ExtResource("11_858e3")]
 position = Vector2(347, 84)
-
-[node name="WeaponPickup6" parent="." unique_id=304769937 instance=ExtResource("4_cexxt")]
-position = Vector2(180, 207)
-weapon_scene = ExtResource("12_ncuxn")

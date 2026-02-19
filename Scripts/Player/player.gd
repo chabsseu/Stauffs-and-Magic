@@ -19,7 +19,9 @@ extends CharacterBody2D
 
 var is_dashing: bool = false
 var dash_dir: Vector2 = Vector2.ZERO
-var dash_remaining = 0.0
+var dash_remaining: float = 0.0
+var dash_cooldown_remaining: float = 0.0
+
 # -------------------------
 # Nodes
 # -------------------------
@@ -31,10 +33,9 @@ var dash_remaining = 0.0
 # -------------------------
 const HOTBAR_SIZE := 5
 
-var hotbar: Array[PackedScene] = [null, null, null, null, null]
-var hotbar_icons: Array[Texture2D] = [null, null, null, null, null]
+# Each slot now stores scene, level, and icon
+var hotbar_data: Array = []
 
-# Skill cooldown only
 var cooldown := [0.0, 0.0, 0.0, 0.0, 0.0]
 var max_cooldown := [0.0, 0.0, 0.0, 0.0, 0.0]
 
@@ -44,28 +45,40 @@ var pickup_weapon: Area2D = null
 var can_fire := true
 
 # -------------------------
+# Ready
+# -------------------------
+func _ready():
+	add_to_group("player")
+	for i in range(HOTBAR_SIZE):
+		hotbar_data.append({
+			"scene": null,
+			"level": 1,
+			"icon": null
+		})
+
+# -------------------------
 # Movement + Cooldown Tick
 # -------------------------
 func _physics_process(delta: float) -> void:
-	
-
 	for i in range(HOTBAR_SIZE):
 		if cooldown[i] > 0.0:
 			cooldown[i] -= delta
+			update_hotbar_ui()
 
-	update_hotbar_ui()
+	if dash_cooldown_remaining > 0:
+		dash_cooldown_remaining -= delta
 
 	if is_dashing:
-		velocity = dash_dir * dash_speed  # assign velocity first
+		velocity = dash_dir * dash_speed
 		dash_remaining -= velocity.length() * delta
 		move_and_slide()
 		if dash_remaining <= 0:
 			is_dashing = false
-
 	else:
 		var input_direction = Input.get_vector("A", "D", "W", "S")
 		velocity = input_direction * player_state.speed
 		move_and_slide()
+
 # -------------------------
 # Input
 # -------------------------
@@ -80,15 +93,9 @@ func _input(event):
 	if current_weapon == null or current_slot == -1 or not can_fire:
 		return
 
-	# -------------------------
-	# Normal attack (NO cooldown)
-	# -------------------------
 	if event.is_action_pressed("fire"):
 		current_weapon.attack()
 
-	# -------------------------
-	# Skill (WITH cooldown)
-	# -------------------------
 	if event.is_action_pressed("skill"):
 		if cooldown[current_slot] <= 0.0:
 			current_weapon.skill()
@@ -102,7 +109,7 @@ func try_pickup():
 		return
 
 	for i in range(HOTBAR_SIZE):
-		if hotbar[i] == null:
+		if hotbar_data[i]["scene"] == null:
 			store_weapon_in_slot(i)
 			return
 
@@ -110,11 +117,11 @@ func try_pickup():
 		swap_current_weapon()
 
 func store_weapon_in_slot(slot: int):
-	hotbar[slot] = pickup_weapon.weapon_scene
+	var temp = pickup_weapon.weapon_scene.instantiate()
 
-	var temp = hotbar[slot].instantiate()
-	if temp.has_node("Sprite2D"):
-		hotbar_icons[slot] = temp.get_node("Sprite2D").texture
+	hotbar_data[slot]["scene"] = pickup_weapon.weapon_scene
+	hotbar_data[slot]["level"] = 1
+	hotbar_data[slot]["icon"] = temp.get_node("Sprite2D").texture if temp.has_node("Sprite2D") else null
 	max_cooldown[slot] = temp.skill_cooldown
 	temp.queue_free()
 
@@ -132,19 +139,18 @@ func swap_current_weapon():
 
 	var pickup_scene = preload("res://Scenes/Weapon/weapon_pickup.tscn")
 	var dropped = pickup_scene.instantiate()
-	dropped.weapon_scene = hotbar[current_slot]
+	dropped.weapon_scene = hotbar_data[current_slot]["scene"]
 	dropped.global_position = global_position
 	get_parent().add_child(dropped)
 
 	current_weapon.queue_free()
 
-	hotbar[current_slot] = pickup_weapon.weapon_scene
-	cooldown[current_slot] = 0.0
-
-	var temp = hotbar[current_slot].instantiate()
-	if temp.has_node("Sprite2D"):
-		hotbar_icons[current_slot] = temp.get_node("Sprite2D").texture
+	var temp = pickup_weapon.weapon_scene.instantiate()
+	hotbar_data[current_slot]["scene"] = pickup_weapon.weapon_scene
+	hotbar_data[current_slot]["level"] = 1
+	hotbar_data[current_slot]["icon"] = temp.get_node("Sprite2D").texture if temp.has_node("Sprite2D") else null
 	max_cooldown[current_slot] = temp.skill_cooldown
+	cooldown[current_slot] = 0.0
 	temp.queue_free()
 
 	equip(current_slot)
@@ -158,14 +164,16 @@ func swap_current_weapon():
 func equip(slot: int):
 	if slot < 0 or slot >= HOTBAR_SIZE:
 		return
-	if hotbar[slot] == null:
+	if hotbar_data[slot]["scene"] == null:
 		return
 
 	if current_weapon:
 		current_weapon.queue_free()
 
 	current_slot = slot
-	current_weapon = hotbar[slot].instantiate()
+	current_weapon = hotbar_data[slot]["scene"].instantiate()
+	# Pass level to weapon so it knows its upgrade state
+	current_weapon.weapon_level = hotbar_data[slot]["level"]
 	weapon_socket.add_child(current_weapon)
 
 	can_fire = false
@@ -175,20 +183,20 @@ func equip(slot: int):
 	update_hotbar_ui()
 
 # -------------------------
-# UI (Radial skill cooldown)
+# UI
 # -------------------------
 func update_hotbar_ui():
 	for i in range(HOTBAR_SIZE):
 		var slot = hotbar_ui_slots[i]
 
-		slot.texture = hotbar_icons[i]
+		slot.texture = hotbar_data[i]["icon"]
 		slot.modulate = Color(1, 1, 0) if i == current_slot else Color(1, 1, 1)
 
 		var cd_bar := slot.get_node_or_null("Cooldown") as TextureProgressBar
 		if cd_bar == null:
 			continue
 
-		if hotbar[i] != null and cooldown[i] > 0.0:
+		if hotbar_data[i]["scene"] != null and cooldown[i] > 0.0:
 			cd_bar.visible = true
 			cd_bar.value = clamp(cooldown[i] / max_cooldown[i], 0.0, 1.0)
 		else:
@@ -211,21 +219,20 @@ func _on_pickup_area_area_exited(area: Area2D) -> void:
 # -------------------------
 func take_armor_damage(amount: int) -> void:
 	PlayerState.take_armor_damage(amount)
-
 	$Camera2D.shake(randf_range(5.0, 8.0))
-
 	if PlayerState.current_health <= 0:
 		die()
 
-#_------------------------
-# Dash function
-#-------------------------
-func dash (direction: Vector2):
-	if is_dashing:
+# -------------------------
+# Dash
+# -------------------------
+func dash(direction: Vector2):
+	if is_dashing or dash_cooldown_remaining > 0:
 		return
 	is_dashing = true
 	dash_dir = direction.normalized()
 	dash_remaining = dash_distance
+	dash_cooldown_remaining = dash_cooldown
 
 func die():
 	queue_free()
