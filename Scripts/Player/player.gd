@@ -10,7 +10,16 @@ extends CharacterBody2D
 	$Hotbar_UI/HotbarSlots/Slot3,
 	$Hotbar_UI/HotbarSlots/Slot4
 ]
+#--------------------------
+# Dash
+#--------------------------
+@export var dash_distance: float = 300.0
+@export var dash_speed: float = 1500.0
+@export var dash_cooldown: float = 1.0
 
+var is_dashing: bool = false
+var dash_dir: Vector2 = Vector2.ZERO
+var dash_remaining = 0.0
 # -------------------------
 # Nodes
 # -------------------------
@@ -38,9 +47,7 @@ var can_fire := true
 # Movement + Cooldown Tick
 # -------------------------
 func _physics_process(delta: float) -> void:
-	var input_direction = Input.get_vector("A", "D", "W", "S")
-	velocity = input_direction * player_state.speed
-	move_and_slide()
+	
 
 	for i in range(HOTBAR_SIZE):
 		if cooldown[i] > 0.0:
@@ -48,6 +55,17 @@ func _physics_process(delta: float) -> void:
 
 	update_hotbar_ui()
 
+	if is_dashing:
+		velocity = dash_dir * dash_speed  # assign velocity first
+		dash_remaining -= velocity.length() * delta
+		move_and_slide()
+		if dash_remaining <= 0:
+			is_dashing = false
+
+	else:
+		var input_direction = Input.get_vector("A", "D", "W", "S")
+		velocity = input_direction * player_state.speed
+		move_and_slide()
 # -------------------------
 # Input
 # -------------------------
@@ -198,6 +216,16 @@ func take_armor_damage(amount: int) -> void:
 
 	if PlayerState.current_health <= 0:
 		die()
+
+#_------------------------
+# Dash function
+#-------------------------
+func dash (direction: Vector2):
+	if is_dashing:
+		return
+	is_dashing = true
+	dash_dir = direction.normalized()
+	dash_remaining = dash_distance
 
 func die():
 	queue_free()

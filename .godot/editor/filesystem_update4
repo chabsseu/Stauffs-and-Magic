@@ -1,4 +1,5 @@
-res://Scripts/Weapon/force_bullet.gd
-res://Scripts/Weapon/force_staff.gd
+res://Scripts/Enemies/sloth.gd
 res://Scenes/Weapon/force_bullet.tscn
-res://Scenes/Floors/test_world.tscn
+res://Scenes/Weapon/force_staff.tscn
+res://Scripts/Weapon/force_staff.gd
+res://Scripts/Player/player.gd
