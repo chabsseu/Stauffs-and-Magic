@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 @onready var prompt_label: Label = $Detection_area/Label
 var player_nearby: bool = false

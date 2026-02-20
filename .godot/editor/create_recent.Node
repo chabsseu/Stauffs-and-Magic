@@ -1,3 +1,4 @@
+CharacterBody2D
 CanvasLayer
 Label
 CollisionShape2D
@@ -12,4 +13,3 @@ TileMapLayer
 TileMap
 AnimationPlayer
 VisibleOnScreenNotifier2D
-Node2D

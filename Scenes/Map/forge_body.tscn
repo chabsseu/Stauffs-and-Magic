@@ -9,7 +9,9 @@ size = Vector2(60, 61)
 [sub_resource type="CircleShape2D" id="CircleShape2D_njr0w"]
 radius = 71.5891
 
-[node name="Forge_body" type="Area2D" unique_id=769623712]
+[node name="Forge_body" type="CharacterBody2D" unique_id=293202240]
+light_mask = 3
+visibility_layer = 3
 script = ExtResource("1_pe55g")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2070976787]
