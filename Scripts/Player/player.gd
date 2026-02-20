@@ -191,8 +191,12 @@ func equip(slot: int):
 func upgrade_weapon(slot: int):
 	if hotbar_data[slot]["scene"] == null:
 		return
+	var temp = hotbar_data[slot]["scene"].instantiate()
+	var reduction = temp.get_upgrade_cooldown_reduction()
+	temp.queue_free()
+
 	hotbar_data[slot]["level"] += 1
-	hotbar_data[slot]["skill_cooldown"] = max(1.0, hotbar_data[slot]["skill_cooldown"] - 1.0)
+	hotbar_data[slot]["skill_cooldown"] = max(1.0, hotbar_data[slot]["skill_cooldown"] - reduction)  # use reduction here
 	max_cooldown[slot] = hotbar_data[slot]["skill_cooldown"]
 	if current_slot == slot and current_weapon != null:
 		current_weapon.skill_cooldown = hotbar_data[slot]["skill_cooldown"]

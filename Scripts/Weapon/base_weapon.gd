@@ -22,6 +22,9 @@ func spawn_projectile(scene: PackedScene) -> Node2D:
 func apply_upgrade():
     weapon_level += 1
 
+func get_upgrade_cooldown_reduction() -> float:
+    return 1.0
+
 func attack():
     pass
 

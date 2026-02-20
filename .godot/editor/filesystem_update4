@@ -7,3 +7,4 @@ res://Scripts/Player/player.gd
 res://Scenes/Player/player.tscn
 res://Scripts/Weapon/base_weapon.gd
 res://Scripts/Weapon/weapon_pickup.gd
+res://Scripts/Weapon/ice_staff.gd
