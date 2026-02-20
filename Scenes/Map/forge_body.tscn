@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://6x6c34ddudyr"]
+
+[ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_lmvbu"]
+[ext_resource type="Script" uid="uid://cj674rkiuic6d" path="res://Scripts/Map/forge_body.gd" id="1_pe55g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pe55g"]
+size = Vector2(60, 61)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_njr0w"]
+radius = 71.5891
+
+[node name="Forge_body" type="Area2D" unique_id=769623712]
+script = ExtResource("1_pe55g")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2070976787]
+position = Vector2(1, 0)
+scale = Vector2(0.484375, 0.5)
+texture = ExtResource("1_lmvbu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1527245940]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_pe55g")
+
+[node name="Detection_area" type="Area2D" parent="." unique_id=733672648]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area" unique_id=2012138836]
+shape = SubResource("CircleShape2D_njr0w")
+
+[node name="Label" type="Label" parent="Detection_area" unique_id=487491783]
+offset_left = -69.0
+offset_top = -62.0
+offset_right = 71.0
+offset_bottom = -39.0
+text = "Press E to interact"
+
+[connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]

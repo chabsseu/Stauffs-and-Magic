@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://bxlg8tcru3607"]
+
+[ext_resource type="Script" uid="uid://y7oo1urpqh0j" path="res://Scripts/Map/forge.gd" id="1_iyuf2"]
+
+[node name="ForgeUI" type="Control" unique_id=213614385]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_iyuf2")
+
+[node name="Panel" type="Panel" parent="." unique_id=534143126]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -186.0
+offset_right = 126.0
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="Panel" unique_id=1127212179]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 21.0
+offset_right = 185.0
+offset_bottom = 44.0
+horizontal_alignment = 1
+
+[node name="weapon_name" type="Label" parent="Panel" unique_id=491646632]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 66.0
+offset_right = 220.0
+offset_bottom = 89.0
+horizontal_alignment = 1
+
+[node name="level_label" type="Label" parent="Panel" unique_id=105274065]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 109.0
+offset_right = 182.0
+offset_bottom = 132.0
+horizontal_alignment = 1
+
+[node name="cooldown_label" type="Label" parent="Panel" unique_id=29689525 groups=["forge_ui"]]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 149.0
+offset_right = 198.0
+offset_bottom = 172.0
+horizontal_alignment = 1
+
+[node name="upgrade_button" type="Button" parent="Panel" unique_id=407432271]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 200.0
+offset_right = 192.0
+offset_bottom = 231.0
+text = "upgrade_button"
+
+[node name="close_button" type="Button" parent="Panel" unique_id=571984514]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 290.0
+offset_right = 178.0
+offset_bottom = 321.0
+text = "close_button"
+
+[connection signal="pressed" from="Panel/upgrade_button" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="Panel/close_button" to="." method="_on_close_button_pressed"]

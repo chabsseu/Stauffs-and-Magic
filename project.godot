@@ -35,6 +35,7 @@ window/size/viewport_height=720
 Player=""
 Enemy=""
 Projectile=""
+forge_ui=""
 
 [input]
 

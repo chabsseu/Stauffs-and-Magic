@@ -33,7 +33,6 @@ var dash_cooldown_remaining: float = 0.0
 # -------------------------
 const HOTBAR_SIZE := 5
 
-# Each slot now stores scene, level, and icon
 var hotbar_data: Array = []
 
 var cooldown := [0.0, 0.0, 0.0, 0.0, 0.0]
@@ -53,7 +52,8 @@ func _ready():
 		hotbar_data.append({
 			"scene": null,
 			"level": 1,
-			"icon": null
+			"icon": null,
+			"skill_cooldown": 0.0
 		})
 
 # -------------------------
@@ -122,6 +122,7 @@ func store_weapon_in_slot(slot: int):
 	hotbar_data[slot]["scene"] = pickup_weapon.weapon_scene
 	hotbar_data[slot]["level"] = 1
 	hotbar_data[slot]["icon"] = temp.get_node("Sprite2D").texture if temp.has_node("Sprite2D") else null
+	hotbar_data[slot]["skill_cooldown"] = temp.skill_cooldown  # store initial cooldown
 	max_cooldown[slot] = temp.skill_cooldown
 	temp.queue_free()
 
@@ -149,6 +150,7 @@ func swap_current_weapon():
 	hotbar_data[current_slot]["scene"] = pickup_weapon.weapon_scene
 	hotbar_data[current_slot]["level"] = 1
 	hotbar_data[current_slot]["icon"] = temp.get_node("Sprite2D").texture if temp.has_node("Sprite2D") else null
+	hotbar_data[current_slot]["skill_cooldown"] = temp.skill_cooldown  # store initial cooldown
 	max_cooldown[current_slot] = temp.skill_cooldown
 	cooldown[current_slot] = 0.0
 	temp.queue_free()
@@ -172,8 +174,8 @@ func equip(slot: int):
 
 	current_slot = slot
 	current_weapon = hotbar_data[slot]["scene"].instantiate()
-	# Pass level to weapon so it knows its upgrade state
 	current_weapon.weapon_level = hotbar_data[slot]["level"]
+	current_weapon.skill_cooldown = hotbar_data[slot]["skill_cooldown"]  # restore cooldown
 	weapon_socket.add_child(current_weapon)
 
 	can_fire = false
@@ -181,6 +183,18 @@ func equip(slot: int):
 	can_fire = true
 
 	update_hotbar_ui()
+
+# -------------------------
+# Upgrade
+# -------------------------
+func upgrade_weapon(slot: int):
+	if hotbar_data[slot]["scene"] == null:
+		return
+	hotbar_data[slot]["level"] += 1
+	hotbar_data[slot]["skill_cooldown"] = max(0.5, hotbar_data[slot]["skill_cooldown"] - 1.0)
+	max_cooldown[slot] = hotbar_data[slot]["skill_cooldown"]
+	if current_slot == slot and current_weapon != null:
+		current_weapon.skill_cooldown = hotbar_data[slot]["skill_cooldown"]
 
 # -------------------------
 # UI

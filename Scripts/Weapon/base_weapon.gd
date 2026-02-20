@@ -18,6 +18,11 @@ func spawn_projectile(scene: PackedScene) -> Node2D:
     projectile.direction = get_mouse_direction()
     return projectile
 
+
+func apply_upgrade():
+    weapon_level += 1
+    skill_cooldown = max(0.5, skill_cooldown - 1.0)
+    
 func attack():
     pass
 
