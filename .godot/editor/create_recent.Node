@@ -1,3 +1,4 @@
+AnimatedSprite2D
 CharacterBody2D
 CanvasLayer
 Label
@@ -7,9 +8,7 @@ Sprite2D
 Button
 Panel
 Control
-AnimatedSprite2D
 Marker2D
 TileMapLayer
 TileMap
 AnimationPlayer
-VisibleOnScreenNotifier2D
