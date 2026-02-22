@@ -12,4 +12,4 @@ func skill():
         spawn_projectile(skill_scene)
 
 func get_upgrade_cooldown_reduction() -> float:
-    return 2.0  # reduces cooldown faster
+    return 3.0  # reduces cooldown faster

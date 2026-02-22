@@ -1,3 +1,6 @@
-res://Scenes/Map/forge_body.tscn
-res://Scripts/Map/forge_body.gd
-res://Scenes/Weapon/ice_staff.tscn
+res://Scripts/Weapon/ice_staff.gd
+res://Scripts/Weapon/mana_staff.gd
+res://Scenes/Weapon/normal_staff.tscn
+res://Scripts/Weapon/normal_staff.gd
+res://Scripts/Weapon/umbrel_staff.gd
+res://Scenes/Weapon/umbrel_staff.tscn

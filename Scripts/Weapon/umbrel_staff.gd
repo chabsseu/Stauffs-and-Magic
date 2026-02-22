@@ -18,3 +18,6 @@ func skill():
 func _on_skill_area_area_entered(area: Area2D) -> void:
     if area.is_in_group("Projectile"):
         area.queue_free()
+
+func get_upgrade_cooldown_reduction() -> float:
+    return 3.0  # reduces cooldown faster

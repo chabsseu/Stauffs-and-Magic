@@ -1,14 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb8c2mi17642k"]
+[gd_scene format=3 uid="uid://bb8c2mi17642k"]
 
 [ext_resource type="Script" uid="uid://k2k7g1utc72w" path="res://Scripts/Weapon/normal_staff.gd" id="1_hcdcp"]
 [ext_resource type="Texture2D" uid="uid://b7bm7x0epeu6v" path="res://Assets/Weapon/normal_staff.png" id="2_g0t8l"]
 
-[node name="normal_staff" type="Node2D"]
+[node name="normal_staff" type="Node2D" unique_id=360889184]
 scale = Vector2(2, 2)
 script = ExtResource("1_hcdcp")
+skill_cooldown = 3.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1977384519]
 texture = ExtResource("2_g0t8l")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=853885149]
 position = Vector2(8, 0)
