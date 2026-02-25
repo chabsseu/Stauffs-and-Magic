@@ -1,6 +1,3 @@
-res://Scripts/Weapon/ice_staff.gd
-res://Scripts/Weapon/mana_staff.gd
-res://Scenes/Weapon/normal_staff.tscn
-res://Scripts/Weapon/normal_staff.gd
-res://Scripts/Weapon/umbrel_staff.gd
-res://Scenes/Weapon/umbrel_staff.tscn
+res://Scenes/Floors/test_world.tscn
+res://Scenes/UI/forge.tscn
+res://Scripts/Map/forge.gd

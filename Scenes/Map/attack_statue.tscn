@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dkxxs5v05i6p4"]
+
+[ext_resource type="Script" uid="uid://b75ouofrplovs" path="res://Scripts/Map/attack_statue.gd" id="1_c0qrt"]
+[ext_resource type="Texture2D" uid="uid://dtr7b1ihi1v0u" path="res://Assets/Alter/cooldown_altar.png" id="2_7yy37"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe55g"]
+atlas = ExtResource("2_7yy37")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njr0w"]
+atlas = ExtResource("2_7yy37")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyl6s"]
+atlas = ExtResource("2_7yy37")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfjou"]
+atlas = ExtResource("2_7yy37")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyfe3"]
+atlas = ExtResource("2_7yy37")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phrh1"]
+atlas = ExtResource("2_7yy37")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phrh1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pe55g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njr0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyl6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfjou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyfe3")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phrh1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pe55g"]
+size = Vector2(32.5, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_njr0w"]
+radius = 71.5891
+
+[node name="attack_statue" type="CharacterBody2D" unique_id=293202240]
+light_mask = 3
+visibility_layer = 3
+script = ExtResource("1_c0qrt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=588811833]
+position = Vector2(2, -20)
+sprite_frames = SubResource("SpriteFrames_phrh1")
+animation = &"active"
+autoplay = "active"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1527245940]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(2.75, 4)
+shape = SubResource("RectangleShape2D_pe55g")
+
+[node name="Detection_area" type="Area2D" parent="." unique_id=733672648]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area" unique_id=2012138836]
+shape = SubResource("CircleShape2D_njr0w")
+
+[node name="Label" type="Label" parent="Detection_area" unique_id=487491783]
+offset_left = -42.0
+offset_top = -36.0
+offset_right = 46.0
+offset_bottom = -22.0
+theme_override_font_sizes/font_size = 10
+text = "Press E to interact"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]

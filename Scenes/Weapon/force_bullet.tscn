@@ -39,7 +39,6 @@ height = 14.047891
 [node name="force_bullet" type="Area2D" unique_id=393642159]
 script = ExtResource("1_wvtpa")
 speed = 500
-damage = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1182358614]
 scale = Vector2(1.5, 1.5)
