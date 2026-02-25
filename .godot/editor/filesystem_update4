@@ -1,3 +1,2 @@
-res://Scenes/Floors/test_world.tscn
-res://Scenes/UI/forge.tscn
+res://Scenes/Map/forge.tscn
 res://Scripts/Map/forge.gd
