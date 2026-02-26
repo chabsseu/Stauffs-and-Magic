@@ -39,22 +39,29 @@ func open(type: String):
 
 	match upgrade_type:
 		"cooldown":
-			var reduction = temp.get_upgrade_cooldown_reduction()
-			stat_label.text = "Skill Cooldown: %.1f sec" % data["skill_cooldown"]
-			stat_label2.text = "After Upgrade: %.1f sec" % max(1.0, data["skill_cooldown"] - reduction)
+			var reduction = 0.0
+			if temp.has_method("get_upgrade_cooldown_reduction"):
+				reduction = temp.get_upgrade_cooldown_reduction()
+
+			stat_label.text = "Skill Cooldown: %.1f sec" % (data.get("skill_cooldown", 0.0))
+			stat_label2.text = "After Upgrade: %.1f sec" % max(1.0, (data.get("skill_cooldown", 0.0) - reduction))
+
 		"damage":
-			var atk_increase = temp.get_upgrade_damage_increase()
-			var skill_increase = temp.get_upgrade_skill_damge_increase()
+			# Safe attack upgrade
+			var atk_increase = temp.get_upgrade_damage_increase() if temp.has_method("get_upgrade_damage_increase") else 0.0
+			# Safe skill upgrade
+			var skill_increase = temp.get_upgrade_skill_damage_increase() if temp.has_method("get_upgrade_skill_damage_increase") else 0.0
 
-			stat_label.text = "ATK: %.1f | SKILL: %.1f" % [
-				data["attack_damage"], 
-				data["skill_damage"]
-			]
+			var atk = data.get("attack_damage", 0.0)
+			var skill = data.get("skill_damage", 0.0)
 
-			stat_label2.text = "After: ATK %.1f | SKILL %.1f" % [
-				data["attack_damage"] + atk_increase,
-				data["skill_damage"] + skill_increase
-			]
+			if skill <= 0.0:
+				# Weapon has no skill → hide skill damage
+				stat_label.text = "ATK: %.1f" % atk
+				stat_label2.text = "After: ATK %.1f" % (atk + atk_increase)
+			else:
+				stat_label.text = "ATK: %.1f | SKILL: %.1f" % [atk, skill]
+				stat_label2.text = "After: ATK %.1f | SKILL %.1f" % [atk + atk_increase, skill + skill_increase]
 
 	temp.queue_free()
 	visible = true

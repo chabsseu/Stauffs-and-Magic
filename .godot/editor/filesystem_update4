@@ -1,4 +1,9 @@
-res://Scenes/Floors/test_world.tscn
+res://Scripts/Map/forge.gd
 res://Scripts/Player/player.gd
+res://Scripts/Weapon/base_weapon.gd
 res://Scripts/Weapon/ice_staff.gd
+res://Scripts/Weapon/mana_staff.gd
 res://Scripts/Weapon/normal_staff.gd
+res://Scenes/Weapon/weapon_pickup.tscn
+res://Scenes/Floors/test_world.tscn
+res://Scenes/Weapon/force_staff.tscn

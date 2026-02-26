@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://vwhok55g8tdn"]
 
 [ext_resource type="Script" uid="uid://c3j52boae8my8" path="res://Scripts/Weapon/weapon_pickup.gd" id="1_k1jox"]
+[ext_resource type="PackedScene" uid="uid://banf8jkq6cu4e" path="res://Scenes/Weapon/ice_staff.tscn" id="2_wdkb1"]
+[ext_resource type="PackedScene" uid="uid://8n3kngoq2sld" path="res://Scenes/Weapon/mana_staff.tscn" id="3_lnj8x"]
+[ext_resource type="PackedScene" uid="uid://dw4fq5k1ob2xj" path="res://Scenes/Weapon/force_staff.tscn" id="4_yrmkf"]
+[ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="5_6giqj"]
+[ext_resource type="PackedScene" uid="uid://cdqh2qddc6swr" path="res://Scenes/Weapon/umbrel_staff.tscn" id="6_y3ce8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k1jox"]
 
@@ -9,7 +14,7 @@
 [node name="WeaponPickup" type="Area2D" unique_id=378548632]
 scale = Vector2(2, 2)
 script = ExtResource("1_k1jox")
-possible_weapons = Array[PackedScene]([null])
+possible_weapons = Array[PackedScene]([ExtResource("2_wdkb1"), ExtResource("3_lnj8x"), ExtResource("4_yrmkf"), ExtResource("5_6giqj"), ExtResource("6_y3ce8")])
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=946457122]
 
