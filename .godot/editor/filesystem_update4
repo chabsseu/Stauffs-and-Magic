@@ -10,3 +10,7 @@ res://Scenes/Weapon/force_staff.tscn
 res://Scenes/Weapon/normal_staff.tscn
 res://Scenes/Map/dungeon_generation.tscn
 res://Scripts/Map/dungeon_generation.gd
+res://Scripts/Enemies/spear_guy.gd
+res://Scripts/Enemies/slime.gd
+res://Scripts/UI/portal.gd
+res://Scenes/Weapon/mana_staff.tscn

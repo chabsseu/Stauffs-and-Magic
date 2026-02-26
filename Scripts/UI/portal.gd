@@ -8,7 +8,7 @@ func _ready():
 	sprite = $Sprite2D
 	self.visible = false
 	# Connect the body_entered signal
-	self.body_entered.connect(_on_body_entered)
+	# self.body_entered.connect(_on_body_entered)
 
 # Called when player enters portal
 func _on_body_entered(body):

@@ -72,10 +72,10 @@ func _ready() -> void:
 	status_effects.effect_ended.connect(_on_effect_ended)
 
 	# Connect signals
-	attack_area.body_entered.connect(_on_attack_area_body_entered)
-	attack_area.body_exited.connect(_on_attack_area_body_exited)
-	detection_area.body_entered.connect(_on_detection_area_body_entered)
-	detection_area.body_exited.connect(_on_detection_area_body_exited)
+	# attack_area.body_entered.connect(_on_attack_area_body_entered)
+	# attack_area.body_exited.connect(_on_attack_area_body_exited)
+	# detection_area.body_entered.connect(_on_detection_area_body_entered)
+	# detection_area.body_exited.connect(_on_detection_area_body_exited)
 
 	_pick_new_patrol_target()
 

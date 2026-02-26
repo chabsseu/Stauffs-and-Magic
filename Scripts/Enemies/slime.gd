@@ -66,7 +66,7 @@ func _ready():
 
 	# Shooting timer
 	timer.wait_time = shoot_interval
-	timer.timeout.connect(_on_timer_timeout)
+	# timer.timeout.connect(_on_timer_timeout)
 
 	_pick_new_patrol_target()
 
