@@ -13,3 +13,5 @@ res://Scenes/Weapon/mana_staff.tscn
 res://Scenes/Weapon/ice_staff.tscn
 res://Scenes/Weapon/force_staff.tscn
 res://Scenes/Map/cooldown_statue.tscn
+res://Scripts/Weapon/weapon_pickup.gd
+res://Scenes/Weapon/weapon_pickup.tscn

@@ -4,14 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="2_2yfla"]
 [ext_resource type="PackedScene" uid="uid://chd3yj7pkdiu2" path="res://Scenes/Enemies/test_enemy.tscn" id="3_xaljv"]
 [ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="4_cexxt"]
-[ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="5_cexxt"]
-[ext_resource type="PackedScene" uid="uid://banf8jkq6cu4e" path="res://Scenes/Weapon/ice_staff.tscn" id="5_ruqt4"]
-[ext_resource type="PackedScene" uid="uid://8n3kngoq2sld" path="res://Scenes/Weapon/mana_staff.tscn" id="7_6brkv"]
-[ext_resource type="PackedScene" uid="uid://cdqh2qddc6swr" path="res://Scenes/Weapon/umbrel_staff.tscn" id="8_krihg"]
 [ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="10_ncuxn"]
 [ext_resource type="PackedScene" uid="uid://6x6c34ddudyr" path="res://Scenes/Map/cooldown_statue.tscn" id="11_858e3"]
 [ext_resource type="PackedScene" uid="uid://dkxxs5v05i6p4" path="res://Scenes/Map/attack_statue.tscn" id="12_m1klf"]
-[ext_resource type="PackedScene" uid="uid://dw4fq5k1ob2xj" path="res://Scenes/Weapon/force_staff.tscn" id="12_ncuxn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2yfla"]
 texture = ExtResource("1_3sc00")
@@ -175,30 +170,6 @@ position = Vector2(226, 129)
 [node name="test_enemy" parent="." unique_id=2133219066 instance=ExtResource("3_xaljv")]
 position = Vector2(393, 163)
 
-[node name="WeaponPickup" parent="." unique_id=386731747 instance=ExtResource("4_cexxt")]
-position = Vector2(238, 229)
-weapon_scene = ExtResource("5_ruqt4")
-
-[node name="WeaponPickup2" parent="." unique_id=1906919358 instance=ExtResource("4_cexxt")]
-position = Vector2(339, 258)
-weapon_scene = ExtResource("5_cexxt")
-
-[node name="WeaponPickup3" parent="." unique_id=2087545457 instance=ExtResource("4_cexxt")]
-position = Vector2(153, 291)
-weapon_scene = ExtResource("7_6brkv")
-
-[node name="WeaponPickup4" parent="." unique_id=1543973916 instance=ExtResource("4_cexxt")]
-position = Vector2(262, 328)
-weapon_scene = ExtResource("7_6brkv")
-
-[node name="WeaponPickup5" parent="." unique_id=1924388054 instance=ExtResource("4_cexxt")]
-position = Vector2(123, 234)
-weapon_scene = ExtResource("8_krihg")
-
-[node name="WeaponPickup6" parent="." unique_id=304769937 instance=ExtResource("4_cexxt")]
-position = Vector2(180, 207)
-weapon_scene = ExtResource("12_ncuxn")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=788591483]
 
 [node name="Forge" parent="CanvasLayer" unique_id=1896441417 instance=ExtResource("10_ncuxn")]
@@ -219,3 +190,9 @@ position = Vector2(358, 341)
 
 [node name="attack_statue" parent="." unique_id=690442611 instance=ExtResource("12_m1klf")]
 position = Vector2(608, 56)
+
+[node name="WeaponPickup" parent="." unique_id=378548632 instance=ExtResource("4_cexxt")]
+position = Vector2(161, 241)
+
+[node name="WeaponPickup2" parent="." unique_id=876665708 instance=ExtResource("4_cexxt")]
+position = Vector2(290, 240)
