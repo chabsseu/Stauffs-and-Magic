@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1772113582
+::res://::1772115433
 icon.svg::CompressedTexture2D::6118854524503985570::1771738766::1772110581::1::::<><><>0<>0<>50c1afa977369d7d742b6d9020104661<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1771738841
 my pallete.png::CompressedTexture2D::3928060487092931223::1771738766::1771738766::1::::<><><>0<>0<>64dbeb7fccce4e3d1cb29e3954c2d00e<>res://.godot/imported/my pallete.png-0293d27c32caeaa39f5f9b4793650d9f.ctex::
@@ -12,14 +12,14 @@ e_bullet.png::CompressedTexture2D::467567032074107141::1771738766::1771738766::1
 e_pud.png::CompressedTexture2D::3594583572898209833::1771738766::1771738766::1::::<><><>0<>0<>fc5560dee954164cbf1419eea286ee37<>res://.godot/imported/e_pud.png-0d5c11f67a38570dd77c9d829dca91a2.ctex::
 ::res://Assets/Enemies/Weapons/::1771738766
 Spear.png::CompressedTexture2D::7340002049433932650::1771738766::1771738766::1::::<><><>0<>0<>501833723712904019a248b04b836049<>res://.godot/imported/Spear.png-f35ca450cba9458213faf484ab8d90a4.ctex::
-::res://Assets/Tilemaps/::1772114271
+::res://Assets/Tilemaps/::1772114310
 Dungeon Tileset + Spikes.png::CompressedTexture2D::3437902921609025723::1771738766::1771738766::1::::<><><>0<>0<>afac6da1b8032511655c9cede1edf6b3<>res://.godot/imported/Dungeon Tileset + Spikes.png-4f23e46db310d31364e2e3c5b6c1c634.ctex::
 Magic Crystal Barricade.png::CompressedTexture2D::3426621396088208692::1771738766::1771738766::1::::<><><>0<>0<>9b78c2acd932ccf71264d9026d8911de<>res://.godot/imported/Magic Crystal Barricade.png-f5e90e3518df4e856d0354a1accd7233.ctex::
 Portal.png::CompressedTexture2D::2639216308211064016::1771738766::1771738766::1::::<><><>0<>0<>bb8f5447f05aca4b8664b3b21ac565f3<>res://.godot/imported/Portal.png-accda5ade18aaa8aa4fc8692bb46161f.ctex::
 Tilemap.png::CompressedTexture2D::3205897060153511329::1772114309::1772114310::1::::<><><>0<>0<>39c891ff660283d166123d0c39209d3c<>res://.godot/imported/Tilemap.png-ee04f52470bc1aaf22e9d9bb82a8c1fc.ctex::
 ::res://Assets/UI/::1772113856
 cooldown.png::CompressedTexture2D::3085948979868809791::1771738766::1771738766::1::::<><><>0<>0<>39c5094722887d05fb067bba38613d02<>res://.godot/imported/cooldown.png-72ba17dcec5a1218285785770d63f58a.ctex::
-crosshair.png::CompressedTexture2D::5109489835123243333::1772113854::1772113856::1::::<><><>0<>0<>c9898a2b537f6361cfcaa2584125cc00<>res://.godot/imported/crosshair.png-8803f647edbd9ba881c7d78fbf77ebc7.ctex::
+crosshair.png::CompressedTexture2D::5109489835123243333::1772115378::1772113856::1::::<><><>0<>0<>c9898a2b537f6361cfcaa2584125cc00<>res://.godot/imported/crosshair.png-8803f647edbd9ba881c7d78fbf77ebc7.ctex::
 ::res://Assets/UI/Health&Armor/::1771738766
 Armor.png::CompressedTexture2D::1615380224727462531::1771738766::1771738766::1::::<><><>0<>0<>34c667d94245d78308894e9ffa1d0457<>res://.godot/imported/Armor.png-6007b9d111aeef7ac99353a5086e0160.ctex::
 Armor_bar.png::CompressedTexture2D::9015714565272728156::1771738766::1771738766::1::::<><><>0<>0<>f59dfd53aa81faeb68efc592e136a354<>res://.godot/imported/Armor_bar.png-c301970d04924940c09c64ebca38d666.ctex::
@@ -52,10 +52,10 @@ test_enemy.tscn::PackedScene::5272099863804701819::1771738766::0::1::::<><><>0<>
 ::res://Scenes/Floors/::1772110546
 medieval_dungeon.tscn::PackedScene::5192436696187514580::1771738766::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://blw7wkta0c20d::::res://Assets/Tilemaps/Tilemap.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://d1x60xga56cti::::res://Scenes/UI/portal.tscn<>uid://hokg0gi8ti1u::::res://Scenes/Enemies/sloth.tscn<>uid://vwhok55g8tdn::::res://Scenes/Weapon/weapon_pickup.tscn<>uid://bb8c2mi17642k::::res://Scenes/Weapon/normal_staff.tscn
 test_world.tscn::PackedScene::2474939786666499171::1772110546::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://chd3yj7pkdiu2::::res://Scenes/Enemies/test_enemy.tscn<>uid://vwhok55g8tdn::::res://Scenes/Weapon/weapon_pickup.tscn<>uid://cwio32p3nix68::::res://Scenes/UI/forgeUI.tscn<>uid://6x6c34ddudyr::::res://Scenes/Map/cooldown_statue.tscn<>uid://dkxxs5v05i6p4::::res://Scenes/Map/attack_statue.tscn
-::res://Scenes/Map/::1772110784
+::res://Scenes/Map/::1772115402
 attack_statue.tscn::PackedScene::7910061420244642199::1772110546::0::1::::<><><>0<>0<><>::uid://b75ouofrplovs::::res://Scripts/Map/attack_statue.gd<>uid://dtr7b1ihi1v0u::::res://Assets/Alter/cooldown_altar.png<>uid://8t5ckf62mmyc::::res://Assets/Alter/attack_altar.png
 cooldown_statue.tscn::PackedScene::2225222155080186685::1772110546::0::1::::<><><>0<>0<><>::uid://ci78653b6p6go::::res://Scripts/Map/cooldown_statue.gd<>uid://dtr7b1ihi1v0u::::res://Assets/Alter/cooldown_altar.png
-dungeon_generation.tscn::PackedScene::2708494934668169245::1772110784::0::1::::<><><>0<>0<><>::uid://dsp08475xingl::::res://Scripts/Map/dungeon_generation.gd<>uid://blw7wkta0c20d::::res://Assets/Tilemaps/Tilemap.png<>uid://cb0kyqifl5o74::::res://Scenes/Enemies/slime.tscn<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://hokg0gi8ti1u::::res://Scenes/Enemies/sloth.tscn<>uid://vwhok55g8tdn::::res://Scenes/Weapon/weapon_pickup.tscn<>uid://ixiakydo7vts::::res://Scenes/Enemies/spear_guy.tscn<>uid://dkxxs5v05i6p4::::res://Scenes/Map/attack_statue.tscn<>uid://6x6c34ddudyr::::res://Scenes/Map/cooldown_statue.tscn<>uid://d1x60xga56cti::::res://Scenes/UI/portal.tscn<>uid://cwio32p3nix68::::res://Scenes/UI/forgeUI.tscn<>uid://cyk3fwxbnm4uf::::res://Scenes/UI/stage_transition.tscn
+dungeon_generation.tscn::PackedScene::2708494934668169245::1772115402::0::1::::<><><>0<>0<><>::uid://dsp08475xingl::::res://Scripts/Map/dungeon_generation.gd<>uid://blw7wkta0c20d::::res://Assets/Tilemaps/Tilemap.png<>uid://cb0kyqifl5o74::::res://Scenes/Enemies/slime.tscn<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://hokg0gi8ti1u::::res://Scenes/Enemies/sloth.tscn<>uid://vwhok55g8tdn::::res://Scenes/Weapon/weapon_pickup.tscn<>uid://ixiakydo7vts::::res://Scenes/Enemies/spear_guy.tscn<>uid://dkxxs5v05i6p4::::res://Scenes/Map/attack_statue.tscn<>uid://6x6c34ddudyr::::res://Scenes/Map/cooldown_statue.tscn<>uid://d1x60xga56cti::::res://Scenes/UI/portal.tscn<>uid://cwio32p3nix68::::res://Scenes/UI/forgeUI.tscn<>uid://cyk3fwxbnm4uf::::res://Scenes/UI/stage_transition.tscn
 ::res://Scenes/Player/::1772026059
 player.tscn::PackedScene::6716059162180735360::1772026059::0::1::::<><><>0<>0<><>::uid://bln4x7n1bjd8p::::res://Scripts/Player/player.gd<>uid://ctgav05ifthty::::res://icon.svg<>uid://l5hl2sus6yh8::::res://Scripts/UI/camera_2d.gd<>uid://bj74em60yojnr::::res://Assets/UI/cooldown.png<>uid://ciwy7dfadp2tp::::res://Scenes/UI/health_armor.tscn
 ::res://Scenes/UI/::1772110551
@@ -82,7 +82,7 @@ weapon_pickup.tscn::PackedScene::1519832620002062695::1772110546::0::1::::<><><>
 e_bullet.gd::GDScript::2657294813787941985::1771738766::0::1::::<>Area2D<><>0<>0<><>::
 e_puddle.gd::GDScript::2167721691627918622::1771738766::0::1::::<>Area2D<><>0<>0<><>::
 slime.gd::GDScript::4016316118909031450::1772110546::0::1::::<>CharacterBody2D<><>0<>0<><>::
-sloth.gd::GDScript::8068234375922176566::1771738766::0::1::::<>CharacterBody2D<><>0<>0<><>::
+sloth.gd::GDScript::8068234375922176566::1772115233::0::1::::<>CharacterBody2D<><>0<>0<><>::
 spear.gd::GDScript::8114104194744878616::1771738766::0::1::::<>Area2D<><>0<>0<><>::
 spear_guy.gd::GDScript::4839555100769200764::1772110546::0::1::::<>CharacterBody2D<><>0<>0<><>::
 test_enemy.gd::GDScript::1019645295501410768::1771738766::0::1::::<>CharacterBody2D<><>0<>0<><>::
