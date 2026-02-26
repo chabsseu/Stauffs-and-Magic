@@ -1,13 +1,13 @@
+Button
+Label
+Panel
+Control
 AnimatedSprite2D
 CharacterBody2D
 CanvasLayer
-Label
 CollisionShape2D
 Area2D
 Sprite2D
-Button
-Panel
-Control
 Marker2D
 TileMapLayer
 TileMap

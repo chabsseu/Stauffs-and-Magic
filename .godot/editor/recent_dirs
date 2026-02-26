@@ -1,5 +1,6 @@
-res://Assets/Alter/
 res://Scripts/Map/
+res://Scenes/UI/
+res://Assets/Alter/
 res://Scenes/Map/
 res://
 res://Scenes/Weapon/
@@ -9,7 +10,6 @@ res://Scenes/Enemies/
 res://Assets/UI/
 res://Scripts/UI/
 res://Assets/UI/Health&Armor/
-res://Scenes/UI/
 res://Scripts/Global/
 res://Scripts/Enemies/
 res://Assets/Enemies/Weapons/

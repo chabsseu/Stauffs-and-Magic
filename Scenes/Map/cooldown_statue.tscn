@@ -62,7 +62,7 @@ animations = [{
 size = Vector2(32.5, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_njr0w"]
-radius = 71.5891
+radius = 28.071337
 
 [node name="cooldown_statue" type="CharacterBody2D" unique_id=293202240]
 light_mask = 3
@@ -85,6 +85,7 @@ shape = SubResource("RectangleShape2D_pe55g")
 [node name="Detection_area" type="Area2D" parent="." unique_id=733672648]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area" unique_id=2012138836]
+position = Vector2(3, -3)
 shape = SubResource("CircleShape2D_njr0w")
 
 [node name="Label" type="Label" parent="Detection_area" unique_id=487491783]

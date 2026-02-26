@@ -5,6 +5,7 @@
 
 [node name="force_staff" type="Node2D" unique_id=1381438409]
 script = ExtResource("1_57rge")
+weapon_name = "Force Staff"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=999945984]
 texture = ExtResource("1_1ifwd")

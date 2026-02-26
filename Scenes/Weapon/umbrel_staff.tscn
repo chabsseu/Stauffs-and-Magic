@@ -37,6 +37,7 @@ height = 38.0
 [node name="Umbrel_staff" type="Node2D" unique_id=791613572]
 script = ExtResource("1_dh2dt")
 skill_cooldown = 10.0
+weapon_name = "Umbrel Staff"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1857518382]
 texture = ExtResource("1_pbq80")

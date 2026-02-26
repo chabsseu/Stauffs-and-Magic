@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cwio32p3nix68"]
+
+[ext_resource type="Script" uid="uid://y7oo1urpqh0j" path="res://Scripts/Map/forge.gd" id="1_a3rud"]
+
+[node name="Forge" type="Control" unique_id=1896441417 groups=["forge_ui"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_a3rud")
+
+[node name="Panel" type="Panel" parent="." unique_id=726265548]
+layout_mode = 0
+offset_left = -127.0
+offset_top = -160.0
+offset_right = 129.0
+offset_bottom = 174.0
+
+[node name="title" type="Label" parent="Panel" unique_id=215306245]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 23.0
+offset_right = 248.0
+offset_bottom = 46.0
+horizontal_alignment = 1
+
+[node name="weapon_name" type="Label" parent="Panel" unique_id=267026780]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 55.0
+offset_right = 254.0
+offset_bottom = 78.0
+horizontal_alignment = 1
+
+[node name="level_label" type="Label" parent="Panel" unique_id=487185794]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 3.0
+offset_top = 87.0
+offset_right = 252.0
+offset_bottom = 110.0
+horizontal_alignment = 1
+
+[node name="stat_label" type="Label" parent="Panel" unique_id=150530902]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 129.0
+offset_right = 249.0
+offset_bottom = 152.0
+horizontal_alignment = 1
+
+[node name="stat_label2" type="Label" parent="Panel" unique_id=880356343]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 7.0
+offset_top = 158.0
+offset_right = 248.0
+offset_bottom = 181.0
+horizontal_alignment = 1
+
+[node name="upgrade_button" type="Button" parent="Panel" unique_id=632045407]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 90.0
+offset_top = 205.0
+offset_right = 165.0
+offset_bottom = 236.0
+text = "Upgrade"
+
+[node name="close_button" type="Button" parent="Panel" unique_id=33533179]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 101.0
+offset_top = 241.0
+offset_right = 151.0
+offset_bottom = 272.0
+text = "Close"
+
+[connection signal="pressed" from="Panel/upgrade_button" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="Panel/close_button" to="." method="_on_close_button_pressed"]

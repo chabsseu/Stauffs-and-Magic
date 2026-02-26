@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bj0ob43iqhxbt"]
+[gd_scene format=3 uid="uid://dkxxs5v05i6p4"]
 
-[ext_resource type="Script" path="res://Scripts/Map/attack_statue.gd" id="1_c0qrt"]
+[ext_resource type="Script" uid="uid://b75ouofrplovs" path="res://Scripts/Map/attack_statue.gd" id="1_c0qrt"]
 [ext_resource type="Texture2D" uid="uid://dtr7b1ihi1v0u" path="res://Assets/Alter/cooldown_altar.png" id="2_7yy37"]
 [ext_resource type="Texture2D" uid="uid://8t5ckf62mmyc" path="res://Assets/Alter/attack_altar.png" id="2_be5ev"]
 
@@ -63,7 +63,7 @@ animations = [{
 size = Vector2(32.5, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_njr0w"]
-radius = 71.5891
+radius = 37.0
 
 [node name="attack_statue" type="CharacterBody2D" unique_id=293202240]
 light_mask = 3
@@ -86,6 +86,7 @@ shape = SubResource("RectangleShape2D_pe55g")
 [node name="Detection_area" type="Area2D" parent="." unique_id=733672648]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area" unique_id=2012138836]
+position = Vector2(4, -7)
 shape = SubResource("CircleShape2D_njr0w")
 
 [node name="Label" type="Label" parent="Detection_area" unique_id=487491783]

@@ -7,6 +7,7 @@
 scale = Vector2(2, 2)
 script = ExtResource("1_hcdcp")
 skill_cooldown = 3.0
+weapon_name = "Normal Staff"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1977384519]
 texture = ExtResource("2_g0t8l")

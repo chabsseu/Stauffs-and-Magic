@@ -1,5 +1,7 @@
 extends Control
 
+signal upgrade_confirmed
+
 @onready var title: Label = %title
 @onready var weapon_name: Label = %weapon_name
 @onready var level_label: Label = %level_label
@@ -11,7 +13,6 @@ extends Control
 var player: CharacterBody2D = null
 var upgrade_type: String = "cooldown"
 
-# 🔥 Title mapping for each statue type
 var title_map = {
 	"cooldown": "Donut Sugar rush FORGE",
 	"damage": "Chilli Pepper FORGE",
@@ -21,43 +22,36 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	visible = false
 
-
 func open(type: String):
 	upgrade_type = type
-
-	# 🔹 Update title based on altar type
 	title.text = title_map.get(upgrade_type, "FORGE")
 
-	# 🔹 Get player current weapon slot
 	var slot = player.current_slot
 	if slot == -1:
 		return
-
 	var data = player.hotbar_data[slot]
 	if data["scene"] == null:
 		return
 
 	var temp = data["scene"].instantiate()
-
-	weapon_name.text = "Weapon Slot: %d" % (slot + 1)
+	weapon_name.text = temp.weapon_name
 	level_label.text = "Level: %d" % data["level"]
 
-	# 🔹 Stat preview based on upgrade type
 	match upgrade_type:
 		"cooldown":
 			var reduction = temp.get_upgrade_cooldown_reduction()
 			stat_label.text = "Skill Cooldown: %.1f sec" % data["skill_cooldown"]
 			stat_label2.text = "After Upgrade: %.1f sec" % max(1.0, data["skill_cooldown"] - reduction)
-
 		"damage":
 			var increase = temp.get_upgrade_damage_increase()
 			stat_label.text = "Attack Damage: %.1f" % data["attack_damage"]
 			stat_label2.text = "After Upgrade: %.1f" % (data["attack_damage"] + increase)
 
 	temp.queue_free()
-
 	visible = true
 
+func close():
+	visible = false
 
 func _on_upgrade_button_pressed():
 	match upgrade_type:
@@ -65,13 +59,8 @@ func _on_upgrade_button_pressed():
 			player.upgrade_weapon_cooldown(player.current_slot)
 		"damage":
 			player.upgrade_weapon_damage(player.current_slot)
-		"crit":
-			player.upgrade_weapon_crit(player.current_slot)
-		"speed":
-			player.upgrade_weapon_speed(player.current_slot)
-
+	emit_signal("upgrade_confirmed")
 	visible = false
-
 
 func _on_close_button_pressed():
 	visible = false

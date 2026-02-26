@@ -5,6 +5,7 @@ class_name BaseWeapon
 @export var skill_cooldown: float = 1.0
 @export var weapon_level: int = 1
 @export var attack_damage: float = 1.0
+@export var weapon_name: String = "Unknown Weapon"
 
 func _process(delta):
 	look_at(get_global_mouse_position())
