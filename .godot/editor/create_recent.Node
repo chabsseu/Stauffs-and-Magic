@@ -1,6 +1,7 @@
+Label
+ColorRect
 CanvasLayer
 Button
-Label
 Panel
 Control
 AnimatedSprite2D
@@ -11,4 +12,3 @@ Sprite2D
 Marker2D
 TileMapLayer
 TileMap
-AnimationPlayer

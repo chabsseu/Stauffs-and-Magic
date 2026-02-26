@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://6x6c34ddudyr" path="res://Scenes/Map/cooldown_statue.tscn" id="6_smyv6"]
 [ext_resource type="PackedScene" uid="uid://d1x60xga56cti" path="res://Scenes/UI/portal.tscn" id="9_j7ugi"]
 [ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="11_smyv6"]
+[ext_resource type="PackedScene" uid="uid://cyk3fwxbnm4uf" path="res://Scenes/UI/stage_transition.tscn" id="12_r55y5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpfl8"]
 texture = ExtResource("2_eo2qp")
@@ -28,7 +29,7 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_qpfl8")
 
-[node name="DungeonGeneration" type="Node2D" unique_id=944595626 node_paths=PackedStringArray("tilemap", "player", "weapon", "portal")]
+[node name="DungeonGeneration" type="Node2D" unique_id=944595626 node_paths=PackedStringArray("tilemap", "player", "weapon", "portal", "stage_transition")]
 script = ExtResource("1_ngs3x")
 tilemap = NodePath("TileMapLayer")
 player = NodePath("Player")
@@ -36,6 +37,7 @@ weapon = NodePath("WeaponPickup")
 enemy_scenes = Array[PackedScene]([ExtResource("2_q0kak"), ExtResource("3_j7ugi"), ExtResource("4_vidkv")])
 statue_scenes = Array[PackedScene]([ExtResource("5_vidkv"), ExtResource("6_smyv6")])
 portal = NodePath("Portal")
+stage_transition = NodePath("StageTransition")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=130257482]
 tile_set = SubResource("TileSet_43nnj")
@@ -43,8 +45,6 @@ tile_set = SubResource("TileSet_43nnj")
 [node name="Player" parent="." unique_id=672141086 instance=ExtResource("3_i8072")]
 
 [node name="WeaponPickup" parent="." unique_id=1111887552 instance=ExtResource("4_i8072")]
-
-[node name="Portal" parent="." unique_id=1231640810 instance=ExtResource("9_j7ugi")]
 
 [node name="cooldown_statue" parent="." unique_id=293202240 instance=ExtResource("6_smyv6")]
 
@@ -64,3 +64,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Portal" parent="." unique_id=111973993 instance=ExtResource("9_j7ugi")]
+
+[node name="StageTransition" parent="." unique_id=860889166 instance=ExtResource("12_r55y5")]

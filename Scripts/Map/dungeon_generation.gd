@@ -5,7 +5,8 @@ extends Node2D
 @export var weapon : Node2D
 @export var enemy_scenes : Array[PackedScene]
 @export var statue_scenes : Array[PackedScene]
-@export var portal : Node2D  # Portal node
+@export var portal : Node2D
+@export var stage_transition : CanvasLayer
 
 const DUNGEON_WIDTH = 800
 const DUNGEON_HEIGHT = 800
@@ -18,19 +19,29 @@ enum RoomSize { SMALL_START, MEDIUM_LARGE, LARGE_BOSS }
 var dungeon_grid = []
 var all_rooms : Array[Rect2] = []
 var end_room : Rect2
-var room_wave_data = {}  # Track wave data per room index
-var room_barriers = {}  # Track barrier positions per room index
+var room_wave_data = {}
+var room_barriers = {}
 
 # --------------------------------------------------
-# READY / INPUT
+# READY
 # --------------------------------------------------
 func _ready():
 	if portal:
-		portal.visible = false  # Hide portal initially
+		portal.visible = false
 	create_dungeon()
+	
+	# Restore stats if coming from a previous stage
+	if GameData.stage > 1:
+		GameData.restore_to_player_state(player.get_node("/root/PlayerState"), player)
+	
+	# Fade in when scene loads
+	if stage_transition:
+		stage_transition.fade_in_on_start()
 
+# --------------------------------------------------
+# PROCESS
+# --------------------------------------------------
 func _process(_delta):
-	# Check all active rooms for wave completion
 	for room_index in room_wave_data.keys():
 		check_wave_complete(room_index)
 
@@ -44,12 +55,11 @@ func create_room_trigger(room: Rect2, room_index: int):
 	var collision = CollisionShape2D.new()
 	var shape = RectangleShape2D.new()
 	
-	# Trigger at entrance (30% of room size)
 	shape.size = Vector2(room.size.x * 16 * 0.3, room.size.y * 16 * 0.3)
 	collision.shape = shape
 	area.position = room.get_center() * 16
 	area.collision_layer = 0
-	area.collision_mask = 1  # Player layer
+	area.collision_mask = 1
 	
 	var callable = func(body):
 		if body == player:
@@ -67,19 +77,15 @@ func create_room_trigger(room: Rect2, room_index: int):
 # --------------------------------------------------
 func close_room_exits(room: Rect2, room_index: int):
 	var barrier_positions = []
-	var barrier_tile = Vector2i(3, 2)  # Use a wall tile
+	var barrier_tile = Vector2i(3, 2)
 	
-	# Find corridor entrances around the room perimeter
-	# Check all edges of the room
 	for x in range(room.position.x - 1, room.end.x + 1):
-		# Top edge
 		var top_y = int(room.position.y) - 1
 		if is_in_bounds(x, top_y) and dungeon_grid[top_y][x] == TileType.FLOOR:
 			var barrier_pos = Vector2i(x, top_y)
 			barrier_positions.append(barrier_pos)
 			tilemap.set_cell(barrier_pos, 0, barrier_tile)
 		
-		# Bottom edge
 		var bottom_y = int(room.end.y)
 		if is_in_bounds(x, bottom_y) and dungeon_grid[bottom_y][x] == TileType.FLOOR:
 			var barrier_pos = Vector2i(x, bottom_y)
@@ -87,14 +93,12 @@ func close_room_exits(room: Rect2, room_index: int):
 			tilemap.set_cell(barrier_pos, 0, barrier_tile)
 	
 	for y in range(room.position.y - 1, room.end.y + 1):
-		# Left edge
 		var left_x = int(room.position.x) - 1
 		if is_in_bounds(left_x, y) and dungeon_grid[y][left_x] == TileType.FLOOR:
 			var barrier_pos = Vector2i(left_x, y)
 			barrier_positions.append(barrier_pos)
 			tilemap.set_cell(barrier_pos, 0, barrier_tile)
 		
-		# Right edge
 		var right_x = int(room.end.x)
 		if is_in_bounds(right_x, y) and dungeon_grid[y][right_x] == TileType.FLOOR:
 			var barrier_pos = Vector2i(right_x, y)
@@ -111,7 +115,6 @@ func open_room_exits(room_index: int):
 	var floor_tiles = [Vector2i(1, 5), Vector2i(5, 5)]
 	
 	for barrier_pos in room_barriers[room_index]:
-		# Replace barrier with floor tile
 		tilemap.set_cell(barrier_pos, 0, floor_tiles[randi() % floor_tiles.size()])
 	
 	print("Room ", room_index, " exits opened!")
@@ -128,22 +131,16 @@ func check_wave_complete(room_index: int):
 	if data.is_spawning:
 		return
 
-	# Remove dead enemies from tracking
 	data.active_enemies = data.active_enemies.filter(func(enemy): return is_instance_valid(enemy))
 
-	# All waves complete
 	if data.active_enemies.is_empty() and data.current_wave >= data.total_waves:
 		print("Room ", room_index, " - All waves complete!")
-		
-		# Open room exits
 		open_room_exits(room_index)
 		
-		# If this is the end room, activate portal
 		if all_rooms[room_index] == end_room:
 			activate_portal()
 		
 		room_wave_data.erase(room_index)
-	# If there are more waves, spawn next wave
 	elif data.active_enemies.is_empty() and data.current_wave < data.total_waves:
 		print("Room ", room_index, " - Wave ", data.current_wave, " complete! Spawning wave ", data.current_wave + 1, "...")
 		data.current_wave += 1
@@ -154,7 +151,7 @@ func check_wave_complete(room_index: int):
 # --------------------------------------------------
 func spawn_enemies_in_room(room: Rect2, room_index: int):
 	print("Room ", room_index, " triggered!")
-	var total_waves = randi_range(2 , 4)
+	var total_waves = randi_range(2, 4)
 	var enemies_per_wave = randi_range(3, 6)
 	
 	room_wave_data[room_index] = {
@@ -206,10 +203,8 @@ func _spawn_single_enemy(room: Rect2, timer: Timer, room_index: int):
 	var spawn_pos = Vector2(x, y) * 16
 	enemy.position = spawn_pos
 	
-	# Spawn effect at the same position
 	create_spawn_effect(spawn_pos)
 	
-	# Optional: brief delay before enemy becomes active
 	enemy.visible = false
 	add_child(enemy)
 	await get_tree().create_timer(0.3).timeout
@@ -230,6 +225,26 @@ func activate_portal():
 	portal.position = end_room.get_center() * 16
 	portal.visible = true
 	print("Portal activated in end room!")
+	
+	# Portal IS the Area2D, connect directly
+	portal.body_entered.connect(_on_portal_entered, CONNECT_ONE_SHOT)
+
+func _on_portal_entered(body):
+	print("_on_portal_entered called! Body: ", body.name)
+	print("stage_transition is: ", stage_transition)
+	
+	if body != player:
+		print("Not player, ignoring")
+		return
+	
+	print("Saving and transitioning to stage ", GameData.stage + 1)
+	GameData.save_from_player_state(player.get_node("/root/PlayerState"), player)
+	GameData.stage += 1
+	
+	if stage_transition:
+		stage_transition.start_transition()
+	else:
+		print("ERROR: stage_transition is null! Assign it in the Inspector!")
 
 # --------------------------------------------------
 # MAIN GENERATION
@@ -246,12 +261,10 @@ func generate_dungeon():
 	var max_attempts = 500
 	var tries = 0
 
-	# First room
 	var first_room = _create_spawn_room_corner()
 	rooms.append(first_room)
 	_carve_room(first_room)
 
-	# Other rooms
 	while rooms.size() < target_room_count and tries < max_attempts:
 		var base_room = rooms.pick_random()
 		var direction = randi() % 4
@@ -259,7 +272,6 @@ func generate_dungeon():
 		var new_room = _create_room_with_corridor(base_room, direction, corridor_length)
 
 		if new_room.has_area() and _can_place_room(new_room, rooms):
-			# Last room = boss room
 			if rooms.size() == target_room_count - 1:
 				var boss_size = _get_room_dimensions(RoomSize.LARGE_BOSS)
 				new_room.size = Vector2(boss_size.x, boss_size.y)
@@ -445,25 +457,19 @@ func place_statues(rooms: Array[Rect2]):
 	if statue_scenes.is_empty():
 		return
 	
-	# 50% chance a statue spawns this stage at all
 	if randf() > 0.5:
 		print("No statue this stage!")
 		return
 	
-	# Pick a random room, skip room 0 (spawn) and last room (boss)
 	var eligible_rooms = rooms.slice(1, rooms.size() - 1)
 	if eligible_rooms.is_empty():
 		return
 	
 	var chosen_room = eligible_rooms[randi() % eligible_rooms.size()]
-	
-	# Pick a random statue scene from your array
 	var scene = statue_scenes[randi() % statue_scenes.size()]
 	var statue = scene.instantiate()
-	
 	statue.position = chosen_room.get_center() * 16
 	add_child(statue)
-	
 	print("Statue spawned in room at: ", chosen_room.get_center())
 
 # --------------------------------------------------
@@ -474,32 +480,24 @@ func create_spawn_effect(pos: Vector2):
 	var particles = CPUParticles2D.new()
 	add_child(particles)
 	particles.position = pos
-	
 	particles.emission_shape = CPUParticles2D.EMISSION_SHAPE_SPHERE
 	particles.emission_sphere_radius = 8.0
-	
 	particles.amount = 28
 	particles.lifetime = 0.9
 	particles.one_shot = true
 	particles.explosiveness = 1.0
-	
 	particles.direction = Vector2(0, -1)
 	particles.spread = 180.0
 	particles.initial_velocity_min = 40.0
 	particles.initial_velocity_max = 90.0
 	particles.gravity = Vector2(0, 150)
-	
 	particles.scale_amount_min = 2.5
 	particles.scale_amount_max = 5.0
-	
-	particles.color = Color(0.55, 0.35, 0.75, 1.0)  # Mid purple matching floor
-	
+	particles.color = Color(0.55, 0.35, 0.75, 1.0)
 	var gradient = Gradient.new()
-	gradient.add_point(0.0, Color(0.15, 0.0, 0.25, 1.0))  # Very dark purple core
-	gradient.add_point(0.5, Color(0.35, 0.1, 0.5, 0.8))   # Mid dark purple
-	gradient.add_point(1.0, Color(0.5, 0.3, 0.7, 0.0))    # Fade out to lighter
-	particles.color_ramp = gradient
-	
+	gradient.add_point(0.0, Color(0.15, 0.0, 0.25, 1.0))
+	gradient.add_point(0.5, Color(0.35, 0.1, 0.5, 0.8))
+	gradient.add_point(1.0, Color(0.5, 0.3, 0.7, 0.0))
 	particles.color_ramp = gradient
 	particles.texture = null
 	particles.emitting = true
@@ -518,27 +516,25 @@ func create_spawn_effect(pos: Vector2):
 	particles2.scale_amount_min = 4.0
 	particles2.scale_amount_max = 8.0
 	particles2.gravity = Vector2(0, 200)
-	
-	particles2.color = Color(0.2, 0.05, 0.3, 1.0)  # Lighter purple accent
-	
+	particles2.color = Color(0.2, 0.05, 0.3, 1.0)
 	var gradient2 = Gradient.new()
-	gradient2.add_point(0.0, Color(0.8, 0.6, 1.0, 1.0))   # Light lavender burst
-	gradient2.add_point(0.3, Color(0.45, 0.25, 0.65, 0.9)) # Deep dungeon purple
-	gradient2.add_point(1.0, Color(0.2, 0.1, 0.3, 0.0))
+	gradient2.add_point(0.0, Color(0.15, 0.0, 0.25, 1.0))
+	gradient2.add_point(0.5, Color(0.35, 0.1, 0.5, 0.8))
+	gradient2.add_point(1.0, Color(0.5, 0.3, 0.7, 0.0))
 	particles2.color_ramp = gradient2
 	particles2.texture = null
 	particles2.emitting = true
 	
-	# Cleanup
 	var cleanup_timer = get_tree().create_timer(1.2)
 	cleanup_timer.timeout.connect(func():
 		if is_instance_valid(particles): particles.queue_free()
 		if is_instance_valid(particles2): particles2.queue_free()
 	)
+
 # --------------------------------------------------
-# Weapon 
+# WEAPON
 # --------------------------------------------------
-func weapon_place(rooms : Array[Rect2]):
+func weapon_place(rooms: Array[Rect2]):
 	if rooms.is_empty():
 		return
 	var spawn_room = rooms[0]
@@ -549,7 +545,7 @@ func weapon_place(rooms : Array[Rect2]):
 # --------------------------------------------------
 # PLAYER SPAWN
 # --------------------------------------------------
-func place_player(rooms : Array[Rect2]):
+func place_player(rooms: Array[Rect2]):
 	if rooms.is_empty():
 		return
 	var spawn_room = rooms[0]

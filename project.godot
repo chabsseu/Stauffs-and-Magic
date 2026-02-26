@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 PlayerState="*res://Scripts/Global/PlayerState.gd"
 StatusEffects="res://Scripts/Global/status_effects.gd"
 EnemyState="res://Scripts/Global/EnemyState.gd"
+GameData="*uid://co4xijgcfxwmw"
 
 [display]
 
