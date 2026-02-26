@@ -3,3 +3,5 @@ res://Scripts/Map/dungeon_generation.gd
 res://Scripts/UI/stage_transition.gd
 res://Scripts/UI/portal.gd
 res://Scenes/UI/stage_transition.tscn
+res://Scenes/Floors/test_world.tscn
+res://Scripts/Weapon/weapon_pickup.gd

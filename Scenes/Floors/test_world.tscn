@@ -199,3 +199,18 @@ position = Vector2(407, 79)
 
 [node name="WeaponPickup" parent="." unique_id=378548632 instance=ExtResource("7_krihg")]
 position = Vector2(170, 243)
+
+[node name="WeaponPickup2" parent="." unique_id=1785630915 instance=ExtResource("7_krihg")]
+position = Vector2(20, 271)
+
+[node name="WeaponPickup3" parent="." unique_id=702246296 instance=ExtResource("7_krihg")]
+position = Vector2(91, 285)
+
+[node name="WeaponPickup4" parent="." unique_id=988912401 instance=ExtResource("7_krihg")]
+position = Vector2(226, 306)
+
+[node name="WeaponPickup5" parent="." unique_id=1924765631 instance=ExtResource("7_krihg")]
+position = Vector2(142, 330)
+
+[node name="WeaponPickup6" parent="." unique_id=1812205769 instance=ExtResource("7_krihg")]
+position = Vector2(245, 244)
