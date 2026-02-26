@@ -43,9 +43,18 @@ func open(type: String):
 			stat_label.text = "Skill Cooldown: %.1f sec" % data["skill_cooldown"]
 			stat_label2.text = "After Upgrade: %.1f sec" % max(1.0, data["skill_cooldown"] - reduction)
 		"damage":
-			var increase = temp.get_upgrade_damage_increase()
-			stat_label.text = "Attack Damage: %.1f" % data["attack_damage"]
-			stat_label2.text = "After Upgrade: %.1f" % (data["attack_damage"] + increase)
+			var atk_increase = temp.get_upgrade_damage_increase()
+			var skill_increase = temp.get_upgrade_skill_damge_increase()
+
+			stat_label.text = "ATK: %.1f | SKILL: %.1f" % [
+				data["attack_damage"], 
+				data["skill_damage"]
+			]
+
+			stat_label2.text = "After: ATK %.1f | SKILL %.1f" % [
+				data["attack_damage"] + atk_increase,
+				data["skill_damage"] + skill_increase
+			]
 
 	temp.queue_free()
 	visible = true

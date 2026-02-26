@@ -10,9 +10,10 @@ extends CharacterBody2D
 	$Hotbar_UI/HotbarSlots/Slot3,
 	$Hotbar_UI/HotbarSlots/Slot4
 ]
-#--------------------------
+
+# -------------------------
 # Dash
-#--------------------------
+# -------------------------
 @export var dash_distance: float = 200.0
 @export var dash_speed: float = 1500.0
 @export var dash_cooldown: float = 1.0
@@ -54,7 +55,8 @@ func _ready():
 			"level": 1,
 			"icon": null,
 			"skill_cooldown": 0.0,
-			"attack_damage": 0.0
+			"attack_damage": 0.0,
+			"skill_damage": 0.0
 		})
 
 # -------------------------
@@ -120,11 +122,15 @@ func try_pickup():
 func store_weapon_in_slot(slot: int):
 	var temp = pickup_weapon.weapon_scene.instantiate()
 
+	var atk_inc = temp.get_upgrade_damage_increase()
+	var skill_inc = temp.get_upgrade_skill_damage_increase()
+
 	hotbar_data[slot]["scene"] = pickup_weapon.weapon_scene
 	hotbar_data[slot]["level"] = pickup_weapon.weapon_level
 	hotbar_data[slot]["icon"] = temp.get_node("Sprite2D").texture if temp.has_node("Sprite2D") else null
 	hotbar_data[slot]["skill_cooldown"] = max(1.0, temp.skill_cooldown - (pickup_weapon.weapon_level - 1))
-	hotbar_data[slot]["attack_damage"] = temp.attack_damage + ((pickup_weapon.weapon_level - 1) * temp.get_upgrade_damage_increase())
+	hotbar_data[slot]["attack_damage"] = temp.attack_damage + ((pickup_weapon.weapon_level - 1) * atk_inc)
+	hotbar_data[slot]["skill_damage"] = temp.skill_damage + ((pickup_weapon.weapon_level - 1) * skill_inc)
 	max_cooldown[slot] = hotbar_data[slot]["skill_cooldown"]
 	temp.queue_free()
 
@@ -150,11 +156,15 @@ func swap_current_weapon():
 	current_weapon.queue_free()
 
 	var temp = pickup_weapon.weapon_scene.instantiate()
+	var atk_inc = temp.get_upgrade_damage_increase()
+	var skill_inc = temp.get_upgrade_skill_damage_increase()
+
 	hotbar_data[current_slot]["scene"] = pickup_weapon.weapon_scene
 	hotbar_data[current_slot]["level"] = pickup_weapon.weapon_level
 	hotbar_data[current_slot]["icon"] = temp.get_node("Sprite2D").texture if temp.has_node("Sprite2D") else null
 	hotbar_data[current_slot]["skill_cooldown"] = max(1.0, temp.skill_cooldown - (pickup_weapon.weapon_level - 1))
-	hotbar_data[current_slot]["attack_damage"] = temp.attack_damage + ((pickup_weapon.weapon_level - 1) * temp.get_upgrade_damage_increase())
+	hotbar_data[current_slot]["attack_damage"] = temp.attack_damage + ((pickup_weapon.weapon_level - 1) * atk_inc)
+	hotbar_data[current_slot]["skill_damage"] = temp.skill_damage + ((pickup_weapon.weapon_level - 1) * skill_inc)
 	max_cooldown[current_slot] = hotbar_data[current_slot]["skill_cooldown"]
 	cooldown[current_slot] = 0.0
 	temp.queue_free()
@@ -180,8 +190,13 @@ func equip(slot: int):
 	current_weapon = hotbar_data[slot]["scene"].instantiate()
 	current_weapon.weapon_level = hotbar_data[slot]["level"]
 	current_weapon.skill_cooldown = hotbar_data[slot]["skill_cooldown"]
+	
 	if current_weapon.get("attack_damage") != null:
 		current_weapon.attack_damage = hotbar_data[slot]["attack_damage"]
+
+	if current_weapon.get("skill_damage") != null:
+		current_weapon.skill_damage = hotbar_data[slot]["skill_damage"]
+
 	weapon_socket.add_child(current_weapon)
 
 	can_fire = false
@@ -210,14 +225,20 @@ func upgrade_weapon_damage(slot: int):
 	if hotbar_data[slot]["scene"] == null:
 		return
 	var temp = hotbar_data[slot]["scene"].instantiate()
-	var increase = temp.get_upgrade_damage_increase()
+	var atk_inc = temp.get_upgrade_damage_increase()
+	var skill_inc = temp.get_upgrade_skill_damage_increase()
 	temp.queue_free()
 
 	hotbar_data[slot]["level"] += 1
-	hotbar_data[slot]["attack_damage"] += increase
+	hotbar_data[slot]["attack_damage"] += atk_inc
+	hotbar_data[slot]["skill_damage"] += skill_inc
+
 	if current_slot == slot and current_weapon != null:
 		if current_weapon.get("attack_damage") != null:
 			current_weapon.attack_damage = hotbar_data[slot]["attack_damage"]
+
+		if current_weapon.get("skill_damage") != null:
+			current_weapon.skill_damage = hotbar_data[slot]["skill_damage"]
 
 # -------------------------
 # UI

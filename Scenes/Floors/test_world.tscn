@@ -3,7 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bo8l02hir4q3l" path="res://Assets/Tilemaps/Dungeon Tileset + Spikes.png" id="1_3sc00"]
 [ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="2_2yfla"]
 [ext_resource type="PackedScene" uid="uid://chd3yj7pkdiu2" path="res://Scenes/Enemies/test_enemy.tscn" id="3_xaljv"]
-[ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="4_cexxt"]
+[ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="7_krihg"]
+[ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="8_krihg"]
 [ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="10_ncuxn"]
 [ext_resource type="PackedScene" uid="uid://6x6c34ddudyr" path="res://Scenes/Map/cooldown_statue.tscn" id="11_858e3"]
 [ext_resource type="PackedScene" uid="uid://dkxxs5v05i6p4" path="res://Scenes/Map/attack_statue.tscn" id="12_m1klf"]
@@ -186,13 +187,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="cooldown_statue" parent="." unique_id=293202240 instance=ExtResource("11_858e3")]
-position = Vector2(358, 341)
+position = Vector2(339, 329)
+
+[node name="cooldown_statue2" parent="." unique_id=1977884277 instance=ExtResource("11_858e3")]
+position = Vector2(302, 240)
 
 [node name="attack_statue" parent="." unique_id=690442611 instance=ExtResource("12_m1klf")]
 position = Vector2(608, 56)
 
-[node name="WeaponPickup" parent="." unique_id=378548632 instance=ExtResource("4_cexxt")]
-position = Vector2(161, 241)
+[node name="attack_statue2" parent="." unique_id=1263260221 instance=ExtResource("12_m1klf")]
+position = Vector2(407, 79)
 
-[node name="WeaponPickup2" parent="." unique_id=876665708 instance=ExtResource("4_cexxt")]
-position = Vector2(290, 240)
+[node name="WeaponPickup" parent="." unique_id=378548632 instance=ExtResource("7_krihg")]
+position = Vector2(203, 245)
+possible_weapons = Array[PackedScene]([ExtResource("8_krihg")])

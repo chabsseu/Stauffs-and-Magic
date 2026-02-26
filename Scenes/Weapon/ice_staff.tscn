@@ -6,6 +6,7 @@
 [node name="Ice_staff" type="Node2D" unique_id=285823921]
 script = ExtResource("1_krsl3")
 skill_cooldown = 5.0
+skill_damage = 2.0
 weapon_name = "Ice Staff"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1586281443]

@@ -5,6 +5,7 @@ class_name BaseWeapon
 @export var skill_cooldown: float = 1.0
 @export var weapon_level: int = 1
 @export var attack_damage: float = 1.0
+@export var skill_damage:float = 2.0
 @export var weapon_name: String = "Unknown Weapon"
 
 func _process(delta):
@@ -18,7 +19,15 @@ func spawn_projectile(scene: PackedScene) -> Node2D:
 	get_tree().current_scene.add_child(projectile)
 	projectile.global_position = marker.global_position
 	projectile.direction = get_mouse_direction()
-	projectile.damage = attack_damage  # was missing
+	projectile.damage = attack_damage
+	return projectile
+
+func spawn_skill_projectile(scene: PackedScene) -> Node2D:
+	var projectile = scene.instantiate()
+	get_tree().current_scene.add_child(projectile)
+	projectile.global_position = marker.global_position
+	projectile.direction = get_mouse_direction()
+	projectile.damage = skill_damage
 	return projectile
 
 func apply_upgrade():
@@ -30,6 +39,9 @@ func get_upgrade_cooldown_reduction() -> float:
 func get_upgrade_damage_increase() -> float:  # fixed typo
 	return 2.0
 
+func get_upgrade_skill_damge_increase() -> float:
+	return 2.0
+	
 func attack():
 	pass
 
