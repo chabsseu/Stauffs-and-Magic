@@ -30,6 +30,7 @@ GameData="*uid://co4xijgcfxwmw"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+mouse_cursor/custom_image="uid://ce2cs0bujewo8"
 
 [global_group]
 

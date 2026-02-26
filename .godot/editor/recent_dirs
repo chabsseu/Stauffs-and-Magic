@@ -1,3 +1,4 @@
+res://Assets/UI/
 res://Scripts/Global/
 res://Scripts/UI/
 res://Scenes/UI/
@@ -9,7 +10,6 @@ res://
 res://Assets/Weapon/
 res://Scripts/Weapon/
 res://Scenes/Enemies/
-res://Assets/UI/
 res://Assets/UI/Health&Armor/
 res://Scripts/Enemies/
 res://Assets/Enemies/Weapons/
