@@ -4,6 +4,7 @@ extends Node2D
 @export var player : CharacterBody2D
 @export var weapon : Node2D
 @export var enemy_scenes : Array[PackedScene]
+@export var statue_scenes : Array[PackedScene]
 @export var portal : Node2D  # Portal node
 
 const DUNGEON_WIDTH = 800
@@ -153,8 +154,8 @@ func check_wave_complete(room_index: int):
 # --------------------------------------------------
 func spawn_enemies_in_room(room: Rect2, room_index: int):
     print("Room ", room_index, " triggered!")
-    var total_waves = randi_range(2 , 4)
-    var enemies_per_wave = randi_range(3, 6)
+    var total_waves = randi_range(1 , 1)
+    var enemies_per_wave = randi_range(1, 1)
     
     room_wave_data[room_index] = {
         "room": room,
@@ -422,9 +423,38 @@ func create_dungeon():
     add_walls()
     render_dungeon()
     weapon_place(all_rooms)
+    place_statues(all_rooms)
     
     for i in range(1, all_rooms.size()):
         create_room_trigger(all_rooms[i], i)
+
+# --------------------------------------------------
+# STATUES
+# --------------------------------------------------
+func place_statues(rooms: Array[Rect2]):
+    if statue_scenes.is_empty():
+        return
+    
+    # 50% chance a statue spawns this stage at all
+    if randf() > 0.5:
+        print("No statue this stage!")
+        return
+    
+    # Pick a random room, skip room 0 (spawn) and last room (boss)
+    var eligible_rooms = rooms.slice(1, rooms.size() - 1)
+    if eligible_rooms.is_empty():
+        return
+    
+    var chosen_room = eligible_rooms[randi() % eligible_rooms.size()]
+    
+    # Pick a random statue scene from your array
+    var scene = statue_scenes[randi() % statue_scenes.size()]
+    var statue = scene.instantiate()
+    
+    statue.position = chosen_room.get_center() * 16
+    add_child(statue)
+    
+    print("Statue spawned in room at: ", chosen_room.get_center())
 
 # --------------------------------------------------
 # Weapon 

@@ -1,10 +1,10 @@
+CanvasLayer
 Button
 Label
 Panel
 Control
 AnimatedSprite2D
 CharacterBody2D
-CanvasLayer
 CollisionShape2D
 Area2D
 Sprite2D

@@ -8,3 +8,5 @@ res://Scenes/Weapon/weapon_pickup.tscn
 res://Scenes/Floors/test_world.tscn
 res://Scenes/Weapon/force_staff.tscn
 res://Scenes/Weapon/normal_staff.tscn
+res://Scenes/Map/dungeon_generation.tscn
+res://Scripts/Map/dungeon_generation.gd

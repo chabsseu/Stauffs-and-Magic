@@ -5,10 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://cb0kyqifl5o74" path="res://Scenes/Enemies/slime.tscn" id="2_q0kak"]
 [ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="3_i8072"]
 [ext_resource type="PackedScene" uid="uid://hokg0gi8ti1u" path="res://Scenes/Enemies/sloth.tscn" id="3_j7ugi"]
-[ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="4_eo2qp"]
 [ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="4_i8072"]
 [ext_resource type="PackedScene" uid="uid://ixiakydo7vts" path="res://Scenes/Enemies/spear_guy.tscn" id="4_vidkv"]
+[ext_resource type="PackedScene" uid="uid://dkxxs5v05i6p4" path="res://Scenes/Map/attack_statue.tscn" id="5_vidkv"]
+[ext_resource type="PackedScene" uid="uid://6x6c34ddudyr" path="res://Scenes/Map/cooldown_statue.tscn" id="6_smyv6"]
 [ext_resource type="PackedScene" uid="uid://d1x60xga56cti" path="res://Scenes/UI/portal.tscn" id="9_j7ugi"]
+[ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="11_smyv6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpfl8"]
 texture = ExtResource("2_eo2qp")
@@ -32,6 +34,7 @@ tilemap = NodePath("TileMapLayer")
 player = NodePath("Player")
 weapon = NodePath("WeaponPickup")
 enemy_scenes = Array[PackedScene]([ExtResource("2_q0kak"), ExtResource("3_j7ugi"), ExtResource("4_vidkv")])
+statue_scenes = Array[PackedScene]([ExtResource("5_vidkv"), ExtResource("6_smyv6")])
 portal = NodePath("Portal")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=130257482]
@@ -40,6 +43,24 @@ tile_set = SubResource("TileSet_43nnj")
 [node name="Player" parent="." unique_id=672141086 instance=ExtResource("3_i8072")]
 
 [node name="WeaponPickup" parent="." unique_id=1111887552 instance=ExtResource("4_i8072")]
-weapon_scene = ExtResource("4_eo2qp")
 
 [node name="Portal" parent="." unique_id=1231640810 instance=ExtResource("9_j7ugi")]
+
+[node name="cooldown_statue" parent="." unique_id=293202240 instance=ExtResource("6_smyv6")]
+
+[node name="attack_statue" parent="." unique_id=1104023823 instance=ExtResource("5_vidkv")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1655216316]
+
+[node name="Forge" parent="CanvasLayer" unique_id=1896441417 instance=ExtResource("11_smyv6")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
