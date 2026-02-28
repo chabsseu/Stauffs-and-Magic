@@ -7,6 +7,7 @@ extends Node2D
 @export var statue_scenes : Array[PackedScene]
 @export var portal : Node2D
 @export var floor_transition : CanvasLayer
+@export var minimap : Control
 
 const DUNGEON_WIDTH = 800
 const DUNGEON_HEIGHT = 800
@@ -29,12 +30,10 @@ func _ready():
 	if portal:
 		portal.visible = false
 	create_dungeon()
-	
-	# Restore stats if coming from a previous floor
+
 	if GameData.floor > 1:
 		GameData.restore_to_player_state(player.get_node("/root/PlayerState"), player)
-	
-	# Fade in when scene loads
+
 	if floor_transition:
 		floor_transition.fade_in_on_start()
 
@@ -51,22 +50,24 @@ func _process(_delta):
 func create_room_trigger(room: Rect2, room_index: int):
 	var area = Area2D.new()
 	area.name = "RoomTrigger_" + str(room_index)
-	
+
 	var collision = CollisionShape2D.new()
 	var shape = RectangleShape2D.new()
-	
 	shape.size = Vector2(room.size.x * 16 * 0.3, room.size.y * 16 * 0.3)
 	collision.shape = shape
 	area.position = room.get_center() * 16
 	area.collision_layer = 0
 	area.collision_mask = 1
-	
+
 	var callable = func(body):
 		if body == player:
 			spawn_enemies_in_room(room, room_index)
 			close_room_exits(room, room_index)
+			# Mark room visited on minimap
+			if minimap:
+				minimap.visit_room(room_index)
 			area.queue_free()
-	
+
 	area.body_entered.connect(callable, CONNECT_ONE_SHOT)
 	collision.set_deferred("disabled", false)
 	area.add_child(collision)
@@ -78,45 +79,44 @@ func create_room_trigger(room: Rect2, room_index: int):
 func close_room_exits(room: Rect2, room_index: int):
 	var barrier_positions = []
 	var barrier_tile = Vector2i(3, 2)
-	
+
 	for x in range(room.position.x - 1, room.end.x + 1):
 		var top_y = int(room.position.y) - 1
 		if is_in_bounds(x, top_y) and dungeon_grid[top_y][x] == TileType.FLOOR:
 			var barrier_pos = Vector2i(x, top_y)
 			barrier_positions.append(barrier_pos)
 			tilemap.set_cell(barrier_pos, 0, barrier_tile)
-		
+
 		var bottom_y = int(room.end.y)
 		if is_in_bounds(x, bottom_y) and dungeon_grid[bottom_y][x] == TileType.FLOOR:
 			var barrier_pos = Vector2i(x, bottom_y)
 			barrier_positions.append(barrier_pos)
 			tilemap.set_cell(barrier_pos, 0, barrier_tile)
-	
+
 	for y in range(room.position.y - 1, room.end.y + 1):
 		var left_x = int(room.position.x) - 1
 		if is_in_bounds(left_x, y) and dungeon_grid[y][left_x] == TileType.FLOOR:
 			var barrier_pos = Vector2i(left_x, y)
 			barrier_positions.append(barrier_pos)
 			tilemap.set_cell(barrier_pos, 0, barrier_tile)
-		
+
 		var right_x = int(room.end.x)
 		if is_in_bounds(right_x, y) and dungeon_grid[y][right_x] == TileType.FLOOR:
 			var barrier_pos = Vector2i(right_x, y)
 			barrier_positions.append(barrier_pos)
 			tilemap.set_cell(barrier_pos, 0, barrier_tile)
-	
+
 	room_barriers[room_index] = barrier_positions
 	print("Room ", room_index, " exits closed! Barriers placed: ", barrier_positions.size())
 
 func open_room_exits(room_index: int):
 	if not room_barriers.has(room_index):
 		return
-	
+
 	var floor_tiles = [Vector2i(1, 5), Vector2i(5, 5)]
-	
 	for barrier_pos in room_barriers[room_index]:
 		tilemap.set_cell(barrier_pos, 0, floor_tiles[randi() % floor_tiles.size()])
-	
+
 	print("Room ", room_index, " exits opened!")
 	room_barriers.erase(room_index)
 
@@ -136,11 +136,10 @@ func check_wave_complete(room_index: int):
 	if data.active_enemies.is_empty() and data.current_wave >= data.total_waves:
 		print("Room ", room_index, " - All waves complete!")
 		open_room_exits(room_index)
-		
 		if all_rooms[room_index] == end_room:
 			activate_portal()
-		
 		room_wave_data.erase(room_index)
+
 	elif data.active_enemies.is_empty() and data.current_wave < data.total_waves:
 		print("Room ", room_index, " - Wave ", data.current_wave, " complete! Spawning wave ", data.current_wave + 1, "...")
 		data.current_wave += 1
@@ -153,7 +152,7 @@ func spawn_enemies_in_room(room: Rect2, room_index: int):
 	print("Room ", room_index, " triggered!")
 	var total_waves = randi_range(1, 1)
 	var enemies_per_wave = randi_range(1, 1)
-	
+
 	room_wave_data[room_index] = {
 		"room": room,
 		"total_waves": total_waves,
@@ -162,7 +161,7 @@ func spawn_enemies_in_room(room: Rect2, room_index: int):
 		"active_enemies": [],
 		"is_spawning": false
 	}
-	
+
 	print("Room ", room_index, " - Spawning wave 1 of ", total_waves)
 	spawn_wave(room, enemies_per_wave, 1, room_index)
 
@@ -195,16 +194,16 @@ func _spawn_single_enemy(room: Rect2, timer: Timer, room_index: int):
 	if enemy_scenes.is_empty():
 		timer.queue_free()
 		return
-	
+
 	var scene = enemy_scenes[randi() % enemy_scenes.size()]
 	var enemy = scene.instantiate()
 	var x = randi_range(room.position.x + 2, room.end.x - 2)
 	var y = randi_range(room.position.y + 2, room.end.y - 2)
 	var spawn_pos = Vector2(x, y) * 16
 	enemy.position = spawn_pos
-	
+
 	create_spawn_effect(spawn_pos)
-	
+
 	enemy.visible = false
 	add_child(enemy)
 	await get_tree().create_timer(0.3).timeout
@@ -225,22 +224,23 @@ func activate_portal():
 	portal.position = end_room.get_center() * 16
 	portal.visible = true
 	print("Portal activated in end room!")
-	
+
+	# Notify minimap
+	if minimap:
+		minimap.portal_active = true
+
 	# Portal IS the Area2D, connect directly
 	portal.body_entered.connect(_on_portal_entered, CONNECT_ONE_SHOT)
 
 func _on_portal_entered(body):
 	print("_on_portal_entered called! Body: ", body.name)
-	print("floor_transition is: ", floor_transition)
-	
 	if body != player:
-		print("Not player, ignoring")
 		return
-	
+
 	print("Saving and transitioning to floor ", GameData.floor + 1)
 	GameData.save_from_player_state(player.get_node("/root/PlayerState"), player)
 	GameData.floor += 1
-	
+
 	if floor_transition:
 		floor_transition.start_transition()
 	else:
@@ -275,7 +275,7 @@ func generate_dungeon():
 			if rooms.size() == target_room_count - 1:
 				var boss_size = _get_room_dimensions(RoomSize.LARGE_BOSS)
 				new_room.size = Vector2(boss_size.x, boss_size.y)
-			
+
 			rooms.append(new_room)
 			_carve_room(new_room)
 			var corridor_width = randi_range(5, 7)
@@ -321,7 +321,7 @@ func _create_room_with_corridor(base_room: Rect2, direction: int, corridor_lengt
 
 	if x < 1 or y < 1 or x + w >= DUNGEON_WIDTH - 1 or y + h >= DUNGEON_HEIGHT - 1:
 		return Rect2()
-	
+
 	return Rect2(x, y, w, h)
 
 func _can_place_room(room: Rect2, existing_rooms: Array[Rect2]) -> bool:
@@ -329,7 +329,6 @@ func _can_place_room(room: Rect2, existing_rooms: Array[Rect2]) -> bool:
 		return false
 	if room.end.x >= DUNGEON_WIDTH - 1 or room.end.y >= DUNGEON_HEIGHT - 1:
 		return false
-
 	for other in existing_rooms:
 		if room.grow(6).intersects(other):
 			return false
@@ -360,9 +359,9 @@ func _roll_room_count() -> int:
 # --------------------------------------------------
 func _get_room_dimensions(size_type: RoomSize) -> Vector2i:
 	match size_type:
-		RoomSize.SMALL_START: return Vector2i(randi_range(14,18), randi_range(12,16))
+		RoomSize.SMALL_START:  return Vector2i(randi_range(14,18), randi_range(12,16))
 		RoomSize.MEDIUM_LARGE: return Vector2i(randi_range(22,30), randi_range(20,26))
-		RoomSize.LARGE_BOSS: return Vector2i(randi_range(30,42), randi_range(26,34))
+		RoomSize.LARGE_BOSS:   return Vector2i(randi_range(30,42), randi_range(26,34))
 	return Vector2i(26,22)
 
 # --------------------------------------------------
@@ -425,7 +424,7 @@ func add_walls():
 func render_dungeon():
 	tilemap.clear()
 	var floor_tiles = [Vector2i(1,5), Vector2i(5,5)]
-	var wall_tiles = [Vector2i(3,2), Vector2i(2,2), Vector2i(4,2)]
+	var wall_tiles  = [Vector2i(3,2), Vector2i(2,2), Vector2i(4,2)]
 
 	for y in range(DUNGEON_HEIGHT):
 		for x in range(DUNGEON_WIDTH):
@@ -446,37 +445,46 @@ func create_dungeon():
 	render_dungeon()
 	weapon_place(all_rooms)
 	place_statues(all_rooms)
-	
+
+	if minimap:
+		minimap.dungeon_grid   = dungeon_grid
+		minimap.all_rooms      = all_rooms
+		minimap.end_room       = end_room
+		minimap.player_ref     = player
+		minimap.portal_ref     = portal
+		minimap.dungeon_width  = DUNGEON_WIDTH
+		minimap.dungeon_height = DUNGEON_HEIGHT
+		minimap.setup_minimap()  # bounds + build FIRST
+		minimap.visit_room(0)    # then visit spawn room
+
 	for i in range(1, all_rooms.size()):
 		create_room_trigger(all_rooms[i], i)
-
 # --------------------------------------------------
 # STATUES
 # --------------------------------------------------
 func place_statues(rooms: Array[Rect2]):
 	if statue_scenes.is_empty():
 		return
-	
 	if randf() > 0.5:
 		print("No statue this floor!")
 		return
-	
 	var eligible_rooms = rooms.slice(1, rooms.size() - 1)
 	if eligible_rooms.is_empty():
 		return
-	
 	var chosen_room = eligible_rooms[randi() % eligible_rooms.size()]
+	var statue_index = rooms.find(chosen_room)
 	var scene = statue_scenes[randi() % statue_scenes.size()]
 	var statue = scene.instantiate()
 	statue.position = chosen_room.get_center() * 16
 	add_child(statue)
+	if minimap:
+		minimap.set_statue_room(statue_index)
 	print("Statue spawned in room at: ", chosen_room.get_center())
 
 # --------------------------------------------------
 # SPAWN EFFECT
 # --------------------------------------------------
 func create_spawn_effect(pos: Vector2):
-	# --- Main burst ---
 	var particles = CPUParticles2D.new()
 	add_child(particles)
 	particles.position = pos
@@ -501,8 +509,7 @@ func create_spawn_effect(pos: Vector2):
 	particles.color_ramp = gradient
 	particles.texture = null
 	particles.emitting = true
-	
-	# --- Secondary burst ---
+
 	var particles2 = CPUParticles2D.new()
 	add_child(particles2)
 	particles2.position = pos
@@ -524,10 +531,10 @@ func create_spawn_effect(pos: Vector2):
 	particles2.color_ramp = gradient2
 	particles2.texture = null
 	particles2.emitting = true
-	
+
 	var cleanup_timer = get_tree().create_timer(1.2)
 	cleanup_timer.timeout.connect(func():
-		if is_instance_valid(particles): particles.queue_free()
+		if is_instance_valid(particles):  particles.queue_free()
 		if is_instance_valid(particles2): particles2.queue_free()
 	)
 

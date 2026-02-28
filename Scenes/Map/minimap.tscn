@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dsh6imlitgt6j"]
+
+[ext_resource type="Script" uid="uid://q3pond7joic1" path="res://Scripts/Map/minimap.gd" id="1_mmxvx"]
+
+[node name="Control" type="Control" unique_id=2051362197]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mmxvx")
+
+[node name="Panel" type="Panel" parent="." unique_id=1790990153]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="." unique_id=1703812261]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
