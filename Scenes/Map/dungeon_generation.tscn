@@ -29,7 +29,7 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_qpfl8")
 
-[node name="DungeonGeneration" type="Node2D" unique_id=944595626 node_paths=PackedStringArray("tilemap", "player", "weapon", "portal", "stage_transition")]
+[node name="DungeonGeneration" type="Node2D" unique_id=944595626 node_paths=PackedStringArray("tilemap", "player", "weapon", "portal", "floor_transition")]
 script = ExtResource("1_ngs3x")
 tilemap = NodePath("TileMapLayer")
 player = NodePath("Player")
@@ -37,7 +37,7 @@ weapon = NodePath("WeaponPickup")
 enemy_scenes = Array[PackedScene]([ExtResource("2_q0kak"), ExtResource("3_j7ugi"), ExtResource("4_vidkv")])
 statue_scenes = Array[PackedScene]([ExtResource("5_vidkv"), ExtResource("6_smyv6")])
 portal = NodePath("Portal")
-stage_transition = NodePath("StageTransition")
+floor_transition = NodePath("StageTransition")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=130257482]
 tile_set = SubResource("TileSet_43nnj")

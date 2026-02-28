@@ -1,6 +1,6 @@
 extends Node
 
-var stage : int = 1
+var floor : int = 1
 
 # Health & Armor (from PlayerState)
 var current_health : int = 5
@@ -40,7 +40,7 @@ func save_from_player_state(player_state: Node, player: CharacterBody2D):
     cooldown = player.cooldown.duplicate()
     max_cooldown = player.max_cooldown.duplicate()
     
-    print("GameData saved! Stage: ", stage, " HP: ", current_health, "/", max_health)
+    print("GameData saved! floor: ", floor, " HP: ", current_health, "/", max_health)
 
 # --------------------------------------------------
 # RESTORE
@@ -73,4 +73,4 @@ func restore_to_player_state(player_state: Node, player: CharacterBody2D):
     
     player.update_hotbar_ui()
     
-    print("GameData restored! Stage: ", stage, " HP: ", current_health, "/", max_health)
+    print("GameData restored! floor: ", floor, " HP: ", current_health, "/", max_health)

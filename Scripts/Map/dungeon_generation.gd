@@ -6,7 +6,7 @@ extends Node2D
 @export var enemy_scenes : Array[PackedScene]
 @export var statue_scenes : Array[PackedScene]
 @export var portal : Node2D
-@export var stage_transition : CanvasLayer
+@export var floor_transition : CanvasLayer
 
 const DUNGEON_WIDTH = 800
 const DUNGEON_HEIGHT = 800
@@ -30,13 +30,13 @@ func _ready():
 		portal.visible = false
 	create_dungeon()
 	
-	# Restore stats if coming from a previous stage
-	if GameData.stage > 1:
+	# Restore stats if coming from a previous floor
+	if GameData.floor > 1:
 		GameData.restore_to_player_state(player.get_node("/root/PlayerState"), player)
 	
 	# Fade in when scene loads
-	if stage_transition:
-		stage_transition.fade_in_on_start()
+	if floor_transition:
+		floor_transition.fade_in_on_start()
 
 # --------------------------------------------------
 # PROCESS
@@ -151,8 +151,8 @@ func check_wave_complete(room_index: int):
 # --------------------------------------------------
 func spawn_enemies_in_room(room: Rect2, room_index: int):
 	print("Room ", room_index, " triggered!")
-	var total_waves = randi_range(2, 4)
-	var enemies_per_wave = randi_range(3, 6)
+	var total_waves = randi_range(1, 1)
+	var enemies_per_wave = randi_range(1, 1)
 	
 	room_wave_data[room_index] = {
 		"room": room,
@@ -231,20 +231,20 @@ func activate_portal():
 
 func _on_portal_entered(body):
 	print("_on_portal_entered called! Body: ", body.name)
-	print("stage_transition is: ", stage_transition)
+	print("floor_transition is: ", floor_transition)
 	
 	if body != player:
 		print("Not player, ignoring")
 		return
 	
-	print("Saving and transitioning to stage ", GameData.stage + 1)
+	print("Saving and transitioning to floor ", GameData.floor + 1)
 	GameData.save_from_player_state(player.get_node("/root/PlayerState"), player)
-	GameData.stage += 1
+	GameData.floor += 1
 	
-	if stage_transition:
-		stage_transition.start_transition()
+	if floor_transition:
+		floor_transition.start_transition()
 	else:
-		print("ERROR: stage_transition is null! Assign it in the Inspector!")
+		print("ERROR: floor_transition is null! Assign it in the Inspector!")
 
 # --------------------------------------------------
 # MAIN GENERATION
@@ -458,7 +458,7 @@ func place_statues(rooms: Array[Rect2]):
 		return
 	
 	if randf() > 0.5:
-		print("No statue this stage!")
+		print("No statue this floor!")
 		return
 	
 	var eligible_rooms = rooms.slice(1, rooms.size() - 1)
