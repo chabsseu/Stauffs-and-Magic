@@ -1,6 +1,7 @@
-res://Assets/Tilemaps/
 res://Scripts/Map/
 res://Scenes/Map/
+res://Assets/MapAccessories/
+res://Assets/Tilemaps/
 res://Assets/UI/
 res://Scripts/Global/
 res://Scripts/UI/
