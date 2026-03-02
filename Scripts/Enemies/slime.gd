@@ -251,7 +251,7 @@ func get_status_effects() -> StatusEffectManager:
 # =========================
 func die():
 	if reward_mana:
-		var mana_count = randi_range(5, 10)
+		var mana_count = randi_range(1, 3)
 		for i in range(mana_count):
 			var mana_drop = reward_mana.instantiate()
 			# Scatter them randomly around the chest
