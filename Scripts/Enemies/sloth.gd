@@ -24,6 +24,8 @@ extends CharacterBody2D
 @export var patrol_speed: float = 100.0
 @export var stop_duration: float = 1.5
 
+@export var reward_mana : PackedScene
+
 enum State { IDLE, WINDUP, CHARGING, RETREATING, COOLDOWN }
 
 var current_health: int = 0
@@ -181,6 +183,16 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
+	if reward_mana:
+		var mana_count = randi_range(5, 10)
+		for i in range(mana_count):
+			var mana_drop = reward_mana.instantiate()
+			# Scatter them randomly around the chest
+			var offset = Vector2(randf_range(-40, 40), randf_range(-40, 40))
+			mana_drop.global_position = global_position + offset
+			get_parent().add_child(mana_drop)
+		print("Spawned ", mana_count, " mana drops!")
+		
 	queue_free()
 
 func _on_damage_area_body_entered(body: Node2D) -> void:

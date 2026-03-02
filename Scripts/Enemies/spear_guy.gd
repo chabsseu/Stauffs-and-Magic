@@ -18,6 +18,7 @@ extends CharacterBody2D
 # Attack
 @export var attack_cooldown_time: float = 2.0
 
+@export var reward_mana : PackedScene
 # =========================
 # VARIABLES
 # =========================
@@ -180,6 +181,16 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
+	if reward_mana:
+		var mana_count = randi_range(5, 10)
+		for i in range(mana_count):
+			var mana_drop = reward_mana.instantiate()
+			# Scatter them randomly around the chest
+			var offset = Vector2(randf_range(-40, 40), randf_range(-40, 40))
+			mana_drop.global_position = global_position + offset
+			get_parent().add_child(mana_drop)
+		print("Spawned ", mana_count, " mana drops!")
+		
 	queue_free()
 
 # =========================
