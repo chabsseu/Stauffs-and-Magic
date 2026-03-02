@@ -42,7 +42,7 @@ func start_transition():
 	await _fade(0.0, 1.0, 0.6)
 	
 	# Step 2: Show floor number
-	floor_label.text = "floor " + str(GameData.floor)
+	floor_label.text = "Floor " + str(GameData.floor)
 	floor_label.visible = true
 	
 	# Step 3: Wait a moment

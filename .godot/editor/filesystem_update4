@@ -1,6 +1,1 @@
-res://Scripts/Global/Gamedata.gd
 res://Scripts/UI/stage_transition.gd
-res://Scripts/Map/dungeon_generation.gd
-res://Scenes/Map/dungeon_generation.tscn
-res://Scripts/Map/minimap.gd
-res://Scenes/Map/minimap.tscn

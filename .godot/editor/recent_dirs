@@ -1,3 +1,4 @@
+res://Assets/Tilemaps/
 res://Scripts/Map/
 res://Scenes/Map/
 res://Assets/UI/
@@ -14,7 +15,6 @@ res://Assets/UI/Health&Armor/
 res://Scripts/Enemies/
 res://Assets/Enemies/Weapons/
 res://Assets/Enemies/
-res://Assets/Tilemaps/
 res://Scenes/Floors/
 res://Scenes/Player/
 res://Scripts/Player/

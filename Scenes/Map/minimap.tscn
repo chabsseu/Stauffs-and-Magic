@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://q3pond7joic1" path="res://Scripts/Map/minimap.gd" id="1_mmxvx"]
 
-[node name="Control" type="Control" unique_id=2051362197]
+[node name="minimap" type="Control" unique_id=2051362197]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
