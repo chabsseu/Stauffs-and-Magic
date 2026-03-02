@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dolyywy5kuq13" path="res://Scripts/Map/common_chest.gd" id="1_bl4qx"]
 [ext_resource type="Texture2D" uid="uid://2akwrnwga8l2" path="res://Assets/MapAccessories/RPG Chests.png" id="1_idxpb"]
+[ext_resource type="PackedScene" uid="uid://banf8jkq6cu4e" path="res://Scenes/Weapon/ice_staff.tscn" id="2_30scg"]
+[ext_resource type="PackedScene" uid="uid://8n3kngoq2sld" path="res://Scenes/Weapon/mana_staff.tscn" id="3_swkv0"]
+[ext_resource type="PackedScene" uid="uid://dw4fq5k1ob2xj" path="res://Scenes/Weapon/force_staff.tscn" id="4_yn6n3"]
+[ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="5_35kja"]
+[ext_resource type="PackedScene" uid="uid://cdqh2qddc6swr" path="res://Scenes/Weapon/umbrel_staff.tscn" id="6_3xcg0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bl4qx"]
 atlas = ExtResource("1_idxpb")
@@ -52,6 +57,7 @@ radius = 17.029387
 
 [node name="Common_Chest" type="CharacterBody2D" unique_id=1876224500]
 script = ExtResource("1_bl4qx")
+reward_weapons = Array[PackedScene]([ExtResource("2_30scg"), ExtResource("3_swkv0"), ExtResource("4_yn6n3"), ExtResource("5_35kja"), ExtResource("6_3xcg0")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=180979598]
 sprite_frames = SubResource("SpriteFrames_lnr5f")

@@ -1,8 +1,8 @@
-CharacterBody2D
-Label
 CollisionShape2D
 Area2D
 AnimatedSprite2D
+CharacterBody2D
+Label
 StaticBody2D
 Control
 Panel
