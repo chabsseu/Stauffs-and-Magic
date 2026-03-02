@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ixiakydo7vts" path="res://Scenes/Enemies/spear_guy.tscn" id="4_vidkv"]
 [ext_resource type="PackedScene" uid="uid://dkxxs5v05i6p4" path="res://Scenes/Map/attack_statue.tscn" id="5_vidkv"]
 [ext_resource type="PackedScene" uid="uid://6x6c34ddudyr" path="res://Scenes/Map/cooldown_statue.tscn" id="6_smyv6"]
+[ext_resource type="PackedScene" uid="uid://cigtrfmfcfee8" path="res://Scenes/Map/common_chest.tscn" id="7_5n06y"]
 [ext_resource type="PackedScene" uid="uid://d1x60xga56cti" path="res://Scenes/UI/portal.tscn" id="9_j7ugi"]
 [ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="11_smyv6"]
 [ext_resource type="PackedScene" uid="uid://cyk3fwxbnm4uf" path="res://Scenes/UI/stage_transition.tscn" id="12_r55y5"]
@@ -40,6 +41,7 @@ statue_scenes = Array[PackedScene]([ExtResource("5_vidkv"), ExtResource("6_smyv6
 portal = NodePath("Portal")
 floor_transition = NodePath("StageTransition")
 minimap = NodePath("MinimapLayer/minimap")
+chest_scenes = Array[PackedScene]([ExtResource("7_5n06y")])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=130257482]
 tile_set = SubResource("TileSet_43nnj")

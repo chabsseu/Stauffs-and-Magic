@@ -5,6 +5,7 @@ extends Node2D
 @export var weapon : Node2D
 @export var enemy_scenes : Array[PackedScene]
 @export var statue_scenes : Array[PackedScene]
+@export var chest_scenes : Array[PackedScene] = []
 @export var portal : Node2D
 @export var floor_transition : CanvasLayer
 @export var minimap : Control
@@ -63,7 +64,6 @@ func create_room_trigger(room: Rect2, room_index: int):
 		if body == player:
 			spawn_enemies_in_room(room, room_index)
 			close_room_exits(room, room_index)
-			# Mark room visited on minimap
 			if minimap:
 				minimap.visit_room(room_index)
 			area.queue_free()
@@ -136,8 +136,13 @@ func check_wave_complete(room_index: int):
 	if data.active_enemies.is_empty() and data.current_wave >= data.total_waves:
 		print("Room ", room_index, " - All waves complete!")
 		open_room_exits(room_index)
+
 		if all_rooms[room_index] == end_room:
 			activate_portal()
+		else:
+			# Guaranteed chest on every room clear except boss room
+			spawn_chest_in_room(all_rooms[room_index])
+
 		room_wave_data.erase(room_index)
 
 	elif data.active_enemies.is_empty() and data.current_wave < data.total_waves:
@@ -146,12 +151,24 @@ func check_wave_complete(room_index: int):
 		spawn_wave(data.room, data.enemies_per_wave, data.current_wave, room_index)
 
 # --------------------------------------------------
+# SPAWN CHEST AFTER WAVE CLEAR
+# --------------------------------------------------
+func spawn_chest_in_room(room: Rect2):
+	if chest_scenes.is_empty():
+		return
+	var scene = chest_scenes[randi() % chest_scenes.size()]
+	var chest = scene.instantiate()
+	chest.position = room.get_center() * 16
+	add_child(chest)
+	print("Chest spawned after wave clear!")
+
+# --------------------------------------------------
 # SPAWN ENEMIES IN A SPECIFIC ROOM
 # --------------------------------------------------
 func spawn_enemies_in_room(room: Rect2, room_index: int):
 	print("Room ", room_index, " triggered!")
-	var total_waves = randi_range(2, 4)
-	var enemies_per_wave = randi_range(3, 6)
+	var total_waves = randi_range(1, 1)
+	var enemies_per_wave = randi_range(1, 1)
 
 	room_wave_data[room_index] = {
 		"room": room,
@@ -225,11 +242,9 @@ func activate_portal():
 	portal.visible = true
 	print("Portal activated in end room!")
 
-	# Notify minimap
 	if minimap:
 		minimap.portal_active = true
 
-	# Portal IS the Area2D, connect directly
 	portal.body_entered.connect(_on_portal_entered, CONNECT_ONE_SHOT)
 
 func _on_portal_entered(body):
@@ -454,11 +469,12 @@ func create_dungeon():
 		minimap.portal_ref     = portal
 		minimap.dungeon_width  = DUNGEON_WIDTH
 		minimap.dungeon_height = DUNGEON_HEIGHT
-		minimap.setup_minimap()  # bounds + build FIRST
-		minimap.visit_room(0)    # then visit spawn room
+		minimap.setup_minimap()
+		minimap.visit_room(0)
 
 	for i in range(1, all_rooms.size()):
 		create_room_trigger(all_rooms[i], i)
+
 # --------------------------------------------------
 # STATUES
 # --------------------------------------------------

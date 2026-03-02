@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var label = $Detection_Area/Label
 @onready var animate = $AnimatedSprite2D
 
-@export var reward_weapons : Array[PackedScene] = []
+# @export var reward_weapons : Array[PackedScene] = []
 @export var reward_mana : PackedScene
 
 var player_nearby := false
@@ -38,19 +38,19 @@ func give_rewards():
 		print("Spawned ", mana_count, " mana drops!")
 	
 	# Spawn ONE random weapon from the array
-	if reward_weapons.is_empty():
-		return
+	# if reward_weapons.is_empty():
+	# 	return
 	
-	var chosen = reward_weapons[randi() % reward_weapons.size()]
-	if chosen == null:
-		return
+	# var chosen = reward_weapons[randi() % reward_weapons.size()]
+	# if chosen == null:
+	# 	return
 	
-	var pickup_scene = preload("res://Scenes/Weapon/weapon_pickup.tscn")
-	var pickup = pickup_scene.instantiate()
-	pickup.weapon_scene = chosen
-	pickup.global_position = global_position + Vector2(0, 40)
-	get_parent().add_child(pickup)
-	print("Spawned weapon: ", chosen.resource_path)
+	# var pickup_scene = preload("res://Scenes/Weapon/weapon_pickup.tscn")
+	# var pickup = pickup_scene.instantiate()
+	# pickup.weapon_scene = chosen
+	# pickup.global_position = global_position + Vector2(0, 40)
+	# get_parent().add_child(pickup)
+	# print("Spawned weapon: ", chosen.resource_path)
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
