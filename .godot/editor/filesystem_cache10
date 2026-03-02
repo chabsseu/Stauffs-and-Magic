@@ -12,8 +12,9 @@ e_bullet.png::CompressedTexture2D::467567032074107141::1768274022::1768274095::1
 e_pud.png::CompressedTexture2D::3594583572898209833::1768274022::1768274095::1::::<><><>0<>0<>fc5560dee954164cbf1419eea286ee37<>res://.godot/imported/e_pud.png-0d5c11f67a38570dd77c9d829dca91a2.ctex::
 ::res://Assets/Enemies/Weapons/::1768274095
 Spear.png::CompressedTexture2D::7340002049433932650::1768274022::1768274095::1::::<><><>0<>0<>501833723712904019a248b04b836049<>res://.godot/imported/Spear.png-f35ca450cba9458213faf484ab8d90a4.ctex::
-::res://Assets/MapAccessories/::1772418438
+::res://Assets/MapAccessories/::1772419272
 coins-chests-etc-2-0.png::CompressedTexture2D::8966917805121247125::1772418413::1772418447::1::::<><><>0<>0<>6c650352c7ab86d0d07a2cb33ac1e571<>res://.godot/imported/coins-chests-etc-2-0.png-fec9e562bacd48dbc7d93c7453ad1b94.ctex::
+Mana_drop.png::CompressedTexture2D::6888397878384555133::1772419233::1772419276::1::::<><><>0<>0<>50e4d91247935aed8650c422f6e467d2<>res://.godot/imported/Mana_drop.png-26e22fbbb6318b5517ec05e693986424.ctex::
 RPG Chests.png::CompressedTexture2D::1895746149607492469::1772416974::1772417211::1::::<><><>0<>0<>88f4c2225b9723bed1c46ad2c4c60387<>res://.godot/imported/RPG Chests.png-6e806a50d0d1e06f9276e1f49c594b7d.ctex::
 ::res://Assets/Tilemaps/::1772258238
 Dungeon Tileset + Spikes.png::CompressedTexture2D::3437902921609025723::1768274022::1768274095::1::::<><><>0<>0<>afac6da1b8032511655c9cede1edf6b3<>res://.godot/imported/Dungeon Tileset + Spikes.png-4f23e46db310d31364e2e3c5b6c1c634.ctex::
@@ -56,12 +57,12 @@ test_enemy.tscn::PackedScene::5272099863804701819::1768274022::0::1::::<><><>0<>
 ::res://Scenes/Floors/::1772418154
 medieval_dungeon.tscn::PackedScene::5192436696187514580::1770944602::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://blw7wkta0c20d::::res://Assets/Tilemaps/Tilemap.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://d1x60xga56cti::::res://Scenes/UI/portal.tscn<>uid://hokg0gi8ti1u::::res://Scenes/Enemies/sloth.tscn<>uid://vwhok55g8tdn::::res://Scenes/Weapon/weapon_pickup.tscn<>uid://bb8c2mi17642k::::res://Scenes/Weapon/normal_staff.tscn
 test_world.tscn::PackedScene::2474939786666499171::1772418154::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://chd3yj7pkdiu2::::res://Scenes/Enemies/test_enemy.tscn<>uid://vwhok55g8tdn::::res://Scenes/Weapon/weapon_pickup.tscn<>uid://cigtrfmfcfee8::::res://Scenes/Map/common_chest.tscn<>uid://cwio32p3nix68::::res://Scenes/UI/forgeUI.tscn<>uid://6x6c34ddudyr::::res://Scenes/Map/cooldown_statue.tscn<>uid://dkxxs5v05i6p4::::res://Scenes/Map/attack_statue.tscn
-::res://Scenes/Map/::1772418193
+::res://Scenes/Map/::1772418910
 attack_statue.tscn::PackedScene::7910061420244642199::1772072678::0::1::::<><><>0<>0<><>::uid://b75ouofrplovs::::res://Scripts/Map/attack_statue.gd<>uid://dtr7b1ihi1v0u::::res://Assets/Alter/cooldown_altar.png<>uid://8t5ckf62mmyc::::res://Assets/Alter/attack_altar.png
 cooldown_statue.tscn::PackedScene::2225222155080186685::1772072678::0::1::::<><><>0<>0<><>::uid://ci78653b6p6go::::res://Scripts/Map/cooldown_statue.gd<>uid://dtr7b1ihi1v0u::::res://Assets/Alter/cooldown_altar.png
 dungeon_generation.tscn::PackedScene::2708494934668169245::1772258001::0::1::::<><><>0<>0<><>::uid://dsp08475xingl::::res://Scripts/Map/dungeon_generation.gd<>uid://blw7wkta0c20d::::res://Assets/Tilemaps/Tilemap.png<>uid://cb0kyqifl5o74::::res://Scenes/Enemies/slime.tscn<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://hokg0gi8ti1u::::res://Scenes/Enemies/sloth.tscn<>uid://vwhok55g8tdn::::res://Scenes/Weapon/weapon_pickup.tscn<>uid://ixiakydo7vts::::res://Scenes/Enemies/spear_guy.tscn<>uid://dkxxs5v05i6p4::::res://Scenes/Map/attack_statue.tscn<>uid://6x6c34ddudyr::::res://Scenes/Map/cooldown_statue.tscn<>uid://d1x60xga56cti::::res://Scenes/UI/portal.tscn<>uid://cwio32p3nix68::::res://Scenes/UI/forgeUI.tscn<>uid://cyk3fwxbnm4uf::::res://Scenes/UI/stage_transition.tscn<>uid://dsh6imlitgt6j::::res://Scenes/Map/minimap.tscn
 minimap.tscn::PackedScene::8439009041631486995::1772257985::0::1::::<><><>0<>0<><>::uid://q3pond7joic1::::res://Scripts/Map/minimap.gd
-common_chest.tscn::PackedScene::5347922645758220705::1772418193::0::1::::<><><>0<>0<><>::uid://dolyywy5kuq13::::res://Scripts/Map/common_chest.gd<>uid://2akwrnwga8l2::::res://Assets/MapAccessories/RPG Chests.png
+common_chest.tscn::PackedScene::5347922645758220705::1772418910::0::1::::<><><>0<>0<><>::uid://dolyywy5kuq13::::res://Scripts/Map/common_chest.gd<>uid://2akwrnwga8l2::::res://Assets/MapAccessories/RPG Chests.png<>uid://banf8jkq6cu4e::::res://Scenes/Weapon/ice_staff.tscn<>uid://8n3kngoq2sld::::res://Scenes/Weapon/mana_staff.tscn<>uid://dw4fq5k1ob2xj::::res://Scenes/Weapon/force_staff.tscn<>uid://bb8c2mi17642k::::res://Scenes/Weapon/normal_staff.tscn<>uid://cdqh2qddc6swr::::res://Scenes/Weapon/umbrel_staff.tscn
 ::res://Scenes/Player/::1771558450
 player.tscn::PackedScene::6716059162180735360::1771558450::0::1::::<><><>0<>0<><>::uid://bln4x7n1bjd8p::::res://Scripts/Player/player.gd<>uid://ctgav05ifthty::::res://icon.svg<>uid://l5hl2sus6yh8::::res://Scripts/UI/camera_2d.gd<>uid://bj74em60yojnr::::res://Assets/UI/cooldown.png<>uid://ciwy7dfadp2tp::::res://Scenes/UI/health_armor.tscn
 ::res://Scenes/UI/::1772089506
@@ -104,7 +105,7 @@ cooldown_statue.gd::GDScript::5402472844035234526::1772072613::0::1::::<>Charact
 dungeon_generation.gd::GDScript::8455205332897829499::1772258282::0::1::::<>Node2D<><>0<>0<><>::
 forge.gd::GDScript::1751468771752366215::1772078769::0::1::::<>Control<><>0<>0<><>::
 minimap.gd::GDScript::1181760520232842686::1772258491::0::1::::<>Control<><>0<>0<><>::
-common_chest.gd::GDScript::8166115278152767440::1772418089::0::1::::<>CharacterBody2D<><>0<>0<><>::
+common_chest.gd::GDScript::8166115278152767440::1772418975::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Scripts/Player/::1772078769
 player.gd::GDScript::3187138442576952149::1772078769::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Scripts/UI/::1772088380

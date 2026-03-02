@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var animate = $AnimatedSprite2D
 
 @export var reward_weapons : Array[PackedScene] = []
-@export var reward_mana : int = 30
+@export var reward_mana : PackedScene
 
 var player_nearby := false
 var is_open := false
@@ -26,9 +26,16 @@ func open():
 	give_rewards()
 
 func give_rewards():
-	# Give mana
-	PlayerState.add_mana(reward_mana)
-	print("Gave ", reward_mana, " mana!")
+	# Spawn mana drop
+	if reward_mana:
+		var mana_count = randi_range(5, 10)
+		for i in range(mana_count):
+			var mana_drop = reward_mana.instantiate()
+			# Scatter them randomly around the chest
+			var offset = Vector2(randf_range(-40, 40), randf_range(-40, 40))
+			mana_drop.global_position = global_position + offset
+			get_parent().add_child(mana_drop)
+		print("Spawned ", mana_count, " mana drops!")
 	
 	# Spawn ONE random weapon from the array
 	if reward_weapons.is_empty():

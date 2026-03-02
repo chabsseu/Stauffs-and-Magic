@@ -1,5 +1,6 @@
 CollisionShape2D
 Area2D
+Sprite2D
 AnimatedSprite2D
 CharacterBody2D
 Label
@@ -11,4 +12,3 @@ SubViewport
 SubViewportContainer
 ColorRect
 Button
-Sprite2D

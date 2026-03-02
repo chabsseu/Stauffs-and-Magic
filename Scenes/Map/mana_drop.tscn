@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b0o4iyyp7ovo2"]
+
+[ext_resource type="Texture2D" uid="uid://c5e153c7lasph" path="res://Assets/MapAccessories/Mana_drop.png" id="1_0c65h"]
+[ext_resource type="Script" uid="uid://b22wlsxxixok8" path="res://Scripts/Map/mana_drop.gd" id="1_1jvf3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jvf3"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmb0e"]
+radius = 73.0
+
+[node name="Mana Drop" type="Area2D" unique_id=708442547]
+script = ExtResource("1_1jvf3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1911293052]
+shape = SubResource("CircleShape2D_1jvf3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1064853762]
+position = Vector2(-5.9604645e-08, -1.1920929e-07)
+scale = Vector2(0.6666667, 0.6666667)
+texture = ExtResource("1_0c65h")
+
+[node name="Detection_area" type="Area2D" parent="." unique_id=1010676008]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area" unique_id=228511884]
+shape = SubResource("CircleShape2D_bmb0e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]
