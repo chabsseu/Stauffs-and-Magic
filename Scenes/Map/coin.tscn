@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dw6vigp0l5qhu"]
+
+[ext_resource type="Texture2D" uid="uid://byhlt5w10bt5k" path="res://Assets/MapAccessories/Gold.png" id="1_4je11"]
+[ext_resource type="Script" uid="uid://c2grswtaeaqci" path="res://Scripts/Map/coin.gd" id="1_41tj6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_41tj6"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0y1wa"]
+radius = 50.01
+
+[node name="Coin" type="Area2D" unique_id=321685563]
+script = ExtResource("1_41tj6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=388124709]
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("1_4je11")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=145778867]
+shape = SubResource("CircleShape2D_41tj6")
+
+[node name="Detection_area" type="Area2D" parent="." unique_id=1411229603]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area" unique_id=871772409]
+shape = SubResource("CircleShape2D_0y1wa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]

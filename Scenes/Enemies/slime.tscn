@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cewdwtydlg58v" path="res://Scenes/Enemies/e_bullet.tscn" id="2_4lx4x"]
 [ext_resource type="PackedScene" uid="uid://djc871ia27m0" path="res://Scenes/UI/pop_up_daamge.tscn" id="3_6kvin"]
 [ext_resource type="PackedScene" uid="uid://b0o4iyyp7ovo2" path="res://Scenes/Map/mana_drop.tscn" id="4_hm6tv"]
+[ext_resource type="PackedScene" uid="uid://dw6vigp0l5qhu" path="res://Scenes/Map/coin.tscn" id="5_16kjp"]
+[ext_resource type="PackedScene" uid="uid://cdxjvk5hlsvah" path="res://Scenes/Map/food.tscn" id="6_vvc4l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pm37t"]
 
@@ -18,6 +20,10 @@ damage_node = ExtResource("3_6kvin")
 shoot_interval = 2.5
 projectile_scene = ExtResource("2_4lx4x")
 reward_mana = ExtResource("4_hm6tv")
+coin_drop_scene = ExtResource("5_16kjp")
+food_drop_scene = ExtResource("6_vvc4l")
+coin_drop_chance = 0.25
+food_drop_chance = 0.25
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1028098174]
 self_modulate = Color(0, 1, 0.32156864, 1)

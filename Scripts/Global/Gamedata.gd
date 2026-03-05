@@ -21,6 +21,9 @@ var current_slot : int = -1
 var cooldown : Array = []
 var max_cooldown : Array = []
 
+# Currency
+var coins: int = 0
+var food: int = 0
 # --------------------------------------------------
 # SAVE
 # --------------------------------------------------
@@ -74,3 +77,9 @@ func restore_to_player_state(player_state: Node, player: CharacterBody2D):
     player.update_hotbar_ui()
     
     print("GameData restored! floor: ", floor, " HP: ", current_health, "/", max_health)
+
+func add_coins(amount:int):
+    coins += amount
+
+func add_foods(amount:int):
+    food += amount

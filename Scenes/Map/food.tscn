@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cdxjvk5hlsvah"]
+
+[ext_resource type="Script" uid="uid://di7xa2bynajn5" path="res://Scripts/Map/food.gd" id="1_ks5kl"]
+[ext_resource type="Texture2D" uid="uid://fgtatq2gfj12" path="res://Assets/MapAccessories/Food.png" id="1_o5i11"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ks5kl"]
+radius = 2.8283348
+height = 9.887748
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_njtaq"]
+radius = 48.373547
+
+[node name="Food" type="Area2D" unique_id=738667106]
+script = ExtResource("1_ks5kl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1064550896]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_o5i11")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1266339599]
+position = Vector2(1, -1)
+rotation = 0.7934762
+shape = SubResource("CapsuleShape2D_ks5kl")
+
+[node name="Detection_area" type="Area2D" parent="." unique_id=1777591404]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area" unique_id=2094244963]
+shape = SubResource("CircleShape2D_njtaq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]

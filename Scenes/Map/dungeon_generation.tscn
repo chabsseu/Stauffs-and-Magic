@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="11_smyv6"]
 [ext_resource type="PackedScene" uid="uid://cyk3fwxbnm4uf" path="res://Scenes/UI/stage_transition.tscn" id="12_r55y5"]
 [ext_resource type="PackedScene" uid="uid://dsh6imlitgt6j" path="res://Scenes/Map/minimap.tscn" id="13_wjcik"]
+[ext_resource type="Script" uid="uid://ct60sn8rq7ewp" path="res://Scripts/Map/currency.gd" id="15_bd3ew"]
+[ext_resource type="Texture2D" uid="uid://byhlt5w10bt5k" path="res://Assets/MapAccessories/Gold.png" id="16_i01xb"]
+[ext_resource type="Texture2D" uid="uid://fgtatq2gfj12" path="res://Assets/MapAccessories/Food.png" id="17_mc0b8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpfl8"]
 texture = ExtResource("2_eo2qp")
@@ -38,10 +41,10 @@ player = NodePath("Player")
 weapon = NodePath("WeaponPickup")
 enemy_scenes = Array[PackedScene]([ExtResource("2_q0kak"), ExtResource("3_j7ugi"), ExtResource("4_vidkv")])
 statue_scenes = Array[PackedScene]([ExtResource("5_vidkv"), ExtResource("6_smyv6")])
+chest_scenes = Array[PackedScene]([ExtResource("7_5n06y")])
 portal = NodePath("Portal")
 floor_transition = NodePath("StageTransition")
 minimap = NodePath("MinimapLayer/minimap")
-chest_scenes = Array[PackedScene]([ExtResource("7_5n06y")])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=130257482]
 tile_set = SubResource("TileSet_43nnj")
@@ -76,3 +79,12 @@ grow_vertical = 2
 [node name="MinimapLayer" type="CanvasLayer" parent="." unique_id=673748554]
 
 [node name="minimap" parent="MinimapLayer" unique_id=2051362197 instance=ExtResource("13_wjcik")]
+
+[node name="Currency" type="Control" parent="MinimapLayer" unique_id=1203966089]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("15_bd3ew")
+coin_icon = ExtResource("16_i01xb")
+food_icon = ExtResource("17_mc0b8")

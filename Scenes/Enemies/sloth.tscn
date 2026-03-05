@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_y4kof"]
 [ext_resource type="PackedScene" uid="uid://djc871ia27m0" path="res://Scenes/UI/pop_up_daamge.tscn" id="2_ophrn"]
 [ext_resource type="PackedScene" uid="uid://b0o4iyyp7ovo2" path="res://Scenes/Map/mana_drop.tscn" id="3_08x5a"]
+[ext_resource type="PackedScene" uid="uid://dw6vigp0l5qhu" path="res://Scenes/Map/coin.tscn" id="4_ukjry"]
+[ext_resource type="PackedScene" uid="uid://cdxjvk5hlsvah" path="res://Scenes/Map/food.tscn" id="5_2utjo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sm7oq"]
 
@@ -21,6 +23,10 @@ charge_range = 500.0
 retreat_distance = 200.0
 damage = 3
 reward_mana = ExtResource("3_08x5a")
+coin_drop_scene = ExtResource("4_ukjry")
+food_drop_scene = ExtResource("5_2utjo")
+coin_drop_chance = 0.25
+food_drop_chance = 0.25
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=465560140]
 position = Vector2(-0.2500019, -0.25)

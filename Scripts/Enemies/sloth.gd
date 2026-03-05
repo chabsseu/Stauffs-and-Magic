@@ -25,6 +25,11 @@ extends CharacterBody2D
 @export var stop_duration: float = 1.5
 
 @export var reward_mana : PackedScene
+@export var coin_drop_scene : PackedScene
+@export var food_drop_scene : PackedScene
+@export var coin_drop_chance : float = 0.8   # 80% chance
+@export var food_drop_chance : float = 0.4   # 40% chance
+
 
 enum State { IDLE, WINDUP, CHARGING, RETREATING, COOLDOWN }
 
@@ -192,6 +197,18 @@ func die() -> void:
 			mana_drop.global_position = global_position + offset
 			get_parent().add_child(mana_drop)
 		print("Spawned ", mana_count, " mana drops!")
+	
+	# Drop coins
+	if coin_drop_scene and randf() < coin_drop_chance:
+		var drop = coin_drop_scene.instantiate()
+		drop.global_position = global_position
+		get_parent().add_child(drop)
+
+	# Drop food
+	if food_drop_scene and randf() < food_drop_chance:
+		var drop = food_drop_scene.instantiate()
+		drop.global_position = global_position
+		get_parent().add_child(drop)
 		
 	queue_free()
 

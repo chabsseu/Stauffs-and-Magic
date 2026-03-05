@@ -6,6 +6,11 @@ extends CharacterBody2D
 # @export var reward_weapons : Array[PackedScene] = []
 @export var reward_mana : PackedScene
 
+@export var coin_drop_scene : PackedScene
+@export var food_drop_scene : PackedScene
+@export var chest_coin_count : int = 3   # Guaranteed coins from chest
+@export var chest_food_count : int = 2   # Guaranteed food from chest
+
 var player_nearby := false
 var is_open := false
 
@@ -36,7 +41,20 @@ func give_rewards():
 			mana_drop.global_position = global_position + offset
 			get_parent().add_child(mana_drop)
 		print("Spawned ", mana_count, " mana drops!")
-	
+
+	# Spawn coin drops
+	if coin_drop_scene:
+		for i in range(chest_coin_count):
+			var drop = coin_drop_scene.instantiate()
+			drop.global_position = global_position + Vector2(randf_range(-40, 40), randf_range(-40, 40))
+			get_parent().add_child(drop)
+
+	# Spawn food drops
+	if food_drop_scene:
+		for i in range(chest_food_count):
+			var drop = food_drop_scene.instantiate()
+			drop.global_position = global_position + Vector2(randf_range(-40, 40), randf_range(-40, 40))
+			get_parent().add_child(drop)
 	# Spawn ONE random weapon from the array
 	# if reward_weapons.is_empty():
 	# 	return
