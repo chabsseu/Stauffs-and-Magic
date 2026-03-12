@@ -11,7 +11,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pm37t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lx4x"]
-radius = 301.3254
+radius = 596.23236
 
 [node name="slime" type="CharacterBody2D" unique_id=1706528063 groups=["Enemy"]]
 script = ExtResource("1_pm37t")

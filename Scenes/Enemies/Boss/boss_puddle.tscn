@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b38gp36xx0yis"]
+
+[ext_resource type="Script" uid="uid://b8wiphp3n6tu3" path="res://Scripts/Enemies/Boss/boss_puddle.gd" id="1_1ym6d"]
+[ext_resource type="Texture2D" uid="uid://brhijb2qyth26" path="res://Assets/Enemies/e_pud.png" id="1_b1p4q"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6bhe"]
+radius = 6.0
+height = 20.0
+
+[node name="boss_puddle" type="Area2D" unique_id=1371036743 groups=["Projectile"]]
+scale = Vector2(2, 2)
+script = ExtResource("1_1ym6d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1533590879]
+texture = ExtResource("1_b1p4q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1803933918]
+position = Vector2(0, 4)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_m6bhe")

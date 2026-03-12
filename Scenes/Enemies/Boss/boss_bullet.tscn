@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://diravf6ro4s0l"]
+
+[ext_resource type="Script" uid="uid://cj575x86akaeq" path="res://Scripts/Enemies/Boss/boss_bullet.gd" id="1_ujh3v"]
+[ext_resource type="Texture2D" uid="uid://gwq04m1vnior" path="res://Assets/Enemies/e_bullet.png" id="3_hrfsd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3iv2v"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_163le"]
+radius = 8.062258
+
+[node name="boss_bullet" type="Area2D" unique_id=1203979764 groups=["Projectile"]]
+script = ExtResource("1_ujh3v")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=675958132]
+texture = ExtResource("3_hrfsd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1340752610]
+shape = SubResource("CircleShape2D_3iv2v")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=3764320]
+rect = Rect2(-10, -491, 20, 1013)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=482731285]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=266742101]
+shape = SubResource("CircleShape2D_163le")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

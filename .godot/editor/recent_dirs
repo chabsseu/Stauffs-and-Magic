@@ -1,3 +1,10 @@
+res://Scripts/Enemies/Boss/
+res://Assets/UI/Health&Armor/
+res://Scenes/Enemies/Boss/
+res://Scenes/Enemies/
+res://Scripts/Enemies/
+res://
+res://Assets/Player/
 res://Scenes/Map/
 res://Assets/MapAccessories/
 res://Scripts/Map/
@@ -8,14 +15,8 @@ res://Scripts/UI/
 res://Scenes/UI/
 res://Scenes/Weapon/
 res://Assets/Alter/
-res://
 res://Assets/Weapon/
 res://Scripts/Weapon/
-res://Scenes/Enemies/
-res://Assets/UI/Health&Armor/
-res://Scripts/Enemies/
 res://Assets/Enemies/Weapons/
 res://Assets/Enemies/
 res://Scenes/Floors/
-res://Scenes/Player/
-res://Scripts/Player/

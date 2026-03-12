@@ -1,4 +1,5 @@
-res://Scenes/Enemies/slime.tscn
-res://Scenes/Enemies/sloth.tscn
-res://Scenes/Enemies/spear_guy.tscn
-res://Scripts/Map/common_chest.gd
+res://Scripts/Enemies/Boss/boss_bullet.gd
+res://Scenes/Enemies/Boss/boss_bullet.tscn
+res://Scripts/Enemies/Boss/grand_gello.gd
+res://Scenes/Floors/test_world.tscn
+res://Scenes/Enemies/Boss/grand_gello.tscn

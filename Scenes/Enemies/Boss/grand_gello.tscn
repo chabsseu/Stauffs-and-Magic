@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://des416ak1l8jm"]
+
+[ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_dxfps"]
+[ext_resource type="Script" uid="uid://dy1bx723nl2db" path="res://Scripts/Enemies/Boss/grand_gello.gd" id="1_kqy14"]
+[ext_resource type="PackedScene" uid="uid://diravf6ro4s0l" path="res://Scenes/Enemies/Boss/boss_bullet.tscn" id="2_qw8uh"]
+[ext_resource type="PackedScene" uid="uid://b38gp36xx0yis" path="res://Scenes/Enemies/Boss/boss_puddle.tscn" id="3_7n8lb"]
+[ext_resource type="Texture2D" uid="uid://xarcugs0uokh" path="res://Assets/UI/Health&Armor/Armor.png" id="6_7n8lb"]
+[ext_resource type="Texture2D" uid="uid://d1pjrb666e6i7" path="res://Assets/UI/Health&Armor/Armor_bar.png" id="7_sybyq"]
+[ext_resource type="Script" uid="uid://cn3s0secy6fqd" path="res://Scripts/Enemies/Boss/boss_health.gd" id="8_sybyq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33sxi"]
+size = Vector2(42, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2mpaq"]
+radius = 428.71204
+
+[node name="GrandGello" type="CharacterBody2D" unique_id=1408162063 groups=["Enemy"]]
+script = ExtResource("1_kqy14")
+projectile_scene = ExtResource("2_qw8uh")
+puddle_scene = ExtResource("3_7n8lb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1615586033]
+scale = Vector2(0.34375, 0.265625)
+texture = ExtResource("1_dxfps")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=272001358]
+shape = SubResource("RectangleShape2D_33sxi")
+
+[node name="Detection_Area" type="Area2D" parent="." unique_id=1393360083]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area" unique_id=218577883]
+shape = SubResource("CircleShape2D_2mpaq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=913366540]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=352778642 node_paths=PackedStringArray("Boss")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.5
+offset_right = 308.0
+offset_bottom = 84.0
+grow_horizontal = 2
+max_value = 50.0
+step = 0.0
+value = 50.0
+nine_patch_stretch = true
+texture_over = ExtResource("6_7n8lb")
+texture_progress = ExtResource("7_sybyq")
+script = ExtResource("8_sybyq")
+Boss = NodePath("../..")
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=865786344]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.546
+anchor_bottom = 0.040000003
+offset_left = 43.0
+offset_top = 77.0
+offset_right = 69.119995
+offset_bottom = 71.2
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Grand Jello"
+
+[connection signal="body_entered" from="Detection_Area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_Area" to="." method="_on_detection_area_body_exited"]
