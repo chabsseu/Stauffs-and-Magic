@@ -1,4 +1,3 @@
 res://Scripts/Map/dungeon_generation.gd
-res://Scripts/Map/minimap.gd
-res://Scripts/Enemies/Boss/grand_gello.gd
+res://Scenes/Map/dungeon_generation.tscn
 res://Scenes/Enemies/Boss/grand_gello.tscn

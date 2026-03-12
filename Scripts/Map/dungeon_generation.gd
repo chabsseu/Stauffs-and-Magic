@@ -44,7 +44,7 @@ func _ready():
 # PROCESS
 # --------------------------------------------------
 func _process(_delta):
-	for room_index in room_wave_data.keys():
+	for room_index in room_wave_data.keys().duplicate():
 		check_wave_complete(room_index)
 
 # --------------------------------------------------
@@ -74,16 +74,11 @@ func create_room_trigger(room: Rect2, room_index: int):
 						"current_wave": 1,
 						"enemies_per_wave": 1,
 						"active_enemies": [],
-						"is_spawning": false
+						"is_spawning": true
 					}
-
-					if is_instance_valid(boss_ref):
-						room_wave_data[room_index].active_enemies.append(boss_ref)
-
-					print("Boss room entered — closing exits and registering boss")
-
-				# FIX 1: always call close_room_exits (guard inside handles duplicates)
-				close_room_exits(room, room_index)
+					close_room_exits(room, room_index)
+					_spawn_boss(room_index)
+					print("Boss room entered — spawning boss and closing exits")
 			else:
 				spawn_enemies_in_room(room, room_index)
 				close_room_exits(room, room_index)
@@ -98,10 +93,33 @@ func create_room_trigger(room: Rect2, room_index: int):
 	add_child(area)
 
 # --------------------------------------------------
+# SPAWN BOSS
+# --------------------------------------------------
+func _spawn_boss(room_index: int):
+	if boss_scenes.is_empty():
+		if room_wave_data.has(room_index):
+			room_wave_data[room_index].is_spawning = false
+		return
+
+	var scene = boss_scenes[randi() % boss_scenes.size()]
+	var boss = scene.instantiate()
+	var spawn_pos = end_room.get_center() * 16
+	boss.position = spawn_pos
+	boss.visible = false
+	add_child(boss)
+	boss_ref = boss
+	create_spawn_effect(spawn_pos)
+	await get_tree().create_timer(0.3).timeout
+	if is_instance_valid(boss) and room_wave_data.has(room_index):
+		boss.visible = true
+		room_wave_data[room_index].active_enemies.append(boss)
+		room_wave_data[room_index].is_spawning = false
+		print("Boss added to active_enemies for room ", room_index)
+
+# --------------------------------------------------
 # ROOM EXIT BLOCKING
 # --------------------------------------------------
 func close_room_exits(room: Rect2, room_index: int):
-	# FIX 2: don't close twice
 	if room_barriers.has(room_index):
 		return
 
@@ -154,6 +172,8 @@ func open_room_exits(room_index: int):
 func check_wave_complete(room_index: int):
 	if not room_wave_data.has(room_index):
 		return
+	if room_index >= all_rooms.size():
+		return
 
 	var data = room_wave_data[room_index]
 	if data.is_spawning:
@@ -161,30 +181,24 @@ func check_wave_complete(room_index: int):
 
 	data.active_enemies = data.active_enemies.filter(func(enemy): return is_instance_valid(enemy))
 
-	if all_rooms[room_index] == end_room and GameData.floor % 5 == 0:
-		var boss_alive = false
-		for enemy in data.active_enemies:
-			if enemy.is_in_group("Boss"):
-				boss_alive = true
-				break
-		if boss_alive:
-			return
+	if not data.active_enemies.is_empty():
+		return
 
-	if data.active_enemies.is_empty() and data.current_wave >= data.total_waves:
-		print("Room ", room_index, " - All waves complete!")
-		open_room_exits(room_index)
-
-		if all_rooms[room_index] == end_room:
-			activate_portal()
-		else:
-			spawn_chest_in_room(all_rooms[room_index])
-
-		room_wave_data.erase(room_index)
-
-	elif data.active_enemies.is_empty() and data.current_wave < data.total_waves:
+	if data.current_wave < data.total_waves:
 		print("Room ", room_index, " - Wave ", data.current_wave, " complete! Spawning wave ", data.current_wave + 1, "...")
 		data.current_wave += 1
 		spawn_wave(data.room, data.enemies_per_wave, data.current_wave, room_index)
+		return
+
+	print("Room ", room_index, " - All waves complete!")
+	open_room_exits(room_index)
+
+	if room_index < all_rooms.size() and all_rooms[room_index] == end_room:
+		activate_portal()
+	else:
+		spawn_chest_in_room(all_rooms[room_index])
+
+	room_wave_data.erase(room_index)
 
 # --------------------------------------------------
 # SPAWN CHEST AFTER WAVE CLEAR
@@ -267,22 +281,6 @@ func _spawn_single_enemy(room: Rect2, timer: Timer, room_index: int):
 		room_wave_data[room_index].active_enemies.append(enemy)
 
 	timer.queue_free()
-
-# --------------------------------------------------
-# BOSS
-# --------------------------------------------------
-func place_boss(rooms: Array[Rect2]):
-	if boss_scenes.is_empty():
-		return
-	if GameData.floor % 5 != 0:
-		return
-
-	var scene = boss_scenes[randi() % boss_scenes.size()]
-	var boss = scene.instantiate()
-	boss.position = end_room.get_center() * 16
-	add_child(boss)
-	boss_ref = boss
-	print("Boss spawned on floor ", GameData.floor, "!")
 
 # --------------------------------------------------
 # PORTAL ACTIVATION
@@ -511,7 +509,6 @@ func create_dungeon():
 	render_dungeon()
 	weapon_place(all_rooms)
 	place_statues(all_rooms)
-	place_boss(all_rooms)
 
 	if minimap:
 		minimap.dungeon_grid   = dungeon_grid

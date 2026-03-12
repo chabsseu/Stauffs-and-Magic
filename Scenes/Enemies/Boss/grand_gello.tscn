@@ -20,6 +20,8 @@ script = ExtResource("1_kqy14")
 projectile_scene = ExtResource("2_qw8uh")
 puddle_scene = ExtResource("3_7n8lb")
 enemy_scenes = Array[PackedScene]([ExtResource("3_wsfiu")])
+phase1_attack_cooldown = 1.5
+phase2_attack_cooldown = 1.0
 health_bar = NodePath("CanvasLayer/TextureProgressBar")
 label = NodePath("CanvasLayer/Label")
 
