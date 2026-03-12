@@ -13,14 +13,14 @@ func _process(delta: float) -> void:
 	# Move
 	position += direction * speed * delta
 
-	# Rotate to movement direction (THIS IS THE KEY)
+	# Rotate to movement direction
 	rotation = direction.angle()
 
 	# Play animation
 	sprite.play("fire")
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Enemy") or body.is_in_group("Boss"):
 		body.take_damage(damage)
 		queue_free()
 
