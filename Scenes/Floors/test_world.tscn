@@ -221,3 +221,7 @@ position = Vector2(245, 244)
 position = Vector2(324, 63)
 
 [node name="GrandGello" parent="." unique_id=1408162063 instance=ExtResource("10_gbv6p")]
+phase1_attack_cooldown = 1.5
+phase2_attack_cooldown = 1.0
+all_directions_range = 150.0
+pattern_range = 150.0

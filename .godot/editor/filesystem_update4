@@ -1,5 +1,2 @@
-res://Scripts/Enemies/Boss/boss_bullet.gd
-res://Scenes/Enemies/Boss/boss_bullet.tscn
-res://Scripts/Enemies/Boss/grand_gello.gd
-res://Scenes/Floors/test_world.tscn
-res://Scenes/Enemies/Boss/grand_gello.tscn
+res://Scripts/Map/dungeon_generation.gd
+res://Scripts/Map/minimap.gd

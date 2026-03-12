@@ -9,6 +9,7 @@ extends Node2D
 @export var portal : Node2D
 @export var floor_transition : CanvasLayer
 @export var minimap : Control
+@export var boss_scenes : Array[PackedScene] = []
 
 const DUNGEON_WIDTH = 800
 const DUNGEON_HEIGHT = 800
@@ -23,6 +24,7 @@ var all_rooms : Array[Rect2] = []
 var end_room : Rect2
 var room_wave_data = {}
 var room_barriers = {}
+var boss_ref : Node = null
 
 # --------------------------------------------------
 # READY
@@ -54,7 +56,7 @@ func create_room_trigger(room: Rect2, room_index: int):
 
 	var collision = CollisionShape2D.new()
 	var shape = RectangleShape2D.new()
-	shape.size = Vector2(room.size.x * 16 * 0.3, room.size.y * 16 * 0.3)
+	shape.size = Vector2(room.size.x * 16 * 0.5, room.size.y * 16 * 0.5)
 	collision.shape = shape
 	area.position = room.get_center() * 16
 	area.collision_layer = 0
@@ -62,8 +64,30 @@ func create_room_trigger(room: Rect2, room_index: int):
 
 	var callable = func(body):
 		if body == player:
-			spawn_enemies_in_room(room, room_index)
-			close_room_exits(room, room_index)
+			var is_boss_room = (room_index == all_rooms.size() - 1 and GameData.floor % 5 == 0)
+
+			if is_boss_room:
+				if not room_wave_data.has(room_index):
+					room_wave_data[room_index] = {
+						"room": end_room,
+						"total_waves": 1,
+						"current_wave": 1,
+						"enemies_per_wave": 1,
+						"active_enemies": [],
+						"is_spawning": false
+					}
+
+					if is_instance_valid(boss_ref):
+						room_wave_data[room_index].active_enemies.append(boss_ref)
+
+					print("Boss room entered — closing exits and registering boss")
+
+				# FIX 1: always call close_room_exits (guard inside handles duplicates)
+				close_room_exits(room, room_index)
+			else:
+				spawn_enemies_in_room(room, room_index)
+				close_room_exits(room, room_index)
+
 			if minimap:
 				minimap.visit_room(room_index)
 			area.queue_free()
@@ -77,6 +101,10 @@ func create_room_trigger(room: Rect2, room_index: int):
 # ROOM EXIT BLOCKING
 # --------------------------------------------------
 func close_room_exits(room: Rect2, room_index: int):
+	# FIX 2: don't close twice
+	if room_barriers.has(room_index):
+		return
+
 	var barrier_positions = []
 	var barrier_tile = Vector2i(3, 2)
 
@@ -133,6 +161,15 @@ func check_wave_complete(room_index: int):
 
 	data.active_enemies = data.active_enemies.filter(func(enemy): return is_instance_valid(enemy))
 
+	if all_rooms[room_index] == end_room and GameData.floor % 5 == 0:
+		var boss_alive = false
+		for enemy in data.active_enemies:
+			if enemy.is_in_group("Boss"):
+				boss_alive = true
+				break
+		if boss_alive:
+			return
+
 	if data.active_enemies.is_empty() and data.current_wave >= data.total_waves:
 		print("Room ", room_index, " - All waves complete!")
 		open_room_exits(room_index)
@@ -140,7 +177,6 @@ func check_wave_complete(room_index: int):
 		if all_rooms[room_index] == end_room:
 			activate_portal()
 		else:
-			# Guaranteed chest on every room clear except boss room
 			spawn_chest_in_room(all_rooms[room_index])
 
 		room_wave_data.erase(room_index)
@@ -233,6 +269,22 @@ func _spawn_single_enemy(room: Rect2, timer: Timer, room_index: int):
 	timer.queue_free()
 
 # --------------------------------------------------
+# BOSS
+# --------------------------------------------------
+func place_boss(rooms: Array[Rect2]):
+	if boss_scenes.is_empty():
+		return
+	if GameData.floor % 5 != 0:
+		return
+
+	var scene = boss_scenes[randi() % boss_scenes.size()]
+	var boss = scene.instantiate()
+	boss.position = end_room.get_center() * 16
+	add_child(boss)
+	boss_ref = boss
+	print("Boss spawned on floor ", GameData.floor, "!")
+
+# --------------------------------------------------
 # PORTAL ACTIVATION
 # --------------------------------------------------
 func activate_portal():
@@ -248,7 +300,6 @@ func activate_portal():
 	portal.body_entered.connect(_on_portal_entered, CONNECT_ONE_SHOT)
 
 func _on_portal_entered(body):
-	print("_on_portal_entered called! Body: ", body.name)
 	if body != player:
 		return
 
@@ -259,7 +310,7 @@ func _on_portal_entered(body):
 	if floor_transition:
 		floor_transition.start_transition()
 	else:
-		print("ERROR: floor_transition is null! Assign it in the Inspector!")
+		print("ERROR: floor_transition is null!")
 
 # --------------------------------------------------
 # MAIN GENERATION
@@ -356,7 +407,7 @@ func _carve_room(room: Rect2):
 				dungeon_grid[y][x] = TileType.FLOOR
 
 # --------------------------------------------------
-# ROOM COUNT (5–8)
+# ROOM COUNT (5-8)
 # --------------------------------------------------
 func _roll_room_count() -> int:
 	var roll = randf()
@@ -460,6 +511,7 @@ func create_dungeon():
 	render_dungeon()
 	weapon_place(all_rooms)
 	place_statues(all_rooms)
+	place_boss(all_rooms)
 
 	if minimap:
 		minimap.dungeon_grid   = dungeon_grid

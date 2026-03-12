@@ -15,7 +15,7 @@ size = Vector2(42, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_2mpaq"]
 radius = 428.71204
 
-[node name="GrandGello" type="CharacterBody2D" unique_id=1408162063 groups=["Enemy"]]
+[node name="GrandGello" type="CharacterBody2D" unique_id=1408162063 groups=["Boss"]]
 script = ExtResource("1_kqy14")
 projectile_scene = ExtResource("2_qw8uh")
 puddle_scene = ExtResource("3_7n8lb")

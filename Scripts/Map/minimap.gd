@@ -16,6 +16,7 @@ const COLOR_PORTAL        = Color(0.4, 1.0, 0.9, 1.0)
 const COLOR_BORDER        = Color(0.6, 0.35, 0.9, 1.0)
 const COLOR_END_ROOM      = Color(1.0, 0.4, 0.4, 0.8)
 const COLOR_STATUE_ROOM   = Color(1.0, 0.85, 0.2, 0.95)
+const COLOR_BOSS_ROOM 	  = Color(1.0, 0.5, 0.0, 0.9)
 
 # --------------------------------------------------
 # DATA

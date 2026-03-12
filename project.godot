@@ -38,6 +38,7 @@ Player=""
 Enemy=""
 Projectile=""
 forge_ui=""
+Boss=""
 
 [input]
 
