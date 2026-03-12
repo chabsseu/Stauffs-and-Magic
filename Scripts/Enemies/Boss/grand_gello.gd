@@ -17,7 +17,8 @@ signal healthChanged
 @export var phase2_consecutive_attacks : int = 2
 @export var all_directions_range : float = 200
 @export var pattern_range : float = 200
-
+@export var health_bar: Control
+@export var label: Control
 # --------------------------------------------------
 # STATE
 # --------------------------------------------------
@@ -219,7 +220,13 @@ func _on_detection_area_body_entered(body: Node2D):
 		player_ref = body
 		_attack_all_directions()
 
+		health_bar.visible = true
+		label.visible = true
+
 func _on_detection_area_body_exited(body: Node2D):
 	if body.is_in_group("Player"):
 		_attack_all_directions()
 		player_ref = null
+
+		health_bar.visible = false
+		label.visible = false
