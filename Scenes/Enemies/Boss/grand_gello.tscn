@@ -13,7 +13,7 @@
 size = Vector2(42, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2mpaq"]
-radius = 428.71204
+radius = 544.0919
 
 [node name="GrandGello" type="CharacterBody2D" unique_id=1408162063 node_paths=PackedStringArray("health_bar", "label") groups=["Boss"]]
 script = ExtResource("1_kqy14")
@@ -22,6 +22,7 @@ puddle_scene = ExtResource("3_7n8lb")
 enemy_scenes = Array[PackedScene]([ExtResource("3_wsfiu")])
 phase1_attack_cooldown = 1.5
 phase2_attack_cooldown = 1.0
+phase2_consecutive_attacks = 3
 health_bar = NodePath("CanvasLayer/TextureProgressBar")
 label = NodePath("CanvasLayer/Label")
 
