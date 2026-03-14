@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 
 # Deals damage immediately the moment a body steps in
 func _on_body_entered(body: Node2D) -> void:
-    if body.is_in_group("Player") or body.is_in_group("Enemies"):
+    if body.is_in_group("Player") or body.is_in_group("Enemy"):
         if body not in bodies_inside:
             bodies_inside.append(body)
             # Instant damage on enter — no waiting for tick
