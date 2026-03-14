@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://exmlmiug3st4" path="res://Scenes/Floors/poison.tscn" id="10_gbv6p"]
 [ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="10_ncuxn"]
 [ext_resource type="PackedScene" uid="uid://6x6c34ddudyr" path="res://Scenes/Map/cooldown_statue.tscn" id="11_858e3"]
-[ext_resource type="PackedScene" uid="uid://hokg0gi8ti1u" path="res://Scenes/Enemies/sloth.tscn" id="11_ncuxn"]
+[ext_resource type="PackedScene" uid="uid://des416ak1l8jm" path="res://Scenes/Enemies/Boss/grand_gello.tscn" id="11_ncuxn"]
 [ext_resource type="PackedScene" uid="uid://dkxxs5v05i6p4" path="res://Scenes/Map/attack_statue.tscn" id="12_m1klf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2yfla"]
@@ -229,5 +229,4 @@ position = Vector2(308, 128)
 position = Vector2(71, 175)
 poison_chance = 0.3
 
-[node name="sloth" parent="." unique_id=1533549000 instance=ExtResource("11_ncuxn")]
-position = Vector2(338, 93)
+[node name="GrandGello" parent="." unique_id=1408162063 instance=ExtResource("11_ncuxn")]

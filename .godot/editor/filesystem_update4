@@ -1,6 +1,3 @@
-res://Scripts/Global/PlayerState.gd
-res://Scripts/Map/poison.gd
+res://Scenes/Enemies/Boss/grand_gello.tscn
 res://Scenes/Floors/test_world.tscn
-res://Scenes/Floors/fire.tscn
-res://Scenes/Floors/poison.tscn
 res://Scripts/Map/fire.gd

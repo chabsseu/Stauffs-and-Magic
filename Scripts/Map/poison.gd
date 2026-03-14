@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 
 # Deals damage 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") or body.is_in_group("Enemy"):
+	if body.is_in_group("Player") or body.is_in_group("Enemy") or body.is_in_group("Boss"):
 		if body not in bodies_inside:
 			bodies_inside.append(body)
 			
