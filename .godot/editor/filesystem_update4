@@ -1,3 +1,4 @@
 res://Scenes/Enemies/Boss/grand_gello.tscn
 res://Scenes/Floors/test_world.tscn
 res://Scripts/Map/fire.gd
+res://Scripts/Map/poison.gd
