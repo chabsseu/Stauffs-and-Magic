@@ -530,26 +530,46 @@ func place_boxes(rooms: Array[Rect2]):
 				randi_range(int(room.position.y) + margin, int(room.end.y) - margin)
 			))
 
+		var placed_positions : Array = []
+		var min_distance = 16.0  # minimum pixels between boxes
+		var spread = 2           # cluster tightness in tiles
+		var max_attempts = 20    # tries per box before giving up
+
 		for j in range(box_count):
-			var box_scene = _roll_box_type()
-			var box = box_scene.instantiate()
-
-			# Pick a random cluster center and spawn close to it
 			var cluster = clusters[randi() % clusters.size()]
-			var spread = 3  # how tight the cluster is in tiles
-			var x = clamp(
-				cluster.x + randi_range(-spread, spread),
-				int(room.position.x) + 2,
-				int(room.end.x) - 2
-			) * 16
-			var y = clamp(
-				cluster.y + randi_range(-spread, spread),
-				int(room.position.y) + 2,
-				int(room.end.y) - 2
-			) * 16
+			var placed = false
 
-			box.position = Vector2(x, y)
-			add_child(box)
+			for attempt in range(max_attempts):
+				var tx = clamp(
+					cluster.x + randi_range(-spread, spread),
+					int(room.position.x) + 2,
+					int(room.end.x) - 2
+				)
+				var ty = clamp(
+					cluster.y + randi_range(-spread, spread),
+					int(room.position.y) + 2,
+					int(room.end.y) - 2
+				)
+				var candidate = Vector2(tx, ty) * 16
+
+				# Check it's far enough from all already placed boxes
+				var too_close = false
+				for existing in placed_positions:
+					if candidate.distance_to(existing) < min_distance:
+						too_close = true
+						break
+
+				if not too_close:
+					placed_positions.append(candidate)
+					var box_scene = _roll_box_type()
+					var box = box_scene.instantiate()
+					box.position = candidate
+					add_child(box)
+					placed = true
+					break
+
+			if not placed:
+				print("Could not place box ", j, " in room ", i, " after ", max_attempts, " attempts")
 
 func _roll_box_type() -> PackedScene:
 	if box_scenes.size() == 1:
