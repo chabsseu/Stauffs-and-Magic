@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bibfcnoieqx4k"]
+
+[ext_resource type="Texture2D" uid="uid://cdievs7e6bihb" path="res://Assets/MapAccessories/BoxFire.png" id="1_658bk"]
+[ext_resource type="Script" uid="uid://7hspr8i6ajgj" path="res://Scripts/Floor/firebox.gd" id="1_676oj"]
+[ext_resource type="PackedScene" uid="uid://208y1mgvx2en" path="res://Scenes/Floors/fire.tscn" id="2_u7hrl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_676oj"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7hrl"]
+size = Vector2(14, 14)
+
+[node name="Firebox" type="CharacterBody2D" unique_id=466292538 groups=["Accessory"]]
+script = ExtResource("1_676oj")
+poision_scene = ExtResource("2_u7hrl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1489540049]
+texture = ExtResource("1_658bk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594299523]
+shape = SubResource("RectangleShape2D_676oj")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1093258937]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1494310298]
+shape = SubResource("RectangleShape2D_u7hrl")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

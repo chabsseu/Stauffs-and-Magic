@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c4jy6ets143vs"]
+
+[ext_resource type="Script" uid="uid://m3seydvy80tv" path="res://Scripts/Floor/normal_box.gd" id="1_etbkf"]
+[ext_resource type="Texture2D" uid="uid://b83jn43tev4xd" path="res://Assets/MapAccessories/Box.png" id="2_nw6dg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlk27"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u52xb"]
+size = Vector2(16, 16)
+
+[node name="NormalBox" type="CharacterBody2D" unique_id=1860661821 groups=["Accessory"]]
+script = ExtResource("1_etbkf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=222890113]
+texture = ExtResource("2_nw6dg")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=2032148154]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1791404423]
+shape = SubResource("RectangleShape2D_qlk27")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1484457665]
+shape = SubResource("RectangleShape2D_u52xb")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

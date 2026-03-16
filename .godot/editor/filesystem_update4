@@ -1,4 +1,16 @@
 res://Scenes/Enemies/Boss/grand_gello.tscn
-res://Scenes/Floors/test_world.tscn
 res://Scripts/Map/fire.gd
 res://Scripts/Map/poison.gd
+res://Scripts/Floor/normal_box.gd
+res://Scripts/Weapon/force_bullet.gd
+res://Scripts/Weapon/iceball.gd
+res://Scripts/Weapon/iceball_skill.gd
+res://Scripts/Weapon/normal_bullet.gd
+res://Scripts/Weapon/normal_bullet_skill.gd
+res://Scripts/Weapon/umbrel_bullet.gd
+res://Scenes/Floors/test_world.tscn
+res://Scenes/Floors/normal_box.tscn
+res://Scripts/Floor/poison_box.gd
+res://Scenes/Floors/poison_box.tscn
+res://Scripts/Floor/firebox.gd
+res://Scenes/Floors/firebox.tscn

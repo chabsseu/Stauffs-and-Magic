@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	rotation = direction.angle()
 
 func _on_body_entered(body: Node2D):
-	if body.is_in_group("Enemy") or body.is_in_group("Boss"):
+	if body.is_in_group("Enemy") or body.is_in_group("Boss") or body.is_in_group("Accessory"):
 		# Apply damage
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
