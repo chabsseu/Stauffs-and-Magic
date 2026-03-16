@@ -10,6 +10,9 @@ extends Node2D
 @export var floor_transition : CanvasLayer
 @export var minimap : Control
 @export var boss_scenes : Array[PackedScene] = []
+@export var box_scenes : Array[PackedScene] = []
+@export var min_boxes_per_room : int = 3
+@export var max_boxes_per_room : int = 8
 
 const DUNGEON_WIDTH = 800
 const DUNGEON_HEIGHT = 800
@@ -25,6 +28,7 @@ var end_room : Rect2
 var room_wave_data = {}
 var room_barriers = {}
 var boss_ref : Node = null
+var statue_room_index : int = -1
 
 # --------------------------------------------------
 # READY
@@ -51,6 +55,10 @@ func _process(_delta):
 # CREATE ROOM TRIGGER
 # --------------------------------------------------
 func create_room_trigger(room: Rect2, room_index: int):
+	if room_index == statue_room_index:
+		print("Skipping room trigger for statue room ", room_index)
+		return
+
 	var area = Area2D.new()
 	area.name = "RoomTrigger_" + str(room_index)
 
@@ -60,7 +68,7 @@ func create_room_trigger(room: Rect2, room_index: int):
 	collision.shape = shape
 	area.position = room.get_center() * 16
 	area.collision_layer = 0
-	area.collision_mask = 1
+	area.collision_mask = 2
 
 	var callable = func(body):
 		if body == player:
@@ -217,8 +225,8 @@ func spawn_chest_in_room(room: Rect2):
 # --------------------------------------------------
 func spawn_enemies_in_room(room: Rect2, room_index: int):
 	print("Room ", room_index, " triggered!")
-	var total_waves = randi_range(1, 1)
-	var enemies_per_wave = randi_range(1, 1)
+	var total_waves = randi_range(2, 4)
+	var enemies_per_wave = randi_range(2, 6)
 
 	room_wave_data[room_index] = {
 		"room": room,
@@ -499,6 +507,62 @@ func render_dungeon():
 					tilemap.set_cell(Vector2i(x, y), 0, wall_tiles[randi() % wall_tiles.size()])
 
 # --------------------------------------------------
+# BOXES
+# --------------------------------------------------
+func place_boxes(rooms: Array[Rect2]):
+	if box_scenes.is_empty():
+		return
+
+	for i in range(1, rooms.size() - 1):
+		if i == statue_room_index:
+			continue
+
+		var room = rooms[i]
+		var box_count = randi_range(min_boxes_per_room, max_boxes_per_room)
+
+		# Pick 1-2 cluster centers per room
+		var cluster_count = randi_range(1, 2)
+		var clusters = []
+		var margin = 4
+		for c in range(cluster_count):
+			clusters.append(Vector2(
+				randi_range(int(room.position.x) + margin, int(room.end.x) - margin),
+				randi_range(int(room.position.y) + margin, int(room.end.y) - margin)
+			))
+
+		for j in range(box_count):
+			var box_scene = _roll_box_type()
+			var box = box_scene.instantiate()
+
+			# Pick a random cluster center and spawn close to it
+			var cluster = clusters[randi() % clusters.size()]
+			var spread = 3  # how tight the cluster is in tiles
+			var x = clamp(
+				cluster.x + randi_range(-spread, spread),
+				int(room.position.x) + 2,
+				int(room.end.x) - 2
+			) * 16
+			var y = clamp(
+				cluster.y + randi_range(-spread, spread),
+				int(room.position.y) + 2,
+				int(room.end.y) - 2
+			) * 16
+
+			box.position = Vector2(x, y)
+			add_child(box)
+
+func _roll_box_type() -> PackedScene:
+	if box_scenes.size() == 1:
+		return box_scenes[0]
+	var roll = randf()
+	if roll < 0.70:
+		return box_scenes[0]
+	elif roll < 0.85:
+		return box_scenes[1]
+	else:
+		return box_scenes[2]
+
+# --------------------------------------------------
 # CREATE
 # --------------------------------------------------
 func create_dungeon():
@@ -509,6 +573,7 @@ func create_dungeon():
 	render_dungeon()
 	weapon_place(all_rooms)
 	place_statues(all_rooms)
+	place_boxes(all_rooms)
 
 	if minimap:
 		minimap.dungeon_grid   = dungeon_grid
@@ -538,13 +603,14 @@ func place_statues(rooms: Array[Rect2]):
 		return
 	var chosen_room = eligible_rooms[randi() % eligible_rooms.size()]
 	var statue_index = rooms.find(chosen_room)
+	statue_room_index = statue_index
 	var scene = statue_scenes[randi() % statue_scenes.size()]
 	var statue = scene.instantiate()
 	statue.position = chosen_room.get_center() * 16
 	add_child(statue)
 	if minimap:
 		minimap.set_statue_room(statue_index)
-	print("Statue spawned in room at: ", chosen_room.get_center())
+	print("Statue spawned in room index: ", statue_index)
 
 # --------------------------------------------------
 # SPAWN EFFECT

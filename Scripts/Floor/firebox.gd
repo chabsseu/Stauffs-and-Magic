@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var health = 1
 var current_health = health
-@export var poision_scene: PackedScene
+@export var fire_scene: PackedScene
 func _ready() -> void:
 	pass # Replace with function body.
 
@@ -14,8 +14,8 @@ func _process(delta: float) -> void:
 func take_damage(amount: int):
 	current_health -= amount
 
-	if poision_scene:
-			var fire = poision_scene.instantiate()
+	if fire_scene:
+			var fire = fire_scene.instantiate()
 			fire.global_position = global_position
 			get_tree().current_scene.add_child(fire)
 
