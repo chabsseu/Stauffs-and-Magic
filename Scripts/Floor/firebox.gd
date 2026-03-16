@@ -2,27 +2,32 @@ extends CharacterBody2D
 
 var health = 1
 var current_health = health
+var active = false
+
 @export var fire_scene: PackedScene
-func _ready() -> void:
-	pass # Replace with function body.
 
+func _ready():
+	current_health = health
+	
+	# wait a short time before enabling the hitbox
+	await get_tree().process_frame
+	active = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func take_damage(amount: int):
 	current_health -= amount
 
 	if fire_scene:
-			var fire = fire_scene.instantiate()
-			fire.global_position = global_position
-			get_tree().current_scene.add_child(fire)
+		var fire = fire_scene.instantiate()
+		fire.global_position = global_position
+		get_parent().add_child(fire)
 
 	if current_health <= 0:
 		queue_free()
 
+
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Projectile"):
-		take_damage(1)
-	
+	if not active:
+		return
+		
+	take_damage(1)

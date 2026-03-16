@@ -51,7 +51,6 @@ floor_transition = NodePath("StageTransition")
 minimap = NodePath("MinimapLayer/minimap")
 boss_scenes = Array[PackedScene]([ExtResource("8_mc0b8")])
 box_scenes = Array[PackedScene]([ExtResource("9_kv37p"), ExtResource("9_kv37p"), ExtResource("10_dkg07"), ExtResource("11_jwufn")])
-min_boxes_per_room = 100
 max_boxes_per_room = 200
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=130257482]

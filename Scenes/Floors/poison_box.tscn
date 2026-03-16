@@ -12,7 +12,7 @@ size = Vector2(16, 16)
 
 [node name="PoisonBox" type="CharacterBody2D" unique_id=1978215841 groups=["Accessory"]]
 script = ExtResource("1_3dq44")
-poision_scene = ExtResource("2_ad8np")
+poison_scene = ExtResource("2_ad8np")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1346976365]
 texture = ExtResource("1_8oujn")

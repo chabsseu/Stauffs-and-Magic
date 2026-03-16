@@ -12,7 +12,7 @@ size = Vector2(14, 14)
 
 [node name="Firebox" type="CharacterBody2D" unique_id=466292538 groups=["Accessory"]]
 script = ExtResource("1_676oj")
-poision_scene = ExtResource("2_u7hrl")
+fire_scene = ExtResource("2_u7hrl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1489540049]
 texture = ExtResource("1_658bk")

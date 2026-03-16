@@ -7,6 +7,7 @@ extends Area2D
 @export var burn_duration : float = 3.0
 @export var burn_tick_rate : float = 1.0
 @export var fire_radius : float = 32.0
+@export var lifetime : float = 5.0
 
 var bodies_inside : Array = []
 var tick_timer : float = 0.0
@@ -14,100 +15,126 @@ var burning_bodies : Dictionary = {}
 var pulse_timer : float = 0.0
 
 func _ready() -> void:
-    var shape = $CollisionShape2D.shape
-    if shape is CircleShape2D:
-        shape.radius = fire_radius
+	# Setup collision radius
+	var shape = $CollisionShape2D.shape
+	if shape is CircleShape2D:
+		shape.radius = fire_radius
 
-    var particles = $CPUParticles2D
-    particles.emission_sphere_radius = fire_radius
+	# Setup particles
+	var particles = $CPUParticles2D
+	if particles:
+		particles.emission_sphere_radius = fire_radius
+
+	# Fire disappears after lifetime seconds
+	await get_tree().create_timer(lifetime).timeout
+	queue_free()
+
 
 func _process(delta: float) -> void:
-    pulse_timer += delta
-    tick_timer += delta
+	pulse_timer += delta
+	tick_timer += delta
 
-    if tick_timer >= tick_rate:
-        tick_timer = 0.0
+	if tick_timer >= tick_rate:
+		tick_timer = 0.0
 
-        var current_overlaps = get_overlapping_bodies()
-        bodies_inside = bodies_inside.filter(func(b):
-            return is_instance_valid(b) and b in current_overlaps
-        )
+		var current_overlaps = get_overlapping_bodies()
+		bodies_inside = bodies_inside.filter(func(b):
+			return is_instance_valid(b) and b in current_overlaps
+		)
 
-        for body in bodies_inside:
-            _apply_damage(body)
+		for body in bodies_inside:
+			_apply_damage(body)
 
-            if not burning_bodies.has(body) and randf() < burn_chance:
-                apply_burn(body)
+			if not burning_bodies.has(body) and randf() < burn_chance:
+				apply_burn(body)
 
-    _process_burn(delta)
-    queue_redraw()
+	_process_burn(delta)
+	queue_redraw()
 
-# Deals damage immediately the moment a body steps in
+
+# Deals damage immediately when a body enters the fire
 func _on_body_entered(body: Node2D) -> void:
-    if body.is_in_group("Player") or body.is_in_group("Enemy") or body.is_in_group("Boss"):
-        if body not in bodies_inside:
-            bodies_inside.append(body)
-            # Instant damage on enter — no waiting for tick
-            _apply_damage(body)
+	if body.is_in_group("Player") or body.is_in_group("Enemy") or body.is_in_group("Boss"):
+		if body not in bodies_inside:
+			bodies_inside.append(body)
 
-            # Roll burn immediately on enter too
-            if not burning_bodies.has(body) and randf() < burn_chance:
-                apply_burn(body)
+			_apply_damage(body)
+
+			if not burning_bodies.has(body) and randf() < burn_chance:
+				apply_burn(body)
+
 
 func _on_body_exited(body: Node2D) -> void:
-    bodies_inside.erase(body)
+	bodies_inside.erase(body)
+
 
 func _apply_damage(body: Node2D) -> void:
-    if not is_instance_valid(body):
-        return
-    if body.has_method("take_armor_damage"):
-        body.take_armor_damage(damage_per_tick)
-    elif body.has_method("take_damage"):
-        body.take_damage(damage_per_tick)
+	if not is_instance_valid(body):
+		return
+
+	if body.has_method("take_armor_damage"):
+		body.take_armor_damage(damage_per_tick)
+	elif body.has_method("take_damage"):
+		body.take_damage(damage_per_tick)
+
 
 func apply_burn(body: Node2D) -> void:
-    burning_bodies[body] = {
-        "timer": burn_duration,
-        "tick_timer": 0.0
-    }
-    if body.has_method("set_burn_visual"):
-        body.set_burn_visual(true)
+	burning_bodies[body] = {
+		"timer": burn_duration,
+		"tick_timer": 0.0
+	}
+
+	if body.has_method("set_burn_visual"):
+		body.set_burn_visual(true)
+
 
 func _process_burn(delta: float) -> void:
-    var to_remove : Array = []
+	var to_remove : Array = []
 
-    for body in burning_bodies.keys():
-        if not is_instance_valid(body):
-            to_remove.append(body)
-            continue
+	for body in burning_bodies.keys():
+		if not is_instance_valid(body):
+			to_remove.append(body)
+			continue
 
-        var data = burning_bodies[body]
-        data["timer"] -= delta
-        data["tick_timer"] += delta
+		var data = burning_bodies[body]
+		data["timer"] -= delta
+		data["tick_timer"] += delta
 
-        if data["tick_timer"] >= burn_tick_rate:
-            data["tick_timer"] = 0.0
-            if body.has_method("take_armor_damage"):
-                body.take_armor_damage(burn_damage)
-            elif body.has_method("take_damage"):
-                body.take_damage(burn_damage)
+		if data["tick_timer"] >= burn_tick_rate:
+			data["tick_timer"] = 0.0
 
-        if data["timer"] <= 0.0:
-            to_remove.append(body)
-            if is_instance_valid(body) and body.has_method("set_burn_visual"):
-                body.set_burn_visual(false)
+			if body.has_method("take_armor_damage"):
+				body.take_armor_damage(burn_damage)
+			elif body.has_method("take_damage"):
+				body.take_damage(burn_damage)
 
-    for body in to_remove:
-        burning_bodies.erase(body)
+		if data["timer"] <= 0.0:
+			to_remove.append(body)
+
+			if is_instance_valid(body) and body.has_method("set_burn_visual"):
+				body.set_burn_visual(false)
+
+	for body in to_remove:
+		burning_bodies.erase(body)
+
 
 func _draw() -> void:
-    var pulse = (sin(pulse_timer * 2.5) + 1.0) / 2.0
+	var pulse = (sin(pulse_timer * 2.5) + 1.0) / 2.0
 
-    draw_circle(Vector2.ZERO, fire_radius, Color(1.0, 0.15, 0.0, 0.08 + 0.05 * pulse))
-    draw_arc(Vector2.ZERO, fire_radius, 0, TAU, 64, Color(1.0, 0.35, 0.0, 0.6 + 0.4 * pulse), 3.0)
+	draw_circle(Vector2.ZERO, fire_radius, Color(1.0, 0.15, 0.0, 0.08 + 0.05 * pulse))
+	draw_arc(Vector2.ZERO, fire_radius, 0, TAU, 64, Color(1.0, 0.35, 0.0, 0.6 + 0.4 * pulse), 3.0)
 
-    var dash_count = 12
-    for i in range(dash_count):
-        var start_angle = (TAU / dash_count) * i + pulse_timer * 0.4
-        var end_angle = start_angle + (TAU / dash_count) * 0.5
-        draw_arc(Vector2.ZERO, fire_radius + 4.0, start_angle, end_angle, 10, Color(1.0, 0.6, 0.1, 0.8), 2.0)
+	var dash_count = 12
+	for i in range(dash_count):
+		var start_angle = (TAU / dash_count) * i + pulse_timer * 0.4
+		var end_angle = start_angle + (TAU / dash_count) * 0.5
+
+		draw_arc(
+			Vector2.ZERO,
+			fire_radius + 4.0,
+			start_angle,
+			end_angle,
+			10,
+			Color(1.0, 0.6, 0.1, 0.8),
+			2.0
+		)
