@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dkxxs5v05i6p4" path="res://Scenes/Map/attack_statue.tscn" id="12_m1klf"]
 [ext_resource type="PackedScene" uid="uid://dasja8vhvm4ig" path="res://Scenes/Floors/poison_box.tscn" id="12_ncuxn"]
 [ext_resource type="PackedScene" uid="uid://bibfcnoieqx4k" path="res://Scenes/Floors/firebox.tscn" id="13_m1klf"]
+[ext_resource type="PackedScene" uid="uid://des416ak1l8jm" path="res://Scenes/Enemies/Boss/grand_gello.tscn" id="14_r2tgc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2yfla"]
 texture = ExtResource("1_3sc00")
@@ -239,3 +240,6 @@ position = Vector2(470, 291)
 
 [node name="Firebox" parent="." unique_id=466292538 instance=ExtResource("13_m1klf")]
 position = Vector2(421, 341)
+
+[node name="GrandGello" parent="." unique_id=1408162063 instance=ExtResource("14_r2tgc")]
+position = Vector2(350, 92)

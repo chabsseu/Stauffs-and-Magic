@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://des416ak1l8jm"]
 
-[ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_dxfps"]
 [ext_resource type="Script" uid="uid://dy1bx723nl2db" path="res://Scripts/Enemies/Boss/grand_gello.gd" id="1_kqy14"]
 [ext_resource type="PackedScene" uid="uid://diravf6ro4s0l" path="res://Scenes/Enemies/Boss/boss_bullet.tscn" id="2_qw8uh"]
 [ext_resource type="PackedScene" uid="uid://b38gp36xx0yis" path="res://Scenes/Enemies/Boss/boss_puddle.tscn" id="3_7n8lb"]
 [ext_resource type="PackedScene" uid="uid://cb0kyqifl5o74" path="res://Scenes/Enemies/slime.tscn" id="3_wsfiu"]
+[ext_resource type="Texture2D" uid="uid://7ad0jit5f0ec" path="res://Assets/Enemies/Boss/Boss.png" id="5_sybyq"]
 [ext_resource type="Texture2D" uid="uid://clwrngsgt8qvi" path="res://Assets/UI/Health&Armor/BossHealthBar.png" id="6_sybyq"]
 [ext_resource type="Texture2D" uid="uid://bya82n82n0pj3" path="res://Assets/UI/Health&Armor/BossHealth.png" id="7_353xd"]
 [ext_resource type="Script" uid="uid://cn3s0secy6fqd" path="res://Scripts/Enemies/Boss/boss_health.gd" id="8_sybyq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_33sxi"]
-size = Vector2(42, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_353xd"]
+radius = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2mpaq"]
 radius = 544.0919
@@ -27,13 +27,15 @@ health_bar = NodePath("CanvasLayer/TextureProgressBar")
 label = NodePath("CanvasLayer/Label")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1615586033]
-scale = Vector2(0.34375, 0.265625)
-texture = ExtResource("1_dxfps")
+scale = Vector2(1.294, 1)
+texture = ExtResource("5_sybyq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=272001358]
-shape = SubResource("RectangleShape2D_33sxi")
+position = Vector2(0, 14)
+shape = SubResource("CircleShape2D_353xd")
 
 [node name="Detection_Area" type="Area2D" parent="." unique_id=1393360083]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area" unique_id=218577883]
 shape = SubResource("CircleShape2D_2mpaq")
