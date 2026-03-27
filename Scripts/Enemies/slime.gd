@@ -5,7 +5,7 @@ extends CharacterBody2D
 # =========================
 @export var max_health: int = 10
 @export var damage_node: PackedScene
-
+@export var hit: PackedScene
 # Patrol
 @export var patrol_radius: float = 200.0
 @export var patrol_speed: float = 100.0
@@ -205,7 +205,7 @@ func _on_shooting_area_body_exited(body: Node2D):
 # =========================
 # DAMAGE + STATUS EFFECT HANDLERS
 # =========================
-func take_damage(amount: int):
+func take_damage(amount: int, hit_direction: Vector2 = Vector2.ZERO):
 	# Damage popup
 	if damage_node:
 		var dmg = damage_node.instantiate()
@@ -215,10 +215,20 @@ func take_damage(amount: int):
 		dmg.global_position = global_position
 		get_parent().add_child(dmg)
 
+	# Hit particle — always spawns
+	if hit:
+		var hit_particle = hit.instantiate()
+		get_parent().add_child(hit_particle)
+		hit_particle.global_position = global_position
+		if hit_direction != Vector2.ZERO:
+			# hit_direction points FROM player TO enemy
+			# so using it directly blasts particles AWAY from player = behind the enemy
+			hit_particle.rotation = hit_direction.angle() - PI / 2
+		hit_particle.emitting = true
+
 	current_health -= amount
 	print("Enemy Health: %d" % current_health)
 
-	# Camera shake
 	var cam = get_viewport().get_camera_2d()
 	if cam and cam.has_method("shake"):
 		cam.shake(randf_range(2.5, 4.0))
@@ -227,7 +237,6 @@ func take_damage(amount: int):
 		if cam and cam.has_method("shake"):
 			cam.shake(randf_range(5.0, 8.0))
 		die()
-
 # =========================
 # STATUS EFFECT SIGNALS
 # =========================

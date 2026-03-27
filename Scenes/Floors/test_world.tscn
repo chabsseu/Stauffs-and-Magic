@@ -242,4 +242,8 @@ position = Vector2(470, 291)
 position = Vector2(421, 341)
 
 [node name="slime" parent="." unique_id=1706528063 instance=ExtResource("14_r2tgc")]
+<<<<<<< HEAD
 position = Vector2(531, 134)
+=======
+position = Vector2(325, 181)
+>>>>>>> 510f8de (added a impact effect)

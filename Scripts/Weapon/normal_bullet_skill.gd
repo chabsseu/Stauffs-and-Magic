@@ -21,8 +21,10 @@ func _process(delta: float):
 func _on_body_entered(body: Node2D):
 	if body.is_in_group("Enemy") or body.is_in_group("Boss") or body.is_in_group("Accessory"):
 		# Apply damage
+		var hit_dir = (body.global_position - global_position).normalized()
+		
 		if body.has_method("take_damage"):
-			body.take_damage(damage)
+			body.take_damage(damage, hit_dir)
 
 		# Apply status effect via getter
 		if has_status_effect and body.has_method("get_status_effects"):
