@@ -1,16 +1,2 @@
-<<<<<<< HEAD
-res://Scenes/Enemies/slime.tscn
-res://Scenes/Floors/test_world.tscn
-=======
-res://Scenes/UI/hit_particle.tscn
-res://Scripts/Enemies/slime.gd
-res://Scenes/Enemies/slime.tscn
-res://Scenes/Floors/test_world.tscn
-res://Scripts/Weapon/normal_bullet.gd
-res://Scripts/UI/hit_particle.gd
-res://Scripts/Weapon/force_bullet.gd
-res://Scripts/Weapon/iceball.gd
-res://Scripts/Weapon/iceball_skill.gd
-res://Scripts/Weapon/normal_bullet_skill.gd
-res://Scripts/Weapon/umbrel_bullet.gd
->>>>>>> 510f8de (added a impact effect)
+res://Scenes/Enemies/sloth.tscn
+res://Scenes/Enemies/spear_guy.tscn

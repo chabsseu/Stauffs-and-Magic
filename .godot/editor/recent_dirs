@@ -1,7 +1,7 @@
-<<<<<<< HEAD
+res://Assets/Enemies/apple/
+res://Assets/Enemies/cookie/
 res://Assets/Enemies/jello/
 res://Assets/Enemies/Boss/
-=======
 res://Scenes/UI/
 res://Scripts/UI/
 res://Scenes/Floors/
@@ -9,7 +9,6 @@ res://Scripts/Floor/
 res://Assets/MapAccessories/
 res://Scripts/Map/
 res://Scripts/Enemies/Boss/
->>>>>>> 510f8de (added a impact effect)
 res://Assets/UI/Health&Armor/
 res://Scripts/Map/
 res://Scenes/Floors/
@@ -21,10 +20,3 @@ res://
 res://Scenes/Map/
 res://Assets/MapAccessories/
 res://Assets/Tilemaps/
-res://Assets/UI/
-res://Scripts/Global/
-res://Scenes/Weapon/
-res://Assets/Alter/
-res://Assets/Weapon/
-res://Scripts/Weapon/
-res://Assets/Enemies/Weapons/
