@@ -218,12 +218,9 @@ func take_damage(amount: int, hit_direction: Vector2 = Vector2.ZERO):
 	# Hit particle — always spawns
 	if hit:
 		var hit_particle = hit.instantiate()
-		get_parent().add_child(hit_particle)
 		hit_particle.global_position = global_position
-		if hit_direction != Vector2.ZERO:
-			# hit_direction points FROM player TO enemy
-			# so using it directly blasts particles AWAY from player = behind the enemy
-			hit_particle.rotation = hit_direction.angle() - PI / 2
+		get_parent().add_child(hit_particle)
+		
 		hit_particle.emitting = true
 
 	current_health -= amount

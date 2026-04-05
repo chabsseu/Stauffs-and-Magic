@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var min_attack_distance: float = 25.0
 @export var retreat_distance: float = 250.0
 @export var damage: int
+@export var hit: PackedScene
 
 # Status effect
 @export var has_status_effect: bool = true
@@ -166,7 +167,7 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player = null
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, hit_direction: Vector2 = Vector2.ZERO) -> void:
 	if damage_node != null:
 		var damage_instance = damage_node.instantiate()
 		var label = damage_instance.get_node_or_null("Label")
@@ -174,6 +175,13 @@ func take_damage(amount: int) -> void:
 			label.text = str(amount)
 		damage_instance.global_position = global_position
 		get_parent().add_child(damage_instance)
+	
+	if hit:
+		var hit_particle = hit.instantiate()
+		hit_particle.global_position = global_position
+		get_parent().add_child(hit_particle)
+		
+		hit_particle.emitting = true
 
 	current_health -= amount
 	print("Enemy Health: %d" % current_health)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ca7k1a36pvbpc" path="res://Scripts/Enemies/spear_guy.gd" id="1_o0ygb"]
 [ext_resource type="PackedScene" uid="uid://djc871ia27m0" path="res://Scenes/UI/pop_up_daamge.tscn" id="2_1ky8i"]
 [ext_resource type="PackedScene" uid="uid://dniu5c5hqy2q" path="res://Scenes/Enemies/spear.tscn" id="2_o0ygb"]
+[ext_resource type="PackedScene" uid="uid://b1a3m4g8vhl3w" path="res://Scenes/UI/hit_particle.tscn" id="3_0bi1f"]
 [ext_resource type="PackedScene" uid="uid://b0o4iyyp7ovo2" path="res://Scenes/Map/mana_drop.tscn" id="3_5qmdx"]
 [ext_resource type="PackedScene" uid="uid://dw6vigp0l5qhu" path="res://Scenes/Map/coin.tscn" id="4_vvndu"]
 [ext_resource type="PackedScene" uid="uid://cdxjvk5hlsvah" path="res://Scenes/Map/food.tscn" id="5_0bi1f"]
@@ -20,6 +21,7 @@ radius = 310.1306
 script = ExtResource("1_o0ygb")
 damage_node = ExtResource("2_1ky8i")
 max_health = 5
+hit = ExtResource("3_0bi1f")
 reward_mana = ExtResource("3_5qmdx")
 coin_drop_scene = ExtResource("4_vvndu")
 food_drop_scene = ExtResource("5_0bi1f")

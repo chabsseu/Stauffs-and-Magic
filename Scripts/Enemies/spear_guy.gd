@@ -5,7 +5,7 @@ extends CharacterBody2D
 # =========================
 @export var damage_node: PackedScene
 @export var max_health: int = 10
-
+@export var hit: PackedScene
 # Patrol
 @export var patrol_radius: float = 200.0
 @export var patrol_speed: float = 100.0
@@ -162,7 +162,7 @@ func _pick_new_patrol_target() -> void:
 # =========================
 # DAMAGE SYSTEM
 # =========================
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, hit_direction: Vector2 = Vector2.ZERO) -> void:
 	if damage_node != null:
 		var dmg = damage_node.instantiate()
 		var label = dmg.get_node_or_null("Label")
@@ -183,6 +183,13 @@ func take_damage(amount: int) -> void:
 		if cam and cam.has_method("shake"):
 			cam.shake(randf_range(5.0, 8.0))
 		die()
+
+	if hit:
+		var hit_particle = hit.instantiate()
+		hit_particle.global_position = global_position
+		get_parent().add_child(hit_particle)
+		
+		hit_particle.emitting = true
 
 func die() -> void:
 	if reward_mana:
