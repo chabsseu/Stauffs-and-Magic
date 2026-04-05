@@ -5,6 +5,7 @@ var current_health = health
 var active = false
 
 @export var poison_scene: PackedScene
+@export var hit: PackedScene
 
 func _ready():
 	current_health = health
@@ -14,16 +15,26 @@ func _ready():
 	active = true
 
 
-func take_damage(amount: int):
+func take_damage(amount: int, hit_direction: Vector2 = Vector2.ZERO):
 	current_health -= amount
 
 	if poison_scene:
 		var poison = poison_scene.instantiate()
 		poison.global_position = global_position
 		get_parent().add_child(poison)
-
+		
+	# Hit particle — always spawns
+	if hit:
+		var hit_particle = hit.instantiate()
+		hit_particle.global_position = global_position
+		get_parent().add_child(hit_particle)
+		
+		hit_particle.emitting = true
+		
 	if current_health <= 0:
 		queue_free()
+
+	
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:

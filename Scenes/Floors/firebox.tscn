@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cdievs7e6bihb" path="res://Assets/MapAccessories/BoxFire.png" id="1_658bk"]
 [ext_resource type="Script" uid="uid://7hspr8i6ajgj" path="res://Scripts/Floor/firebox.gd" id="1_676oj"]
 [ext_resource type="PackedScene" uid="uid://208y1mgvx2en" path="res://Scenes/Floors/fire.tscn" id="2_u7hrl"]
+[ext_resource type="PackedScene" uid="uid://v338stbv6nih" path="res://Scenes/Map/box hit.tscn" id="3_2ljhh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_676oj"]
 size = Vector2(16, 16)
@@ -13,6 +14,7 @@ size = Vector2(14, 14)
 [node name="Firebox" type="CharacterBody2D" unique_id=466292538 groups=["Accessory"]]
 script = ExtResource("1_676oj")
 fire_scene = ExtResource("2_u7hrl")
+hit = ExtResource("3_2ljhh")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1489540049]
 texture = ExtResource("1_658bk")

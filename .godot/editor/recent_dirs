@@ -1,3 +1,4 @@
+res://Scenes/Map/
 res://Assets/Enemies/apple/
 res://Assets/Enemies/cookie/
 res://Assets/Enemies/jello/
@@ -17,6 +18,5 @@ res://Scenes/Enemies/Boss/
 res://Scenes/Enemies/
 res://Scripts/Enemies/
 res://
-res://Scenes/Map/
 res://Assets/MapAccessories/
 res://Assets/Tilemaps/

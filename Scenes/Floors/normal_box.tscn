@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://m3seydvy80tv" path="res://Scripts/Floor/normal_box.gd" id="1_etbkf"]
 [ext_resource type="Texture2D" uid="uid://b83jn43tev4xd" path="res://Assets/MapAccessories/Box.png" id="2_nw6dg"]
+[ext_resource type="PackedScene" uid="uid://v338stbv6nih" path="res://Scenes/Map/box hit.tscn" id="2_u52xb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlk27"]
 size = Vector2(14, 14)
@@ -11,6 +12,7 @@ size = Vector2(16, 16)
 
 [node name="NormalBox" type="CharacterBody2D" unique_id=1860661821 groups=["Accessory"]]
 script = ExtResource("1_etbkf")
+hit = ExtResource("2_u52xb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=222890113]
 texture = ExtResource("2_nw6dg")

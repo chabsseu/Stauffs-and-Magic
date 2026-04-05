@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ddwau2ge4xq6a" path="res://Scripts/Floor/poison_box.gd" id="1_3dq44"]
 [ext_resource type="Texture2D" uid="uid://vhtfpy160waq" path="res://Assets/MapAccessories/BoxPoison.png" id="1_8oujn"]
 [ext_resource type="PackedScene" uid="uid://exmlmiug3st4" path="res://Scenes/Floors/poison.tscn" id="2_ad8np"]
+[ext_resource type="PackedScene" uid="uid://v338stbv6nih" path="res://Scenes/Map/box hit.tscn" id="3_ad8np"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efaia"]
 size = Vector2(14, 14)
@@ -13,6 +14,7 @@ size = Vector2(16, 16)
 [node name="PoisonBox" type="CharacterBody2D" unique_id=1978215841 groups=["Accessory"]]
 script = ExtResource("1_3dq44")
 poison_scene = ExtResource("2_ad8np")
+hit = ExtResource("3_ad8np")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1346976365]
 texture = ExtResource("1_8oujn")
