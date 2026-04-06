@@ -24,6 +24,8 @@ extends CharacterBody2D
 @export var food_drop_scene : PackedScene
 @export var coin_drop_chance : float = 0.8   # 80% chance
 @export var food_drop_chance : float = 0.4   # 40% chance
+@export var item_drop_scene: PackedScene
+@export var item_drop_chance: float = 0.5 #50% chance
 # =========================
 # VARIABLES
 # =========================
@@ -279,6 +281,12 @@ func die():
 	# Drop food
 	if food_drop_scene and randf() < food_drop_chance:
 		var drop = food_drop_scene.instantiate()
+		drop.global_position = global_position
+		get_parent().add_child(drop)
+	
+	#item drop
+	if item_drop_scene and randf() < item_drop_chance:
+		var drop = item_drop_scene.instantiate()
 		drop.global_position = global_position
 		get_parent().add_child(drop)
 

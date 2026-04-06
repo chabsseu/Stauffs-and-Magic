@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dw6vigp0l5qhu" path="res://Scenes/Map/coin.tscn" id="4_ukjry"]
 [ext_resource type="PackedScene" uid="uid://cdxjvk5hlsvah" path="res://Scenes/Map/food.tscn" id="5_2utjo"]
 [ext_resource type="Texture2D" uid="uid://bdb2mr0mm2rsx" path="res://Assets/Enemies/cookie/cookie.png" id="6_ukjry"]
+[ext_resource type="PackedScene" uid="uid://dm1txdlkpfjn3" path="res://Scenes/Floors/cookie_crumble.tscn" id="7_366bp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2utjo"]
 
@@ -29,6 +30,7 @@ coin_drop_scene = ExtResource("4_ukjry")
 food_drop_scene = ExtResource("5_2utjo")
 coin_drop_chance = 0.25
 food_drop_chance = 0.25
+item_drop_scene = ExtResource("7_366bp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=465560140]
 position = Vector2(-0.2500019, -0.25)

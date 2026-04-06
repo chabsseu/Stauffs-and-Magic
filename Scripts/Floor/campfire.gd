@@ -19,7 +19,7 @@ func _input(event) -> void:
 			if ui.visible:
 				var screen_size = get_viewport().get_visible_rect().size
 				ui.global_position = screen_size / 2 - ui.size / 2
-				ui.refresh()
+				ui.refresh(global_position)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):

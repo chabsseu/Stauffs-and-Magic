@@ -13,6 +13,10 @@ extends Node2D
 @export var box_scenes : Array[PackedScene] = []
 @export var min_boxes_per_room : int = 3
 @export var max_boxes_per_room : int = 8
+@export var campfire_scene : PackedScene
+@export var slime_scene : PackedScene
+@export var apple_scene : PackedScene
+@export var cookie_crumble_scene : PackedScene
 
 const DUNGEON_WIDTH = 800
 const DUNGEON_HEIGHT = 800
@@ -29,6 +33,7 @@ var room_wave_data = {}
 var room_barriers = {}
 var boss_ref : Node = null
 var statue_room_index : int = -1
+var campfire_room_index : int = -1
 
 # --------------------------------------------------
 # READY
@@ -57,6 +62,9 @@ func _process(_delta):
 func create_room_trigger(room: Rect2, room_index: int):
 	if room_index == statue_room_index:
 		print("Skipping room trigger for statue room ", room_index)
+		return
+	if room_index == campfire_room_index:
+		print("Skipping room trigger for campfire room ", room_index)
 		return
 
 	var area = Area2D.new()
@@ -516,11 +524,12 @@ func place_boxes(rooms: Array[Rect2]):
 	for i in range(1, rooms.size() - 1):
 		if i == statue_room_index:
 			continue
+		if i == campfire_room_index:
+			continue
 
 		var room = rooms[i]
 		var box_count = randi_range(min_boxes_per_room, max_boxes_per_room)
 
-		# Pick 1-2 cluster centers per room
 		var cluster_count = randi_range(1, 2)
 		var clusters = []
 		var margin = 4
@@ -531,9 +540,9 @@ func place_boxes(rooms: Array[Rect2]):
 			))
 
 		var placed_positions : Array = []
-		var min_distance = 16.0  # minimum pixels between boxes
-		var spread = 2           # cluster tightness in tiles
-		var max_attempts = 20    # tries per box before giving up
+		var min_distance = 16.0
+		var spread = 2
+		var max_attempts = 20
 
 		for j in range(box_count):
 			var cluster = clusters[randi() % clusters.size()]
@@ -552,7 +561,6 @@ func place_boxes(rooms: Array[Rect2]):
 				)
 				var candidate = Vector2(tx, ty) * 16
 
-				# Check it's far enough from all already placed boxes
 				var too_close = false
 				for existing in placed_positions:
 					if candidate.distance_to(existing) < min_distance:
@@ -568,8 +576,8 @@ func place_boxes(rooms: Array[Rect2]):
 					placed = true
 					break
 
-			if not placed:
-				print("Could not place box ", j, " in room ", i, " after ", max_attempts, " attempts")
+			# if not placed:
+			# 	print("Could not place box ", j, " in room ", i, " after ", max_attempts, " attempts")
 
 func _roll_box_type() -> PackedScene:
 	if box_scenes.size() == 1:
@@ -583,6 +591,51 @@ func _roll_box_type() -> PackedScene:
 		return box_scenes[2]
 
 # --------------------------------------------------
+# CAMPFIRE
+# --------------------------------------------------
+func place_campfire(rooms: Array[Rect2]):
+	if randf() > 0.5:
+		print("No campfire this floor!")
+		return
+	if campfire_scene == null:
+		print("No campfire scene assigned!")
+		return
+
+	var eligible_rooms = rooms.slice(1, rooms.size() - 1)
+	if eligible_rooms.is_empty():
+		return
+
+	var available = eligible_rooms.filter(func(r):
+		return rooms.find(r) != statue_room_index
+	)
+	if available.is_empty():
+		return
+
+	var chosen_room = available[randi() % available.size()]
+	campfire_room_index = rooms.find(chosen_room)
+
+	var campfire = campfire_scene.instantiate()
+	campfire.position = chosen_room.get_center() * 16
+	add_child(campfire)
+
+	_spawn_campfire_ingredients(chosen_room)
+	print("Campfire spawned in room index: ", campfire_room_index)
+
+func _spawn_campfire_ingredients(room: Rect2):
+	var ingredient_scenes = [slime_scene, apple_scene, cookie_crumble_scene]
+	for scene in ingredient_scenes:
+		if scene == null:
+			continue
+		var count = randi_range(1, 2)
+		for i in range(count):
+			var item = scene.instantiate()
+			var margin = 3
+			var x = randi_range(int(room.position.x) + margin, int(room.end.x) - margin) * 16
+			var y = randi_range(int(room.position.y) + margin, int(room.end.y) - margin) * 16
+			item.position = Vector2(x, y)
+			add_child(item)
+
+# --------------------------------------------------
 # CREATE
 # --------------------------------------------------
 func create_dungeon():
@@ -593,6 +646,7 @@ func create_dungeon():
 	render_dungeon()
 	weapon_place(all_rooms)
 	place_statues(all_rooms)
+	place_campfire(all_rooms)
 	place_boxes(all_rooms)
 
 	if minimap:

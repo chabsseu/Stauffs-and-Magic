@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dw6vigp0l5qhu" path="res://Scenes/Map/coin.tscn" id="4_vvndu"]
 [ext_resource type="PackedScene" uid="uid://cdxjvk5hlsvah" path="res://Scenes/Map/food.tscn" id="5_0bi1f"]
 [ext_resource type="Texture2D" uid="uid://dw3c1x1gmhfep" path="res://Assets/Enemies/apple/apple.png" id="6_vvndu"]
+[ext_resource type="PackedScene" uid="uid://cqnpikw6r5thj" path="res://Scenes/Floors/apple.tscn" id="7_ty2id"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0bi1f"]
 
@@ -27,6 +28,7 @@ coin_drop_scene = ExtResource("4_vvndu")
 food_drop_scene = ExtResource("5_0bi1f")
 coin_drop_chance = 0.25
 food_drop_chance = 0.25
+item_drop_scene = ExtResource("7_ty2id")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1176820789]
 position = Vector2(0.5, 0)

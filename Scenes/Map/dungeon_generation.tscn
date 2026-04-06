@@ -16,8 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://bibfcnoieqx4k" path="res://Scenes/Floors/firebox.tscn" id="10_dkg07"]
 [ext_resource type="PackedScene" uid="uid://dasja8vhvm4ig" path="res://Scenes/Floors/poison_box.tscn" id="11_jwufn"]
 [ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="11_smyv6"]
+[ext_resource type="PackedScene" uid="uid://wcfijacx45v0" path="res://Scenes/Floors/campfire.tscn" id="12_qspmw"]
 [ext_resource type="PackedScene" uid="uid://cyk3fwxbnm4uf" path="res://Scenes/UI/stage_transition.tscn" id="12_r55y5"]
+[ext_resource type="PackedScene" uid="uid://dq2oqms8fpjtp" path="res://Scenes/Floors/slime.tscn" id="13_nl7hk"]
 [ext_resource type="PackedScene" uid="uid://dsh6imlitgt6j" path="res://Scenes/Map/minimap.tscn" id="13_wjcik"]
+[ext_resource type="PackedScene" uid="uid://cqnpikw6r5thj" path="res://Scenes/Floors/apple.tscn" id="14_n8d2p"]
+[ext_resource type="PackedScene" uid="uid://dm1txdlkpfjn3" path="res://Scenes/Floors/cookie_crumble.tscn" id="15_7sm57"]
 [ext_resource type="Script" uid="uid://ct60sn8rq7ewp" path="res://Scripts/Map/currency.gd" id="15_bd3ew"]
 [ext_resource type="Texture2D" uid="uid://byhlt5w10bt5k" path="res://Assets/MapAccessories/Gold.png" id="16_i01xb"]
 [ext_resource type="Texture2D" uid="uid://fgtatq2gfj12" path="res://Assets/MapAccessories/Food.png" id="17_mc0b8"]
@@ -53,6 +57,10 @@ boss_scenes = Array[PackedScene]([ExtResource("8_mc0b8")])
 box_scenes = Array[PackedScene]([ExtResource("9_kv37p"), ExtResource("10_dkg07"), ExtResource("11_jwufn")])
 min_boxes_per_room = 100
 max_boxes_per_room = 200
+campfire_scene = ExtResource("12_qspmw")
+slime_scene = ExtResource("13_nl7hk")
+apple_scene = ExtResource("14_n8d2p")
+cookie_crumble_scene = ExtResource("15_7sm57")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=130257482]
 tile_set = SubResource("TileSet_43nnj")
@@ -96,3 +104,5 @@ offset_bottom = 40.0
 script = ExtResource("15_bd3ew")
 coin_icon = ExtResource("16_i01xb")
 food_icon = ExtResource("17_mc0b8")
+
+[node name="Campfire" parent="." unique_id=495449087 instance=ExtResource("12_qspmw")]
