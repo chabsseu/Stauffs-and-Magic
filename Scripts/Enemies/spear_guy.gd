@@ -14,6 +14,7 @@ extends CharacterBody2D
 # Backoff
 @export var backoff_distance: float = 100.0
 @export var backoff_speed: float = 100.0
+@export var backoff_timeout: float = 0.8
 
 # Attack
 @export var attack_cooldown_time: float = 2.0
@@ -21,8 +22,9 @@ extends CharacterBody2D
 @export var reward_mana : PackedScene
 @export var coin_drop_scene : PackedScene
 @export var food_drop_scene : PackedScene
-@export var coin_drop_chance : float = 0.8   # 80% chance
-@export var food_drop_chance : float = 0.4   # 40% chance
+@export var coin_drop_chance : float = 0.8
+@export var food_drop_chance : float = 0.4
+
 # =========================
 # VARIABLES
 # =========================
@@ -41,6 +43,7 @@ var start_position: Vector2
 # Backoff
 var is_backing_off: bool = false
 var backoff_target: Vector2
+var backoff_timer: float = 0.0
 
 # Movement speed affected by status effects
 var current_speed: float
@@ -68,7 +71,6 @@ func _ready() -> void:
 	if animation_player == null:
 		push_error("⚠️ AnimationPlayer not found inside Spear scene!")
 
-	# Initialize StatusEffectManager
 	status_effects = StatusEffectManager.new()
 	status_effects.name = "status_effects"
 	add_child(status_effects)
@@ -76,38 +78,36 @@ func _ready() -> void:
 	status_effects.effect_started.connect(_on_effect_started)
 	status_effects.effect_ended.connect(_on_effect_ended)
 
-	# Connect signals
-	# attack_area.body_entered.connect(_on_attack_area_body_entered)
-	# attack_area.body_exited.connect(_on_attack_area_body_exited)
-	# detection_area.body_entered.connect(_on_detection_area_body_entered)
-	# detection_area.body_exited.connect(_on_detection_area_body_exited)
-
 	_pick_new_patrol_target()
 
 # =========================
 # MAIN LOOP
 # =========================
 func _physics_process(delta: float) -> void:
-	# Update status effects
-	#status_effects.update(delta)
+	if status_effects.has_effect(StatusEffectManager.EffectType.STUN):
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 
-	# Movement
 	if attacking:
 		velocity = Vector2.ZERO
 	elif is_backing_off:
-		var dir = (backoff_target - global_position)
-		if dir.length() > 0:
-			velocity = dir.normalized() * current_speed
-		else:
-			velocity = Vector2.ZERO
-		if global_position.distance_to(backoff_target) < 5.0:
+		backoff_timer -= delta
+
+		if backoff_timer <= 0.0 or global_position.distance_to(backoff_target) < 5.0:
 			is_backing_off = false
+			backoff_timer = 0.0
 			velocity = Vector2.ZERO
+		else:
+			var dir = (backoff_target - global_position)
+			if dir.length() > 0:
+				velocity = dir.normalized() * current_speed
+			else:
+				is_backing_off = false
 	elif chase and player != null:
 		var dir = (player.global_position - global_position)
 		velocity = dir.normalized() * current_speed
 	else:
-		# Patrol
 		if is_stopping:
 			stop_timer -= delta
 			velocity = Vector2.ZERO
@@ -126,7 +126,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	# Attack
 	if player_in_range and not attacking and not is_backing_off and attack_cooldown.time_left == 0:
 		attack()
 
@@ -148,6 +147,7 @@ func _start_backoff() -> void:
 	if player == null:
 		return
 	is_backing_off = true
+	backoff_timer = backoff_timeout
 	var move_dir = (global_position - player.global_position).normalized()
 	backoff_target = global_position + move_dir * backoff_distance
 
@@ -171,10 +171,15 @@ func take_damage(amount: int, hit_direction: Vector2 = Vector2.ZERO) -> void:
 		dmg.global_position = global_position
 		get_parent().add_child(dmg)
 
+	if hit:
+		var hit_particle = hit.instantiate()
+		hit_particle.global_position = global_position
+		get_parent().add_child(hit_particle)
+		hit_particle.emitting = true
+
 	current_health -= amount
 	print("Enemy Health: %d" % current_health)
 
-	# Camera shake
 	var cam = get_viewport().get_camera_2d()
 	if cam and cam.has_method("shake"):
 		cam.shake(randf_range(2.5, 4.0))
@@ -184,36 +189,26 @@ func take_damage(amount: int, hit_direction: Vector2 = Vector2.ZERO) -> void:
 			cam.shake(randf_range(5.0, 8.0))
 		die()
 
-	if hit:
-		var hit_particle = hit.instantiate()
-		hit_particle.global_position = global_position
-		get_parent().add_child(hit_particle)
-		
-		hit_particle.emitting = true
-
 func die() -> void:
 	if reward_mana:
 		var mana_count = randi_range(1, 3)
 		for i in range(mana_count):
 			var mana_drop = reward_mana.instantiate()
-			# Scatter them randomly around the chest
 			var offset = Vector2(randf_range(-40, 40), randf_range(-40, 40))
 			mana_drop.global_position = global_position + offset
 			get_parent().add_child(mana_drop)
 		print("Spawned ", mana_count, " mana drops!")
-	
-	# Drop coins
+
 	if coin_drop_scene and randf() < coin_drop_chance:
 		var drop = coin_drop_scene.instantiate()
 		drop.global_position = global_position
 		get_parent().add_child(drop)
 
-	# Drop food
 	if food_drop_scene and randf() < food_drop_chance:
 		var drop = food_drop_scene.instantiate()
 		drop.global_position = global_position
 		get_parent().add_child(drop)
-		
+
 	queue_free()
 
 # =========================
@@ -236,7 +231,6 @@ func _on_effect_ended(effect_type) -> void:
 # STATUS EFFECT GETTER
 # =========================
 func get_status_effects() -> StatusEffectManager:
-	# This allows projectiles to access the enemy's status effects
 	return status_effects
 
 # =========================
