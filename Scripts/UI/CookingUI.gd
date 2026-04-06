@@ -11,7 +11,7 @@ const RECIPES = {
 		"buff": "heal",
 		"duration": .5,
 		"value": 2,
-		"icon": preload("res://icon.svg") # change this to the official sprite 
+		"icon": preload("res://Assets/Stats/apple_heal.png") # change this to the official sprite 
 	},
 	"apple+cookie_crumble": {
 		"buff": "both",

@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://cqnpikw6r5thj"]
+[gd_scene format=3 uid="uid://c5wf2ju6x5w33"]
 
-[ext_resource type="Script" uid="uid://bioynspsftqep" path="res://Scripts/Floor/Ingredient.gd" id="1_i1kom"]
+[ext_resource type="Script" path="res://Scripts/Floor/Ingredient.gd" id="1_i1kom"]
 [ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="2_166y5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lqdfd"]
@@ -11,7 +11,7 @@ script = ExtResource("1_i1kom")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=138529835]
 modulate = Color(1, 0.32156864, 0, 1)
-scale = Vector2(0.15625, 0.15625)
+scale = Vector2(0.140625, 0.125)
 texture = ExtResource("2_166y5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=578055817]

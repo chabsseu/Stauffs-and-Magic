@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://xat2kg8xe0rg"]
+
+[ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="1_o16k2"]
+[ext_resource type="PackedScene" path="res://Scenes/Floors/campfire.tscn" id="2_g5enb"]
+[ext_resource type="PackedScene" path="res://Scenes/Floors/cookie_crumble.tscn" id="3_mlcga"]
+[ext_resource type="PackedScene" path="res://Scenes/Floors/slime.tscn" id="4_31l86"]
+[ext_resource type="PackedScene" uid="uid://c5wf2ju6x5w33" path="res://Scenes/Floors/apple.tscn" id="5_g5enb"]
+
+[node name="Node2D" type="Node2D" unique_id=936650630]
+
+[node name="Player" parent="." unique_id=500875389 instance=ExtResource("1_o16k2")]
+
+[node name="Campfire" parent="." unique_id=1986408141 instance=ExtResource("2_g5enb")]
+position = Vector2(270, -102)
+
+[node name="cookie_crumble" parent="." unique_id=1618177523 instance=ExtResource("3_mlcga")]
+position = Vector2(98, -117)
+
+[node name="slime" parent="." unique_id=2117078211 instance=ExtResource("4_31l86")]
+position = Vector2(-43, -99)
+ingredient_type = "slime"
+
+[node name="slime2" parent="." unique_id=1818464611 instance=ExtResource("4_31l86")]
+position = Vector2(3, -175)
+ingredient_type = "slime"
+
+[node name="cookie_crumble2" parent="." unique_id=1018845595 instance=ExtResource("3_mlcga")]
+position = Vector2(136, -160)
+
+[node name="apple" parent="." unique_id=1214497267 instance=ExtResource("5_g5enb")]
+position = Vector2(167, -9)
+ingredient_type = "apple"
+ingredient_color = Color(0.9999998, 0.012583689, 0.13708094, 1)

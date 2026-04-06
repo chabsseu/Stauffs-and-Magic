@@ -21,9 +21,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerState="*res://Scripts/Global/PlayerState.gd"
-StatusEffects="res://Scripts/Global/status_effects.gd"
-EnemyState="res://Scripts/Global/EnemyState.gd"
+StatusEffects="*uid://dkbrr6qote1oo"
 GameData="*uid://co4xijgcfxwmw"
+EnemyState="*uid://dkqw21gh3qgh8"
 IngredientBag="*uid://dp6y4m7uh47yv"
 
 [display]
