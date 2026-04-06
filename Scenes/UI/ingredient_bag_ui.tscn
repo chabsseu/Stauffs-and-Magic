@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://djj3gpv36r62c"]
+
+[ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_1v5ln"]
+[ext_resource type="Script" uid="uid://dc760cj5chyqn" path="res://Scripts/UI/IngredientBagUI.gd" id="1_5ibga"]
+
+[node name="IngredientBagUI" type="CanvasLayer" unique_id=1418056687]
+script = ExtResource("1_5ibga")
+
+[node name="Panel" type="Panel" parent="." unique_id=223856304]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.5
+offset_top = -323.0
+offset_right = 284.5
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1114378197]
+layout_mode = 0
+offset_right = 566.0
+offset_bottom = 647.0
+
+[node name="Ingredients" type="Label" parent="Panel/VBoxContainer" unique_id=1473547096]
+layout_mode = 2
+text = "Ingredients"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=809486222]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer" unique_id=306051385]
+modulate = Color(0, 0.67058825, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_1v5ln")
+
+[node name="Count" type="Label" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1670713981]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=1026296327]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer2" unique_id=33647637]
+modulate = Color(1, 0.08627451, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_1v5ln")
+
+[node name="Count" type="Label" parent="Panel/VBoxContainer/HBoxContainer2" unique_id=695020106]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=639481198]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer3" unique_id=790425476]
+modulate = Color(0.6862745, 0.19607843, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_1v5ln")
+
+[node name="Count" type="Label" parent="Panel/VBoxContainer/HBoxContainer3" unique_id=237421269]
+layout_mode = 2

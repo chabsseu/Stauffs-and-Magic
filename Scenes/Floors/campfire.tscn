@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://wcfijacx45v0"]
+
+[ext_resource type="Script" uid="uid://btjjbvu7n1fte" path="res://Scripts/Floor/campfire.gd" id="1_div3o"]
+[ext_resource type="Texture2D" uid="uid://b2qqk3pd2wim0" path="res://Assets/MapAccessories/Campfire.png" id="2_80s14"]
+[ext_resource type="PackedScene" uid="uid://cntukwbew52bp" path="res://Scenes/UI/CookingUI.tscn" id="3_80s14"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qy1of"]
+radius = 37.107952
+
+[node name="Campfire" type="Area2D" unique_id=495449087]
+script = ExtResource("1_div3o")
+cooking_ui = NodePath("CanvasLayer/Control")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=578700313]
+texture = ExtResource("2_80s14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1330255714]
+shape = SubResource("CircleShape2D_qy1of")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1340841794]
+
+[node name="Control" parent="CanvasLayer" unique_id=2103831581 instance=ExtResource("3_80s14")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

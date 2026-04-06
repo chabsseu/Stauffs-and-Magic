@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dq2oqms8fpjtp"]
+
+[ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_l2xnp"]
+[ext_resource type="Script" uid="uid://bioynspsftqep" path="res://Scripts/Floor/Ingredient.gd" id="1_l775f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l775f"]
+radius = 16.124516
+
+[node name="slime" type="Area2D" unique_id=2117078211]
+script = ExtResource("1_l775f")
+ingredient_type = "apple"
+ingredient_color = Color(0.91111773, 0, 0.18286982, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=678998574]
+modulate = Color(0, 1, 0.47058824, 1)
+scale = Vector2(0.140625, 0.125)
+texture = ExtResource("1_l2xnp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=643534015]
+shape = SubResource("CircleShape2D_l775f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

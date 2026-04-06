@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cpab81kahgtha"]
+
+[ext_resource type="PackedScene" uid="uid://wcfijacx45v0" path="res://Scenes/Floors/campfire.tscn" id="1_flpw8"]
+[ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="2_x26jx"]
+[ext_resource type="PackedScene" uid="uid://cqnpikw6r5thj" path="res://Scenes/Floors/apple.tscn" id="3_661mw"]
+[ext_resource type="PackedScene" uid="uid://dm1txdlkpfjn3" path="res://Scenes/Floors/cookie_crumble.tscn" id="4_xcttg"]
+[ext_resource type="PackedScene" uid="uid://dq2oqms8fpjtp" path="res://Scenes/Floors/slime.tscn" id="5_gixjg"]
+[ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="6_xcttg"]
+
+[node name="Node2D" type="Node2D" unique_id=547124210]
+
+[node name="Campfire" parent="." unique_id=495449087 instance=ExtResource("1_flpw8")]
+
+[node name="apple" parent="." unique_id=1214497267 instance=ExtResource("3_661mw")]
+position = Vector2(153, -13)
+
+[node name="apple2" parent="." unique_id=2101751933 instance=ExtResource("3_661mw")]
+position = Vector2(271, 38)
+
+[node name="apple3" parent="." unique_id=289554839 instance=ExtResource("3_661mw")]
+position = Vector2(190, 121)
+
+[node name="apple4" parent="." unique_id=277657217 instance=ExtResource("3_661mw")]
+position = Vector2(296, 147)
+
+[node name="cookie_crumble" parent="." unique_id=1618177523 instance=ExtResource("4_xcttg")]
+position = Vector2(425, -47)
+
+[node name="cookie_crumble2" parent="." unique_id=484048783 instance=ExtResource("4_xcttg")]
+position = Vector2(426, 4)
+
+[node name="cookie_crumble3" parent="." unique_id=271436875 instance=ExtResource("4_xcttg")]
+position = Vector2(370, -13)
+
+[node name="cookie_crumble4" parent="." unique_id=1554959556 instance=ExtResource("4_xcttg")]
+position = Vector2(327, -47)
+
+[node name="slime" parent="." unique_id=2117078211 instance=ExtResource("5_gixjg")]
+position = Vector2(522, 57)
+rotation = 1.5707964
+
+[node name="slime2" parent="." unique_id=1124322642 instance=ExtResource("5_gixjg")]
+position = Vector2(579, 100)
+rotation = 1.5707964
+
+[node name="slime3" parent="." unique_id=1499219566 instance=ExtResource("5_gixjg")]
+position = Vector2(515, 115)
+rotation = 1.5707964
+
+[node name="slime4" parent="." unique_id=1242148849 instance=ExtResource("5_gixjg")]
+position = Vector2(593, 42)
+rotation = 1.5707964
+
+[node name="WeaponPickup" parent="." unique_id=378548632 instance=ExtResource("6_xcttg")]
+position = Vector2(103, -78)
+
+[node name="Player" parent="." unique_id=500875389 instance=ExtResource("2_x26jx")]

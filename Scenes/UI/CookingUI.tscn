@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://cntukwbew52bp"]
+
+[ext_resource type="Script" uid="uid://bujwg1jmqg1ir" path="res://Scripts/UI/CookingUI.gd" id="1_apjml"]
+[ext_resource type="PackedScene" uid="uid://cim8fetd1kpeg" path="res://Scenes/Floors/cooked_food.tscn" id="2_wyu66"]
+
+[node name="Control" type="Control" unique_id=2103831581]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_right = -640.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_apjml")
+cooked_food_scene = ExtResource("2_wyu66")
+
+[node name="Panel" type="Panel" parent="." unique_id=920218871]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.0
+offset_top = -339.5
+offset_right = 275.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1385004778]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -85.25
+offset_right = 276.0
+offset_bottom = 208.75
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=2048039131]
+layout_mode = 2
+text = "Cooking"
+horizontal_alignment = 1
+
+[node name="Ingredients" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=96916861]
+layout_mode = 2
+
+[node name="SlimeBtn" type="Button" parent="Panel/VBoxContainer/Ingredients" unique_id=345640564]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Slime"
+
+[node name="AppleBtn" type="Button" parent="Panel/VBoxContainer/Ingredients" unique_id=1661035308]
+layout_mode = 2
+text = "Apple"
+
+[node name="CookieBtn" type="Button" parent="Panel/VBoxContainer/Ingredients" unique_id=533438014]
+layout_mode = 2
+text = "Cookie Crumble"
+
+[node name="Slots" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=1776047802]
+layout_mode = 2
+
+[node name="Slot1" type="Button" parent="Panel/VBoxContainer/Slots" unique_id=1801220669]
+layout_mode = 2
+text = "Slot1"
+
+[node name="Slot2" type="Button" parent="Panel/VBoxContainer/Slots" unique_id=1817926277]
+layout_mode = 2
+text = "Slot2"
+
+[node name="CookButton" type="Button" parent="Panel/VBoxContainer" unique_id=124383797]
+layout_mode = 2
+text = "COOK"
+
+[node name="ResultLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1235055427]
+layout_mode = 2

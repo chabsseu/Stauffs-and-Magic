@@ -92,6 +92,10 @@ func _input(event):
 		if event.is_action_pressed("hotbar%d" % (i + 1)):
 			equip(i)
 
+	# Use food
+	if event.is_action_pressed("use_food"):
+		_consume_food()
+
 	if current_weapon == null or current_slot == -1 or not can_fire:
 		return
 
@@ -102,6 +106,37 @@ func _input(event):
 		if cooldown[current_slot] <= 0.0:
 			current_weapon.skill()
 			cooldown[current_slot] = max_cooldown[current_slot]
+
+# -------------------------
+# Food
+# -------------------------
+func _consume_food() -> void:
+	if not IngredientBag.has_food():
+		print("No food to consume!")
+		return
+	var food = IngredientBag.consume_food()
+	if food.is_empty():
+		return
+	_apply_food_buff(food)
+
+func _apply_food_buff(food: Dictionary) -> void:
+	var base_speed = player_state.base_speed
+	var duration = food.get("duration", 10.0)
+	var value = food.get("value", 1.0)
+
+	if food["buff"] == "speed" or food["buff"] == "both":
+		player_state.speed = base_speed * value
+		get_tree().create_timer(duration).timeout.connect(func():
+			player_state.speed = base_speed
+		)
+
+	if food["buff"] == "damage" or food["buff"] == "both":
+		player_state.damage_multiplier = value
+		get_tree().create_timer(duration).timeout.connect(func():
+			player_state.damage_multiplier = 1.0
+		)
+
+	print("Buff applied: ", food["buff"], " for ", duration, "s")
 
 # -------------------------
 # Pickup
@@ -121,11 +156,9 @@ func try_pickup():
 func store_weapon_in_slot(slot: int):
 	var temp = pickup_weapon.weapon_scene.instantiate()
 
-	# Upgrade increments (safe check)
 	var atk_inc = temp.get_upgrade_damage_increase() if temp.has_method("get_upgrade_damage_increase") else 0.0
 	var skill_inc = temp.get_upgrade_skill_damage_increase() if temp.has_method("get_upgrade_skill_damage_increase") else 0.0
 
-	# Get base stats safely using get()
 	var base_attack  = temp.get("attack_damage") if temp.get("attack_damage") != null else 0.0
 	var base_skill   = temp.get("skill_damage")  if temp.get("skill_damage")  != null else 0.0
 	var base_cd      = temp.get("skill_cooldown") if temp.get("skill_cooldown") != null else 1.0

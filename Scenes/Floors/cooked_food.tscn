@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cim8fetd1kpeg"]
+
+[ext_resource type="Script" uid="uid://250ba0sx017b" path="res://Scripts/UI/CookedFood.gd" id="1_tmitw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdmqo"]
+radius = 27.45906
+
+[node name="CookedFood" type="Area2D" unique_id=885011361]
+script = ExtResource("1_tmitw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1365248077]
+scale = Vector2(0.1875, 0.15625)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2088310117]
+shape = SubResource("CircleShape2D_xdmqo")

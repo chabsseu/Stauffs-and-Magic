@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://l5hl2sus6yh8" path="res://Scripts/UI/camera_2d.gd" id="3_htcer"]
 [ext_resource type="Texture2D" uid="uid://bj74em60yojnr" path="res://Assets/UI/cooldown.png" id="4_htcer"]
 [ext_resource type="PackedScene" uid="uid://ciwy7dfadp2tp" path="res://Scenes/UI/health_armor.tscn" id="4_mtuoh"]
+[ext_resource type="PackedScene" uid="uid://djj3gpv36r62c" path="res://Scenes/UI/ingredient_bag_ui.tscn" id="6_dd0ac"]
+[ext_resource type="PackedScene" uid="uid://bif1w6n8f478s" path="res://Scenes/UI/food_slot_ui.tscn" id="7_0u5uq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
 
@@ -134,6 +136,10 @@ fill_mode = 5
 texture_progress = ExtResource("4_htcer")
 
 [node name="WeaponSocket" type="Node2D" parent="." unique_id=1654974788]
+
+[node name="IngredientBagUI" parent="." unique_id=1418056687 instance=ExtResource("6_dd0ac")]
+
+[node name="FoodSlotUI" parent="." unique_id=1832896472 instance=ExtResource("7_0u5uq")]
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="area_exited" from="PickupArea" to="." method="_on_pickup_area_area_exited"]
