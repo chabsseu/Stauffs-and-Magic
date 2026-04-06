@@ -65,6 +65,13 @@ func armor_regen(amount: int) -> void:
 	armorChanged.emit()
 	print("Armor Healed:", current_armor)
 
+func heal(amount: int) -> void:
+	current_health += amount
+	if current_health > max_health:
+		current_health = max_health
+	healthChanged.emit()  # Also emit signal to notify UI or others
+	print("Healed! Current health:", current_health)
+	
 func use_mana(amount: int) -> bool:
 	if current_mana >= amount:
 		current_mana -= amount

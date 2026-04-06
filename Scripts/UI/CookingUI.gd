@@ -5,19 +5,19 @@ const RECIPES = {
 		"buff": "speed",
 		"duration": 30.0,
 		"value": 1.5,
-		"icon": preload("res://icon.svg")
+		"icon": preload("res://icon.svg") # change this to the official sprite
 	},
 	"cookie_crumble+slime": {
-		"buff": "damage",
-		"duration": 30.0,
-		"value": 1.5,
-		"icon": preload("res://icon.svg")
+		"buff": "heal",
+		"duration": 1,
+		"value": 2,
+		"icon": preload("res://icon.svg") # change this to the official sprite 
 	},
 	"apple+cookie_crumble": {
 		"buff": "both",
 		"duration": 20.0,
 		"value": 1.3,
-		"icon": preload("res://icon.svg")
+		"icon": preload("res://icon.svg") # change this to the official sprite
 	}
 }
 

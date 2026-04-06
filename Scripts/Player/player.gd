@@ -130,10 +130,10 @@ func _apply_food_buff(food: Dictionary) -> void:
 			player_state.speed = base_speed
 		)
 
-	if food["buff"] == "damage" or food["buff"] == "both":
-		player_state.damage_multiplier = value
+	if food["buff"] == "heal" or food["buff"] == "both":
+		player_state.heal(value)
 		get_tree().create_timer(duration).timeout.connect(func():
-			player_state.damage_multiplier = 1.0
+			pass
 		)
 
 	print("Buff applied: ", food["buff"], " for ", duration, "s")

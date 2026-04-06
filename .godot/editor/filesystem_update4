@@ -1,2 +1,5 @@
 res://Scenes/UI/CookingUI.tscn
 res://Scenes/Floors/cooked_food.tscn
+res://Scripts/Global/PlayerState.gd
+res://Scripts/Player/player.gd
+res://Scripts/UI/CookingUI.gd
