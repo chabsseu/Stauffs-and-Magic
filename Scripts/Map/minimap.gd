@@ -16,7 +16,8 @@ const COLOR_PORTAL        = Color(0.4, 1.0, 0.9, 1.0)
 const COLOR_BORDER        = Color(0.6, 0.35, 0.9, 1.0)
 const COLOR_END_ROOM      = Color(1.0, 0.4, 0.4, 0.8)
 const COLOR_STATUE_ROOM   = Color(1.0, 0.85, 0.2, 0.95)
-const COLOR_BOSS_ROOM 	  = Color(1.0, 0.5, 0.0, 0.9)
+const COLOR_BOSS_ROOM     = Color(1.0, 0.5, 0.0, 0.9)
+const COLOR_CAMPFIRE_ROOM = Color(1.0, 0.6, 0.1, 0.95)
 
 # --------------------------------------------------
 # DATA
@@ -25,6 +26,7 @@ var dungeon_grid = []
 var all_rooms : Array[Rect2] = []
 var end_room : Rect2
 var statue_room_index : int = -1
+var campfire_room_index : int = -1
 
 var player_ref : CharacterBody2D
 var portal_ref : Node2D
@@ -58,15 +60,18 @@ func _ready():
 	custom_minimum_size = MINIMAP_SIZE
 
 # --------------------------------------------------
-# PROCESS (AUTO STATUE DETECTION)
+# PROCESS
 # --------------------------------------------------
 func _process(_delta):
-
-	# 🔥 Automatically detect statue room entry
 	if is_instance_valid(player_ref) and statue_room_index != -1:
 		var current_room = _get_room_from_world(player_ref.position)
 		if current_room == statue_room_index:
 			visit_room(statue_room_index)
+
+	if is_instance_valid(player_ref) and campfire_room_index != -1:
+		var current_room = _get_room_from_world(player_ref.position)
+		if current_room == campfire_room_index:
+			visit_room(campfire_room_index)
 
 	if _corridors_dirty:
 		_rebuild_visited_corridors()
@@ -90,7 +95,6 @@ func setup_minimap():
 func visit_room(room_index: int):
 	if room_index == -1:
 		return
-
 	if not visited_rooms.has(room_index):
 		visited_rooms.append(room_index)
 	_corridors_dirty = true
@@ -102,15 +106,19 @@ func set_statue_room(room_index: int):
 	statue_room_index = room_index
 
 # --------------------------------------------------
+# SET CAMPFIRE ROOM
+# --------------------------------------------------
+func set_campfire_room(room_index: int):
+	campfire_room_index = room_index
+
+# --------------------------------------------------
 # ROOM FROM PLAYER WORLD POSITION
 # --------------------------------------------------
 func _get_room_from_world(world_pos: Vector2) -> int:
 	var tile_pos = world_pos / 16.0
-
 	for i in range(all_rooms.size()):
 		if all_rooms[i].has_point(tile_pos):
 			return i
-
 	return -1
 
 # --------------------------------------------------
@@ -243,11 +251,12 @@ func _draw():
 
 		var room = all_rooms[i]
 		var rect = Rect2(_to_map(room.position), room.size * _scale)
-
 		var color_to_draw : Color = COLOR_VISITED_FLOOR
 
 		if i == statue_room_index:
 			color_to_draw = COLOR_STATUE_ROOM
+		elif i == campfire_room_index:
+			color_to_draw = COLOR_CAMPFIRE_ROOM
 		elif all_rooms[i] == end_room:
 			color_to_draw = COLOR_END_ROOM
 

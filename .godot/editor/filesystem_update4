@@ -1,0 +1,4 @@
+res://Scenes/UI/ingredient_bag_ui.tscn
+res://Scenes/UI/node_2d.tscn
+res://Scripts/Map/dungeon_generation.gd
+res://Scripts/Map/minimap.gd

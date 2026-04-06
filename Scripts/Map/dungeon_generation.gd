@@ -618,6 +618,10 @@ func place_campfire(rooms: Array[Rect2]):
 	campfire.position = chosen_room.get_center() * 16
 	add_child(campfire)
 
+	if minimap:
+		minimap.set_campfire_room(campfire_room_index)  # ← add this
+	print("Campfire spawned in room index: ", campfire_room_index)
+
 	_spawn_campfire_ingredients(chosen_room)
 	print("Campfire spawned in room index: ", campfire_room_index)
 

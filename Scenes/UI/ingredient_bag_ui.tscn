@@ -36,6 +36,7 @@ layout_mode = 2
 modulate = Color(0, 0.67058825, 0, 1)
 layout_mode = 2
 texture = ExtResource("1_1v5ln")
+stretch_mode = 4
 
 [node name="Count" type="Label" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1670713981]
 layout_mode = 2
