@@ -9,7 +9,7 @@ const RECIPES = {
 	},
 	"cookie_crumble+slime": {
 		"buff": "heal",
-		"duration": 1,
+		"duration": .5,
 		"value": 2,
 		"icon": preload("res://icon.svg") # change this to the official sprite 
 	},
