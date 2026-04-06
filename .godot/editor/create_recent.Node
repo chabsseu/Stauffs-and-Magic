@@ -1,14 +1,14 @@
+CollisionShape2D
+Area2D
+CharacterBody2D
 Sprite2D
 TextureRect
 Panel
 HBoxContainer
 CanvasLayer
-CollisionShape2D
-Area2D
 Label
 Button
 VBoxContainer
 Control
 CPUParticles2D
-CharacterBody2D
 LightOccluder2D
