@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_1v5ln"]
 [ext_resource type="Script" uid="uid://dc760cj5chyqn" path="res://Scripts/UI/IngredientBagUI.gd" id="1_5ibga"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_5ibga"]
+font_size = 50
+
 [node name="IngredientBagUI" type="CanvasLayer" unique_id=1418056687]
 script = ExtResource("1_5ibga")
 
@@ -27,6 +30,7 @@ offset_bottom = 647.0
 [node name="Ingredients" type="Label" parent="Panel/VBoxContainer" unique_id=1473547096]
 layout_mode = 2
 text = "Ingredients"
+label_settings = SubResource("LabelSettings_5ibga")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=809486222]
