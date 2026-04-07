@@ -1,5 +1,6 @@
-res://Scenes/UI/
 res://Scenes/Floors/
+res://Assets/Tilemaps/
+res://Scenes/UI/
 res://
 res://Scripts/UI/
 res://Scripts/Floor/
@@ -16,5 +17,4 @@ res://Scenes/Enemies/Boss/
 res://Scenes/Enemies/
 res://Scripts/Enemies/
 res://Scenes/Map/
-res://Assets/Tilemaps/
 res://Assets/UI/

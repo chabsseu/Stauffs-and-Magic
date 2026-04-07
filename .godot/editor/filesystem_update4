@@ -4,3 +4,4 @@ res://Scripts/UI/CookedFood.gd
 res://Scripts/UI/CookingUI.gd
 res://Scenes/UI/node_2d.tscn
 res://Scenes/UI/food_slot_ui.tscn
+res://Scenes/Floors/starting_room.tscn
