@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-res://Scenes/Floors/test_floor.tscn
-res://Scripts/Global/IngredientBag.gd
-res://Scripts/UI/CookingUI.gd
 res://Scenes/Floors/apple.tscn
-res://Scripts/UI/CookedFood.gd
-=======
 res://Scenes/UI/ingredient_bag_ui.tscn
-res://Scenes/UI/node_2d.tscn
-res://Scripts/Map/dungeon_generation.gd
-res://Scripts/Map/minimap.gd
+res://Scripts/UI/CookedFood.gd
 res://Scripts/UI/CookingUI.gd
->>>>>>> b8a3349 (adjusted the font size)
+res://Scenes/UI/node_2d.tscn
+res://Scenes/UI/food_slot_ui.tscn

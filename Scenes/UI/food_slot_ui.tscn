@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bif1w6n8f478s"]
 
 [ext_resource type="Script" uid="uid://chvu2irk3jefl" path="res://Scripts/UI/food_slot_ui.gd" id="1_wvru7"]
+[ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="2_quygp"]
 
 [node name="FoodSlotUI" type="CanvasLayer" unique_id=1832896472]
 script = ExtResource("1_wvru7")
@@ -24,12 +25,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 103.0
-offset_top = -7.0
-offset_right = 231.0
-offset_bottom = -11.0
+offset_left = 138.0
+offset_top = 64.0
+offset_right = 182.0
+offset_bottom = -27.5
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_quygp")
+expand_mode = 1
 
 [node name="Slot2" type="Panel" parent="FoodSlots" unique_id=1738287593]
 layout_mode = 2
@@ -39,9 +42,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 256.0
-offset_top = -7.0
-offset_right = 384.0
-offset_bottom = -11.0
+offset_left = 194.0
+offset_top = 64.0
+offset_right = 236.0
+offset_bottom = -29.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_quygp")
+expand_mode = 1

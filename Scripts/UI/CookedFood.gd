@@ -15,7 +15,7 @@ func setup(data: Dictionary) -> void:
 		sprite.modulate = Color(1, 1, 1)
 
 		# 🔥 AUTO SCALE SYSTEM
-		var target_size: float = 32.0
+		var target_size: float = 16.0
 
 		var tex_size: Vector2 = sprite.texture.get_size()
 		if tex_size.x > 0.0 and tex_size.y > 0.0:
