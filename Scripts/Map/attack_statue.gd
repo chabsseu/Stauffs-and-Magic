@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 @onready var prompt_label: Label = $Detection_area/Label
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 var player_nearby: bool = false
@@ -21,7 +20,16 @@ func open_forge():
 		return
 	if not forge_ui.is_connected("upgrade_confirmed", Callable(self, "_on_upgrade_confirmed")):
 		forge_ui.connect("upgrade_confirmed", Callable(self, "_on_upgrade_confirmed"))
-	forge_ui.open("damage")
+	var cost = calculate_forge_cost()
+	forge_ui.open("damage", cost)
+
+func calculate_forge_cost() -> int:
+	var floor_number = GameData.floor
+	var base_cost = 10
+	var scale_per_floor = 8
+	var random_variance = randi_range(-3, 5)
+	var cost = base_cost + (floor_number - 1) * scale_per_floor + random_variance
+	return max(5, cost)
 
 func _on_upgrade_confirmed():
 	used = true

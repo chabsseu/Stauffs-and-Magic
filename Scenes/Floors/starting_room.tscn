@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="4_4lp6s"]
 [ext_resource type="PackedScene" uid="uid://cfk5s3k8305wb" path="res://Scenes/Map/start_portal.tscn" id="5_s3p44"]
 [ext_resource type="PackedScene" uid="uid://c4jy6ets143vs" path="res://Scenes/Floors/normal_box.tscn" id="6_017m2"]
+[ext_resource type="PackedScene" uid="uid://dkxxs5v05i6p4" path="res://Scenes/Map/attack_statue.tscn" id="7_uie2p"]
+[ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="8_6eco8"]
+[ext_resource type="PackedScene" uid="uid://dsh6imlitgt6j" path="res://Scenes/Map/minimap.tscn" id="10_cnv70"]
+[ext_resource type="Script" uid="uid://ct60sn8rq7ewp" path="res://Scripts/Map/currency.gd" id="11_hcyod"]
+[ext_resource type="Texture2D" uid="uid://byhlt5w10bt5k" path="res://Assets/MapAccessories/Gold.png" id="12_bn3h0"]
+[ext_resource type="PackedScene" uid="uid://6x6c34ddudyr" path="res://Scenes/Map/cooldown_statue.tscn" id="13_hcyod"]
+[ext_resource type="Texture2D" uid="uid://fgtatq2gfj12" path="res://Assets/MapAccessories/Food.png" id="13_oaupj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4lp6s"]
 texture = ExtResource("1_hlvb5")
@@ -132,3 +139,37 @@ position = Vector2(382, 121)
 
 [node name="NormalBox18" parent="boxes" unique_id=1831697724 instance=ExtResource("6_017m2")]
 position = Vector2(366, 121)
+
+[node name="attack_statue" parent="." unique_id=293202240 instance=ExtResource("7_uie2p")]
+position = Vector2(233, 245)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=359861456]
+
+[node name="Forge" parent="CanvasLayer" unique_id=1896441417 instance=ExtResource("8_6eco8")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MinimapLayer" type="CanvasLayer" parent="." unique_id=2034643533]
+
+[node name="minimap" parent="MinimapLayer" unique_id=2051362197 instance=ExtResource("10_cnv70")]
+
+[node name="Currency" type="Control" parent="MinimapLayer" unique_id=1537477139]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_hcyod")
+coin_icon = ExtResource("12_bn3h0")
+food_icon = ExtResource("13_oaupj")
+
+[node name="cooldown_statue" parent="." unique_id=27460892 instance=ExtResource("13_hcyod")]
+position = Vector2(53, 248)

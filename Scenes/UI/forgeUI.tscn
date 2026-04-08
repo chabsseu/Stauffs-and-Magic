@@ -64,20 +64,29 @@ horizontal_alignment = 1
 [node name="upgrade_button" type="Button" parent="Panel" unique_id=632045407]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 90.0
-offset_top = 205.0
-offset_right = 165.0
-offset_bottom = 236.0
+offset_left = 89.0
+offset_top = 233.0
+offset_right = 164.0
+offset_bottom = 264.0
 text = "Upgrade"
+autowrap_trim_flags = 0
 
 [node name="close_button" type="Button" parent="Panel" unique_id=33533179]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 101.0
-offset_top = 241.0
-offset_right = 151.0
-offset_bottom = 272.0
+offset_left = 102.0
+offset_top = 269.0
+offset_right = 152.0
+offset_bottom = 300.0
 text = "Close"
+
+[node name="cost_label" type="Label" parent="Panel" unique_id=88959300]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 185.0
+offset_right = 256.0
+offset_bottom = 208.0
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Panel/upgrade_button" to="." method="_on_upgrade_button_pressed"]
 [connection signal="pressed" from="Panel/close_button" to="." method="_on_close_button_pressed"]
