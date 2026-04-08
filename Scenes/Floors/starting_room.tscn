@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="3_u4jfv"]
 [ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="4_4lp6s"]
 [ext_resource type="PackedScene" uid="uid://cfk5s3k8305wb" path="res://Scenes/Map/start_portal.tscn" id="5_s3p44"]
+[ext_resource type="PackedScene" uid="uid://c4jy6ets143vs" path="res://Scenes/Floors/normal_box.tscn" id="6_017m2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4lp6s"]
 texture = ExtResource("1_hlvb5")
@@ -67,7 +68,7 @@ layer_1/tile_data = PackedInt32Array(1245184, 131072, 4, 1245185, 196608, 4, 124
 layer_2/name = "Overlay"
 
 [node name="Player" parent="." unique_id=500875389 instance=ExtResource("2_u4jfv")]
-position = Vector2(52, 19)
+position = Vector2(33, 22)
 
 [node name="WeaponPickup" parent="." unique_id=378548632 instance=ExtResource("3_u4jfv")]
 position = Vector2(328, 98)
@@ -75,3 +76,59 @@ possible_weapons = Array[PackedScene]([ExtResource("4_4lp6s")])
 
 [node name="StartPortal" parent="." unique_id=1138032454 instance=ExtResource("5_s3p44")]
 position = Vector2(301, 165)
+
+[node name="boxes" type="Node" parent="." unique_id=1396665100]
+
+[node name="NormalBox" parent="boxes" unique_id=1860661821 instance=ExtResource("6_017m2")]
+position = Vector2(147, 257)
+
+[node name="NormalBox2" parent="boxes" unique_id=86890155 instance=ExtResource("6_017m2")]
+position = Vector2(147, 225)
+
+[node name="NormalBox3" parent="boxes" unique_id=724349807 instance=ExtResource("6_017m2")]
+position = Vector2(147, 241)
+
+[node name="NormalBox4" parent="boxes" unique_id=1598609173 instance=ExtResource("6_017m2")]
+position = Vector2(131, 241)
+
+[node name="NormalBox5" parent="boxes" unique_id=553279893 instance=ExtResource("6_017m2")]
+position = Vector2(131, 257)
+
+[node name="NormalBox6" parent="boxes" unique_id=2070987968 instance=ExtResource("6_017m2")]
+position = Vector2(115, 257)
+
+[node name="NormalBox7" parent="boxes" unique_id=342561105 instance=ExtResource("6_017m2")]
+position = Vector2(344, 232)
+
+[node name="NormalBox8" parent="boxes" unique_id=1918466785 instance=ExtResource("6_017m2")]
+position = Vector2(344, 200)
+
+[node name="NormalBox9" parent="boxes" unique_id=471640833 instance=ExtResource("6_017m2")]
+position = Vector2(344, 216)
+
+[node name="NormalBox10" parent="boxes" unique_id=1764401467 instance=ExtResource("6_017m2")]
+position = Vector2(328, 216)
+
+[node name="NormalBox11" parent="boxes" unique_id=62853535 instance=ExtResource("6_017m2")]
+position = Vector2(328, 232)
+
+[node name="NormalBox12" parent="boxes" unique_id=1827045456 instance=ExtResource("6_017m2")]
+position = Vector2(312, 232)
+
+[node name="NormalBox13" parent="boxes" unique_id=73395120 instance=ExtResource("6_017m2")]
+position = Vector2(398, 121)
+
+[node name="NormalBox14" parent="boxes" unique_id=316308950 instance=ExtResource("6_017m2")]
+position = Vector2(312, 216)
+
+[node name="NormalBox15" parent="boxes" unique_id=996312024 instance=ExtResource("6_017m2")]
+position = Vector2(398, 105)
+
+[node name="NormalBox16" parent="boxes" unique_id=1505950112 instance=ExtResource("6_017m2")]
+position = Vector2(328, 200)
+
+[node name="NormalBox17" parent="boxes" unique_id=998964316 instance=ExtResource("6_017m2")]
+position = Vector2(382, 121)
+
+[node name="NormalBox18" parent="boxes" unique_id=1831697724 instance=ExtResource("6_017m2")]
+position = Vector2(366, 121)

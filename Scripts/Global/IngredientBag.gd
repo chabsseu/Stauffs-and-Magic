@@ -3,7 +3,7 @@ extends Node
 signal bag_changed
 signal food_changed
 
-const MAX_PER_INGREDIENT = 5
+const MAX_PER_INGREDIENT = 99
 
 var ingredients = {
 	"slime": 0,

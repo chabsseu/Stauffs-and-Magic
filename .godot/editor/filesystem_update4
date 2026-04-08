@@ -3,3 +3,5 @@ res://Scenes/Map/start_portal.tscn
 res://Scripts/Map/start_portal.gd
 res://Scripts/Map/dungeon_generation.gd
 res://Scenes/Map/dungeon_generation.tscn
+res://Scripts/Global/IngredientBag.gd
+res://Scenes/Player/player.tscn
