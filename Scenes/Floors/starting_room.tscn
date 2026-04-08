@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://lw0rojoio33q"]
+[gd_scene format=3 uid="uid://cktk4t68bc41"]
 
 [ext_resource type="Texture2D" uid="uid://blw7wkta0c20d" path="res://Assets/Tilemaps/Tilemap.png" id="1_hlvb5"]
 [ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="2_u4jfv"]
@@ -140,6 +140,7 @@ position = Vector2(366, 121)
 [node name="MinimapLayer" type="CanvasLayer" parent="." unique_id=2034643533]
 
 [node name="minimap" parent="MinimapLayer" unique_id=2051362197 instance=ExtResource("10_cnv70")]
+metadata/_edit_use_anchors_ = true
 
 [node name="Currency" type="Control" parent="MinimapLayer" unique_id=1537477139]
 layout_mode = 3
@@ -149,3 +150,4 @@ offset_bottom = 40.0
 script = ExtResource("11_hcyod")
 coin_icon = ExtResource("12_bn3h0")
 food_icon = ExtResource("13_oaupj")
+metadata/_edit_use_anchors_ = true

@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Stauffs and Magic"
-run/main_scene="uid://lw0rojoio33q"
+run/main_scene="uid://cktk4t68bc41"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,8 +23,8 @@ config/icon="res://icon.svg"
 
 PlayerState="*res://Scripts/Global/PlayerState.gd"
 StatusEffects="*uid://dkbrr6qote1oo"
-EnemyState="*uid://dkqw21gh3qgh8"
 GameData="*uid://co4xijgcfxwmw"
+EnemyState="*uid://dkqw21gh3qgh8"
 IngredientBag="*uid://dp6y4m7uh47yv"
 
 [display]

@@ -26,10 +26,10 @@ func close():
     visible = false
 
 func refresh_ui():
-    coins_label.text = "Coins: %d 🪙" % GameData.coins
-    food_label.text = "Food: %d 🍔" % GameData.food
-    rate_label.text = "Rate: %d 🪙 = 1 🍔" % COINS_PER_FOOD
-    amount_label.text = "x%d  (costs %d 🪙)" % [amount, amount * COINS_PER_FOOD]
+    coins_label.text = "Coins: %d" % GameData.coins
+    food_label.text = "Food: %d" % GameData.food
+    rate_label.text = "Rate: %d= 1" % COINS_PER_FOOD
+    amount_label.text = "x%d  (costs %d)" % [amount, amount * COINS_PER_FOOD]
 
     # Disable convert if can't afford
     var can_afford = GameData.coins >= amount * COINS_PER_FOOD
