@@ -23,7 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://dm1txdlkpfjn3" path="res://Scenes/Floors/cookie_crumble.tscn" id="15_7sm57"]
 [ext_resource type="Script" uid="uid://ct60sn8rq7ewp" path="res://Scripts/Map/currency.gd" id="15_bd3ew"]
 [ext_resource type="Texture2D" uid="uid://byhlt5w10bt5k" path="res://Assets/MapAccessories/Gold.png" id="16_i01xb"]
+[ext_resource type="PackedScene" uid="uid://dy858vp7vsy74" path="res://Scenes/UI/altar_ui.tscn" id="16_nl7hk"]
 [ext_resource type="Texture2D" uid="uid://fgtatq2gfj12" path="res://Assets/MapAccessories/Food.png" id="17_mc0b8"]
+[ext_resource type="PackedScene" uid="uid://cwaqd4csrpqu3" path="res://Scenes/Floors/altar.tscn" id="26_n8d2p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpfl8"]
 texture = ExtResource("2_eo2qp")
@@ -41,11 +43,10 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_qpfl8")
 
-[node name="DungeonGeneration" type="Node2D" unique_id=944595626 node_paths=PackedStringArray("tilemap", "player", "weapon", "portal", "floor_transition", "minimap")]
+[node name="DungeonGeneration" type="Node2D" unique_id=944595626 node_paths=PackedStringArray("tilemap", "player", "portal", "floor_transition", "minimap")]
 script = ExtResource("1_ngs3x")
 tilemap = NodePath("TileMapLayer")
 player = NodePath("Player")
-weapon = NodePath("")
 enemy_scenes = Array[PackedScene]([ExtResource("2_q0kak"), ExtResource("3_j7ugi"), ExtResource("4_vidkv")])
 statue_scenes = Array[PackedScene]([ExtResource("5_vidkv"), ExtResource("6_smyv6")])
 chest_scenes = Array[PackedScene]([ExtResource("7_mc0b8")])
@@ -60,6 +61,7 @@ campfire_scene = ExtResource("12_qspmw")
 slime_scene = ExtResource("13_nl7hk")
 apple_scene = ExtResource("14_n8d2p")
 cookie_crumble_scene = ExtResource("15_7sm57")
+altar_scene = ExtResource("26_n8d2p")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=130257482]
 tile_set = SubResource("TileSet_43nnj")
@@ -85,6 +87,13 @@ offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="AltarUI" parent="CanvasLayer" unique_id=593576041 instance=ExtResource("16_nl7hk")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
 [node name="Portal" parent="." unique_id=111973993 instance=ExtResource("9_j7ugi")]
 
 [node name="StageTransition" parent="." unique_id=860889166 instance=ExtResource("12_r55y5")]
@@ -103,3 +112,5 @@ coin_icon = ExtResource("16_i01xb")
 food_icon = ExtResource("17_mc0b8")
 
 [node name="Campfire" parent="." unique_id=495449087 instance=ExtResource("12_qspmw")]
+
+[node name="Altar" parent="." unique_id=610699848 instance=ExtResource("26_n8d2p")]

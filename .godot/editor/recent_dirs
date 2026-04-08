@@ -1,11 +1,12 @@
+res://Scripts/UI/
+res://Scenes/UI/
+res://Scripts/Floor/
+res://Scenes/Floors/
+res://Assets/Alter/
 res://Scripts/Map/
 res://Scenes/Map/
-res://Scenes/Floors/
 res://Assets/Tilemaps/
-res://Scenes/UI/
 res://
-res://Scripts/UI/
-res://Scripts/Floor/
 res://Assets/MapAccessories/
 res://Scripts/Global/
 res://Assets/Enemies/jello/

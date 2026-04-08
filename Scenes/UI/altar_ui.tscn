@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://dy858vp7vsy74"]
+
+[ext_resource type="Script" uid="uid://ccmg0gth5jscs" path="res://Scripts/UI/altar_ui.gd" id="1_hh00f"]
+
+[node name="AltarUI" type="Control" unique_id=593576041 groups=["altar_ui"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hh00f")
+
+[node name="Panel" type="Panel" parent="." unique_id=2047204828]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -220.0
+offset_right = 160.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="Panel" unique_id=27629284]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 321.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 30
+text = "TRADE TO THE ALTAR"
+horizontal_alignment = 1
+
+[node name="rate_label" type="Label" parent="Panel" unique_id=977881434]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 83.0
+offset_right = 319.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 16
+text = "rate"
+horizontal_alignment = 1
+
+[node name="coins_label" type="Label" parent="Panel" unique_id=858692506]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 105.0
+offset_right = 319.0
+offset_bottom = 128.0
+text = "coin"
+horizontal_alignment = 1
+
+[node name="food_label" type="Label" parent="Panel" unique_id=1862345041]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -3.0
+offset_top = 128.0
+offset_right = 319.0
+offset_bottom = 151.0
+text = "food"
+horizontal_alignment = 1
+
+[node name="amount_label" type="Label" parent="Panel" unique_id=382695117]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 153.0
+offset_right = 318.0
+offset_bottom = 176.0
+text = "amount"
+horizontal_alignment = 1
+
+[node name="decrease_button" type="Button" parent="Panel" unique_id=1932582934]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 126.0
+offset_top = 197.0
+offset_right = 153.0
+offset_bottom = 257.0
+text = "-"
+
+[node name="increase_button" type="Button" parent="Panel" unique_id=1133625675]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 161.0
+offset_top = 197.0
+offset_right = 194.0
+offset_bottom = 255.0
+text = "+"
+
+[node name="convert_button" type="Button" parent="Panel" unique_id=1728362893]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 128.0
+offset_top = 277.0
+offset_right = 198.0
+offset_bottom = 308.0
+text = "Convert"
+
+[node name="close_button" type="Button" parent="Panel" unique_id=303754299]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 139.0
+offset_top = 313.0
+offset_right = 189.0
+offset_bottom = 344.0
+text = "Close"
+
+[connection signal="pressed" from="Panel/decrease_button" to="." method="_on_decrease_button_pressed"]
+[connection signal="pressed" from="Panel/increase_button" to="." method="_on_increase_button_pressed"]
+[connection signal="pressed" from="Panel/convert_button" to="." method="_on_convert_button_pressed"]
+[connection signal="pressed" from="Panel/close_button" to="." method="_on_close_button_pressed"]

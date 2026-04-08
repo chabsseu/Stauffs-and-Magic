@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cwaqd4csrpqu3"]
+
+[ext_resource type="Texture2D" uid="uid://b82nvryvhi6kp" path="res://Assets/Alter/empty_altar1.png" id="1_gg0nl"]
+[ext_resource type="Script" uid="uid://bpj8nqrksegwu" path="res://Scripts/Floor/altar.gd" id="1_n6wej"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6wej"]
+size = Vector2(28, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvale"]
+radius = 18.0
+
+[node name="Altar" type="CharacterBody2D" unique_id=610699848]
+script = ExtResource("1_n6wej")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2071242823]
+position = Vector2(2, -32)
+texture = ExtResource("1_gg0nl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1106360812]
+position = Vector2(2, -7.5)
+shape = SubResource("RectangleShape2D_n6wej")
+
+[node name="Detection_area" type="Area2D" parent="." unique_id=1608275699]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area" unique_id=2109700016]
+position = Vector2(1, -9)
+shape = SubResource("CircleShape2D_wvale")
+
+[node name="Label" type="Label" parent="Detection_area" unique_id=1076369685]
+offset_left = -62.0
+offset_top = -48.0
+offset_right = 62.0
+offset_bottom = -25.0
+text = "Press E to Trade"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]

@@ -10,3 +10,7 @@ res://Scenes/UI/forgeUI.tscn
 res://Scripts/Map/forge.gd
 res://Scenes/Map/attack_statue.tscn
 res://Scripts/Map/cooldown_statue.gd
+res://Scripts/Floor/altar.gd
+res://Scenes/Floors/altar.tscn
+res://Scripts/UI/altar_ui.gd
+res://Scenes/UI/altar_ui.tscn

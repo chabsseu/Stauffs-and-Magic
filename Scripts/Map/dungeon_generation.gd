@@ -17,6 +17,7 @@ extends Node2D
 @export var slime_scene : PackedScene
 @export var apple_scene : PackedScene
 @export var cookie_crumble_scene : PackedScene
+@export var altar_scene : PackedScene  # ← new
 
 const DUNGEON_WIDTH = 800
 const DUNGEON_HEIGHT = 800
@@ -34,6 +35,7 @@ var room_barriers = {}
 var boss_ref : Node = null
 var statue_room_index : int = -1
 var campfire_room_index : int = -1
+var altar_room_index : int = -1  # ← new
 
 # --------------------------------------------------
 # READY
@@ -43,7 +45,6 @@ func _ready():
 		portal.visible = false
 	create_dungeon()
 
-	#Keep the player that is in the starting room
 	if GameData.floor >= 1:
 		GameData.restore_to_player_state(player.get_node("/root/PlayerState"), player)
 
@@ -66,6 +67,9 @@ func create_room_trigger(room: Rect2, room_index: int):
 		return
 	if room_index == campfire_room_index:
 		print("Skipping room trigger for campfire room ", room_index)
+		return
+	if room_index == altar_room_index:
+		print("Skipping room trigger for altar room ", room_index)
 		return
 
 	var area = Area2D.new()
@@ -527,6 +531,8 @@ func place_boxes(rooms: Array[Rect2]):
 			continue
 		if i == campfire_room_index:
 			continue
+		if i == altar_room_index:
+			continue
 
 		var room = rooms[i]
 		var box_count = randi_range(min_boxes_per_room, max_boxes_per_room)
@@ -577,9 +583,6 @@ func place_boxes(rooms: Array[Rect2]):
 					placed = true
 					break
 
-			# if not placed:
-			# 	print("Could not place box ", j, " in room ", i, " after ", max_attempts, " attempts")
-
 func _roll_box_type() -> PackedScene:
 	if box_scenes.size() == 1:
 		return box_scenes[0]
@@ -620,11 +623,10 @@ func place_campfire(rooms: Array[Rect2]):
 	add_child(campfire)
 
 	if minimap:
-		minimap.set_campfire_room(campfire_room_index)  # ← add this
-	print("Campfire spawned in room index: ", campfire_room_index)
+		minimap.set_campfire_room(campfire_room_index)
 
-	_spawn_campfire_ingredients(chosen_room)
 	print("Campfire spawned in room index: ", campfire_room_index)
+	_spawn_campfire_ingredients(chosen_room)
 
 func _spawn_campfire_ingredients(room: Rect2):
 	var ingredient_scenes = [slime_scene, apple_scene, cookie_crumble_scene]
@@ -641,6 +643,37 @@ func _spawn_campfire_ingredients(room: Rect2):
 			add_child(item)
 
 # --------------------------------------------------
+# ALTAR
+# --------------------------------------------------
+func place_altar(rooms: Array[Rect2]):
+	if altar_scene == null:
+		print("No altar scene assigned!")
+		return
+	if randf() > 0.6:
+		print("No altar this floor!")
+		return
+
+	var eligible_rooms = rooms.slice(1, rooms.size() - 1)
+	if eligible_rooms.is_empty():
+		return
+
+	var available = eligible_rooms.filter(func(r):
+		var idx = rooms.find(r)
+		return idx != statue_room_index and idx != campfire_room_index
+	)
+	if available.is_empty():
+		return
+
+	var chosen_room = available[randi() % available.size()]
+	altar_room_index = rooms.find(chosen_room)
+
+	var altar = altar_scene.instantiate()
+	altar.position = chosen_room.get_center() * 16
+	add_child(altar)
+
+	print("Altar spawned in room index: ", altar_room_index)
+
+# --------------------------------------------------
 # CREATE
 # --------------------------------------------------
 func create_dungeon():
@@ -649,9 +682,9 @@ func create_dungeon():
 	place_player(all_rooms)
 	add_walls()
 	render_dungeon()
-	# weapon_place(all_rooms)
 	place_statues(all_rooms)
 	place_campfire(all_rooms)
+	place_altar(all_rooms)
 	place_boxes(all_rooms)
 
 	if minimap:
@@ -747,17 +780,6 @@ func create_spawn_effect(pos: Vector2):
 		if is_instance_valid(particles):  particles.queue_free()
 		if is_instance_valid(particles2): particles2.queue_free()
 	)
-
-# --------------------------------------------------
-# WEAPON
-# --------------------------------------------------
-# func weapon_place(rooms: Array[Rect2]):
-# 	if rooms.is_empty():
-# 		return
-# 	var spawn_room = rooms[0]
-# 	var base_pos = spawn_room.get_center() * 16
-# 	var offset = Vector2(50, 25)
-# 	weapon.position = base_pos + offset
 
 # --------------------------------------------------
 # PLAYER SPAWN
