@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cb0kyqifl5o74" path="res://Scenes/Enemies/slime.tscn" id="2_q0kak"]
 [ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="3_i8072"]
 [ext_resource type="PackedScene" uid="uid://hokg0gi8ti1u" path="res://Scenes/Enemies/sloth.tscn" id="3_j7ugi"]
-[ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="4_i8072"]
 [ext_resource type="PackedScene" uid="uid://ixiakydo7vts" path="res://Scenes/Enemies/spear_guy.tscn" id="4_vidkv"]
 [ext_resource type="PackedScene" uid="uid://dkxxs5v05i6p4" path="res://Scenes/Map/attack_statue.tscn" id="5_vidkv"]
 [ext_resource type="PackedScene" uid="uid://6x6c34ddudyr" path="res://Scenes/Map/cooldown_statue.tscn" id="6_smyv6"]
@@ -20,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cyk3fwxbnm4uf" path="res://Scenes/UI/stage_transition.tscn" id="12_r55y5"]
 [ext_resource type="PackedScene" uid="uid://dq2oqms8fpjtp" path="res://Scenes/Floors/slime.tscn" id="13_nl7hk"]
 [ext_resource type="PackedScene" uid="uid://dsh6imlitgt6j" path="res://Scenes/Map/minimap.tscn" id="13_wjcik"]
-[ext_resource type="PackedScene" uid="uid://cqnpikw6r5thj" path="res://Scenes/Floors/apple.tscn" id="14_n8d2p"]
+[ext_resource type="PackedScene" uid="uid://c5wf2ju6x5w33" path="res://Scenes/Floors/apple.tscn" id="14_n8d2p"]
 [ext_resource type="PackedScene" uid="uid://dm1txdlkpfjn3" path="res://Scenes/Floors/cookie_crumble.tscn" id="15_7sm57"]
 [ext_resource type="Script" uid="uid://ct60sn8rq7ewp" path="res://Scripts/Map/currency.gd" id="15_bd3ew"]
 [ext_resource type="Texture2D" uid="uid://byhlt5w10bt5k" path="res://Assets/MapAccessories/Gold.png" id="16_i01xb"]
@@ -46,7 +45,7 @@ sources/0 = SubResource("TileSetAtlasSource_qpfl8")
 script = ExtResource("1_ngs3x")
 tilemap = NodePath("TileMapLayer")
 player = NodePath("Player")
-weapon = NodePath("WeaponPickup")
+weapon = NodePath("")
 enemy_scenes = Array[PackedScene]([ExtResource("2_q0kak"), ExtResource("3_j7ugi"), ExtResource("4_vidkv")])
 statue_scenes = Array[PackedScene]([ExtResource("5_vidkv"), ExtResource("6_smyv6")])
 chest_scenes = Array[PackedScene]([ExtResource("7_mc0b8")])
@@ -66,8 +65,6 @@ cookie_crumble_scene = ExtResource("15_7sm57")
 tile_set = SubResource("TileSet_43nnj")
 
 [node name="Player" parent="." unique_id=672141086 instance=ExtResource("3_i8072")]
-
-[node name="WeaponPickup" parent="." unique_id=1111887552 instance=ExtResource("4_i8072")]
 
 [node name="cooldown_statue" parent="." unique_id=293202240 instance=ExtResource("6_smyv6")]
 

@@ -43,7 +43,8 @@ func _ready():
 		portal.visible = false
 	create_dungeon()
 
-	if GameData.floor > 1:
+	#Keep the player that is in the starting room
+	if GameData.floor >= 1:
 		GameData.restore_to_player_state(player.get_node("/root/PlayerState"), player)
 
 	if floor_transition:
@@ -648,7 +649,7 @@ func create_dungeon():
 	place_player(all_rooms)
 	add_walls()
 	render_dungeon()
-	weapon_place(all_rooms)
+	# weapon_place(all_rooms)
 	place_statues(all_rooms)
 	place_campfire(all_rooms)
 	place_boxes(all_rooms)
@@ -750,13 +751,13 @@ func create_spawn_effect(pos: Vector2):
 # --------------------------------------------------
 # WEAPON
 # --------------------------------------------------
-func weapon_place(rooms: Array[Rect2]):
-	if rooms.is_empty():
-		return
-	var spawn_room = rooms[0]
-	var base_pos = spawn_room.get_center() * 16
-	var offset = Vector2(50, 25)
-	weapon.position = base_pos + offset
+# func weapon_place(rooms: Array[Rect2]):
+# 	if rooms.is_empty():
+# 		return
+# 	var spawn_room = rooms[0]
+# 	var base_pos = spawn_room.get_center() * 16
+# 	var offset = Vector2(50, 25)
+# 	weapon.position = base_pos + offset
 
 # --------------------------------------------------
 # PLAYER SPAWN

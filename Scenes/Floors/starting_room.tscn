@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://blw7wkta0c20d" path="res://Assets/Tilemaps/Tilemap.png" id="1_hlvb5"]
 [ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="2_u4jfv"]
+[ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="3_u4jfv"]
+[ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="4_4lp6s"]
+[ext_resource type="PackedScene" uid="uid://cfk5s3k8305wb" path="res://Scenes/Map/start_portal.tscn" id="5_s3p44"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4lp6s"]
 texture = ExtResource("1_hlvb5")
@@ -65,3 +68,10 @@ layer_2/name = "Overlay"
 
 [node name="Player" parent="." unique_id=500875389 instance=ExtResource("2_u4jfv")]
 position = Vector2(52, 19)
+
+[node name="WeaponPickup" parent="." unique_id=378548632 instance=ExtResource("3_u4jfv")]
+position = Vector2(328, 98)
+possible_weapons = Array[PackedScene]([ExtResource("4_4lp6s")])
+
+[node name="StartPortal" parent="." unique_id=1138032454 instance=ExtResource("5_s3p44")]
+position = Vector2(301, 165)

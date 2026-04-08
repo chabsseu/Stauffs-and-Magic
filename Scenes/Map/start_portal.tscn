@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cfk5s3k8305wb"]
+
+[ext_resource type="Texture2D" uid="uid://bdupridg5whiu" path="res://Assets/Tilemaps/Portal.png" id="1_e5tt3"]
+[ext_resource type="Script" uid="uid://bt7a2p2l0niht" path="res://Scripts/Map/start_portal.gd" id="1_ughkj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ughkj"]
+radius = 11.0
+height = 38.0
+
+[node name="StartPortal" type="Area2D" unique_id=1138032454]
+script = ExtResource("1_ughkj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=995263723]
+scale = Vector2(2, 2)
+texture = ExtResource("1_e5tt3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1470865542]
+shape = SubResource("CapsuleShape2D_ughkj")
+
+[node name="Label" type="Label" parent="." unique_id=299904080]
+visible = false
+offset_left = -54.0
+offset_top = -34.0
+offset_right = 55.0
+offset_bottom = -11.0
+theme_override_font_sizes/font_size = 12
+text = "Ready to Descend?"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
