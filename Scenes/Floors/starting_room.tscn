@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cfk5s3k8305wb" path="res://Scenes/Map/start_portal.tscn" id="5_s3p44"]
 [ext_resource type="PackedScene" uid="uid://c4jy6ets143vs" path="res://Scenes/Floors/normal_box.tscn" id="6_017m2"]
 [ext_resource type="PackedScene" uid="uid://dsh6imlitgt6j" path="res://Scenes/Map/minimap.tscn" id="10_cnv70"]
-[ext_resource type="PackedScene" uid="uid://cigtrfmfcfee8" path="res://Scenes/Map/common_chest.tscn" id="11_ct7jo"]
 [ext_resource type="Script" uid="uid://ct60sn8rq7ewp" path="res://Scripts/Map/currency.gd" id="11_hcyod"]
 [ext_resource type="Texture2D" uid="uid://byhlt5w10bt5k" path="res://Assets/MapAccessories/Gold.png" id="12_bn3h0"]
 [ext_resource type="Texture2D" uid="uid://fgtatq2gfj12" path="res://Assets/MapAccessories/Food.png" id="13_oaupj"]
@@ -150,6 +149,3 @@ offset_bottom = 40.0
 script = ExtResource("11_hcyod")
 coin_icon = ExtResource("12_bn3h0")
 food_icon = ExtResource("13_oaupj")
-
-[node name="Common_Chest" parent="." unique_id=1876224500 instance=ExtResource("11_ct7jo")]
-position = Vector2(170, 51)
