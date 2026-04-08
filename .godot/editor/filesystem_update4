@@ -14,3 +14,5 @@ res://Scripts/Floor/altar.gd
 res://Scenes/Floors/altar.tscn
 res://Scripts/UI/altar_ui.gd
 res://Scenes/UI/altar_ui.tscn
+res://Scripts/Map/common_chest.gd
+res://Scenes/Map/common_chest.tscn

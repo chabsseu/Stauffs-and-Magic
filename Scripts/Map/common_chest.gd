@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var label = $Detection_Area/Label
 @onready var animate = $AnimatedSprite2D
 
-# @export var reward_weapons : Array[PackedScene] = []
+@export var reward_weapons : Array[PackedScene] = []
 @export var reward_mana : PackedScene
 
 @export var coin_drop_scene : PackedScene
@@ -55,20 +55,30 @@ func give_rewards():
 			var drop = food_drop_scene.instantiate()
 			drop.global_position = global_position + Vector2(randf_range(-40, 40), randf_range(-40, 40))
 			get_parent().add_child(drop)
+			
 	# Spawn ONE random weapon from the array
-	# if reward_weapons.is_empty():
-	# 	return
-	
-	# var chosen = reward_weapons[randi() % reward_weapons.size()]
-	# if chosen == null:
-	# 	return
-	
-	# var pickup_scene = preload("res://Scenes/Weapon/weapon_pickup.tscn")
-	# var pickup = pickup_scene.instantiate()
-	# pickup.weapon_scene = chosen
-	# pickup.global_position = global_position + Vector2(0, 40)
-	# get_parent().add_child(pickup)
-	# print("Spawned weapon: ", chosen.resource_path)
+	if not reward_weapons.is_empty():
+		var drop_chance = 30  # % chance to drop a weapon
+		var roll = randi_range(1, 100)
+		if roll <= drop_chance:
+			# Pick a random weapon from the array
+			var chosen_scene: PackedScene = reward_weapons[randi() % reward_weapons.size()]
+			if chosen_scene != null:
+				# Instantiate the pickup
+				var pickup_scene = preload("res://Scenes/Weapon/weapon_pickup.tscn")
+				var pickup = pickup_scene.instantiate()
+				
+				# Assign the weapon scene
+				pickup.weapon_scene = chosen_scene
+				
+				# Scatter the pickup a bit
+				var offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
+				pickup.global_position = global_position + Vector2(0, 40) + offset
+				
+				get_parent().add_child(pickup)
+				print("Spawned weapon: ", chosen_scene.resource_path)
+			else:
+				print("Chosen weapon is null!")
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
