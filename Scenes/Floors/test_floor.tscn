@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://xat2kg8xe0rg"]
 
 [ext_resource type="PackedScene" uid="uid://c2xkrph0al5nw" path="res://Scenes/Player/player.tscn" id="1_o16k2"]
-[ext_resource type="PackedScene" path="res://Scenes/Floors/campfire.tscn" id="2_g5enb"]
-[ext_resource type="PackedScene" path="res://Scenes/Floors/cookie_crumble.tscn" id="3_mlcga"]
-[ext_resource type="PackedScene" path="res://Scenes/Floors/slime.tscn" id="4_31l86"]
+[ext_resource type="PackedScene" uid="uid://wcfijacx45v0" path="res://Scenes/Floors/campfire.tscn" id="2_g5enb"]
+[ext_resource type="PackedScene" uid="uid://dm1txdlkpfjn3" path="res://Scenes/Floors/cookie_crumble.tscn" id="3_mlcga"]
+[ext_resource type="PackedScene" uid="uid://dq2oqms8fpjtp" path="res://Scenes/Floors/slime.tscn" id="4_31l86"]
 [ext_resource type="PackedScene" uid="uid://c5wf2ju6x5w33" path="res://Scenes/Floors/apple.tscn" id="5_g5enb"]
+[ext_resource type="PackedScene" uid="uid://exmlmiug3st4" path="res://Scenes/Floors/poison.tscn" id="6_mlcga"]
+[ext_resource type="PackedScene" uid="uid://208y1mgvx2en" path="res://Scenes/Floors/fire.tscn" id="7_31l86"]
 
 [node name="Node2D" type="Node2D" unique_id=936650630]
 
@@ -31,3 +33,9 @@ position = Vector2(136, -160)
 position = Vector2(167, -9)
 ingredient_type = "apple"
 ingredient_color = Color(0.9999998, 0.012583689, 0.13708094, 1)
+
+[node name="Poison" parent="." unique_id=1334863494 instance=ExtResource("6_mlcga")]
+position = Vector2(7, -68)
+
+[node name="Fire" parent="." unique_id=207395600 instance=ExtResource("7_31l86")]
+position = Vector2(-117, -41)

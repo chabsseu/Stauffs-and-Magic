@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://208y1mgvx2en"]
 
 [ext_resource type="Script" uid="uid://qvn64g5qx0v2" path="res://Scripts/Map/fire.gd" id="1_00pbl"]
-[ext_resource type="Gradient" uid="uid://blh41dxtu33ne" path="res://Scenes/Floors/fire_gradient.tres" id="1_fi8bt"]
+[ext_resource type="Texture2D" uid="uid://bl7ak1gg6etu1" path="res://Assets/UI/fire.png" id="2_00pbl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r4gny"]
 radius = 18.027756
@@ -23,7 +23,9 @@ burn_damage = 1
 shape = SubResource("CircleShape2D_r4gny")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2106904326]
-amount = 80
+scale = Vector2(0.5, 0.5)
+amount = 10
+texture = ExtResource("2_00pbl")
 preprocess = 5.0
 lifetime_randomness = 0.69
 emission_shape = 2
@@ -36,7 +38,6 @@ damping_curve = SubResource("Curve_00pbl")
 scale_amount_min = 0.0
 scale_amount_max = 5.0
 scale_amount_curve = SubResource("Curve_fi8bt")
-color_ramp = ExtResource("1_fi8bt")
 hue_variation_max = 1.0
 anim_speed_max = 1.0
 

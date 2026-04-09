@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1775650541
+::res://::1775740077
 icon.svg::CompressedTexture2D::6118854524503985570::1774960631::1775650545::1::::<><><>0<>0<>50c1afa977369d7d742b6d9020104661<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1775483682
 my pallete.png::CompressedTexture2D::3928060487092931223::1774960631::1774960631::1::::<><><>0<>0<>64dbeb7fccce4e3d1cb29e3954c2d00e<>res://.godot/imported/my pallete.png-0293d27c32caeaa39f5f9b4793650d9f.ctex::
@@ -20,10 +20,10 @@ cookie.png::CompressedTexture2D::2600713312772216727::1775360922::1775360926::1:
 jello.png::CompressedTexture2D::8581880443910878607::1774960631::1774960631::1::::<><><>0<>0<>8f2b8e2c7f7d32dcb61a662abf789811<>res://.godot/imported/jello.png-4d4447e4f7417323c2be9245a1db0542.ctex::
 ::res://Assets/Enemies/Weapons/::1774960631
 Spear.png::CompressedTexture2D::7340002049433932650::1774960631::1774960631::1::::<><><>0<>0<>501833723712904019a248b04b836049<>res://.godot/imported/Spear.png-f35ca450cba9458213faf484ab8d90a4.ctex::
-::res://Assets/MapAccessories/::1775360432
+::res://Assets/MapAccessories/::1775739539
 Box.png::CompressedTexture2D::4761026336418661197::1774960631::1774960631::1::::<><><>0<>0<>eb790086c164dd713ce574c9e8b7bb12<>res://.godot/imported/Box.png-27dad9add5649e9416609b930e3f552d.ctex::
 BoxFire.png::CompressedTexture2D::5000204285053106951::1774960631::1774960631::1::::<><><>0<>0<>bbd18f7b75e933e203e6f816a9c33740<>res://.godot/imported/BoxFire.png-4a76841fb971b5199b0cc737e3e15f96.ctex::
-BoxPoison.png::CompressedTexture2D::1489579738658499424::1774960631::1774960631::1::::<><><>0<>0<>6a2fa53b365c4897488c34d53d8e1d09<>res://.godot/imported/BoxPoison.png-41585480eb1e8a650bdae9ee4c073416.ctex::
+BoxPoison.png::CompressedTexture2D::1489579738658499424::1775736639::1775739539::1::::<><><>0<>0<>6a2fa53b365c4897488c34d53d8e1d09<>res://.godot/imported/BoxPoison.png-41585480eb1e8a650bdae9ee4c073416.ctex::
 Campfire2.png::CompressedTexture2D::5559258856879938213::1775206364::1775360432::1::::<><><>0<>0<>0d15a37f8d778336b20c96b8aeed3905<>res://.godot/imported/Campfire2.png-e8e25c4962c515ab512c74d38f9b58f8.ctex::
 Campfire.png::CompressedTexture2D::4315540329807376209::1775206136::1775360432::1::::<><><>0<>0<>9aff8a20d64bb8a60ccd956aacb8abb4<>res://.godot/imported/Campfire.png-767ba49be67dff6c3630235bc0d38445.ctex::
 coins-chests-etc-2-0.png::CompressedTexture2D::8966917805121247125::1774960631::1774960631::1::::<><><>0<>0<>6c650352c7ab86d0d07a2cb33ac1e571<>res://.godot/imported/coins-chests-etc-2-0.png-fec9e562bacd48dbc7d93c7453ad1b94.ctex::
@@ -38,9 +38,11 @@ Dungeon Tileset + Spikes.png::CompressedTexture2D::3437902921609025723::17749606
 Magic Crystal Barricade.png::CompressedTexture2D::3426621396088208692::1774960631::1774960631::1::::<><><>0<>0<>9b78c2acd932ccf71264d9026d8911de<>res://.godot/imported/Magic Crystal Barricade.png-f5e90e3518df4e856d0354a1accd7233.ctex::
 Portal.png::CompressedTexture2D::2639216308211064016::1774960631::1774960631::1::::<><><>0<>0<>bb8f5447f05aca4b8664b3b21ac565f3<>res://.godot/imported/Portal.png-accda5ade18aaa8aa4fc8692bb46161f.ctex::
 Tilemap.png::CompressedTexture2D::3205897060153511329::1774960631::1774960631::1::::<><><>0<>0<>39c891ff660283d166123d0c39209d3c<>res://.godot/imported/Tilemap.png-ee04f52470bc1aaf22e9d9bb82a8c1fc.ctex::
-::res://Assets/UI/::1774960631
+::res://Assets/UI/::1775740448
 cooldown.png::CompressedTexture2D::3085948979868809791::1774960631::1774960631::1::::<><><>0<>0<>39c5094722887d05fb067bba38613d02<>res://.godot/imported/cooldown.png-72ba17dcec5a1218285785770d63f58a.ctex::
 crosshair.png::CompressedTexture2D::5109489835123243333::1774960631::1774960631::1::::<><><>0<>0<>c9898a2b537f6361cfcaa2584125cc00<>res://.godot/imported/crosshair.png-8803f647edbd9ba881c7d78fbf77ebc7.ctex::
+fire.png::CompressedTexture2D::3224577284970568158::1775740448::1775740451::1::::<><><>0<>0<>ae1075564b3558d1fa41cc2c5c88accb<>res://.godot/imported/fire.png-0491a6ef9b1dc12eadb07c6abe363420.ctex::
+poison.png::CompressedTexture2D::8466551892943771590::1775740003::1775740005::1::::<><><>0<>0<>600061f6386ba9ea72974b9f9b6b04e1<>res://.godot/imported/poison.png-c3c968f3e9a745dd623c33ab537f5573.ctex::
 ::res://Assets/UI/Health&Armor/::1774960631
 Armor.png::CompressedTexture2D::1615380224727462531::1774960631::1774960631::1::::<><><>0<>0<>34c667d94245d78308894e9ffa1d0457<>res://.godot/imported/Armor.png-6007b9d111aeef7ac99353a5086e0160.ctex::
 Armor_bar.png::CompressedTexture2D::9015714565272728156::1774960631::1774960631::1::::<><><>0<>0<>f59dfd53aa81faeb68efc592e136a354<>res://.godot/imported/Armor_bar.png-c301970d04924940c09c64ebca38d666.ctex::
@@ -76,7 +78,7 @@ test_enemy.tscn::PackedScene::5272099863804701819::1774960631::0::1::::<><><>0<>
 boss_bullet.tscn::PackedScene::7755905034972541261::1774960631::0::1::::<><><>0<>0<><>::uid://cj575x86akaeq::::res://Scripts/Enemies/Boss/boss_bullet.gd<>uid://gwq04m1vnior::::res://Assets/Enemies/e_bullet.png
 boss_puddle.tscn::PackedScene::4420225379926654682::1774960631::0::1::::<><><>0<>0<><>::uid://b8wiphp3n6tu3::::res://Scripts/Enemies/Boss/boss_puddle.gd<>uid://brhijb2qyth26::::res://Assets/Enemies/e_pud.png
 grand_gello.tscn::PackedScene::7478985077349687674::1774960631::0::1::::<><><>0<>0<><>::uid://dy1bx723nl2db::::res://Scripts/Enemies/Boss/grand_gello.gd<>uid://diravf6ro4s0l::::res://Scenes/Enemies/Boss/boss_bullet.tscn<>uid://b38gp36xx0yis::::res://Scenes/Enemies/Boss/boss_puddle.tscn<>uid://cb0kyqifl5o74::::res://Scenes/Enemies/slime.tscn<>uid://7ad0jit5f0ec::::res://Assets/Enemies/Boss/Boss.png<>uid://clwrngsgt8qvi::::res://Assets/UI/Health&Armor/BossHealthBar.png<>uid://bya82n82n0pj3::::res://Assets/UI/Health&Armor/BossHealth.png<>uid://cn3s0secy6fqd::::res://Scripts/Enemies/Boss/boss_health.gd
-::res://Scenes/Floors/::1775650435
+::res://Scenes/Floors/::1775739664
 altar.tscn::PackedScene::6317974283796819788::1775649815::0::1::::<><><>0<>0<><>::uid://b82nvryvhi6kp::::res://Assets/Alter/empty_altar1.png<>uid://bpj8nqrksegwu::::res://Scripts/Floor/altar.gd
 apple.tscn::PackedScene::6924275293562432236::1775485463::0::1::::<><><>0<>0<><>::res://Scripts/Floor/Ingredient.gd<>uid://ctgav05ifthty::::res://icon.svg
 campfire.tscn::PackedScene::1548601659692836595::1775481637::0::1::::<><><>0<>0<><>::uid://btjjbvu7n1fte::::res://Scripts/Floor/campfire.gd<>uid://b2qqk3pd2wim0::::res://Assets/MapAccessories/Campfire.png<>uid://cntukwbew52bp::::res://Scenes/UI/CookingUI.tscn
@@ -87,11 +89,11 @@ firebox.tscn::PackedScene::2950303671903360896::1775363355::0::1::::<><><>0<>0<>
 fire_gradient.tres::Gradient::3174756025413315566::1774960631::0::1::::<><><>0<>0<><>::
 medieval_dungeon.tscn::PackedScene::5192436696187514580::1774960631::0::1::::<><><>0<>0<><>::uid://bo8l02hir4q3l::::res://Assets/Tilemaps/Dungeon Tileset + Spikes.png<>uid://blw7wkta0c20d::::res://Assets/Tilemaps/Tilemap.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://d1x60xga56cti::::res://Scenes/UI/portal.tscn<>uid://hokg0gi8ti1u::::res://Scenes/Enemies/sloth.tscn<>uid://vwhok55g8tdn::::res://Scenes/Weapon/weapon_pickup.tscn<>uid://bb8c2mi17642k::::res://Scenes/Weapon/normal_staff.tscn
 normal_box.tscn::PackedScene::6828410040411565908::1775363348::0::1::::<><><>0<>0<><>::uid://m3seydvy80tv::::res://Scripts/Floor/normal_box.gd<>uid://b83jn43tev4xd::::res://Assets/MapAccessories/Box.png<>uid://v338stbv6nih::::res://Scenes/Map/box hit.tscn
-poison.tscn::PackedScene::328984954098141355::1774960631::0::1::::<><><>0<>0<><>::uid://dnhnrnqa008fj::::res://Scripts/Map/poison.gd
+poison.tscn::PackedScene::328984954098141355::1775739653::0::1::::<><><>0<>0<><>::uid://dnhnrnqa008fj::::res://Scripts/Map/poison.gd<>uid://dsvi4w3r35111::::res://Assets/UI/poison.png
 poison_box.tscn::PackedScene::7196969069645341274::1775363352::0::1::::<><><>0<>0<><>::uid://ddwau2ge4xq6a::::res://Scripts/Floor/poison_box.gd<>uid://vhtfpy160waq::::res://Assets/MapAccessories/BoxPoison.png<>uid://exmlmiug3st4::::res://Scenes/Floors/poison.tscn<>uid://v338stbv6nih::::res://Scenes/Map/box hit.tscn
 slime.tscn::PackedScene::8338901018841976609::1775481637::0::1::::<><><>0<>0<><>::uid://ctgav05ifthty::::res://icon.svg<>uid://bioynspsftqep::::res://Scripts/Floor/Ingredient.gd
 starting_room.tscn::PackedScene::162194499599352244::1775650435::0::1::::<><><>0<>0<><>::uid://blw7wkta0c20d::::res://Assets/Tilemaps/Tilemap.png<>uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://vwhok55g8tdn::::res://Scenes/Weapon/weapon_pickup.tscn<>uid://bb8c2mi17642k::::res://Scenes/Weapon/normal_staff.tscn<>uid://cfk5s3k8305wb::::res://Scenes/Map/start_portal.tscn<>uid://c4jy6ets143vs::::res://Scenes/Floors/normal_box.tscn<>uid://dsh6imlitgt6j::::res://Scenes/Map/minimap.tscn<>uid://ct60sn8rq7ewp::::res://Scripts/Map/currency.gd<>uid://byhlt5w10bt5k::::res://Assets/MapAccessories/Gold.png<>uid://fgtatq2gfj12::::res://Assets/MapAccessories/Food.png
-test_floor.tscn::PackedScene::1615545779005359196::1775485414::0::1::::<><><>0<>0<><>::uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>res://Scenes/Floors/campfire.tscn<>res://Scenes/Floors/cookie_crumble.tscn<>res://Scenes/Floors/slime.tscn<>uid://c5wf2ju6x5w33::::res://Scenes/Floors/apple.tscn
+test_floor.tscn::PackedScene::1615545779005359196::1775739664::0::1::::<><><>0<>0<><>::uid://c2xkrph0al5nw::::res://Scenes/Player/player.tscn<>uid://wcfijacx45v0::::res://Scenes/Floors/campfire.tscn<>uid://dm1txdlkpfjn3::::res://Scenes/Floors/cookie_crumble.tscn<>uid://dq2oqms8fpjtp::::res://Scenes/Floors/slime.tscn<>uid://c5wf2ju6x5w33::::res://Scenes/Floors/apple.tscn<>uid://exmlmiug3st4::::res://Scenes/Floors/poison.tscn
 ::res://Scenes/Map/::1775649816
 attack_statue.tscn::PackedScene::7910061420244642199::1774960631::0::1::::<><><>0<>0<><>::uid://b75ouofrplovs::::res://Scripts/Map/attack_statue.gd<>uid://dtr7b1ihi1v0u::::res://Assets/Alter/cooldown_altar.png<>uid://8t5ckf62mmyc::::res://Assets/Alter/attack_altar.png
 box hit.tscn::PackedScene::1533528275354995059::1775363377::0::1::::<><><>0<>0<><>::uid://frmsw0v7viuh::::res://Scripts/UI/hit_particle.gd
@@ -173,7 +175,7 @@ start_portal.gd::GDScript::3786117847474751289::1775649801::0::1::::<>Area2D<><>
 ::res://Scripts/Player/::1775481601
 player.gd::GDScript::3187138442576952149::1775481601::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Scripts/UI/::1775649801
-altar_ui.gd::GDScript::4938400879365102822::1775649801::0::1::::<>Control<><>0<>0<><>::
+altar_ui.gd::GDScript::4938400879365102822::1775656438::0::1::::<>Control<><>0<>0<><>::
 armor.gd::GDScript::1066924086405933723::1774960631::0::1::::<>TextureProgressBar<><>0<>0<><>::
 camera_2d.gd::GDScript::834454722193410951::1774960631::0::1::::<>Camera2D<><>0<>0<><>::
 CookedFood.gd::GDScript::1958549860931431649::1775649801::0::1::::<>Area2D<><>0<>0<><>::
