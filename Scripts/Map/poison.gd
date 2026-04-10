@@ -119,16 +119,43 @@ func _process_poison(delta: float) -> void:
 
 
 func _draw() -> void:
-	var pulse = (sin(pulse_timer * 2.5) + 1.0) / 2.0
+	var pulse = 0.1 + ((sin(pulse_timer * 2.0) + 1.0) / 2.0) * 0.2
 
-	draw_circle(Vector2.ZERO, poison_radius, Color(0.0, 1.0, 0.15, 0.08 + 0.05 * pulse))
-	draw_arc(Vector2.ZERO, poison_radius, 0, TAU, 64, Color(0.0, 0.8, 0.35, 0.6 + 0.4 * pulse), 3.0)
+	var base_color = Color(0.25, 0.0, 0.4)   # dark outer
+	var inner_color = Color(0.6, 0.2, 1.0)   # brighter center
 
+	var steps = 65  # more = smoother gradient
+
+	for i in range(steps):
+		var t = float(i) / steps
+		
+		# radius goes from big → small
+		var radius = poison_radius * (1.0 - t)
+
+		# blend color (outer → inner)
+		var r = lerp(base_color.r, inner_color.r, 1.0 - t)
+		var g = lerp(base_color.g, inner_color.g, 1.0 - t)
+		var b = lerp(base_color.b, inner_color.b, 1.0 - t)
+
+		# fade alpha softly
+		var alpha = (0.03 + 0.07 * pulse) * (1.0 - t)
+
+		draw_circle(Vector2.ZERO, radius, Color(r, g, b, alpha))
+
+	# 🔥 Outer ring
+	var arc_color = base_color
+	arc_color.a = 0.6 + 0.4 * pulse
+
+	draw_arc(Vector2.ZERO, poison_radius, 0, TAU, 64, arc_color, 3.0)
+
+	# ✨ rotating dashes
 	var dash_count = 12
-
 	for i in range(dash_count):
 		var start_angle = (TAU / dash_count) * i + pulse_timer * 0.4
 		var end_angle = start_angle + (TAU / dash_count) * 0.5
+
+		var dash_color = base_color
+		dash_color.a = 0.5
 
 		draw_arc(
 			Vector2.ZERO,
@@ -136,6 +163,6 @@ func _draw() -> void:
 			start_angle,
 			end_angle,
 			10,
-			Color(0.1, 1.0, 0.4, 0.8),
+			dash_color,
 			2.0
 		)

@@ -1,2 +1,5 @@
 res://Scenes/Floors/fire.tscn
-res://Scenes/Floors/test_floor.tscn
+res://Scenes/Floors/poison.tscn
+res://Scripts/UI/altar_ui.gd
+res://Scripts/Map/fire.gd
+res://Scripts/Map/poison.gd
