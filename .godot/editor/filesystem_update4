@@ -10,3 +10,4 @@ res://Scenes/UI/StatuEffectUI.tscn
 res://Scenes/Floors/test_floor.tscn
 res://Scripts/Global/status_effects.gd
 res://Scripts/Global/PlayerState.gd
+res://Scripts/Enemies/sloth.gd

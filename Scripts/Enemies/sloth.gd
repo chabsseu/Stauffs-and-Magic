@@ -28,11 +28,10 @@ extends CharacterBody2D
 @export var reward_mana : PackedScene
 @export var coin_drop_scene : PackedScene
 @export var food_drop_scene : PackedScene
-@export var coin_drop_chance : float = 0.8   # 80% chance
-@export var food_drop_chance : float = 0.4   # 40% chance
+@export var coin_drop_chance : float = 0.8
+@export var food_drop_chance : float = 0.4
 @export var item_drop_scene: PackedScene
-@export var item_drop_chance: float  = 0.5 #50% chance
-
+@export var item_drop_chance: float = 0.5
 
 enum State { IDLE, WINDUP, CHARGING, RETREATING, COOLDOWN }
 
@@ -43,7 +42,6 @@ var state = State.IDLE
 var charge_direction: Vector2 = Vector2.ZERO
 var charge_start_pos: Vector2 = Vector2.ZERO
 
-# Patrol helpers
 var patrol_target: Vector2
 var is_stopping: bool = false
 var stop_timer: float = 0.0
@@ -74,14 +72,17 @@ func _draw():
 		draw_line(Vector2.ZERO, end_point, trajectory_color, 5.0)
 
 func _physics_process(delta: float) -> void:
-	var distance_to_player: float = 9999
+	# Clear player reference if they were freed (e.g. died)
+	if not is_instance_valid(player):
+		player = null
+		state = State.IDLE
 
+	var distance_to_player: float = 9999
 	if player != null:
 		distance_to_player = global_position.distance_to(player.global_position)
 
 	queue_redraw()
 
-	# If stunned, skip all movement (same as ranged enemy)
 	if status_effects.has_effect(StatusEffectManager.EffectType.STUN):
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -130,6 +131,10 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 
 func move_toward_player():
+	if not is_instance_valid(player):
+		player = null
+		state = State.IDLE
+		return
 	var dir := (player.global_position - global_position).normalized()
 	velocity = dir * current_speed
 	move_and_slide()
@@ -139,6 +144,10 @@ func charge_at_player():
 	move_and_slide()
 
 func retreat_from_player():
+	if not is_instance_valid(player):
+		player = null
+		state = State.IDLE
+		return
 	var dir := (global_position - player.global_position).normalized()
 	velocity = dir * current_speed * 1.2
 	move_and_slide()
@@ -177,12 +186,11 @@ func take_damage(amount: int, hit_direction: Vector2 = Vector2.ZERO) -> void:
 			label.text = str(amount)
 		damage_instance.global_position = global_position
 		get_parent().add_child(damage_instance)
-	
+
 	if hit:
 		var hit_particle = hit.instantiate()
 		hit_particle.global_position = global_position
 		get_parent().add_child(hit_particle)
-		
 		hit_particle.emitting = true
 
 	current_health -= amount
@@ -202,30 +210,26 @@ func die() -> void:
 		var mana_count = randi_range(1, 3)
 		for i in range(mana_count):
 			var mana_drop = reward_mana.instantiate()
-			# Scatter them randomly around the chest
 			var offset = Vector2(randf_range(-40, 40), randf_range(-40, 40))
 			mana_drop.global_position = global_position + offset
 			get_parent().add_child(mana_drop)
 		print("Spawned ", mana_count, " mana drops!")
-	
-	# Drop coins
+
 	if coin_drop_scene and randf() < coin_drop_chance:
 		var drop = coin_drop_scene.instantiate()
 		drop.global_position = global_position
 		get_parent().add_child(drop)
 
-	# Drop food
 	if food_drop_scene and randf() < food_drop_chance:
 		var drop = food_drop_scene.instantiate()
 		drop.global_position = global_position
 		get_parent().add_child(drop)
-	
-	#item drop
+
 	if item_drop_scene and randf() < item_drop_chance:
 		var drop = item_drop_scene.instantiate()
 		drop.global_position = global_position
 		get_parent().add_child(drop)
-		
+
 	queue_free()
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
@@ -260,7 +264,6 @@ func _on_effect_ended(eff_type):
 				charge_timer.start(0.5)
 			elif state == State.CHARGING:
 				end_charge()
-
 
 # =========================
 # STATUS EFFECT GETTER
