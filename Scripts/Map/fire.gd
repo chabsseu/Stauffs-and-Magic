@@ -15,20 +15,16 @@ var burning_bodies : Dictionary = {}
 var pulse_timer : float = 0.0
 
 func _ready() -> void:
-	# Setup collision radius
 	var shape = $CollisionShape2D.shape
 	if shape is CircleShape2D:
 		shape.radius = fire_radius
 
-	# Setup particles
 	var particles = $CPUParticles2D
 	if particles:
 		particles.emission_sphere_radius = fire_radius
 
-	# Fire disappears after lifetime seconds
 	await get_tree().create_timer(lifetime).timeout
 	queue_free()
-
 
 func _process(delta: float) -> void:
 	pulse_timer += delta
@@ -44,41 +40,35 @@ func _process(delta: float) -> void:
 
 		for body in bodies_inside:
 			_apply_damage(body)
-
 			if not burning_bodies.has(body) and randf() < burn_chance:
 				apply_burn(body)
 
 	_process_burn(delta)
 	queue_redraw()
 
-
-# Deals damage immediately when a body enters the fire
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") or body.is_in_group("Enemy") or body.is_in_group("Boss"):
 		if body not in bodies_inside:
 			bodies_inside.append(body)
-
 			_apply_damage(body)
-
 			if not burning_bodies.has(body) and randf() < burn_chance:
 				apply_burn(body)
-
 
 func _on_body_exited(body: Node2D) -> void:
 	bodies_inside.erase(body)
 
-
 func _apply_damage(body: Node2D) -> void:
 	if not is_instance_valid(body):
 		return
-
 	if body.has_method("take_armor_damage"):
 		body.take_armor_damage(damage_per_tick)
 	elif body.has_method("take_damage"):
 		body.take_damage(damage_per_tick)
 
-
 func apply_burn(body: Node2D) -> void:
+	if burning_bodies.has(body):
+		return
+
 	burning_bodies[body] = {
 		"timer": burn_duration,
 		"tick_timer": 0.0
@@ -87,6 +77,13 @@ func apply_burn(body: Node2D) -> void:
 	if body.has_method("set_burn_visual"):
 		body.set_burn_visual(true)
 
+	# Apply BURN status effect to player UI/system (mirrors fire cloud logic)
+	if body.is_in_group("Player"):
+		PlayerState.status_effects.add_effect(
+			StatusEffectManager.EffectType.BURN,
+			burn_duration,
+			burn_damage
+		)
 
 func _process_burn(delta: float) -> void:
 	var to_remove : Array = []
@@ -102,7 +99,6 @@ func _process_burn(delta: float) -> void:
 
 		if data["tick_timer"] >= burn_tick_rate:
 			data["tick_timer"] = 0.0
-
 			if body.has_method("take_armor_damage"):
 				body.take_armor_damage(burn_damage)
 			elif body.has_method("take_damage"):
@@ -110,45 +106,40 @@ func _process_burn(delta: float) -> void:
 
 		if data["timer"] <= 0.0:
 			to_remove.append(body)
-
 			if is_instance_valid(body) and body.has_method("set_burn_visual"):
 				body.set_burn_visual(false)
 
 	for body in to_remove:
 		burning_bodies.erase(body)
 
-
+# ----------------------------
+# VISUALS — fire colors
+# ----------------------------
 func _draw() -> void:
 	var pulse = 0.1 + ((sin(pulse_timer * 2.0) + 1.0) / 2.0) * 0.2
 
-	var base_color = Color(0.25, 0.0, 0.4)   # dark outer
-	var inner_color = Color(0.6, 0.2, 1.0)   # brighter center
+	var base_color = Color(0.25, 0.0, 0.4)
+	var inner_color = Color(0.6, 0.2, 1.0)
 
-	var steps = 65  # more = smoother gradient
+	var steps = 65
 
 	for i in range(steps):
 		var t = float(i) / steps
-		
-		# radius goes from big → small
 		var radius = fire_radius * (1.0 - t)
 
-		# blend color (outer → inner)
 		var r = lerp(base_color.r, inner_color.r, 1.0 - t)
 		var g = lerp(base_color.g, inner_color.g, 1.0 - t)
 		var b = lerp(base_color.b, inner_color.b, 1.0 - t)
 
-		# fade alpha softly
 		var alpha = (0.03 + 0.07 * pulse) * (1.0 - t)
 
 		draw_circle(Vector2.ZERO, radius, Color(r, g, b, alpha))
 
-	# 🔥 Outer ring
 	var arc_color = base_color
 	arc_color.a = 0.6 + 0.4 * pulse
 
 	draw_arc(Vector2.ZERO, fire_radius, 0, TAU, 64, arc_color, 3.0)
 
-	# ✨ rotating dashes
 	var dash_count = 12
 	for i in range(dash_count):
 		var start_angle = (TAU / dash_count) * i + pulse_timer * 0.4

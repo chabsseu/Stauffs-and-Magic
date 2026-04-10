@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ciwy7dfadp2tp" path="res://Scenes/UI/health_armor.tscn" id="4_mtuoh"]
 [ext_resource type="PackedScene" uid="uid://djj3gpv36r62c" path="res://Scenes/UI/ingredient_bag_ui.tscn" id="6_dd0ac"]
 [ext_resource type="PackedScene" uid="uid://bif1w6n8f478s" path="res://Scenes/UI/food_slot_ui.tscn" id="7_0u5uq"]
+[ext_resource type="PackedScene" uid="uid://ociobxauih61" path="res://Scenes/UI/StatuEffectUI.tscn" id="8_jlvik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
 
@@ -140,6 +141,14 @@ texture_progress = ExtResource("4_htcer")
 [node name="IngredientBagUI" parent="." unique_id=1418056687 instance=ExtResource("6_dd0ac")]
 
 [node name="FoodSlotUI" parent="." unique_id=1832896472 instance=ExtResource("7_0u5uq")]
+
+[node name="StatusEffects" type="CanvasLayer" parent="." unique_id=2124196682]
+
+[node name="HBoxContainer" parent="StatusEffects" unique_id=730727763 instance=ExtResource("8_jlvik")]
+offset_left = 445.0
+offset_top = -123.0
+offset_right = 485.0
+offset_bottom = -83.0
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="area_exited" from="PickupArea" to="." method="_on_pickup_area_area_exited"]

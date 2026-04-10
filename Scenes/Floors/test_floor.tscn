@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c5wf2ju6x5w33" path="res://Scenes/Floors/apple.tscn" id="5_g5enb"]
 [ext_resource type="PackedScene" uid="uid://exmlmiug3st4" path="res://Scenes/Floors/poison.tscn" id="6_mlcga"]
 [ext_resource type="PackedScene" uid="uid://208y1mgvx2en" path="res://Scenes/Floors/fire.tscn" id="7_31l86"]
+[ext_resource type="PackedScene" uid="uid://cb0kyqifl5o74" path="res://Scenes/Enemies/slime.tscn" id="8_kdqf3"]
+[ext_resource type="PackedScene" uid="uid://hokg0gi8ti1u" path="res://Scenes/Enemies/sloth.tscn" id="9_wanej"]
 
 [node name="Node2D" type="Node2D" unique_id=936650630]
 
@@ -39,3 +41,11 @@ position = Vector2(7, -68)
 
 [node name="Fire" parent="." unique_id=207395600 instance=ExtResource("7_31l86")]
 position = Vector2(-117, -41)
+burn_chance = 0.3
+burn_damage = 2
+
+[node name="slime3" parent="." unique_id=1706528063 instance=ExtResource("8_kdqf3")]
+position = Vector2(-143, -137)
+
+[node name="sloth" parent="." unique_id=1533549000 instance=ExtResource("9_wanej")]
+position = Vector2(174, -58)

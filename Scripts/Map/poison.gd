@@ -26,7 +26,7 @@ func _ready() -> void:
 	if particles:
 		particles.emission_sphere_radius = poison_radius
 
-	# Poison cloud disappears after lifetime seconds
+	# Auto destroy
 	await get_tree().create_timer(lifetime).timeout
 	queue_free()
 
@@ -67,17 +67,27 @@ func _on_body_exited(body: Node2D) -> void:
 	bodies_inside.erase(body)
 
 
+# ----------------------------
+# DAMAGE (FIXED → ALWAYS ARMOR SAFE)
+# ----------------------------
 func _apply_damage(body: Node2D) -> void:
 	if not is_instance_valid(body):
 		return
 
+	# ALWAYS use armor system first
 	if body.has_method("take_armor_damage"):
 		body.take_armor_damage(damage_per_tick)
 	elif body.has_method("take_damage"):
 		body.take_damage(damage_per_tick)
 
 
+# ----------------------------
+# POISON APPLY (FIXED)
+# ----------------------------
 func apply_poison(body: Node2D) -> void:
+	if poisoning_bodies.has(body):
+		return
+
 	poisoning_bodies[body] = {
 		"timer": poison_duration,
 		"tick_timer": 0.0
@@ -86,7 +96,18 @@ func apply_poison(body: Node2D) -> void:
 	if body.has_method("set_poison_visual"):
 		body.set_poison_visual(true)
 
+	# ONLY APPLY STATUS EFFECT ON PLAYER (UI + SYSTEM)
+	if body.is_in_group("Player"):
+		PlayerState.status_effects.add_effect(
+			StatusEffectManager.EffectType.POISON,
+			poison_duration,
+			poison_damage
+		)
 
+
+# ----------------------------
+# POISON TICK (FIXED → ARMOR SAFE)
+# ----------------------------
 func _process_poison(delta: float) -> void:
 	var to_remove : Array = []
 
@@ -103,6 +124,7 @@ func _process_poison(delta: float) -> void:
 		if data["tick_timer"] >= poison_tick_rate:
 			data["tick_timer"] = 0.0
 
+			# 💥 FIX: ALWAYS USE ARMOR SYSTEM FIRST
 			if body.has_method("take_armor_damage"):
 				body.take_armor_damage(poison_damage)
 			elif body.has_method("take_damage"):
@@ -118,37 +140,34 @@ func _process_poison(delta: float) -> void:
 		poisoning_bodies.erase(body)
 
 
+# ----------------------------
+# VISUALS (UNCHANGED)
+# ----------------------------
 func _draw() -> void:
 	var pulse = 0.1 + ((sin(pulse_timer * 2.0) + 1.0) / 2.0) * 0.2
 
-	var base_color = Color(0.25, 0.0, 0.4)   # dark outer
-	var inner_color = Color(0.6, 0.2, 1.0)   # brighter center
+	var base_color = Color(0.25, 0.0, 0.4)
+	var inner_color = Color(0.6, 0.2, 1.0)
 
-	var steps = 65  # more = smoother gradient
+	var steps = 65
 
 	for i in range(steps):
 		var t = float(i) / steps
-		
-		# radius goes from big → small
 		var radius = poison_radius * (1.0 - t)
 
-		# blend color (outer → inner)
 		var r = lerp(base_color.r, inner_color.r, 1.0 - t)
 		var g = lerp(base_color.g, inner_color.g, 1.0 - t)
 		var b = lerp(base_color.b, inner_color.b, 1.0 - t)
 
-		# fade alpha softly
 		var alpha = (0.03 + 0.07 * pulse) * (1.0 - t)
 
 		draw_circle(Vector2.ZERO, radius, Color(r, g, b, alpha))
 
-	# 🔥 Outer ring
 	var arc_color = base_color
 	arc_color.a = 0.6 + 0.4 * pulse
 
 	draw_arc(Vector2.ZERO, poison_radius, 0, TAU, 64, arc_color, 3.0)
 
-	# ✨ rotating dashes
 	var dash_count = 12
 	for i in range(dash_count):
 		var start_angle = (TAU / dash_count) * i + pulse_timer * 0.4

@@ -23,8 +23,8 @@ config/icon="res://icon.svg"
 
 PlayerState="*res://Scripts/Global/PlayerState.gd"
 StatusEffects="*uid://dkbrr6qote1oo"
-GameData="*uid://co4xijgcfxwmw"
 EnemyState="*uid://dkqw21gh3qgh8"
+GameData="*uid://co4xijgcfxwmw"
 IngredientBag="*uid://dp6y4m7uh47yv"
 
 [display]

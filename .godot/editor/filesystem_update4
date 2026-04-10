@@ -3,3 +3,10 @@ res://Scenes/Floors/poison.tscn
 res://Scripts/UI/altar_ui.gd
 res://Scripts/Map/fire.gd
 res://Scripts/Map/poison.gd
+res://Scripts/UI/status_effect_UI.gd
+res://Scenes/UI/status_effect_ui.tscn
+res://Scenes/Player/player.tscn
+res://Scenes/UI/StatuEffectUI.tscn
+res://Scenes/Floors/test_floor.tscn
+res://Scripts/Global/status_effects.gd
+res://Scripts/Global/PlayerState.gd

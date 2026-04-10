@@ -1,33 +1,27 @@
-
 extends Node
-
 signal healthChanged
 signal armorChanged
 signal manaChanged
-
-@export var max_health = 5
-var current_health = max_health
-@export var max_armor = 5
-var current_armor = max_armor
+@export var max_health := 5
+var current_health := 5
+@export var max_armor := 5
+var current_armor := 5
 @export var armor_regen_interval: float = 3.0
-@export var base_speed = 300.0
-var speed = base_speed
+@export var base_speed := 300.0
+var speed := 300.0
 var current_mana: int = 100
 var max_mana: int = 100
-
-var status_effects: StatusEffectManager  # Own instance
+var status_effects: StatusEffectManager
 
 func _ready() -> void:
-	# Create own status effect instance
+	current_health = max_health
+	current_armor = max_armor
+	speed = base_speed
 	status_effects = StatusEffectManager.new()
 	add_child(status_effects)
-	
-	# Connect signals
 	status_effects.burn_tick.connect(_on_burn_tick)
 	status_effects.effect_started.connect(_on_effect_started)
 	status_effects.effect_ended.connect(_on_effect_ended)
-	
-	# Armor regen timer
 	var timer = Timer.new()
 	timer.wait_time = armor_regen_interval
 	timer.one_shot = false
@@ -35,18 +29,16 @@ func _ready() -> void:
 	add_child(timer)
 	timer.timeout.connect(_on_armor_regen_timer_timeout)
 
-# func _process(delta):
-# 	status_effects.update(delta)
-
+# ----------------------------
+# CORE SYSTEM
+# ----------------------------
 func _on_armor_regen_timer_timeout() -> void:
 	if current_armor < max_armor:
 		armor_regen(1)
-		armorChanged.emit()
 
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
 	healthChanged.emit()
-	print("Player Health:", current_health)
 
 func take_armor_damage(amount: int) -> void:
 	if current_armor > 0:
@@ -56,58 +48,61 @@ func take_armor_damage(amount: int) -> void:
 		if leftover > 0:
 			take_damage(leftover)
 		armorChanged.emit()
-		print("Armor:", current_armor)
 	else:
 		take_damage(amount)
 
 func armor_regen(amount: int) -> void:
 	current_armor = min(current_armor + amount, max_armor)
 	armorChanged.emit()
-	print("Armor Healed:", current_armor)
 
 func heal(amount: int) -> void:
-	current_health += amount
-	if current_health > max_health:
-		current_health = max_health
-	healthChanged.emit()  # Also emit signal to notify UI or others
-	print("Healed! Current health:", current_health)
-	
+	current_health = min(current_health + amount, max_health)
+	healthChanged.emit()
+
 func use_mana(amount: int) -> bool:
-	if current_mana >= amount:
-		current_mana -= amount
-		manaChanged.emit()
-		return true   # Skill can be used
-	else:
-		return false  # Not enough mana
+	if current_mana < amount:
+		return false
+	current_mana -= amount
+	manaChanged.emit()
+	return true
 
 func add_mana(amount: int) -> bool:
 	if current_mana >= max_mana:
-		return false  # No mana added
-
-	var old_mana = current_mana
+		return false
 	current_mana = min(current_mana + amount, max_mana)
+	manaChanged.emit()
+	return true
 
-	if current_mana != old_mana:
-		manaChanged.emit()
-		print("Mana regenerated:", current_mana)
-		return true
-
-	return false
-
-
+# ----------------------------
+# STATUS EFFECTS
+# ----------------------------
 func _on_burn_tick(damage):
 	take_damage(damage)
 
 func _on_effect_started(type):
 	print("Effect started:", type)
-	if type == StatusEffectManager.EffectType.STUN:
-		speed = 0
-	if type == StatusEffectManager.EffectType.SLOW:
-		speed = base_speed * 0.5
-		print("Speed reduced to:", speed)
+	match type:
+		StatusEffectManager.EffectType.STUN:
+			speed = 0
+		StatusEffectManager.EffectType.SLOW:
+			speed = base_speed * 0.5
+		StatusEffectManager.EffectType.POISON:
+			print("Poison applied")
+		StatusEffectManager.EffectType.BURN:
+			print("Burn applied")
 
 func _on_effect_ended(type):
 	print("Effect ended:", type)
-	if type == StatusEffectManager.EffectType.STUN or type == StatusEffectManager.EffectType.SLOW:
-		speed = base_speed
-		print("Speed restored to:", speed)
+	match type:
+		StatusEffectManager.EffectType.STUN:
+			if status_effects.has_effect(StatusEffectManager.EffectType.SLOW):
+				speed = base_speed * 0.5  # still slowed
+			else:
+				speed = base_speed
+		StatusEffectManager.EffectType.SLOW:
+			if not status_effects.has_effect(StatusEffectManager.EffectType.STUN):
+				speed = base_speed  # only restore if not stunned
+		StatusEffectManager.EffectType.POISON:
+			print("Poison ended")
+		StatusEffectManager.EffectType.BURN:
+			print("Burn applied")

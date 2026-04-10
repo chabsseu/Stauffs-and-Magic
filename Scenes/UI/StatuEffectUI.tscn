@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ociobxauih61"]
+
+[ext_resource type="Script" uid="uid://bgbhk8lrhc6uc" path="res://Scripts/UI/status_effect_UI.gd" id="1_ec7hh"]
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=730727763]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+script = ExtResource("1_ec7hh")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=18569053]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+stretch_mode = 3
