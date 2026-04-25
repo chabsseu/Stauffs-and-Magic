@@ -1,12 +1,15 @@
+res://Scenes/Enemies/Boss/Durion/
+res://Scripts/Enemies/Boss/Durion/
+res://Scenes/Enemies/Boss/
+res://
+res://Scenes/Floors/
 res://Scenes/UI/
 res://Scripts/UI/
 res://Scripts/Floor/
-res://Scenes/Floors/
 res://Assets/Alter/
 res://Scripts/Map/
 res://Scenes/Map/
 res://Assets/Tilemaps/
-res://
 res://Assets/MapAccessories/
 res://Scripts/Global/
 res://Assets/Enemies/jello/
@@ -14,7 +17,6 @@ res://Assets/Enemies/Boss/
 res://Scripts/Enemies/Boss/
 res://Assets/UI/Health&Armor/
 res://Scripts/Enemies/Boss/
-res://Scenes/Enemies/Boss/
 res://Scenes/Enemies/
 res://Scripts/Enemies/
 res://Assets/UI/

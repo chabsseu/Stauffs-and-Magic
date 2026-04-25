@@ -19,6 +19,7 @@ signal healthChanged
 @export var pattern_range : float = 200
 @export var health_bar: Control
 @export var label: Control
+@export var hit: PackedScene
 # --------------------------------------------------
 # STATE
 # --------------------------------------------------
@@ -193,7 +194,7 @@ func _attack_pattern():
 # --------------------------------------------------
 # TAKE DAMAGE
 # --------------------------------------------------
-func take_damage(amount: int):
+func take_damage(amount: int,  hit_direction: Vector2 = Vector2.ZERO):
 	current_health -= amount
 	current_health = max(current_health, 0)
 	healthChanged.emit()

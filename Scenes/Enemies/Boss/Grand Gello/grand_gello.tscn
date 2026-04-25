@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://des416ak1l8jm"]
 
 [ext_resource type="Script" uid="uid://dy1bx723nl2db" path="res://Scripts/Enemies/Boss/grand_gello.gd" id="1_kqy14"]
-[ext_resource type="PackedScene" uid="uid://diravf6ro4s0l" path="res://Scenes/Enemies/Boss/boss_bullet.tscn" id="2_qw8uh"]
-[ext_resource type="PackedScene" uid="uid://b38gp36xx0yis" path="res://Scenes/Enemies/Boss/boss_puddle.tscn" id="3_7n8lb"]
+[ext_resource type="PackedScene" uid="uid://diravf6ro4s0l" path="res://Scenes/Enemies/Boss/Grand Gello/boss_bullet.tscn" id="2_qw8uh"]
+[ext_resource type="PackedScene" uid="uid://b38gp36xx0yis" path="res://Scenes/Enemies/Boss/Grand Gello/boss_puddle.tscn" id="3_7n8lb"]
 [ext_resource type="PackedScene" uid="uid://cb0kyqifl5o74" path="res://Scenes/Enemies/slime.tscn" id="3_wsfiu"]
 [ext_resource type="Texture2D" uid="uid://7ad0jit5f0ec" path="res://Assets/Enemies/Boss/Boss.png" id="5_sybyq"]
 [ext_resource type="Texture2D" uid="uid://clwrngsgt8qvi" path="res://Assets/UI/Health&Armor/BossHealthBar.png" id="6_sybyq"]
@@ -34,8 +34,7 @@ texture = ExtResource("5_sybyq")
 position = Vector2(0, 14)
 shape = SubResource("CircleShape2D_353xd")
 
-[node name="Detection_Area" type="Area2D" parent="." unique_id=1393360083]
-visible = false
+[node name="Detection_Area" type="Area2D" parent="." unique_id=1393360083 groups=["Boss"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area" unique_id=218577883]
 shape = SubResource("CircleShape2D_2mpaq")

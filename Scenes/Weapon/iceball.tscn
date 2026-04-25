@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm0a65doipbwr"]
+[gd_scene format=3 uid="uid://cm0a65doipbwr"]
 
 [ext_resource type="Script" uid="uid://tx07eijwhq8v" path="res://Scripts/Weapon/iceball.gd" id="1_70fof"]
 [ext_resource type="Texture2D" uid="uid://m8mt2ca2wfp0" path="res://Assets/Weapon/iceball.png" id="2_70fof"]
@@ -36,19 +36,19 @@ animations = [{
 radius = 3.9986084
 height = 14.047891
 
-[node name="Iceball" type="Area2D"]
+[node name="Iceball" type="Area2D" unique_id=472205190 groups=["Projectile"]]
 script = ExtResource("1_70fof")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2051509042]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_e80o3")
 animation = &"fire"
 frame_progress = 0.49879426
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=237673644]
 rect = Rect2(-10, -130, 20, 331)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=681924588]
 position = Vector2(1, -2.8421716e-14)
 rotation = 1.5971794
 shape = SubResource("CapsuleShape2D_ne7xk")

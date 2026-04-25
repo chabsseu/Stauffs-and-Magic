@@ -36,7 +36,7 @@ animations = [{
 radius = 3.9986084
 height = 14.047891
 
-[node name="force_bullet" type="Area2D" unique_id=393642159]
+[node name="force_bullet" type="Area2D" unique_id=393642159 groups=["Projectile"]]
 script = ExtResource("1_wvtpa")
 speed = 500
 

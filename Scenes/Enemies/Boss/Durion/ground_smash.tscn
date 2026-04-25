@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bcmaxg01ump5q"]
+
+[ext_resource type="Script" uid="uid://c4f37i3hqb6km" path="res://Scripts/Enemies/Boss/Durion/ground_smash.gd" id="1_xr1tb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4ekg"]
+size = Vector2(58, 38)
+
+[node name="Ground_Smash" type="Area2D" unique_id=1278702991]
+script = ExtResource("1_xr1tb")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1931130751]
+custom_minimum_size = Vector2(60, 20)
+offset_left = -30.0
+offset_top = -10.0
+offset_right = 30.0
+offset_bottom = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1503044913]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_w4ekg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

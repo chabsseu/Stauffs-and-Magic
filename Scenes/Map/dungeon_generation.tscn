@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dkxxs5v05i6p4" path="res://Scenes/Map/attack_statue.tscn" id="5_vidkv"]
 [ext_resource type="PackedScene" uid="uid://6x6c34ddudyr" path="res://Scenes/Map/cooldown_statue.tscn" id="6_smyv6"]
 [ext_resource type="PackedScene" uid="uid://cigtrfmfcfee8" path="res://Scenes/Map/common_chest.tscn" id="7_mc0b8"]
-[ext_resource type="PackedScene" uid="uid://des416ak1l8jm" path="res://Scenes/Enemies/Boss/grand_gello.tscn" id="8_mc0b8"]
+[ext_resource type="PackedScene" uid="uid://des416ak1l8jm" path="res://Scenes/Enemies/Boss/Grand Gello/grand_gello.tscn" id="8_mc0b8"]
 [ext_resource type="PackedScene" uid="uid://d1x60xga56cti" path="res://Scenes/UI/portal.tscn" id="9_j7ugi"]
 [ext_resource type="PackedScene" uid="uid://c4jy6ets143vs" path="res://Scenes/Floors/normal_box.tscn" id="9_kv37p"]
 [ext_resource type="PackedScene" uid="uid://bibfcnoieqx4k" path="res://Scenes/Floors/firebox.tscn" id="10_dkg07"]

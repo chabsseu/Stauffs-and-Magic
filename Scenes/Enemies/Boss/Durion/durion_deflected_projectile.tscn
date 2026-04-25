@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c5xsd3v0008q4"]
+
+[ext_resource type="Script" uid="uid://cx7pfafgtvrxs" path="res://Scripts/Enemies/Boss/Durion/durion_deflected_projectile.gd" id="1_gu2j5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2y66a"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gu2j5"]
+radius = 8.062258
+
+[node name="DurionDeflectedProjectile" type="Area2D" unique_id=1762636299]
+script = ExtResource("1_gu2j5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=673261459 groups=["Projectile"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1807747059]
+shape = SubResource("CircleShape2D_2y66a")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=720422315]
+rect = Rect2(-10, -311, 20, 653)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=285668722]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=227015631]
+shape = SubResource("CircleShape2D_gu2j5")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

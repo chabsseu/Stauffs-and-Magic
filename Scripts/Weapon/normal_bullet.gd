@@ -24,6 +24,11 @@ func _on_body_entered(body: Node2D) -> void:
 		var hit_dir = (body.global_position - global_position).normalized()
 		body.take_damage(damage, hit_dir)
 		queue_free()
-
+	
+	if is_in_group("EnemyProjectile") and body.is_in_group("Player"):
+			if body.has_method("take_armor_damage"):
+				body.take_armor_damage(damage)
+			queue_free()
+			
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

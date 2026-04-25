@@ -44,7 +44,7 @@ texture = ExtResource("1_pbq80")
 
 [node name="AnimationPlayer" type="AnimatedSprite2D" parent="." unique_id=1334801181]
 sprite_frames = SubResource("SpriteFrames_dh2dt")
-animation = &"normal"
+animation = &"skill"
 autoplay = "normal"
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=337238603]
@@ -53,7 +53,7 @@ position = Vector2(17, 0)
 [node name="SkillArea" type="Area2D" parent="." unique_id=1177164262]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SkillArea" unique_id=1743771870]
-position = Vector2(6, -1)
+position = Vector2(3, -1)
 shape = SubResource("CapsuleShape2D_56t7c")
 disabled = true
 

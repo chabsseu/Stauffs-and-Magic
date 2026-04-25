@@ -30,6 +30,11 @@ func _on_body_entered(body: Node2D):
 		if body.has_method("take_damage"):
 			body.take_damage(damage, hit_dir)
 
+		if is_in_group("EnemyProjectile") and body.is_in_group("Player"):
+			if body.has_method("take_armor_damage"):
+				body.take_armor_damage(damage)
+			queue_free()
+
 		# Apply status effect via getter
 		if has_status_effect and body.has_method("get_status_effects"):
 			var se = body.get_status_effects()

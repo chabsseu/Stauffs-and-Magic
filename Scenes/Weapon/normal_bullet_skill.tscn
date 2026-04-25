@@ -39,7 +39,7 @@ animation = &"skill"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1275528258]
 shape = SubResource("CircleShape2D_776a2")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=747105646]
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=747105646 groups=["Projectile"]]
 rect = Rect2(-7.5, -400, 15, 816.5)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
