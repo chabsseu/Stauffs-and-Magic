@@ -1,6 +1,8 @@
 extends CharacterBody2D
+
 @onready var prompt_label: Label = $Detection_area/Label
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+
 var player_nearby: bool = false
 var forge_ui: Node = null
 var used: bool = false
@@ -20,10 +22,20 @@ func open_forge():
 	if forge_ui == null:
 		push_error("ForgeUI not found")
 		return
+
+	# Prevent opening if already open
+	if forge_ui.visible:
+		return
+
 	if not forge_ui.is_connected("upgrade_confirmed", Callable(self, "_on_upgrade_confirmed")):
 		forge_ui.connect("upgrade_confirmed", Callable(self, "_on_upgrade_confirmed"))
-		
+
 	forge_ui.open("damage", cached_cost)
+
+	# Prevent player from firing while forge is open
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.can_fire = false
 
 func calculate_forge_cost() -> int:
 	var floor_number = GameData.floor
@@ -37,6 +49,10 @@ func _on_upgrade_confirmed():
 	used = true
 	animation.play("idle")
 	prompt_label.visible = false
+	# Restore firing after upgrade
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.can_fire = true
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and not used:
@@ -49,3 +65,5 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 		prompt_label.visible = false
 		if forge_ui != null:
 			forge_ui.close()
+		# Restore firing when player walks away
+		body.can_fire = true

@@ -7,3 +7,10 @@ res://Scripts/Map/dungeon_generation.gd
 res://Scripts/Map/attack_statue.gd
 res://Scenes/UI/forgeUI.tscn
 res://Scenes/Map/attack_statue.tscn
+res://Scripts/Map/cooldown_statue.gd
+res://Scripts/UI/CookingUI.gd
+res://Scenes/UI/CookingUI.tscn
+res://Scripts/Floor/Ingredient.gd
+res://Scripts/Floor/campfire.gd
+res://Scripts/Floor/altar.gd
+res://Scenes/Floors/campfire.tscn

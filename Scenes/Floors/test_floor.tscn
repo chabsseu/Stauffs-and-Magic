@@ -4,17 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://wcfijacx45v0" path="res://Scenes/Floors/campfire.tscn" id="2_g5enb"]
 [ext_resource type="PackedScene" uid="uid://dm1txdlkpfjn3" path="res://Scenes/Floors/cookie_crumble.tscn" id="3_mlcga"]
 [ext_resource type="PackedScene" uid="uid://dq2oqms8fpjtp" path="res://Scenes/Floors/slime.tscn" id="4_31l86"]
-[ext_resource type="PackedScene" uid="uid://b1a3m4g8vhl3w" path="res://Scenes/UI/hit_particle.tscn" id="6_31l86"]
 [ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="8_kdqf3"]
 [ext_resource type="PackedScene" uid="uid://dkxxs5v05i6p4" path="res://Scenes/Map/attack_statue.tscn" id="8_wanej"]
 [ext_resource type="PackedScene" uid="uid://6x6c34ddudyr" path="res://Scenes/Map/cooldown_statue.tscn" id="9_wanej"]
-[ext_resource type="PackedScene" uid="uid://bs34j44n5ijmb" path="res://Scenes/Enemies/Boss/Durion/Durion.tscn" id="10_f1wej"]
+[ext_resource type="PackedScene" uid="uid://c5wf2ju6x5w33" path="res://Scenes/Floors/apple.tscn" id="10_f1wej"]
 [ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="10_tjf7s"]
 [ext_resource type="PackedScene" uid="uid://dy858vp7vsy74" path="res://Scenes/UI/altar_ui.tscn" id="11_grnbs"]
 
 [node name="Node2D" type="Node2D" unique_id=936650630]
 
 [node name="Player" parent="." unique_id=500875389 instance=ExtResource("1_o16k2")]
+position = Vector2(-2, 0)
 
 [node name="Campfire" parent="." unique_id=1986408141 instance=ExtResource("2_g5enb")]
 position = Vector2(270, -102)
@@ -25,17 +25,15 @@ position = Vector2(98, -117)
 [node name="slime" parent="." unique_id=2117078211 instance=ExtResource("4_31l86")]
 position = Vector2(-43, -99)
 ingredient_type = "slime"
+ingredient_color = Color(0.22659343, 0.69306386, 0, 1)
 
 [node name="slime2" parent="." unique_id=1818464611 instance=ExtResource("4_31l86")]
 position = Vector2(3, -175)
 ingredient_type = "slime"
+ingredient_color = Color(0.41430637, 0.83872384, 0, 1)
 
 [node name="cookie_crumble2" parent="." unique_id=1018845595 instance=ExtResource("3_mlcga")]
 position = Vector2(136, -160)
-
-[node name="Durion" parent="." unique_id=1771737764 instance=ExtResource("10_f1wej")]
-position = Vector2(-252, -143)
-hit = ExtResource("6_31l86")
 
 [node name="WeaponPickup" parent="." unique_id=378548632 instance=ExtResource("8_kdqf3")]
 position = Vector2(108, -12)
@@ -67,3 +65,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+
+[node name="apple" parent="." unique_id=1214497267 instance=ExtResource("10_f1wej")]
+position = Vector2(300, -232)
+ingredient_type = "apple"
+ingredient_color = Color(0.80240893, 0, 0.12019164, 1)
+
+[node name="apple2" parent="." unique_id=1593082601 instance=ExtResource("10_f1wej")]
+position = Vector2(96, -234)
+ingredient_type = "apple"
+ingredient_color = Color(0.85283446, 0, 0.21246234, 1)
