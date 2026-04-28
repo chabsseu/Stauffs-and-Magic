@@ -239,7 +239,7 @@ func spawn_chest_in_room(room: Rect2):
 func spawn_enemies_in_room(room: Rect2, room_index: int):
 	print("Room ", room_index, " triggered!")
 	var total_waves = randi_range(2, 4)
-	var enemies_per_wave = randi_range(2, 6)
+	var enemies_per_wave = randi_range(2, 4)
 
 	room_wave_data[room_index] = {
 		"room": room,

@@ -16,7 +16,7 @@ func skill():
         $SkillArea/CollisionShape2D.disabled = true
 
 func _on_skill_area_area_entered(area: Area2D) -> void:
-    if area.is_in_group("Projectile"):
+    if area.is_in_group("EnemyProjectile"):
         area.queue_free()
 
 func get_upgrade_cooldown_reduction() -> float:

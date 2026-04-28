@@ -13,8 +13,8 @@ signal healthChanged
 @export var health_bar : Control
 @export var label : Control
 
-@export var phase1_attack_cooldown : float = 4.0
-@export var phase2_attack_cooldown : float = 2.5
+@export var phase1_attack_cooldown : float = 3.0
+@export var phase2_attack_cooldown : float = 1
 @export var hit: PackedScene
 
 @onready var deflect_indicator = $DeflectIndicator
@@ -124,7 +124,7 @@ func _attack_ground_smash():
 		return
 	print("Durion: Ground Smash!")
 
-	var direction_count = 4 if current_phase == Phase.ONE else 8
+	var direction_count = 8 if current_phase == Phase.ONE else 16
 
 	is_attacking = true
 
@@ -239,7 +239,7 @@ func take_damage(amount: int,  hit_direction: Vector2 = Vector2.ZERO):
 	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
 	if current_health <= 0:
 		die()
-
+		
 	var cam = get_viewport().get_camera_2d()
 	if cam and cam.has_method("shake"):
 		cam.shake(randf_range(2.5, 4.0))

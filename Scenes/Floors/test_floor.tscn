@@ -4,8 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://wcfijacx45v0" path="res://Scenes/Floors/campfire.tscn" id="2_g5enb"]
 [ext_resource type="PackedScene" uid="uid://dm1txdlkpfjn3" path="res://Scenes/Floors/cookie_crumble.tscn" id="3_mlcga"]
 [ext_resource type="PackedScene" uid="uid://dq2oqms8fpjtp" path="res://Scenes/Floors/slime.tscn" id="4_31l86"]
-[ext_resource type="PackedScene" uid="uid://exmlmiug3st4" path="res://Scenes/Floors/poison.tscn" id="6_mlcga"]
-[ext_resource type="PackedScene" uid="uid://208y1mgvx2en" path="res://Scenes/Floors/fire.tscn" id="7_31l86"]
+[ext_resource type="PackedScene" uid="uid://b1a3m4g8vhl3w" path="res://Scenes/UI/hit_particle.tscn" id="6_31l86"]
 [ext_resource type="PackedScene" uid="uid://vwhok55g8tdn" path="res://Scenes/Weapon/weapon_pickup.tscn" id="8_kdqf3"]
 [ext_resource type="PackedScene" uid="uid://bs34j44n5ijmb" path="res://Scenes/Enemies/Boss/Durion/Durion.tscn" id="10_f1wej"]
 
@@ -30,16 +29,9 @@ ingredient_type = "slime"
 [node name="cookie_crumble2" parent="." unique_id=1018845595 instance=ExtResource("3_mlcga")]
 position = Vector2(136, -160)
 
-[node name="Poison" parent="." unique_id=1334863494 instance=ExtResource("6_mlcga")]
-position = Vector2(7, -68)
-
-[node name="Fire" parent="." unique_id=207395600 instance=ExtResource("7_31l86")]
-position = Vector2(-117, -41)
-burn_chance = 0.3
-burn_damage = 2
-
 [node name="Durion" parent="." unique_id=1771737764 instance=ExtResource("10_f1wej")]
 position = Vector2(-252, -143)
+hit = ExtResource("6_31l86")
 
 [node name="WeaponPickup" parent="." unique_id=378548632 instance=ExtResource("8_kdqf3")]
 position = Vector2(108, -12)

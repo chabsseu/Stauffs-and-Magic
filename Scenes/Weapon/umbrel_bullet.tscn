@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_rutc1"]
 radius = 3.1622777
 
-[node name="Umbrel_bullet" type="Area2D" unique_id=147410751]
+[node name="Umbrel_bullet" type="Area2D" unique_id=147410751 groups=["Projectile"]]
 script = ExtResource("1_eohke")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2004890996]

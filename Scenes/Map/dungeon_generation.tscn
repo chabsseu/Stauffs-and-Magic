@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://des416ak1l8jm" path="res://Scenes/Enemies/Boss/Grand Gello/grand_gello.tscn" id="8_mc0b8"]
 [ext_resource type="PackedScene" uid="uid://d1x60xga56cti" path="res://Scenes/UI/portal.tscn" id="9_j7ugi"]
 [ext_resource type="PackedScene" uid="uid://c4jy6ets143vs" path="res://Scenes/Floors/normal_box.tscn" id="9_kv37p"]
+[ext_resource type="PackedScene" uid="uid://bs34j44n5ijmb" path="res://Scenes/Enemies/Boss/Durion/Durion.tscn" id="9_n8d2p"]
 [ext_resource type="PackedScene" uid="uid://bibfcnoieqx4k" path="res://Scenes/Floors/firebox.tscn" id="10_dkg07"]
 [ext_resource type="PackedScene" uid="uid://dasja8vhvm4ig" path="res://Scenes/Floors/poison_box.tscn" id="11_jwufn"]
 [ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="11_smyv6"]
@@ -53,7 +54,7 @@ chest_scenes = Array[PackedScene]([ExtResource("7_mc0b8")])
 portal = NodePath("Portal")
 floor_transition = NodePath("StageTransition")
 minimap = NodePath("MinimapLayer/minimap")
-boss_scenes = Array[PackedScene]([ExtResource("8_mc0b8")])
+boss_scenes = Array[PackedScene]([ExtResource("8_mc0b8"), ExtResource("9_n8d2p")])
 box_scenes = Array[PackedScene]([ExtResource("9_kv37p"), ExtResource("10_dkg07"), ExtResource("11_jwufn")])
 min_boxes_per_room = 100
 max_boxes_per_room = 200
