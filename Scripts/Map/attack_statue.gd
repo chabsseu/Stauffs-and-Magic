@@ -4,10 +4,12 @@ extends CharacterBody2D
 var player_nearby: bool = false
 var forge_ui: Node = null
 var used: bool = false
+var cached_cost: int = 0
 
 func _ready():
 	prompt_label.visible = false
 	animation.play("active")
+	cached_cost = calculate_forge_cost()
 
 func _process(_delta):
 	if player_nearby and Input.is_action_just_pressed("interact") and not used:
@@ -20,8 +22,8 @@ func open_forge():
 		return
 	if not forge_ui.is_connected("upgrade_confirmed", Callable(self, "_on_upgrade_confirmed")):
 		forge_ui.connect("upgrade_confirmed", Callable(self, "_on_upgrade_confirmed"))
-	var cost = calculate_forge_cost()
-	forge_ui.open("damage", cost)
+		
+	forge_ui.open("damage", cached_cost)
 
 func calculate_forge_cost() -> int:
 	var floor_number = GameData.floor

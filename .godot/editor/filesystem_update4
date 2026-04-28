@@ -4,3 +4,6 @@ res://Scripts/Weapon/umbrel_staff.gd
 res://Scenes/Weapon/umbrel_bullet.tscn
 res://Scenes/Map/dungeon_generation.tscn
 res://Scripts/Map/dungeon_generation.gd
+res://Scripts/Map/attack_statue.gd
+res://Scenes/UI/forgeUI.tscn
+res://Scenes/Map/attack_statue.tscn
