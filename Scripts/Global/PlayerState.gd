@@ -106,3 +106,7 @@ func _on_effect_ended(type):
 			print("Poison ended")
 		StatusEffectManager.EffectType.BURN:
 			print("Burn applied")
+
+func reset():
+	current_health = max_health
+	current_armor = max_armor

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://85kmy641pvax"]
+
+[ext_resource type="Script" uid="uid://043vk4twnrq8" path="res://Scripts/UI/game_over_menu.gd" id="1_7hu81"]
+[ext_resource type="FontFile" uid="uid://d2oxg5erodfuh" path="res://Assets/Fonts/Title Screen Font/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="2_j4xgp"]
+
+[node name="GameOverMenu" type="Control" unique_id=472903395]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7hu81")
+
+[node name="Panel" type="Panel" parent="." unique_id=1186179423]
+layout_mode = 0
+offset_right = 362.0
+offset_bottom = 426.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=987900008]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 75.0
+offset_right = 256.0
+offset_bottom = 114.0
+theme_override_fonts/font = ExtResource("2_j4xgp")
+theme_override_font_sizes/font_size = 32
+text = "Game Over"
+
+[node name="TryAgain" type="Button" parent="Panel" unique_id=1386157012]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 162.0
+offset_right = 248.0
+offset_bottom = 209.0
+theme_override_fonts/font = ExtResource("2_j4xgp")
+theme_override_font_sizes/font_size = 32
+text = "Try Again"
+
+[node name="Exit" type="Button" parent="Panel" unique_id=144470229]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 248.0
+offset_right = 337.0
+offset_bottom = 295.0
+theme_override_fonts/font = ExtResource("2_j4xgp")
+theme_override_font_sizes/font_size = 32
+text = "Exit to Title Screen"
+
+[connection signal="pressed" from="Panel/TryAgain" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="Panel/Exit" to="." method="_on_exit_pressed"]

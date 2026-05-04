@@ -1,5 +1,6 @@
-res://Scenes/UI/title_screen.tscn
+res://Scripts/Player/player.gd
+res://Scripts/UI/game_over_menu.gd
+res://Scenes/UI/game_over_menu.tscn
+res://Scripts/Global/PlayerState.gd
 res://Scripts/UI/title_screen.gd
-res://Scripts/UI/pause_menu.gd
-res://Scenes/UI/pause_menu.tscn
-res://Scenes/Map/dungeon_generation.tscn
+res://Scenes/UI/title_screen.tscn

@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://byhlt5w10bt5k" path="res://Assets/MapAccessories/Gold.png" id="16_i01xb"]
 [ext_resource type="PackedScene" uid="uid://dy858vp7vsy74" path="res://Scenes/UI/altar_ui.tscn" id="16_nl7hk"]
 [ext_resource type="Texture2D" uid="uid://fgtatq2gfj12" path="res://Assets/MapAccessories/Food.png" id="17_mc0b8"]
+[ext_resource type="PackedScene" uid="uid://85kmy641pvax" path="res://Scenes/UI/game_over_menu.tscn" id="23_84rh7"]
 [ext_resource type="PackedScene" uid="uid://cwaqd4csrpqu3" path="res://Scenes/Floors/altar.tscn" id="26_n8d2p"]
 [ext_resource type="PackedScene" uid="uid://dl4d0yxigw21r" path="res://Scenes/UI/pause_menu.tscn" id="28_7sm57"]
 
@@ -106,6 +107,12 @@ offset_left = -165.0
 offset_top = -212.0
 offset_right = -165.0
 offset_bottom = -212.0
+
+[node name="GameOverMenu" parent="PopUP_UI" unique_id=472903395 instance=ExtResource("23_84rh7")]
+offset_left = 462.0
+offset_top = 145.0
+offset_right = 462.0
+offset_bottom = 145.0
 
 [node name="Portal" parent="." unique_id=111973993 instance=ExtResource("9_j7ugi")]
 

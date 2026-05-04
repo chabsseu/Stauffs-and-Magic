@@ -22,7 +22,7 @@ var is_dashing: bool = false
 var dash_dir: Vector2 = Vector2.ZERO
 var dash_remaining: float = 0.0
 var dash_cooldown_remaining: float = 0.0
-
+var is_dead = false
 # -------------------------
 # Nodes
 # -------------------------
@@ -336,4 +336,8 @@ func dash(direction: Vector2):
 	dash_cooldown_remaining = dash_cooldown
 
 func die():
-	queue_free()
+	if is_dead:
+		return
+	is_dead = true
+	get_tree().paused = true
+	get_tree().call_group("game_over_menu", "show_menu")
