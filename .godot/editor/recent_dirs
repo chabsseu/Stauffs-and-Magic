@@ -1,10 +1,12 @@
+res://Scripts/UI/
+res://Assets/Fonts/Title Screen Font/Pixelify_Sans/
+res://Assets/UI/
+res://Scenes/UI/
 res://Scenes/Enemies/Boss/Durion/
 res://Scripts/Enemies/Boss/Durion/
 res://Scenes/Enemies/Boss/
 res://
 res://Scenes/Floors/
-res://Scenes/UI/
-res://Scripts/UI/
 res://Scripts/Floor/
 res://Assets/Alter/
 res://Scripts/Map/
@@ -18,5 +20,3 @@ res://Scripts/Enemies/Boss/
 res://Assets/UI/Health&Armor/
 res://Scripts/Enemies/Boss/
 res://Scenes/Enemies/
-res://Scripts/Enemies/
-res://Assets/UI/
