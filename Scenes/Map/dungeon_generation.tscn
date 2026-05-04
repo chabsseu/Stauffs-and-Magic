@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dy858vp7vsy74" path="res://Scenes/UI/altar_ui.tscn" id="16_nl7hk"]
 [ext_resource type="Texture2D" uid="uid://fgtatq2gfj12" path="res://Assets/MapAccessories/Food.png" id="17_mc0b8"]
 [ext_resource type="PackedScene" uid="uid://cwaqd4csrpqu3" path="res://Scenes/Floors/altar.tscn" id="26_n8d2p"]
+[ext_resource type="PackedScene" uid="uid://dl4d0yxigw21r" path="res://Scenes/UI/pause_menu.tscn" id="28_7sm57"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpfl8"]
 texture = ExtResource("2_eo2qp")
@@ -73,9 +74,9 @@ tile_set = SubResource("TileSet_43nnj")
 
 [node name="attack_statue" parent="." unique_id=1104023823 instance=ExtResource("5_vidkv")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1655216316]
+[node name="PopUP_UI" type="CanvasLayer" parent="." unique_id=1655216316]
 
-[node name="Forge" parent="CanvasLayer" unique_id=1896441417 instance=ExtResource("11_smyv6")]
+[node name="Forge" parent="PopUP_UI" unique_id=1896441417 instance=ExtResource("11_smyv6")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -88,16 +89,28 @@ offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AltarUI" parent="CanvasLayer" unique_id=593576041 instance=ExtResource("16_nl7hk")]
+[node name="AltarUI" parent="PopUP_UI" unique_id=593576041 instance=ExtResource("16_nl7hk")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 
+[node name="PauseMenu" parent="PopUP_UI" unique_id=513293175 instance=ExtResource("28_7sm57")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -212.0
+offset_right = -165.0
+offset_bottom = -212.0
+
 [node name="Portal" parent="." unique_id=111973993 instance=ExtResource("9_j7ugi")]
 
 [node name="StageTransition" parent="." unique_id=860889166 instance=ExtResource("12_r55y5")]
+visible = false
 
 [node name="MinimapLayer" type="CanvasLayer" parent="." unique_id=673748554]
 

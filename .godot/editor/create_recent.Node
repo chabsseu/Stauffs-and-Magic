@@ -1,14 +1,14 @@
+Node
 Label
+Button
+Panel
 TextureRect
 ColorRect
 CanvasLayer
 Sprite2D
 Container
-Node
 CanvasGroup
-Button
 VBoxContainer
-Panel
 TextureProgressBar
 ProgressBar
 HBoxContainer

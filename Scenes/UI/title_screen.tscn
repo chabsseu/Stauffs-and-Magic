@@ -58,22 +58,24 @@ theme_override_fonts/font = ExtResource("2_bnqst")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
-[node name="Container" type="Container" parent="Wrapper" unique_id=1313766666]
+[node name="Illustration" type="Container" parent="Wrapper" unique_id=1313766666]
 offset_left = 552.0
 offset_top = 86.0
 offset_right = 1006.0
 offset_bottom = 531.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Wrapper/Container" unique_id=1124566895]
+[node name="Sprite2D" type="Sprite2D" parent="Wrapper/Illustration" unique_id=1124566895]
 position = Vector2(229.25005, 219.99997)
 scale = Vector2(0.35898444, 0.62499994)
 texture = ExtResource("3_2br5b")
 
-[node name="Label" type="Label" parent="Wrapper" unique_id=1860210329]
-offset_left = 77.0
-offset_top = 605.0
-offset_right = 140.0
-offset_bottom = 644.0
+[node name="version" type="Label" parent="Wrapper" unique_id=1860210329]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -39.0
+offset_right = 63.0
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_bnqst")
 theme_override_font_sizes/font_size = 32
 text = "v 1.0"

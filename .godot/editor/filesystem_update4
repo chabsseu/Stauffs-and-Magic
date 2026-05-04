@@ -1,2 +1,5 @@
 res://Scenes/UI/title_screen.tscn
 res://Scripts/UI/title_screen.gd
+res://Scripts/UI/pause_menu.gd
+res://Scenes/UI/pause_menu.tscn
+res://Scenes/Map/dungeon_generation.tscn

@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://dl4d0yxigw21r"]
+
+[ext_resource type="Script" uid="uid://6t3nd3pxhllb" path="res://Scripts/UI/pause_menu.gd" id="1_8rf44"]
+[ext_resource type="FontFile" uid="uid://d2oxg5erodfuh" path="res://Assets/Fonts/Title Screen Font/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="1_rrvs5"]
+
+[node name="PauseMenu" type="Control" unique_id=513293175]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8rf44")
+
+[node name="Panel" type="Panel" parent="." unique_id=496600746]
+layout_mode = 0
+offset_right = 334.0
+offset_bottom = 428.0
+
+[node name="resume" type="Button" parent="Panel" unique_id=456595287]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 131.0
+offset_right = 230.0
+offset_bottom = 178.0
+theme_override_fonts/font = ExtResource("1_rrvs5")
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+
+[node name="options" type="Button" parent="Panel" unique_id=1851132794]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 184.0
+offset_right = 231.0
+offset_bottom = 231.0
+theme_override_fonts/font = ExtResource("1_rrvs5")
+theme_override_font_sizes/font_size = 32
+text = "Options
+"
+
+[node name="quit" type="Button" parent="Panel" unique_id=1195107777]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 238.0
+offset_right = 201.0
+offset_bottom = 285.0
+theme_override_fonts/font = ExtResource("1_rrvs5")
+theme_override_font_sizes/font_size = 32
+text = "Quit
+"
+
+[node name="Label" type="Label" parent="Panel" unique_id=442716608]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 26.0
+offset_right = 207.0
+offset_bottom = 65.0
+theme_override_fonts/font = ExtResource("1_rrvs5")
+theme_override_font_sizes/font_size = 32
+text = "PAUSE"
+
+[connection signal="pressed" from="Panel/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Panel/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Panel/quit" to="." method="_on_quit_pressed"]
