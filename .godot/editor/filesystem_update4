@@ -4,3 +4,6 @@ res://Scenes/UI/game_over_menu.tscn
 res://Scripts/Global/PlayerState.gd
 res://Scripts/UI/title_screen.gd
 res://Scenes/UI/title_screen.tscn
+res://Scenes/Floors/altar.tscn
+res://Scenes/UI/altar_ui.tscn
+res://Scenes/Map/dungeon_generation.tscn

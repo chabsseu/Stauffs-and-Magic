@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b82nvryvhi6kp" path="res://Assets/Alter/empty_altar1.png" id="1_gg0nl"]
 [ext_resource type="Script" uid="uid://bpj8nqrksegwu" path="res://Scripts/Floor/altar.gd" id="1_n6wej"]
+[ext_resource type="FontFile" uid="uid://d2oxg5erodfuh" path="res://Assets/Fonts/Title Screen Font/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="3_wvale"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6wej"]
 size = Vector2(28, 15)
@@ -31,6 +32,7 @@ offset_left = -62.0
 offset_top = -48.0
 offset_right = 62.0
 offset_bottom = -25.0
+theme_override_fonts/font = ExtResource("3_wvale")
 text = "Press E to Trade"
 horizontal_alignment = 1
 

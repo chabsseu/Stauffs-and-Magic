@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dy858vp7vsy74"]
 
 [ext_resource type="Script" uid="uid://ccmg0gth5jscs" path="res://Scripts/UI/altar_ui.gd" id="1_hh00f"]
+[ext_resource type="FontFile" uid="uid://d2oxg5erodfuh" path="res://Assets/Fonts/Title Screen Font/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="2_c5dow"]
 
 [node name="AltarUI" type="Control" unique_id=593576041 groups=["altar_ui"]]
 layout_mode = 3
@@ -32,6 +33,7 @@ offset_left = 2.0
 offset_top = 4.0
 offset_right = 321.0
 offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("2_c5dow")
 theme_override_font_sizes/font_size = 30
 text = "TRADE TO THE ALTAR"
 horizontal_alignment = 1
@@ -42,6 +44,7 @@ layout_mode = 0
 offset_top = 83.0
 offset_right = 319.0
 offset_bottom = 106.0
+theme_override_fonts/font = ExtResource("2_c5dow")
 theme_override_font_sizes/font_size = 16
 text = "rate"
 horizontal_alignment = 1
@@ -52,6 +55,7 @@ layout_mode = 0
 offset_top = 105.0
 offset_right = 319.0
 offset_bottom = 128.0
+theme_override_fonts/font = ExtResource("2_c5dow")
 text = "coin"
 horizontal_alignment = 1
 
@@ -62,6 +66,7 @@ offset_left = -3.0
 offset_top = 128.0
 offset_right = 319.0
 offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("2_c5dow")
 text = "food"
 horizontal_alignment = 1
 
@@ -72,6 +77,7 @@ offset_left = 2.0
 offset_top = 153.0
 offset_right = 318.0
 offset_bottom = 176.0
+theme_override_fonts/font = ExtResource("2_c5dow")
 text = "amount"
 horizontal_alignment = 1
 
@@ -100,6 +106,7 @@ offset_left = 128.0
 offset_top = 277.0
 offset_right = 198.0
 offset_bottom = 308.0
+theme_override_fonts/font = ExtResource("2_c5dow")
 text = "Convert"
 
 [node name="close_button" type="Button" parent="Panel" unique_id=303754299]
@@ -109,6 +116,7 @@ offset_left = 139.0
 offset_top = 313.0
 offset_right = 189.0
 offset_bottom = 344.0
+theme_override_fonts/font = ExtResource("2_c5dow")
 text = "Close"
 
 [connection signal="pressed" from="Panel/decrease_button" to="." method="_on_decrease_button_pressed"]
