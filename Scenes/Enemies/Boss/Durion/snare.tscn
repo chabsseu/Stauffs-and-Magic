@@ -1,24 +1,21 @@
 [gd_scene format=3 uid="uid://dkeap7gi75qts"]
 
 [ext_resource type="Script" uid="uid://cicgjr2e0dny3" path="res://Scripts/Enemies/Boss/Durion/snare.gd" id="1_lehp8"]
+[ext_resource type="Texture2D" uid="uid://bcvsu6c8clq60" path="res://Assets/Enemies/Boss/Durion/Vines.png" id="2_wuhfu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wuhfu"]
-size = Vector2(17, 17)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nlyk2"]
+radius = 5.0
+height = 26.0
 
 [node name="Snare" type="Area2D" unique_id=519059447]
 position = Vector2(-20, -19)
 script = ExtResource("1_lehp8")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1701551981]
-custom_minimum_size = Vector2(20, 20)
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-color = Color(0.6112739, 0, 0.13055125, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=460719167]
-shape = SubResource("RectangleShape2D_wuhfu")
+shape = SubResource("CapsuleShape2D_nlyk2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=603834791]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_wuhfu")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

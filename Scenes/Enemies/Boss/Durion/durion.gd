@@ -14,10 +14,11 @@ signal healthChanged
 @export var label : Control
 
 @export var phase1_attack_cooldown : float = 3.0
-@export var phase2_attack_cooldown : float = 1
+@export var phase2_attack_cooldown : float = 1.0
 @export var hit: PackedScene
 
 @onready var deflect_indicator = $DeflectIndicator
+
 # --------------------------------------------------
 # STATE
 # --------------------------------------------------
@@ -35,12 +36,14 @@ var phase_two_triggered : bool = false
 var is_deflecting : bool = false
 var deflect_timer : float = 0.0
 var deflect_duration : float = 3.0
+var pulse_tween : Tween = null
 
 # --------------------------------------------------
 # READY
 # --------------------------------------------------
 func _ready():
 	current_health = max_health
+	deflect_indicator.visible = false
 	print("Durion ready!")
 
 # --------------------------------------------------
@@ -53,7 +56,6 @@ func _physics_process(delta: float):
 	if not phase_two_triggered and current_health <= max_health * phase_two_threshold:
 		_trigger_phase_two()
 
-	# Process spike shell deflection
 	_process_spike_shell(delta)
 
 	var cooldown = phase1_attack_cooldown if current_phase == Phase.ONE else phase2_attack_cooldown
@@ -125,7 +127,6 @@ func _attack_ground_smash():
 	print("Durion: Ground Smash!")
 
 	var direction_count = 8 if current_phase == Phase.ONE else 16
-
 	is_attacking = true
 
 	var tween = create_tween()
@@ -182,38 +183,58 @@ func _attack_spike_shell():
 		return
 	print("Durion: Spinning Spike Shell!")
 	is_attacking = true
+
+	# Telegraph flash
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(0.8, 0.3, 1.5), 0.2)
 	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
 	tween.set_loops(3)
 	await get_tree().create_timer(0.8).timeout
+
+	# Activate deflect
 	is_deflecting = true
 	deflect_duration = 3.0 if current_phase == Phase.ONE else 5.0
 	deflect_timer = deflect_duration
 	modulate = Color(0.8, 0.5, 1.5)
 
-	# Show indicator
+	# Show circle indicator
 	deflect_indicator.visible = true
+	deflect_indicator.set_color(Color(0.8, 0.3, 1.5, 0.4))
 
-	# Pulse animation on indicator
-	var pulse = create_tween()
-	pulse.set_loops()
-	pulse.tween_property(deflect_indicator, "modulate", Color(1, 1, 1, 0.2), 0.4)
-	pulse.tween_property(deflect_indicator, "modulate", Color(1, 1, 1, 1.0), 0.4)
+	# Kill old pulse tween if exists
+	if pulse_tween:
+		pulse_tween.kill()
+
+	# Start pulse
+	pulse_tween = create_tween()
+	pulse_tween.set_loops()
+	pulse_tween.tween_method(
+		func(a): deflect_indicator.set_color(Color(0.8, 0.3, 1.5, a)),
+		0.1, 0.6, 0.4
+	)
 
 	is_attacking = false
 
 func _process_spike_shell(delta: float):
 	if not is_deflecting:
 		return
+
 	deflect_timer -= delta
 	if deflect_timer <= 0.0:
 		is_deflecting = false
 		modulate = Color(1, 1, 1)
-		# Hide indicator
+
+		# Stop pulse and hide indicator
+		if pulse_tween:
+			pulse_tween.kill()
+			pulse_tween = null
 		deflect_indicator.visible = false
+		deflect_indicator.set_color(Color(0.8, 0.3, 1.5, 0.0))
+
 		print("Durion: Spike Shell ended!")
 		return
+
+	# Check for player projectiles in range
 	var projectiles = get_tree().get_nodes_in_group("Projectile")
 	for proj in projectiles:
 		var dist = global_position.distance_to(proj.global_position)
@@ -227,10 +248,11 @@ func _deflect_projectile(proj: Node2D):
 	proj.remove_from_group("Projectile")
 	proj.add_to_group("EnemyProjectile")
 	print("Deflected toward player!")
+
 # --------------------------------------------------
 # TAKE DAMAGE
 # --------------------------------------------------
-func take_damage(amount: int,  hit_direction: Vector2 = Vector2.ZERO):
+func take_damage(amount: int, hit_direction: Vector2 = Vector2.ZERO):
 	current_health -= amount
 	current_health = max(current_health, 0)
 	healthChanged.emit()
@@ -239,7 +261,7 @@ func take_damage(amount: int,  hit_direction: Vector2 = Vector2.ZERO):
 	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
 	if current_health <= 0:
 		die()
-		
+
 	var cam = get_viewport().get_camera_2d()
 	if cam and cam.has_method("shake"):
 		cam.shake(randf_range(2.5, 4.0))

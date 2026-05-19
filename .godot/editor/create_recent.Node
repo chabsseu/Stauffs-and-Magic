@@ -1,11 +1,12 @@
+Node2D
+ColorRect
+Sprite2D
 Button
 Label
 Panel
 Node
 TextureRect
-ColorRect
 CanvasLayer
-Sprite2D
 Container
 CanvasGroup
 VBoxContainer

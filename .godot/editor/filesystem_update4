@@ -1,9 +1,8 @@
-res://Scripts/Player/player.gd
-res://Scripts/UI/game_over_menu.gd
-res://Scenes/UI/game_over_menu.tscn
-res://Scripts/Global/PlayerState.gd
-res://Scripts/UI/title_screen.gd
-res://Scenes/UI/title_screen.tscn
-res://Scenes/Floors/altar.tscn
-res://Scenes/UI/altar_ui.tscn
-res://Scenes/Map/dungeon_generation.tscn
+res://Scenes/Enemies/Boss/Durion/Durion.tscn
+res://Scenes/Enemies/Boss/Durion/ground_smash.tscn
+res://Scripts/Enemies/Boss/Durion/snare.gd
+res://Scripts/Enemies/Boss/Durion/ground_smash.gd
+res://Scenes/Enemies/Boss/Durion/snare.tscn
+res://Scenes/Floors/test_floor.tscn
+res://Scenes/Enemies/Boss/Durion/durion.gd
+res://Scenes/Enemies/Boss/Durion/deflect_indicator.gd

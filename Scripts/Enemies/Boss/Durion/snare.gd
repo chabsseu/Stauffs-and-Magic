@@ -3,35 +3,33 @@ extends Area2D
 var damage : int = 1
 var stun_duration : float = 2.0
 var warning_duration : float = 1.2
-var active_duration : float = 2.0
+var active_duration : float = 3.0  # how long vine stays after activating
 var is_active : bool = false
+var has_snared : bool = false  # prevent snaring twice
 
-@onready var color_rect = $ColorRect
+@onready var sprite = $Sprite2D
 
 func _ready():
-	# Center the ColorRect
-	color_rect.position = -color_rect.size / 2
-	
-	color_rect.color = Color(1, 0.5, 0, 0.5)
+	sprite.modulate = Color(1, 1, 1, 0.5)
 	_blink_warning()
 	
 	await get_tree().create_timer(warning_duration).timeout
 	_activate()
 	
+	# Vine disappears after active_duration regardless
 	await get_tree().create_timer(active_duration).timeout
 	queue_free()
 
 func _blink_warning():
 	var tween = create_tween()
 	tween.set_loops(4)
-	tween.tween_property(color_rect, "modulate", Color(1, 1, 1, 0.2), 0.15)
-	tween.tween_property(color_rect, "modulate", Color(1, 1, 1, 1.0), 0.15)
+	tween.tween_property(sprite, "modulate", Color(1, 1, 1, 0.2), 0.15)
+	tween.tween_property(sprite, "modulate", Color(1, 1, 1, 1.0), 0.15)
 
 func _activate():
 	is_active = true
-	color_rect.color = Color(1, 0, 0, 0.8)
-	
-	# Check if player is ALREADY standing on it when it activates
+	sprite.modulate = Color(1, 1, 1, 1.0)
+
 	await get_tree().process_frame
 	var bodies = get_overlapping_bodies()
 	for body in bodies:
@@ -40,6 +38,9 @@ func _activate():
 			return
 
 func _apply_snare(body: Node2D):
+	if has_snared:
+		return
+	has_snared = true  # prevent double snare
 	var state = get_node_or_null("/root/PlayerState")
 	if state and state.status_effects:
 		state.status_effects.add_effect(
@@ -48,7 +49,7 @@ func _apply_snare(body: Node2D):
 		)
 	if body.has_method("take_armor_damage"):
 		body.take_armor_damage(damage)
-	queue_free()
+	# NO queue_free here — vine stays until timer runs out
 
 func _on_body_entered(body: Node2D):
 	if body.is_in_group("Player") and is_active:

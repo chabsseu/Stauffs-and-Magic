@@ -3,14 +3,15 @@
 [ext_resource type="Script" uid="uid://dj0ceyaemxk78" path="res://Scenes/Enemies/Boss/Durion/durion.gd" id="1_enebi"]
 [ext_resource type="PackedScene" uid="uid://bcmaxg01ump5q" path="res://Scenes/Enemies/Boss/Durion/ground_smash.tscn" id="2_8n1ca"]
 [ext_resource type="PackedScene" uid="uid://dkeap7gi75qts" path="res://Scenes/Enemies/Boss/Durion/snare.tscn" id="3_8n1ca"]
-[ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="3_uiauu"]
 [ext_resource type="Texture2D" uid="uid://clwrngsgt8qvi" path="res://Assets/UI/Health&Armor/BossHealthBar.png" id="4_emba6"]
 [ext_resource type="PackedScene" uid="uid://c5xsd3v0008q4" path="res://Scenes/Enemies/Boss/Durion/durion_deflected_projectile.tscn" id="4_uiauu"]
 [ext_resource type="Texture2D" uid="uid://bya82n82n0pj3" path="res://Assets/UI/Health&Armor/BossHealth.png" id="5_lb8cc"]
+[ext_resource type="Texture2D" uid="uid://bq34db38go0ex" path="res://Assets/Enemies/Boss/Durion/Durion.png" id="5_uiauu"]
 [ext_resource type="Script" uid="uid://cn3s0secy6fqd" path="res://Scripts/Enemies/Boss/boss_health.gd" id="6_735ox"]
+[ext_resource type="Script" uid="uid://bmqd3vawc081y" path="res://Scenes/Enemies/Boss/Durion/deflect_indicator.gd" id="9_emba6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xexwy"]
-size = Vector2(66, 72)
+[sub_resource type="CircleShape2D" id="CircleShape2D_emba6"]
+radius = 25.079872
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_enebi"]
 radius = 681.1314
@@ -22,15 +23,14 @@ snare_scene = ExtResource("3_8n1ca")
 deflect_projectile_scene = ExtResource("4_uiauu")
 health_bar = NodePath("CanvasLayer/TextureProgressBar")
 label = NodePath("CanvasLayer/Label")
-phase1_attack_cooldown = 3.0
 phase2_attack_cooldown = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1387306747]
-scale = Vector2(0.546875, 0.59375)
-texture = ExtResource("3_uiauu")
+scale = Vector2(1.5, 1.629)
+texture = ExtResource("5_uiauu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1611262480]
-shape = SubResource("RectangleShape2D_xexwy")
+shape = SubResource("CircleShape2D_emba6")
 
 [node name="Detection_Area" type="Area2D" parent="." unique_id=110839479 groups=["Boss"]]
 
@@ -69,14 +69,8 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 text = "Durion"
 
-[node name="DeflectIndicator" type="ColorRect" parent="." unique_id=478886471]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-offset_left = -31.0
-offset_top = -33.0
-offset_right = 31.0
-offset_bottom = 33.0
-color = Color(0.42328247, 0.0019508356, 0.70069486, 1)
+[node name="DeflectIndicator" type="Node2D" parent="." unique_id=390109760]
+script = ExtResource("9_emba6")
 
 [connection signal="body_entered" from="Detection_Area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Detection_Area" to="." method="_on_detection_area_body_exited"]

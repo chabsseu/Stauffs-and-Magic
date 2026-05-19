@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c5wf2ju6x5w33" path="res://Scenes/Floors/apple.tscn" id="10_f1wej"]
 [ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="10_tjf7s"]
 [ext_resource type="PackedScene" uid="uid://dy858vp7vsy74" path="res://Scenes/UI/altar_ui.tscn" id="11_grnbs"]
+[ext_resource type="PackedScene" uid="uid://bs34j44n5ijmb" path="res://Scenes/Enemies/Boss/Durion/Durion.tscn" id="11_tjf7s"]
 
 [node name="Node2D" type="Node2D" unique_id=936650630]
 
@@ -75,3 +76,6 @@ ingredient_color = Color(0.80240893, 0, 0.12019164, 1)
 position = Vector2(96, -234)
 ingredient_type = "apple"
 ingredient_color = Color(0.85283446, 0, 0.21246234, 1)
+
+[node name="Durion" parent="." unique_id=1771737764 instance=ExtResource("11_tjf7s")]
+position = Vector2(-112, -13)
