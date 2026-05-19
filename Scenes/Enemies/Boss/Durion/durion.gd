@@ -184,12 +184,15 @@ func _attack_spike_shell():
 	print("Durion: Spinning Spike Shell!")
 	is_attacking = true
 
-	# Telegraph flash
+	# Telegraph flash — NO set_loops, just play once
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(0.8, 0.3, 1.5), 0.2)
 	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
-	tween.set_loops(3)
-	await get_tree().create_timer(0.8).timeout
+	tween.tween_property(self, "modulate", Color(0.8, 0.3, 1.5), 0.2)
+	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
+	tween.tween_property(self, "modulate", Color(0.8, 0.3, 1.5), 0.2)
+	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
+	await tween.finished
 
 	# Activate deflect
 	is_deflecting = true
