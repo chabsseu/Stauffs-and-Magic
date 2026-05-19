@@ -14,10 +14,10 @@ e_pud.png::CompressedTexture2D::3594583572898209833::1768274022::1768274095::1::
 apple.png::CompressedTexture2D::8761388301347647331::1775433303::1775620769::1::::<><><>0<>0<>4544cb9be533773288b8eb595e361837<>res://.godot/imported/apple.png-01d5295e7ef1b6e2f8c274a6b1a0ac72.ctex::
 ::res://Assets/Enemies/Boss/::1779166755
 Boss.png::CompressedTexture2D::2246270278215133398::1774597170::1775434098::1::::<><><>0<>0<>8b877460ffa1e9b8e71d9553b68e8517<>res://.godot/imported/Boss.png-edc4a38839515c08b7eff52e7ad8e0e4.ctex::
-::res://Assets/Enemies/Boss/Durion/::1779167629
+::res://Assets/Enemies/Boss/Durion/::1779167647
 Deflect.png::CompressedTexture2D::192582237566089095::1779167629::1779167647::1::::<><><>0<>0<>ada0bc307e2cc511be53d8a54a01acd8<>res://.godot/imported/Deflect.png-3ab21a0bb93186e1bc6a2b5bc4b76d1c.ctex::
 Durion.png::CompressedTexture2D::3569011006473075187::1779166373::1779166961::1::::<><><>0<>0<>ff836f67c7d580fd318111031fe66332<>res://.godot/imported/Durion.png-769047c98c40206414e632088b1b26fa.ctex::
-Roots.png::CompressedTexture2D::6161769560558125495::1779166844::1779166961::1::::<><><>0<>0<>453d84a84ca0f630ac247ab148c7393c<>res://.godot/imported/Roots.png-aabd861222e2b94afec802c42c4a6a6f.ctex::
+Roots.png::CompressedTexture2D::6161769560558125495::1779169452::1779169454::1::::<><><>0<>0<>453d84a84ca0f630ac247ab148c7393c<>res://.godot/imported/Roots.png-aabd861222e2b94afec802c42c4a6a6f.ctex::
 Vines.png::CompressedTexture2D::2571280558368272271::1779166728::1779166961::1::::<><><>0<>0<>89266978c5449846cdb1f49a7534f111<>res://.godot/imported/Vines.png-2b4c6f54989148ff0723a763c2bb99d4.ctex::
 ::res://Assets/Enemies/cookie/::1775620769
 cookie.png::CompressedTexture2D::2600713312772216727::1775433303::1775620769::1::::<><><>0<>0<>0831e290b9d94abff5412acad26e8d7f<>res://.godot/imported/cookie.png-c528b3ab033459f4c8ab0160333933df.ctex::
@@ -96,11 +96,12 @@ spear.tscn::PackedScene::237926473700291638::1768274022::0::1::::<><><>0<>0<><>:
 spear_guy.tscn::PackedScene::609477735854870700::1775450895::0::1::::<><><>0<>0<><>::uid://ca7k1a36pvbpc::::res://Scripts/Enemies/spear_guy.gd<>uid://djc871ia27m0::::res://Scenes/UI/pop_up_daamge.tscn<>uid://dniu5c5hqy2q::::res://Scenes/Enemies/spear.tscn<>uid://b1a3m4g8vhl3w::::res://Scenes/UI/hit_particle.tscn<>uid://b0o4iyyp7ovo2::::res://Scenes/Map/mana_drop.tscn<>uid://dw6vigp0l5qhu::::res://Scenes/Map/coin.tscn<>uid://cdxjvk5hlsvah::::res://Scenes/Map/food.tscn<>uid://dw3c1x1gmhfep::::res://Assets/Enemies/apple/apple.png<>uid://cqnpikw6r5thj::::res://Scenes/Floors/apple.tscn
 test_enemy.tscn::PackedScene::5272099863804701819::1768274022::0::1::::<><><>0<>0<><>::uid://ctgav05ifthty::::res://icon.svg<>uid://or6n54dm6u2s::::res://Scripts/Enemies/test_enemy.gd<>uid://djc871ia27m0::::res://Scenes/UI/pop_up_daamge.tscn
 ::res://Scenes/Enemies/Boss/::1777080273
-::res://Scenes/Enemies/Boss/Durion/::1779167375
-durion.gd::GDScript::7842700925593339393::1777352497::0::1::::<>CharacterBody2D<><>0<>0<><>::
-Durion.tscn::PackedScene::3709400879834287293::1779167024::0::1::::<><><>0<>0<><>::uid://dj0ceyaemxk78::::res://Scenes/Enemies/Boss/Durion/durion.gd<>uid://bcmaxg01ump5q::::res://Scenes/Enemies/Boss/Durion/ground_smash.tscn<>uid://dkeap7gi75qts::::res://Scenes/Enemies/Boss/Durion/snare.tscn<>uid://clwrngsgt8qvi::::res://Assets/UI/Health&Armor/BossHealthBar.png<>uid://c5xsd3v0008q4::::res://Scenes/Enemies/Boss/Durion/durion_deflected_projectile.tscn<>uid://bya82n82n0pj3::::res://Assets/UI/Health&Armor/BossHealth.png<>uid://bq34db38go0ex::::res://Assets/Enemies/Boss/Durion/Durion.png<>uid://cn3s0secy6fqd::::res://Scripts/Enemies/Boss/boss_health.gd
+::res://Scenes/Enemies/Boss/Durion/::1779167731
+durion.gd::GDScript::7842700925593339393::1779169179::0::1::::<>CharacterBody2D<><>0<>0<><>::
+Durion.tscn::PackedScene::3709400879834287293::1779167731::0::1::::<><><>0<>0<><>::uid://dj0ceyaemxk78::::res://Scenes/Enemies/Boss/Durion/durion.gd<>uid://bcmaxg01ump5q::::res://Scenes/Enemies/Boss/Durion/ground_smash.tscn<>uid://dkeap7gi75qts::::res://Scenes/Enemies/Boss/Durion/snare.tscn<>uid://clwrngsgt8qvi::::res://Assets/UI/Health&Armor/BossHealthBar.png<>uid://c5xsd3v0008q4::::res://Scenes/Enemies/Boss/Durion/durion_deflected_projectile.tscn<>uid://bya82n82n0pj3::::res://Assets/UI/Health&Armor/BossHealth.png<>uid://bq34db38go0ex::::res://Assets/Enemies/Boss/Durion/Durion.png<>uid://cn3s0secy6fqd::::res://Scripts/Enemies/Boss/boss_health.gd<>uid://bmqd3vawc081y::::res://Scenes/Enemies/Boss/Durion/deflect_indicator.gd
 durion_deflected_projectile.tscn::PackedScene::6927087132387071609::1777085584::0::1::::<><><>0<>0<><>::uid://cx7pfafgtvrxs::::res://Scripts/Enemies/Boss/Durion/durion_deflected_projectile.gd
 ground_smash.tscn::PackedScene::2551612332246444776::1779167100::0::1::::<><><>0<>0<><>::uid://c4f37i3hqb6km::::res://Scripts/Enemies/Boss/Durion/ground_smash.gd<>uid://ct12pd0l5lljb::::res://Assets/Enemies/Boss/Durion/Roots.png
+deflect_indicator.gd::GDScript::3261950108615709240::1779167686::0::1::::<>Node2D<><>0<>0<><>::
 snare.tscn::PackedScene::7869436475807915080::1779167375::0::1::::<><><>0<>0<><>::uid://cicgjr2e0dny3::::res://Scripts/Enemies/Boss/Durion/snare.gd<>uid://bcvsu6c8clq60::::res://Assets/Enemies/Boss/Durion/Vines.png
 ::res://Scenes/Enemies/Boss/Grand Gello/::1777081991
 boss_bullet.tscn::PackedScene::7755905034972541261::1773282053::0::1::::<><><>0<>0<><>::uid://cj575x86akaeq::::res://Scripts/Enemies/Boss/boss_bullet.gd<>uid://gwq04m1vnior::::res://Assets/Enemies/e_bullet.png
@@ -181,7 +182,7 @@ grand_gello.gd::GDScript::8897571633997165371::1777084190::0::1::::<>CharacterBo
 ::res://Scripts/Enemies/Boss/Durion/::1777083920
 durion_deflected_projectile.gd::GDScript::6454164551074752060::1777084004::0::1::::<>Area2D<><>0<>0<><>::
 ground_smash.gd::GDScript::6820397406642687428::1779167357::0::1::::<>Area2D<><>0<>0<><>::
-snare.gd::GDScript::5338862180922279144::1779167422::0::1::::<>Area2D<><>0<>0<><>::
+snare.gd::GDScript::5338862180922279144::1779168379::0::1::::<>Area2D<><>0<>0<><>::
 ::res://Scripts/Floor/::1777359568
 altar.gd::GDScript::3459860481246032344::1777359114::0::1::::<>CharacterBody2D<><>0<>0<><>::
 campfire.gd::GDScript::3739137486689833022::1777359960::0::1::::<>CharacterBody2D<><>0<>0<><>::
