@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6t3nd3pxhllb" path="res://Scripts/UI/pause_menu.gd" id="1_8rf44"]
 [ext_resource type="FontFile" uid="uid://d2oxg5erodfuh" path="res://Assets/Fonts/Title Screen Font/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="1_rrvs5"]
+[ext_resource type="FontFile" uid="uid://c64f3twqamdlq" path="res://Assets/Fonts/Title Screen Font/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="3_r2i2h"]
 
 [node name="PauseMenu" type="Control" unique_id=513293175]
 process_mode = 3
@@ -30,21 +31,31 @@ text = "Resume"
 
 [node name="options" type="Button" parent="Panel" unique_id=1851132794]
 layout_mode = 0
-offset_left = 102.0
-offset_top = 184.0
-offset_right = 231.0
-offset_bottom = 231.0
+offset_left = 105.0
+offset_top = 253.0
+offset_right = 234.0
+offset_bottom = 300.0
 theme_override_fonts/font = ExtResource("1_rrvs5")
 theme_override_font_sizes/font_size = 32
 text = "Options
 "
 
+[node name="restart" type="Button" parent="Panel" unique_id=1059755841]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 195.0
+offset_right = 241.0
+offset_bottom = 242.0
+theme_override_fonts/font = ExtResource("3_r2i2h")
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
 [node name="quit" type="Button" parent="Panel" unique_id=1195107777]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 238.0
-offset_right = 201.0
-offset_bottom = 285.0
+offset_left = 129.0
+offset_top = 311.0
+offset_right = 202.0
+offset_bottom = 358.0
 theme_override_fonts/font = ExtResource("1_rrvs5")
 theme_override_font_sizes/font_size = 32
 text = "Quit
@@ -62,4 +73,5 @@ text = "PAUSE"
 
 [connection signal="pressed" from="Panel/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Panel/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Panel/restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Panel/quit" to="." method="_on_quit_pressed"]

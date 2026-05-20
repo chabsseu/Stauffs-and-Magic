@@ -1,1 +1,3 @@
 res://Scenes/Map/dungeon_generation.tscn
+res://Scripts/UI/pause_menu.gd
+res://Scenes/UI/pause_menu.tscn

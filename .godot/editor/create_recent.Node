@@ -1,7 +1,7 @@
+Button
 Node2D
 ColorRect
 Sprite2D
-Button
 Label
 Panel
 Node
@@ -12,4 +12,3 @@ CanvasGroup
 VBoxContainer
 TextureProgressBar
 ProgressBar
-HBoxContainer
