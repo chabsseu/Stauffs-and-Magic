@@ -117,7 +117,6 @@ offset_bottom = 145.0
 [node name="Portal" parent="." unique_id=111973993 instance=ExtResource("9_j7ugi")]
 
 [node name="StageTransition" parent="." unique_id=860889166 instance=ExtResource("12_r55y5")]
-visible = false
 
 [node name="MinimapLayer" type="CanvasLayer" parent="." unique_id=673748554]
 
