@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c2xkrph0al5nw"]
 
 [ext_resource type="Script" uid="uid://bln4x7n1bjd8p" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
-[ext_resource type="Texture2D" uid="uid://ctgav05ifthty" path="res://icon.svg" id="1_uvnfx"]
+[ext_resource type="Texture2D" uid="uid://snhmjwu3v5j1" path="res://Assets/Player/player.png" id="2_jlvik"]
 [ext_resource type="Script" uid="uid://l5hl2sus6yh8" path="res://Scripts/UI/camera_2d.gd" id="3_htcer"]
 [ext_resource type="Texture2D" uid="uid://bj74em60yojnr" path="res://Assets/UI/cooldown.png" id="4_htcer"]
 [ext_resource type="PackedScene" uid="uid://ciwy7dfadp2tp" path="res://Scenes/UI/health_armor.tscn" id="4_mtuoh"]
@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bif1w6n8f478s" path="res://Scenes/UI/food_slot_ui.tscn" id="7_0u5uq"]
 [ext_resource type="PackedScene" uid="uid://ociobxauih61" path="res://Scenes/UI/StatuEffectUI.tscn" id="8_jlvik"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gk6dx"]
+radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mtuoh"]
 radius = 15.033297
@@ -21,12 +22,11 @@ script = ExtResource("1_a3d8c")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=541921693]
 position = Vector2(-2.842171e-14, -0.99999994)
-scale = Vector2(0.15625, 0.15625)
-texture = ExtResource("1_uvnfx")
+scale = Vector2(2, 2)
+texture = ExtResource("2_jlvik")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1775276531]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_a3d8c")
+shape = SubResource("CapsuleShape2D_gk6dx")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=959096284]
 zoom = Vector2(2, 2)

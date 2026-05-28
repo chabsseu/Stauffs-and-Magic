@@ -1,7 +1,8 @@
-res://Scenes/UI/
+res://Assets/Player/
 res://Scenes/Enemies/Boss/Durion/
 res://Assets/Enemies/Boss/Durion/
 res://Assets/Fonts/Title Screen Font/Pixelify_Sans/
+res://Scenes/UI/
 res://Scripts/UI/
 res://Assets/UI/
 res://Scripts/Enemies/Boss/Durion/
@@ -19,4 +20,3 @@ res://Assets/Enemies/jello/
 res://Assets/Enemies/Boss/
 res://Scripts/Enemies/Boss/
 res://Assets/UI/Health&Armor/
-res://Scripts/Enemies/Boss/
