@@ -1,3 +1,4 @@
+res://Scenes/Floors/
 res://Scenes/Map/
 res://Assets/Alter/
 res://Scripts/UI/
@@ -13,7 +14,6 @@ res://Assets/UI/
 res://Scripts/Enemies/Boss/Durion/
 res://Scenes/Enemies/Boss/
 res://
-res://Scenes/Floors/
 res://Scripts/Floor/
 res://Assets/Tilemaps/
 res://Assets/MapAccessories/

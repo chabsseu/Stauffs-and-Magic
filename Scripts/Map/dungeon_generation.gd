@@ -18,6 +18,7 @@ extends Node2D
 @export var apple_scene : PackedScene
 @export var cookie_crumble_scene : PackedScene
 @export var altar_shop_scene : PackedScene
+@export var altar_scene : PackedScene
 
 const DUNGEON_WIDTH = 800
 const DUNGEON_HEIGHT = 800
@@ -36,6 +37,7 @@ var boss_ref : Node = null
 var statue_room_index : int = -1
 var campfire_room_index : int = -1
 var altar_shop_room_index : int = -1
+var altar_room_index : int = -1
 
 # --------------------------------------------------
 # READY
@@ -69,6 +71,9 @@ func create_room_trigger(room: Rect2, room_index: int):
 		print("Skipping room trigger for campfire room ", room_index)
 		return
 	if room_index == altar_shop_room_index:
+		print("Skipping room trigger for altar shop room ", room_index)
+		return
+	if room_index == altar_room_index:
 		print("Skipping room trigger for altar shop room ", room_index)
 		return
 
@@ -533,6 +538,8 @@ func place_boxes(rooms: Array[Rect2]):
 			continue
 		if i == altar_shop_room_index:
 			continue
+		if i == altar_room_index:
+			continue
 
 		var room = rooms[i]
 		var box_count = randi_range(min_boxes_per_room, max_boxes_per_room)
@@ -641,6 +648,37 @@ func _spawn_campfire_ingredients(room: Rect2):
 			var y = randi_range(int(room.position.y) + margin, int(room.end.y) - margin) * 16
 			item.position = Vector2(x, y)
 			add_child(item)
+
+# --------------------------------------------------
+# ALTAR
+# --------------------------------------------------
+func place_altar(rooms: Array[Rect2]):
+	if altar_scene == null:
+		print("No altar scene assigned!")
+		return
+	if randf() > 0.6:
+		print("No altar this floor!")
+		return
+
+	var eligible_rooms = rooms.slice(1, rooms.size() - 1)
+	if eligible_rooms.is_empty():
+		return
+
+	var available = eligible_rooms.filter(func(r):
+		var idx = rooms.find(r)
+		return idx != statue_room_index and idx != campfire_room_index
+	)
+	if available.is_empty():
+		return
+
+	var chosen_room = available[randi() % available.size()]
+	altar_room_index = rooms.find(chosen_room)
+
+	var altar = altar_scene.instantiate()
+	altar.position = chosen_room.get_center() * 16
+	add_child(altar)
+
+	print("Altar spawned in room index: ", altar_room_index)
 
 # --------------------------------------------------
 # ALTAR SHOP
@@ -803,6 +841,7 @@ func create_dungeon():
 	place_player(all_rooms)
 	add_walls()
 	render_dungeon()
+	place_altar(all_rooms)
 	place_statues(all_rooms)
 	place_campfire(all_rooms)
 	place_altar_shop(all_rooms)

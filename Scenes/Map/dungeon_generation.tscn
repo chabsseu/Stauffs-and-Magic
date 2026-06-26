@@ -67,6 +67,7 @@ slime_scene = ExtResource("13_nl7hk")
 apple_scene = ExtResource("14_n8d2p")
 cookie_crumble_scene = ExtResource("15_7sm57")
 altar_shop_scene = ExtResource("17_wtduq")
+altar_scene = ExtResource("26_n8d2p")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=130257482]
 tile_set = SubResource("TileSet_43nnj")
