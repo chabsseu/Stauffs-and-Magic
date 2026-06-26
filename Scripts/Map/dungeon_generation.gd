@@ -17,7 +17,7 @@ extends Node2D
 @export var slime_scene : PackedScene
 @export var apple_scene : PackedScene
 @export var cookie_crumble_scene : PackedScene
-@export var altar_scene : PackedScene  # ← new
+@export var altar_shop_scene : PackedScene
 
 const DUNGEON_WIDTH = 800
 const DUNGEON_HEIGHT = 800
@@ -35,7 +35,7 @@ var room_barriers = {}
 var boss_ref : Node = null
 var statue_room_index : int = -1
 var campfire_room_index : int = -1
-var altar_room_index : int = -1  # ← new
+var altar_shop_room_index : int = -1
 
 # --------------------------------------------------
 # READY
@@ -68,8 +68,8 @@ func create_room_trigger(room: Rect2, room_index: int):
 	if room_index == campfire_room_index:
 		print("Skipping room trigger for campfire room ", room_index)
 		return
-	if room_index == altar_room_index:
-		print("Skipping room trigger for altar room ", room_index)
+	if room_index == altar_shop_room_index:
+		print("Skipping room trigger for altar shop room ", room_index)
 		return
 
 	var area = Area2D.new()
@@ -531,7 +531,7 @@ func place_boxes(rooms: Array[Rect2]):
 			continue
 		if i == campfire_room_index:
 			continue
-		if i == altar_room_index:
+		if i == altar_shop_room_index:
 			continue
 
 		var room = rooms[i]
@@ -643,14 +643,14 @@ func _spawn_campfire_ingredients(room: Rect2):
 			add_child(item)
 
 # --------------------------------------------------
-# ALTAR
+# ALTAR SHOP
 # --------------------------------------------------
-func place_altar(rooms: Array[Rect2]):
-	if altar_scene == null:
-		print("No altar scene assigned!")
+func place_altar_shop(rooms: Array[Rect2]):
+	if altar_shop_scene == null:
+		print("No altar shop scene assigned!")
 		return
 	if randf() > 0.6:
-		print("No altar this floor!")
+		print("No altar shop this floor!")
 		return
 
 	var eligible_rooms = rooms.slice(1, rooms.size() - 1)
@@ -665,41 +665,42 @@ func place_altar(rooms: Array[Rect2]):
 		return
 
 	var chosen_room = available[randi() % available.size()]
-	altar_room_index = rooms.find(chosen_room)
+	altar_shop_room_index = rooms.find(chosen_room)
 
-	var altar = altar_scene.instantiate()
-	altar.position = chosen_room.get_center() * 16
-	add_child(altar)
+	# Spawn 3 altars in the room
+	var num_altars = 3
+	var positions = _get_altar_positions(chosen_room, num_altars)
+	
+	for pos in positions:
+		var altar = altar_shop_scene.instantiate()
+		altar.position = pos
+		add_child(altar)
 
-	print("Altar spawned in room index: ", altar_room_index)
+	print("Altar shop spawned in room index: ", altar_shop_room_index, " with ", num_altars, " altars")
 
-# --------------------------------------------------
-# CREATE
-# --------------------------------------------------
-func create_dungeon():
-	all_rooms = generate_dungeon()
-	end_room = all_rooms[all_rooms.size()-1]
-	place_player(all_rooms)
-	add_walls()
-	render_dungeon()
-	place_statues(all_rooms)
-	place_campfire(all_rooms)
-	place_altar(all_rooms)
-	place_boxes(all_rooms)
-
-	if minimap:
-		minimap.dungeon_grid   = dungeon_grid
-		minimap.all_rooms      = all_rooms
-		minimap.end_room       = end_room
-		minimap.player_ref     = player
-		minimap.portal_ref     = portal
-		minimap.dungeon_width  = DUNGEON_WIDTH
-		minimap.dungeon_height = DUNGEON_HEIGHT
-		minimap.setup_minimap()
-		minimap.visit_room(0)
-
-	for i in range(1, all_rooms.size()):
-		create_room_trigger(all_rooms[i], i)
+func _get_altar_positions(room: Rect2, count: int) -> Array[Vector2]:
+	var positions: Array[Vector2] = []
+	var room_center = room.get_center() * 16
+	var spread = 100.0  # Distance between altars
+	
+	match count:
+		1:
+			positions.append(room_center)
+		2:
+			positions.append(room_center + Vector2(-spread/2, 0))
+			positions.append(room_center + Vector2(spread/2, 0))
+		3:
+			positions.append(room_center + Vector2(-spread, 0))
+			positions.append(room_center)
+			positions.append(room_center + Vector2(spread, 0))
+		_:
+			# Default: spread around room
+			for i in range(count):
+				var angle = (TAU / count) * i
+				var offset = Vector2(cos(angle), sin(angle)) * spread
+				positions.append(room_center + offset)
+	
+	return positions
 
 # --------------------------------------------------
 # STATUES
@@ -789,3 +790,31 @@ func place_player(rooms: Array[Rect2]):
 		return
 	var spawn_room = rooms[0]
 	player.position = spawn_room.get_center() * 16
+
+# --------------------------------------------------
+# CREATE
+# --------------------------------------------------
+func create_dungeon():
+	all_rooms = generate_dungeon()
+	end_room = all_rooms[all_rooms.size()-1]
+	place_player(all_rooms)
+	add_walls()
+	render_dungeon()
+	place_statues(all_rooms)
+	place_campfire(all_rooms)
+	place_altar_shop(all_rooms)
+	place_boxes(all_rooms)
+
+	if minimap:
+		minimap.dungeon_grid   = dungeon_grid
+		minimap.all_rooms      = all_rooms
+		minimap.end_room       = end_room
+		minimap.player_ref     = player
+		minimap.portal_ref     = portal
+		minimap.dungeon_width  = DUNGEON_WIDTH
+		minimap.dungeon_height = DUNGEON_HEIGHT
+		minimap.setup_minimap()
+		minimap.visit_room(0)
+
+	for i in range(1, all_rooms.size()):
+		create_room_trigger(all_rooms[i], i)

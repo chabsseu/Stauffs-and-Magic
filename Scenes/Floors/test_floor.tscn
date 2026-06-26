@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://c5wf2ju6x5w33" path="res://Scenes/Floors/apple.tscn" id="10_f1wej"]
 [ext_resource type="PackedScene" uid="uid://cwio32p3nix68" path="res://Scenes/UI/forgeUI.tscn" id="10_tjf7s"]
 [ext_resource type="PackedScene" uid="uid://dy858vp7vsy74" path="res://Scenes/UI/altar_ui.tscn" id="11_grnbs"]
-[ext_resource type="PackedScene" uid="uid://bs34j44n5ijmb" path="res://Scenes/Enemies/Boss/Durion/Durion.tscn" id="11_tjf7s"]
+[ext_resource type="PackedScene" uid="uid://ba1hgd30lhp7t" path="res://Scenes/Map/altar_shop.tscn" id="12_grnbs"]
+[ext_resource type="PackedScene" uid="uid://4g81qo65uyd8" path="res://Scenes/UI/AltarShopUI.tscn" id="12_pj0o8"]
 
 [node name="Node2D" type="Node2D" unique_id=936650630]
 
@@ -77,5 +78,7 @@ position = Vector2(96, -234)
 ingredient_type = "apple"
 ingredient_color = Color(0.85283446, 0, 0.21246234, 1)
 
-[node name="Durion" parent="." unique_id=1771737764 instance=ExtResource("11_tjf7s")]
-position = Vector2(-112, -13)
+[node name="Altar_shop" parent="." unique_id=1759778575 instance=ExtResource("12_grnbs")]
+position = Vector2(926, -17)
+
+[node name="ShopUI" parent="." unique_id=393469096 instance=ExtResource("12_pj0o8")]

@@ -42,6 +42,7 @@ forge_ui=""
 Boss=""
 altar_ui=""
 EnemyProjectile=""
+altar_shop_ui=""
 
 [input]
 

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ba1hgd30lhp7t"]
+
+[ext_resource type="Script" uid="uid://dkxba7o7mno0t" path="res://Scripts/Map/altar_shop.gd" id="1_5hdmc"]
+[ext_resource type="Texture2D" uid="uid://b82nvryvhi6kp" path="res://Assets/Alter/empty_altar1.png" id="2_0w187"]
+[ext_resource type="PackedScene" uid="uid://dw4fq5k1ob2xj" path="res://Scenes/Weapon/force_staff.tscn" id="2_kw0a0"]
+[ext_resource type="FontFile" uid="uid://d2oxg5erodfuh" path="res://Assets/Fonts/Title Screen Font/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="3_5yidu"]
+[ext_resource type="PackedScene" uid="uid://8n3kngoq2sld" path="res://Scenes/Weapon/mana_staff.tscn" id="3_tjw7b"]
+[ext_resource type="PackedScene" uid="uid://bb8c2mi17642k" path="res://Scenes/Weapon/normal_staff.tscn" id="4_slpkk"]
+[ext_resource type="PackedScene" uid="uid://cdqh2qddc6swr" path="res://Scenes/Weapon/umbrel_staff.tscn" id="5_l168t"]
+[ext_resource type="PackedScene" uid="uid://banf8jkq6cu4e" path="res://Scenes/Weapon/ice_staff.tscn" id="6_gxqs3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brwbn"]
+size = Vector2(28, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3a2nh"]
+radius = 25.0
+
+[node name="Altar_shop" type="CharacterBody2D" unique_id=1759778575]
+script = ExtResource("1_5hdmc")
+possible_weapons = Array[PackedScene]([ExtResource("2_kw0a0"), ExtResource("3_tjw7b"), ExtResource("4_slpkk"), ExtResource("5_l168t"), ExtResource("6_gxqs3")])
+
+[node name="Altar" type="Sprite2D" parent="." unique_id=239932340]
+position = Vector2(1, -32)
+texture = ExtResource("2_0w187")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=683313956]
+position = Vector2(0, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=763959473]
+position = Vector2(1, -8)
+shape = SubResource("RectangleShape2D_brwbn")
+
+[node name="Detection_area" type="Area2D" parent="." unique_id=657133097]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area" unique_id=288780831]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_3a2nh")
+
+[node name="Label" type="Label" parent="Detection_area" unique_id=692387716]
+offset_left = -18.0
+offset_top = -52.0
+offset_right = 22.0
+offset_bottom = -29.0
+theme_override_fonts/font = ExtResource("3_5yidu")
+
+[connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]

@@ -1,2 +1,8 @@
-res://Scripts/UI/pause_menu.gd
-res://Scenes/Player/player.tscn
+res://Scripts/Map/altar_shop.gd
+res://Scenes/Map/altar_shop.tscn
+res://Scripts/Map/dungeon_generation.gd
+res://Scenes/Floors/test_floor.tscn
+res://Scenes/UI/AltarShopUI.tscn
+res://Scripts/UI/altar_shop_ui.gd
+res://Scripts/Global/Gamedata.gd
+res://Scenes/Map/dungeon_generation.tscn

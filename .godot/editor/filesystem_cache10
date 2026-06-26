@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1779946507
+::res://::1782436348
 icon.svg::CompressedTexture2D::6118854524503985570::1768274022::1775620769::1::::<><><>0<>0<>50c1afa977369d7d742b6d9020104661<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1779946554
 my pallete.png::CompressedTexture2D::3928060487092931223::1768274022::1768274095::1::::<><><>0<>0<>64dbeb7fccce4e3d1cb29e3954c2d00e<>res://.godot/imported/my pallete.png-0293d27c32caeaa39f5f9b4793650d9f.ctex::
@@ -47,7 +47,7 @@ Food.png::CompressedTexture2D::364485131472589083::1772688293::1772688323::1::::
 Gold.png::CompressedTexture2D::4086107003189914026::1772688293::1772688323::1::::<><><>0<>0<>3504062616c4584bb4699e46621fca67<>res://.godot/imported/Gold.png-ab0f977e5128451685183d29f5f38e0d.ctex::
 Mana_drop.png::CompressedTexture2D::6888397878384555133::1772419233::1772419276::1::::<><><>0<>0<>50e4d91247935aed8650c422f6e467d2<>res://.godot/imported/Mana_drop.png-26e22fbbb6318b5517ec05e693986424.ctex::
 RPG Chests.png::CompressedTexture2D::1895746149607492469::1772416974::1772417211::1::::<><><>0<>0<>88f4c2225b9723bed1c46ad2c4c60387<>res://.godot/imported/RPG Chests.png-6e806a50d0d1e06f9276e1f49c594b7d.ctex::
-::res://Assets/Player/::1779946554
+::res://Assets/Player/::1779946586
 npc.png::CompressedTexture2D::4930566708334490464::1779946554::1779946586::1::::<><><>0<>0<>e99e761a601d96bb48c35b1f8bba3de7<>res://.godot/imported/npc.png-b8eca72dc85a81b88c223329fec3f842.ctex::
 player.png::CompressedTexture2D::1290683052406418732::1779946554::1779946586::1::::<><><>0<>0<>eccaa08335cb174a4cb2d8481a25d2ec<>res://.godot/imported/player.png-5e42ab849d862172be00e6b72c9838e5.ctex::
 ::res://Assets/Stats/::1775620769
@@ -136,8 +136,8 @@ food.tscn::PackedScene::5031473113161688443::1772689714::0::1::::<><><>0<>0<><>:
 mana_drop.tscn::PackedScene::4171819440702792731::1772419870::0::1::::<><><>0<>0<><>::uid://c5e153c7lasph::::res://Assets/MapAccessories/Mana_drop.png<>uid://b22wlsxxixok8::::res://Scripts/Map/mana_drop.gd
 minimap.tscn::PackedScene::8439009041631486995::1772257985::0::1::::<><><>0<>0<><>::uid://q3pond7joic1::::res://Scripts/Map/minimap.gd
 start_portal.tscn::PackedScene::5146284504829896461::1775622114::0::1::::<><><>0<>0<><>::uid://bdupridg5whiu::::res://Assets/Tilemaps/Portal.png<>uid://bt7a2p2l0niht::::res://Scripts/Map/start_portal.gd
-::res://Scenes/Player/::1777874382
-player.tscn::PackedScene::6716059162180735360::1775796086::0::1::::<><><>0<>0<><>::uid://bln4x7n1bjd8p::::res://Scripts/Player/player.gd<>uid://ctgav05ifthty::::res://icon.svg<>uid://l5hl2sus6yh8::::res://Scripts/UI/camera_2d.gd<>uid://bj74em60yojnr::::res://Assets/UI/cooldown.png<>uid://ciwy7dfadp2tp::::res://Scenes/UI/health_armor.tscn<>uid://djj3gpv36r62c::::res://Scenes/UI/ingredient_bag_ui.tscn<>uid://bif1w6n8f478s::::res://Scenes/UI/food_slot_ui.tscn<>uid://ociobxauih61::::res://Scenes/UI/StatuEffectUI.tscn
+::res://Scenes/Player/::1779946702
+player.tscn::PackedScene::6716059162180735360::1779946702::0::1::::<><><>0<>0<><>::uid://bln4x7n1bjd8p::::res://Scripts/Player/player.gd<>uid://snhmjwu3v5j1::::res://Assets/Player/player.png<>uid://l5hl2sus6yh8::::res://Scripts/UI/camera_2d.gd<>uid://bj74em60yojnr::::res://Assets/UI/cooldown.png<>uid://ciwy7dfadp2tp::::res://Scenes/UI/health_armor.tscn<>uid://djj3gpv36r62c::::res://Scenes/UI/ingredient_bag_ui.tscn<>uid://bif1w6n8f478s::::res://Scenes/UI/food_slot_ui.tscn<>uid://ociobxauih61::::res://Scenes/UI/StatuEffectUI.tscn
 ::res://Scenes/UI/::1779946553
 altar_ui.tscn::PackedScene::8913800332903060701::1777878572::0::1::::<><><>0<>0<><>::uid://ccmg0gth5jscs::::res://Scripts/UI/altar_ui.gd<>uid://d2oxg5erodfuh::::res://Assets/Fonts/Title Screen Font/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf
 CookingUI.tscn::PackedScene::5725752867072996141::1777358477::0::1::::<><><>0<>0<><>::uid://bujwg1jmqg1ir::::res://Scripts/UI/CookingUI.gd<>uid://cim8fetd1kpeg::::res://Scenes/Floors/cooked_food.tscn

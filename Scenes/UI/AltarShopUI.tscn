@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://4g81qo65uyd8"]
+
+[ext_resource type="Script" uid="uid://qvko054hd02s" path="res://Scripts/UI/altar_shop_ui.gd" id="1_d635m"]
+[ext_resource type="FontFile" uid="uid://d2oxg5erodfuh" path="res://Assets/Fonts/Title Screen Font/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="2_6fnlb"]
+
+[node name="ShopUI" type="CanvasLayer" unique_id=393469096 groups=["altar_shop_ui"]]
+script = ExtResource("1_d635m")
+
+[node name="Panel" type="Panel" parent="." unique_id=2023248782]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.5
+offset_top = -164.0
+offset_right = 128.5
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="WeaponIcon" type="Sprite2D" parent="Panel" unique_id=1035812543]
+position = Vector2(123, 47)
+
+[node name="WeaponName" type="Label" parent="Panel" unique_id=2086461297]
+layout_mode = 0
+offset_left = 47.5
+offset_top = 81.0
+offset_right = 126.5
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("2_6fnlb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeaponLevel" type="Label" parent="Panel" unique_id=1669537642]
+layout_mode = 0
+offset_left = 81.5
+offset_top = 120.0
+offset_right = 168.5
+offset_bottom = 143.0
+theme_override_fonts/font = ExtResource("2_6fnlb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CostLabel" type="Label" parent="Panel" unique_id=892957170]
+layout_mode = 0
+offset_left = 76.5
+offset_top = 154.0
+offset_right = 172.5
+offset_bottom = 177.0
+theme_override_fonts/font = ExtResource("2_6fnlb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="Panel" unique_id=1323522687]
+layout_mode = 0
+offset_left = 43.5
+offset_top = 228.0
+offset_right = 114.5
+offset_bottom = 259.0
+theme_override_fonts/font = ExtResource("2_6fnlb")
+text = "Confirm
+"
+
+[node name="CancelButton" type="Button" parent="Panel" unique_id=1994276131]
+layout_mode = 0
+offset_left = 138.5
+offset_top = 228.0
+offset_right = 209.5
+offset_bottom = 259.0
+theme_override_fonts/font = ExtResource("2_6fnlb")
+text = "Cancel
+"

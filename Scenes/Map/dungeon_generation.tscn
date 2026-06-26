@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://byhlt5w10bt5k" path="res://Assets/MapAccessories/Gold.png" id="16_i01xb"]
 [ext_resource type="PackedScene" uid="uid://dy858vp7vsy74" path="res://Scenes/UI/altar_ui.tscn" id="16_nl7hk"]
 [ext_resource type="Texture2D" uid="uid://fgtatq2gfj12" path="res://Assets/MapAccessories/Food.png" id="17_mc0b8"]
+[ext_resource type="PackedScene" uid="uid://ba1hgd30lhp7t" path="res://Scenes/Map/altar_shop.tscn" id="17_wtduq"]
 [ext_resource type="PackedScene" uid="uid://85kmy641pvax" path="res://Scenes/UI/game_over_menu.tscn" id="23_84rh7"]
 [ext_resource type="PackedScene" uid="uid://cwaqd4csrpqu3" path="res://Scenes/Floors/altar.tscn" id="26_n8d2p"]
 [ext_resource type="PackedScene" uid="uid://dl4d0yxigw21r" path="res://Scenes/UI/pause_menu.tscn" id="28_7sm57"]
@@ -64,7 +65,7 @@ campfire_scene = ExtResource("12_qspmw")
 slime_scene = ExtResource("13_nl7hk")
 apple_scene = ExtResource("14_n8d2p")
 cookie_crumble_scene = ExtResource("15_7sm57")
-altar_scene = ExtResource("26_n8d2p")
+altar_shop_scene = ExtResource("17_wtduq")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=130257482]
 tile_set = SubResource("TileSet_43nnj")
