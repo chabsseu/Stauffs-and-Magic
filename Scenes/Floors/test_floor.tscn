@@ -12,6 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://dy858vp7vsy74" path="res://Scenes/UI/altar_ui.tscn" id="11_grnbs"]
 [ext_resource type="PackedScene" uid="uid://ba1hgd30lhp7t" path="res://Scenes/Map/altar_shop.tscn" id="12_grnbs"]
 [ext_resource type="PackedScene" uid="uid://4g81qo65uyd8" path="res://Scenes/UI/AltarShopUI.tscn" id="12_pj0o8"]
+[ext_resource type="PackedScene" uid="uid://dw6vigp0l5qhu" path="res://Scenes/Map/coin.tscn" id="13_pj0o8"]
+[ext_resource type="PackedScene" uid="uid://dsh6imlitgt6j" path="res://Scenes/Map/minimap.tscn" id="14_wpy4b"]
+[ext_resource type="Script" uid="uid://ct60sn8rq7ewp" path="res://Scripts/Map/currency.gd" id="15_4grox"]
+[ext_resource type="Texture2D" uid="uid://byhlt5w10bt5k" path="res://Assets/MapAccessories/Gold.png" id="16_c3xet"]
+[ext_resource type="Texture2D" uid="uid://fgtatq2gfj12" path="res://Assets/MapAccessories/Food.png" id="17_xltfc"]
 
 [node name="Node2D" type="Node2D" unique_id=936650630]
 
@@ -82,3 +87,31 @@ ingredient_color = Color(0.85283446, 0, 0.21246234, 1)
 position = Vector2(926, -17)
 
 [node name="ShopUI" parent="." unique_id=393469096 instance=ExtResource("12_pj0o8")]
+
+[node name="Coin" parent="." unique_id=321685563 instance=ExtResource("13_pj0o8")]
+position = Vector2(-287, -139)
+
+[node name="Coin2" parent="." unique_id=1167000399 instance=ExtResource("13_pj0o8")]
+position = Vector2(-250, -59)
+
+[node name="Coin3" parent="." unique_id=1549840165 instance=ExtResource("13_pj0o8")]
+position = Vector2(-336, -68)
+
+[node name="Coin4" parent="." unique_id=847881620 instance=ExtResource("13_pj0o8")]
+position = Vector2(-360, -139)
+
+[node name="Coin5" parent="." unique_id=2128216912 instance=ExtResource("13_pj0o8")]
+position = Vector2(-225, -137)
+
+[node name="MinimapLayer" type="CanvasLayer" parent="." unique_id=12075378]
+
+[node name="minimap" parent="MinimapLayer" unique_id=2051362197 instance=ExtResource("14_wpy4b")]
+
+[node name="Currency" type="Control" parent="MinimapLayer" unique_id=1865823380]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("15_4grox")
+coin_icon = ExtResource("16_c3xet")
+food_icon = ExtResource("17_xltfc")

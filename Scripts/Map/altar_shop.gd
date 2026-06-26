@@ -134,7 +134,7 @@ func _on_purchase_confirmed():
 		shop_ui.close()
 
 	print("Purchased weapon!")
-
+	icon.queue_free()
 func _on_purchase_cancelled():
 	"""Called when player cancels the purchase"""
 	print("Purchase cancelled")
