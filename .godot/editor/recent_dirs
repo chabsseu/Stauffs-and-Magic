@@ -1,3 +1,5 @@
+res://Assets/Player/
+res://
 res://Scenes/Floors/
 res://Scenes/Map/
 res://Assets/Alter/
@@ -7,13 +9,11 @@ res://Assets/Fonts/Title Screen Font/Pixelify_Sans/
 res://Assets/Weapon/
 res://Scenes/Weapon/
 res://Scripts/Map/
-res://Assets/Player/
 res://Scenes/Enemies/Boss/Durion/
 res://Assets/Enemies/Boss/Durion/
 res://Assets/UI/
 res://Scripts/Enemies/Boss/Durion/
 res://Scenes/Enemies/Boss/
-res://
 res://Scripts/Floor/
 res://Assets/Tilemaps/
 res://Assets/MapAccessories/

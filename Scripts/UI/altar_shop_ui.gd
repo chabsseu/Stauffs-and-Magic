@@ -19,47 +19,62 @@ var current_cost: int = 0
 func _ready():
 	add_to_group("altar_shop_ui")
 	panel.visible = false
-	
+
 	confirm_button.pressed.connect(_on_confirm_pressed)
 	cancel_button.pressed.connect(_on_cancel_pressed)
 
 func open(weapon_scene: PackedScene, level: int, cost: int):
-	"""Display the shop UI with weapon details"""
 	current_weapon_scene = weapon_scene
 	current_level = level
 	current_cost = cost
-	
-	# Get weapon name from the scene
-	var temp_weapon = weapon_scene.instantiate()
-	var weapon_name = temp_weapon.name if temp_weapon.name != "" else "Unknown Weapon"
-	var sprite = temp_weapon.get_node_or_null("Sprite2D")
-	
-	# Update UI labels
-	weapon_name_label.text = "Weapon: " + weapon_name
-	weapon_level_label.text = "Level: " + str(level)
-	weapon_cost_label.text = "Cost: " + str(cost) + " coins"
-	
-	# Update icon
-	if sprite != null and weapon_icon != null:
+
+	var weapon = weapon_scene.instantiate()
+
+	# Weapon Name
+	if weapon.get("weapon_name") != null:
+		weapon_name_label.text = str(weapon.get("weapon_name"))
+	else:
+		weapon_name_label.text = weapon.name
+
+	# Weapon Level
+	weapon_level_label.text = "Level: %d" % level
+
+	# Weapon Cost
+	weapon_cost_label.text = "Cost: %d " % cost
+
+	# Weapon Icon
+	if weapon.has_node("Sprite2D"):
+		var sprite: Sprite2D = weapon.get_node("Sprite2D")
 		weapon_icon.texture = sprite.texture
 		weapon_icon.scale = Vector2(2,2)
-	
-	temp_weapon.queue_free()
-	
-	# Show panel
+	weapon.queue_free()
+
+	# Can player afford it?
+	if GameData.coins >= current_cost:
+		weapon_cost_label.modulate = Color.WHITE
+		confirm_button.disabled = false
+		confirm_button.text = "BUY"
+	else:
+		weapon_cost_label.modulate = Color.RED
+		confirm_button.disabled = true
+		confirm_button.text = "BUY"
+
 	panel.visible = true
-	print("Shop UI opened - showing weapon: ", weapon_name, " (Level ", level, ", Cost: ", cost, ")")
+
 
 func close():
-	"""Close the shop UI"""
 	panel.visible = false
 
+
 func _on_confirm_pressed():
-	"""Handle purchase confirmation"""
-	close()
+	if GameData.coins < current_cost:
+		return
+
+	GameData.coins -= current_cost
+
+	panel.visible = false
 	purchase_confirmed.emit()
 
 func _on_cancel_pressed():
-	"""Handle purchase cancellation"""
-	close()
+	panel.visible = false
 	purchase_cancelled.emit()
