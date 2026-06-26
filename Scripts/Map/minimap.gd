@@ -19,7 +19,7 @@ const COLOR_STATUE_ROOM   = Color(1.0, 0.85, 0.2, 0.95)
 const COLOR_BOSS_ROOM     = Color(1.0, 0.5, 0.0, 0.9)
 const COLOR_CAMPFIRE_ROOM = Color(1.0, 0.6, 0.1, 0.95)
 const COLOR_ALTARSHOP_ROOM = Color (1.0, 0.9, 0.5, 1)
-
+const COLOR_ALTAR_ROOM = Color (1.5,1,0.7,2)
 # --------------------------------------------------
 # DATA
 # --------------------------------------------------
@@ -29,6 +29,7 @@ var end_room : Rect2
 var statue_room_index : int = -1
 var campfire_room_index : int = -1
 var altar_shop_room_index : int = -1
+var altar_room_index : int = -1
 var player_ref : CharacterBody2D
 var portal_ref : Node2D
 var portal_active := false
@@ -78,7 +79,12 @@ func _process(_delta):
 		var current_room = _get_room_from_world(player_ref.position)
 		if current_room == altar_shop_room_index:
 			visit_room(altar_shop_room_index)
-			
+	
+	if is_instance_valid(player_ref) and altar_room_index != -1:
+		var current_room = _get_room_from_world(player_ref.position)
+		if current_room == altar_room_index:
+			visit_room(altar_room_index)
+
 	if _corridors_dirty:
 		_rebuild_visited_corridors()
 		_corridors_dirty = false
@@ -122,7 +128,11 @@ func set_campfire_room(room_index: int):
 # -------------------------------------------------
 func set_altar_shop_room(room_index: int):
 	altar_shop_room_index = room_index
-	
+# -------------------------------------------------
+# SET TRADE ROOm
+# -------------------------------------------------
+func set_altar_room_index(room_index: int):
+	altar_room_index = room_index
 # --------------------------------------------------
 # ROOM FROM PLAYER WORLD POSITION
 # --------------------------------------------------
@@ -271,6 +281,8 @@ func _draw():
 			color_to_draw = COLOR_CAMPFIRE_ROOM
 		elif i == altar_shop_room_index:
 			color_to_draw = COLOR_ALTARSHOP_ROOM
+		elif i == altar_room_index:
+			color_to_draw = COLOR_ALTAR_ROOM
 		elif all_rooms[i] == end_room:
 			color_to_draw = COLOR_END_ROOM
 
