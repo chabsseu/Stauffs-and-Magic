@@ -7,8 +7,8 @@ class_name AltarShop
 var prompt_label: Label = null
 
 @export var possible_weapons: Array[PackedScene] = []
-@export var base_cost: int = 50
-@export var cost_per_level: int = 10
+@export var base_cost: int = 10
+@export var cost_per_level: int = 3
 
 var player_nearby: bool = false
 var weapon_offered: PackedScene = null
