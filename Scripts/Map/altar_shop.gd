@@ -36,7 +36,7 @@ func _ready():
 		weapon_cost = calculate_cost()
 		_update_icon()
 		if prompt_label != null:
-			prompt_label.text = "Press E to view"
+			prompt_label.text = "Press E to interact"
 	else:
 		push_error("No weapons assigned to altar!")
 	
@@ -64,46 +64,76 @@ func _update_icon():
 	temp_weapon.queue_free()
 
 func open_shop_ui():
-	"""Open the shop UI to show weapon details"""
 	shop_ui = get_tree().get_first_node_in_group("altar_shop_ui")
 	if shop_ui == null:
-		push_error("AltarShopUI not found in 'altar_shop_ui' group")
+		push_error("AltarShopUI not found!")
 		return
-	
-	# Prevent opening if already open
-	if shop_ui.panel.visible:
+
+	# Prevent opening twice
+	if shop_ui.visible:
 		return
-	
-	# Connect signals if not already connected
-	if not shop_ui.is_connected("purchase_confirmed", Callable(self, "_on_purchase_confirmed")):
-		shop_ui.connect("purchase_confirmed", Callable(self, "_on_purchase_confirmed"))
-	if not shop_ui.is_connected("purchase_cancelled", Callable(self, "_on_purchase_cancelled")):
-		shop_ui.connect("purchase_cancelled", Callable(self, "_on_purchase_cancelled"))
-	
-	# Open UI with weapon details
-	shop_ui.open(weapon_offered, weapon_level, weapon_cost)
+
+	# Connect signals once
+	if not shop_ui.purchase_confirmed.is_connected(_on_purchase_confirmed):
+		shop_ui.purchase_confirmed.connect(_on_purchase_confirmed)
+
+	if not shop_ui.purchase_cancelled.is_connected(_on_purchase_cancelled):
+		shop_ui.purchase_cancelled.connect(_on_purchase_cancelled)
+
+	shop_ui.open(
+		weapon_offered,
+		weapon_level,
+		weapon_cost
+	)
 
 func _on_purchase_confirmed():
-	"""Called when player confirms the purchase"""
 	var player = get_tree().get_first_node_in_group("player")
 	if player == null:
-		push_error("Player not found")
 		return
-	
-	# Create weapon pickup
-	var weapon_pickup_scene = preload("res://Scenes/Weapon/weapon_pickup.tscn")
-	var pickup = weapon_pickup_scene.instantiate()
-	pickup.weapon_scene = weapon_offered
-	pickup.weapon_level = weapon_level
-	pickup.position = global_position
-	icon.queue_free()
-	get_parent().add_child(pickup)
-	print("Player purchased weapon level ", weapon_level, " for ", weapon_cost, " coins")
-	
-	# Mark as used
+
+	# Check coins
+	if GameData.coins < weapon_cost:
+		print("Not enough coins!")
+		return
+
+	# Find an empty slot
+	var empty_slot := -1
+
+	for i in range(player.HOTBAR_SIZE):
+		if player.hotbar_data[i]["scene"] == null:
+			empty_slot = i
+			break
+
+	if empty_slot == -1:
+		print("Inventory Full!")
+		return
+
+	# Take coins
+	GameData.coins -= weapon_cost
+
+	# Create the weapon data
+	player.hotbar_data[empty_slot] = player.create_weapon_data(
+		weapon_offered,
+		weapon_level
+	)
+
+	player.max_cooldown[empty_slot] = player.hotbar_data[empty_slot]["skill_cooldown"]
+
+	# Equip automatically if no weapon equipped
+	if player.current_weapon == null:
+		player.equip(empty_slot)
+
+	player.update_hotbar_ui()
+
 	used = true
-	if prompt_label != null:
+
+	if prompt_label:
 		prompt_label.visible = false
+
+	if shop_ui:
+		shop_ui.close()
+
+	print("Purchased weapon!")
 
 func _on_purchase_cancelled():
 	"""Called when player cancels the purchase"""

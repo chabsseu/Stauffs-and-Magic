@@ -22,61 +22,59 @@ size_flags_horizontal = 4
 
 [node name="WeaponIcon" type="Sprite2D" parent="Panel" unique_id=1035812543]
 position = Vector2(184.5, 87)
-scale = Vector2(2, 2)
 
 [node name="WeaponName" type="Label" parent="Panel" unique_id=2086461297]
 layout_mode = 0
-offset_left = 102.5
-offset_top = 146.0
-offset_right = 181.5
-offset_bottom = 169.0
-scale = Vector2(2, 2)
+offset_left = 135.25
+offset_top = 132.0
+offset_right = 233.25
+offset_bottom = 155.0
 theme_override_fonts/font = ExtResource("2_6fnlb")
+theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WeaponLevel" type="Label" parent="Panel" unique_id=1669537642]
 layout_mode = 0
-offset_left = 97.5
-offset_top = 195.0
-offset_right = 184.5
-offset_bottom = 218.0
-scale = Vector2(2, 2)
+offset_left = 141.25
+offset_top = 173.0
+offset_right = 228.25
+offset_bottom = 222.0
 theme_override_fonts/font = ExtResource("2_6fnlb")
+theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="CostLabel" type="Label" parent="Panel" unique_id=892957170]
 layout_mode = 0
-offset_left = 90.5
-offset_top = 242.0
-offset_right = 186.5
-offset_bottom = 265.0
-scale = Vector2(2, 2)
+offset_left = 140.25
+offset_top = 246.0
+offset_right = 238.25
+offset_bottom = 269.0
 theme_override_fonts/font = ExtResource("2_6fnlb")
+theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 1
 
 [node name="ConfirmButton" type="Button" parent="Panel" unique_id=1323522687]
 layout_mode = 0
-offset_left = 24.5
-offset_top = 316.0
-offset_right = 95.5
-offset_bottom = 347.0
-scale = Vector2(2, 2)
+offset_left = 95.25
+offset_top = 312.0
+offset_right = 177.25
+offset_bottom = 345.0
 theme_override_fonts/font = ExtResource("2_6fnlb")
+theme_override_font_sizes/font_size = 20
 text = "Confirm
 "
 
 [node name="CancelButton" type="Button" parent="Panel" unique_id=1994276131]
 layout_mode = 0
-offset_left = 203.5
-offset_top = 317.0
-offset_right = 274.5
-offset_bottom = 348.0
-scale = Vector2(2, 2)
+offset_left = 201.25
+offset_top = 313.0
+offset_right = 276.25
+offset_bottom = 346.0
 theme_override_fonts/font = ExtResource("2_6fnlb")
+theme_override_font_sizes/font_size = 20
 text = "Cancel
 "

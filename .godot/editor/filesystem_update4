@@ -7,3 +7,4 @@ res://Scripts/UI/altar_shop_ui.gd
 res://Scripts/Global/Gamedata.gd
 res://Scenes/Map/dungeon_generation.tscn
 res://Scripts/Map/minimap.gd
+res://Scripts/Player/player.gd
