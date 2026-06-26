@@ -678,6 +678,9 @@ func place_altar_shop(rooms: Array[Rect2]):
 
 	print("Altar shop spawned in room index: ", altar_shop_room_index, " with ", num_altars, " altars")
 
+	if minimap:
+		minimap.set_altar_shop_room(altar_shop_room_index)
+
 func _get_altar_positions(room: Rect2, count: int) -> Array[Vector2]:
 	var positions: Array[Vector2] = []
 	var room_center = room.get_center() * 16

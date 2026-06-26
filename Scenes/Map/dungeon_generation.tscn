@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://85kmy641pvax" path="res://Scenes/UI/game_over_menu.tscn" id="23_84rh7"]
 [ext_resource type="PackedScene" uid="uid://cwaqd4csrpqu3" path="res://Scenes/Floors/altar.tscn" id="26_n8d2p"]
 [ext_resource type="PackedScene" uid="uid://dl4d0yxigw21r" path="res://Scenes/UI/pause_menu.tscn" id="28_7sm57"]
+[ext_resource type="PackedScene" uid="uid://4g81qo65uyd8" path="res://Scenes/UI/AltarShopUI.tscn" id="31_i1osi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpfl8"]
 texture = ExtResource("2_eo2qp")
@@ -135,3 +136,5 @@ food_icon = ExtResource("17_mc0b8")
 [node name="Campfire" parent="." unique_id=495449087 instance=ExtResource("12_qspmw")]
 
 [node name="Altar" parent="." unique_id=610699848 instance=ExtResource("26_n8d2p")]
+
+[node name="ShopUI" parent="." unique_id=393469096 instance=ExtResource("31_i1osi")]
