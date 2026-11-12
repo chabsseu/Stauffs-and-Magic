@@ -75,7 +75,7 @@ These are inspirations, not assets or content from the original games.
   <br />
   Indie Game Developer & Full-Stack Developer
   <br /><br />
-  <a href="https://github.com/Chabss1">GitHub</a> ·
+  <a href="https://github.com/chabsseu">GitHub</a> ·
   <a href="https://chabss-dev.netlify.app/">Portfolio</a>
 </p>
 
