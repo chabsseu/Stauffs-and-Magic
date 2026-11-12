@@ -67,7 +67,7 @@ These are inspirations, not assets or content from the original games.
 - [x] Inventory and item systems
 - [x] World exploration
 - [ ] Playable prototype
-- [ ] 
+      
 ## 👨‍💻 Developer
 
 <p align="center">
