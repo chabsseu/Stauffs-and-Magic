@@ -1,62 +1,86 @@
-Stauffs and Magic
+# ✦ STAUFFS AND MAGIC
 
-A world of magic, survival, and adventure.
+<p align="center">
+  <strong>⚔️ A world of magic, survival, and adventure. ✨</strong>
+  <br />
+  An indie game project built with Godot Engine.
+</p>
 
-Stauffs and Magic is an indie game project developed using Godot Engine 4.5.1.
+<p align="center">
+  <img src="https://img.shields.io/badge/ENGINE-Godot%204.5.1-478CBF?style=for-the-badge&logo=godotengine&logoColor=white" />
+  <img src="https://img.shields.io/badge/GENRE-Fantasy%20%7C%20RPG-8B5CF6?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/STATUS-In%20Development-EAB308?style=for-the-badge" />
+</p>
 
-Inspired by the action-packed gameplay of Soul Knight and the fantasy cooking and dungeon-adventure atmosphere of Delicious in Dungeon, the project explores a combination of action, exploration, survival, and RPG-inspired mechanics.
+---
 
-This is a personal game development project where I'm experimenting with gameplay systems, game mechanics, and building my own game world.
+## 🌙 About the Game
 
- About the Project
+**Stauffs and Magic** is a personal indie game project inspired by the action-packed combat of [Soul Knight](https://store.steampowered.com/app/105600/) and the fantasy atmosphere of [Delicious in Dungeon](https://en.wikipedia.org/wiki/Delicious_in_Dungeon).
 
-Stauffs and Magic is an ongoing attempt to create a game that combines engaging action gameplay with fantasy-inspired elements.
+The project explores a fantasy adventure built around action, exploration, resource management, and RPG-inspired mechanics.
 
-The project focuses on experimenting with:
+This is a passion project focused on creating an original game world while experimenting with different gameplay systems and mechanics.
 
-Player movement and combat systems
+## ✨ Core Features
 
-Health, armor, and mana management
+| Feature | Description |
+|:--|:--|
+| ❤️ Player Attributes | Manage health, armor, and other player statistics. |
+| 🛡️ Armor System | Armor regeneration and resource management. |
+| 🔮 Mana System | A resource system for magical abilities. |
+| ⚔️ Combat | An evolving combat system. |
+| 🎒 Hotbar | A five-slot hotbar for quick access to items and abilities. |
+| 🗺️ Exploration | Tile-based environments and world exploration. |
 
-Magic and ability systems
+*Features are subject to change during development.*
 
-Inventory and hotbar mechanics
+## 🎮 Inspirations
 
-World exploration and level design
+<p align="center">
+  <img src="https://placehold.co/300x160/171526/c4b5fd?text=SOUL+KNIGHT" width="45%" />
+  <img src="https://placehold.co/300x160/171526/c4b5fd?text=DELICIOUS+IN+DUNGEON" width="45%" />
+</p>
 
-Development
+The project takes inspiration from:
 
-This project is currently under active development.
+- **Soul Knight** – Action-oriented gameplay and combat.
+- **Delicious in Dungeon** – Fantasy world-building and dungeon-adventure atmosphere.
 
-Development priorities include:
+These are inspirations, not assets or content from the original games.
 
-Building the core player systems.
+## 🛠️ Development
 
-Implementing combat mechanics.
+**Built with:**
 
-Developing magic and ability systems.
+- [Godot Engine 4.5.1]
+- GDScript
+- Godot's Node-based scene system
 
-Creating interactive environments.
+**Current development direction:**
 
-Improving gameplay through testing and iteration.
+- [x] Initial project setup
+- [x] Player state foundation
+- [x] Player combat
+- [x] Enemy behavior
+- [x] Magic and abilities
+- [x] Inventory and item systems
+- [x] World exploration
+- [ ] Playable prototype
+- [ ] 
+## 👨‍💻 Developer
 
- Project Goals
+<p align="center">
+  <strong>CHABSS</strong>
+  <br />
+  Indie Game Developer & Full-Stack Developer
+  <br /><br />
+  <a href="https://github.com/Chabss1">GitHub</a> ·
+  <a href="https://chabss-dev.netlify.app/">Portfolio</a>
+</p>
 
-Learn and improve game development skills.
+---
 
-Experiment with different gameplay mechanics.
-
-Build a playable and enjoyable game.
-
-Develop a complete indie game from the ground up.
-
-Developer
-
-Chabss
-
-Indie Game Developer | Full-Stack Developer
-
-Portfolio: chabss-dev.netlify.app
-
-GitHub: @Chabss1
-
+<p align="center">
+  <i>Made with curiosity, creativity, and a little bit of magic. ✨</i>
+</p>
