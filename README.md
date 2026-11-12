@@ -37,10 +37,10 @@ This is a passion project focused on creating an original game world while exper
 
 ## 🎮 Inspirations
 
-<p align="center">
+<!-- <p align="center">
   <img src="https://placehold.co/300x160/171526/c4b5fd?text=SOUL+KNIGHT" width="45%" />
   <img src="https://placehold.co/300x160/171526/c4b5fd?text=DELICIOUS+IN+DUNGEON" width="45%" />
-</p>
+</p> -->
 
 The project takes inspiration from:
 
